@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anunciar veículo - Volante</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background: #fff;
+  color: #111;
+}
+
+header {
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header strong {
+  font-size: 20px;
+}
+
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 16px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: #111;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.secondary {
+  background: #f3f3f3;
+  color: #111;
+}
+
+.info {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+}
+
+#usuarioArea {
+  font-size: 13px;
+  color: #555;
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <strong>Volante 🚗</strong>
+    <div class="info">Anunciar veículo</div>
+  </div>
+
+  <div id="usuarioArea"></div>
+</header>
+
+<div class="container">
+
+  <button class="secondary" onclick="window.location.href='/'">
+    Voltar para início
+  </button>
+
+  <label>Descrição do anúncio</label>
+  <textarea id="descricao" placeholder="Conte os detalhes do veículo, estado de conservação, histórico, documentação..."></textarea>
+
+  <label>Título</label>
+  <input id="titulo" placeholder="Ex: Ford F100 1975" />
+
+  <label>Marca</label>
+  <input id="marca" placeholder="Ex: Ford" />
+
+  <label>Modelo</label>
+  <input id="modelo" placeholder="Ex: F100" />
+
+  <label>Ano de fabricação</label>
+  <input id="ano" type="number" placeholder="Ex: 1975" />
+
+  <label>Preço</label>
+  <input id="preco" type="number" placeholder="Ex: 85000" />
+
+  <label>Estado</label>
+  <input id="estado" placeholder="Ex: GO" />
+
+  <label>Cidade</label>
+  <input id="cidade" placeholder="Ex: Brasília" />
+
+  <label>Telefone / WhatsApp</label>
+  <input id="telefone" placeholder="Ex: 61999999999" />
+
+  <label>URL da foto principal</label>
+  <input id="foto" placeholder="Cole aqui o link da imagem" />
+
+  <div class="info">
+    Nesta primeira versão web, a foto será inserida por link. Depois vamos evoluir para upload direto de imagem.
+  </div>
+
+  <button onclick="publicarAnuncio()">
+    Enviar para aprovação
+  </button>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let usuarioAtual = null;
+
+onAuthStateChanged(auth, (user) => {
+  const area = document.getElementById("usuarioArea");
+
+  if (!user) {
+    alert("Faça login para anunciar.");
+    window.location.href = "/login.html";
+    return;
+  }
+
+  usuarioAtual = user;
+  area.innerHTML = user.email;
+});
+
+function valor(id) {
+  return document.getElementById(id).value.trim();
+}
+
+window.publicarAnuncio = async function () {
+  if (!usuarioAtual) {
+    alert("Faça login para anunciar.");
+    window.location.href = "/login.html";
+    return;
+  }
+
+  const descricao = valor("descricao");
+  const titulo = valor("titulo");
+  const marca = valor("marca");
+  const modelo = valor("modelo");
+  const ano = Number(valor("ano"));
+  const preco = Number(valor("preco"));
+  const estado = valor("estado").toUpperCase();
+  const cidade = valor("cidade");
+  const telefone = valor("telefone");
+  const foto = valor("foto");
+
+  if (!descricao || !titulo || !marca || !modelo || !ano || !preco || !estado || !cidade || !telefone) {
+    alert("Preencha todos os campos obrigatórios.");
+    return;
+  }
+
+  const anoAtual = new Date().getFullYear();
+
+  if (String(ano).length !== 4) {
+    alert("Informe o ano com 4 dígitos.");
+    return;
+  }
+
+  if (anoAtual - ano < 25) {
+    alert("O Volante aceita apenas veículos com pelo menos 25 anos.");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "anuncios"), {
+      descricao,
+      titulo,
+      marca,
+      modelo,
+      ano,
+      preco,
+      estado,
+      cidade,
+      telefone,
+      fotos: foto ? [foto] : [],
+      status: "PENDENTE",
+      usuarioEmail: usuarioAtual.email,
+      usuarioId: usuarioAtual.uid,
+      criadoEm: serverTimestamp(),
+      atualizadoEm: serverTimestamp()
+    });
+
+    alert("Anúncio enviado para aprovação!");
+    window.location.href = "/";
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao publicar anúncio.");
+  }
+};
+</script>
+
+</body>
+</html>
