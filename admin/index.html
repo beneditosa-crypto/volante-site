@@ -36,19 +36,9 @@ body {
 
 .logo {
   width: 28px;
-  height: 28px;
-  object-fit: contain;
 }
 
-.header-title {
-  display: flex;
-  flex-direction: column;
-}
-
-.header-title strong {
-  font-size: 15px;
-}
-
+.header-title strong { font-size: 15px; }
 .header-title span {
   font-size: 12px;
   color: #9ca3af;
@@ -66,18 +56,13 @@ button {
   border-radius: 8px;
 }
 
-.btn-update,
-.btn-logout {
-  padding: 8px 12px;
-}
-
-.btn-update { background: #374151; color: white; }
-.btn-logout { background: #b91c1c; color: white; }
+.btn-update { background: #374151; color: white; padding:8px 12px;}
+.btn-logout { background: #b91c1c; color: white; padding:8px 12px;}
 
 .filtros {
   display: flex;
   gap: 6px;
-  padding: 10px 12px;
+  padding: 10px;
   border-bottom: 1px solid #1f2937;
 }
 
@@ -91,344 +76,93 @@ button {
 
 .filtros button.ativo {
   background: #e5e7eb;
-  color: #111827;
+  color: #111;
 }
 
-.wrapper {
-  padding: 0 8px 12px;
-}
+.wrapper { padding: 8px; }
 
-.tabela {
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.tabela th {
-  position: sticky;
-  top: 56px;
-  z-index: 5;
-  background: #0f1115;
-  color: #9ca3af;
-  font-size: 12px;
-  text-align: left;
-  padding: 8px 8px;
+th, td {
+  padding: 6px;
   border-bottom: 1px solid #1f2937;
-}
-
-.tabela td {
-  padding: 7px 8px;
-  border-bottom: 1px solid #1f2937;
-  vertical-align: middle;
   font-size: 13px;
 }
 
-.col-foto { width: 76px; }
-.col-tipo { width: 90px; }
-.col-status { width: 90px; }
-.col-local { width: 170px; }
-.col-data { width: 125px; }
-.col-acoes { width: 310px; text-align: right; }
+th { color: #9ca3af; }
 
 .foto {
-  width: 58px;
+  width: 60px;
   height: 42px;
-  border-radius: 6px;
   object-fit: cover;
-  background: #2a2f36;
-  display: block;
-}
-
-.sem-foto {
-  width: 58px;
-  height: 42px;
   border-radius: 6px;
-  background: #2a2f36;
-  color: #6b7280;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .tag {
-  display: inline-flex;
   font-size: 10px;
-  padding: 3px 7px;
+  padding: 3px 6px;
   border-radius: 999px;
-  font-weight: 800;
 }
 
-.tipo {
-  background: #374151;
-  color: white;
-}
+.tipo { background:#374151; }
 
-.status-pendente { color: #facc15; font-weight: 800; }
-.status-ativo { color: #22c55e; font-weight: 800; }
-.status-recusado { color: #f87171; font-weight: 800; }
-.status-excluido { color: #9ca3af; font-weight: 800; }
+.status-pendente { color:#facc15;}
+.status-ativo { color:#22c55e;}
+.status-recusado { color:#f87171;}
+.status-excluido { color:#9ca3af;}
 
-.titulo {
-  font-weight: 800;
-  font-size: 13px;
-  color: #f9fafb;
-  margin-bottom: 2px;
-}
-
-.email {
-  font-size: 11px;
-  color: #9ca3af;
-}
+.titulo { font-weight:bold; }
+.email { font-size:11px; color:#9ca3af;}
 
 .descricao-lista {
   margin-top: 4px;
-  max-width: 640px;
   color: #cbd5e1;
   font-size: 12px;
-  line-height: 1.35;
-}
-
-.texto-sec {
-  font-size: 12px;
-  color: #cbd5e1;
 }
 
 .acoes {
   display: flex;
-  justify-content: flex-end;
   gap: 5px;
+  justify-content: flex-end;
 }
 
 .acoes button {
-  height: 28px;
-  padding: 0 9px;
+  height: 26px;
   font-size: 11px;
-  white-space: nowrap;
+  padding: 0 8px;
 }
 
-.btn-detail { background: #374151; color: white; }
-.btn-ok { background: #15803d; color: white; }
-.btn-dev { background: #d97706; color: #111827; }
-.btn-del { background: #b91c1c; color: white; }
-.btn-sec { background: #374151; color: white; }
-
-.mensagem {
-  color: #9ca3af;
-  padding: 18px;
-}
-
-/* MODAL DEVOLUÇÃO */
+.btn-ok { background:#15803d;color:white;}
+.btn-dev { background:#d97706;}
+.btn-del { background:#b91c1c;color:white;}
+.btn-detail { background:#374151;color:white;}
 
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.72);
+  background: rgba(0,0,0,.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99;
 }
 
 .modal-box {
-  background: #1c1f24;
-  border: 1px solid #2a2f36;
-  padding: 16px;
-  border-radius: 12px;
-  width: 320px;
+  background:#1c1f24;
+  padding:16px;
+  border-radius:10px;
+  width:300px;
 }
 
 textarea {
-  width: 100%;
-  height: 90px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #374151;
-  background: #20242b;
-  color: white;
-  padding: 8px;
+  width:100%;
+  height:80px;
+  margin:10px 0;
 }
 
-.modal-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.modal-actions button {
-  flex: 1;
-  height: 34px;
-}
-
-/* MODAL DETALHE */
-
-.detalhe-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.78);
-  z-index: 120;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-}
-
-.detalhe-box {
-  width: min(1120px, 96vw);
-  max-height: 92vh;
-  overflow-y: auto;
-  background: #111827;
-  border: 1px solid #2a2f36;
-  border-radius: 16px;
-}
-
-.detalhe-header {
-  position: sticky;
-  top: 0;
-  background: #111827;
-  border-bottom: 1px solid #2a2f36;
-  padding: 14px 16px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  z-index: 2;
-}
-
-.detalhe-header h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.detalhe-header span {
-  display: block;
-  margin-top: 3px;
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-.detalhe-fechar {
-  width: 34px;
-  height: 34px;
-  background: #374151;
-  color: white;
-  border-radius: 10px;
-}
-
-.detalhe-body {
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 16px;
-}
-
-.fotos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.fotos-grid img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-  background: #2a2f36;
-  border-radius: 12px;
-  border: 1px solid #2a2f36;
-}
-
-.sem-fotos-detalhe {
-  background: #1c1f24;
-  border: 1px solid #2a2f36;
-  border-radius: 12px;
-  height: 230px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-}
-
-.detalhe-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info-card {
-  background: #1c1f24;
-  border: 1px solid #2a2f36;
-  border-radius: 12px;
-  padding: 12px;
-}
-
-.info-card strong {
-  display: block;
-  color: #9ca3af;
-  font-size: 11px;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-
-.info-card div {
-  font-size: 14px;
-  color: #f9fafb;
-  white-space: pre-wrap;
-  line-height: 1.35;
-}
-
-.detalhe-actions {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 6px;
-}
-
-.detalhe-actions button {
-  height: 40px;
-}
-
-@media (max-width: 950px) {
-  .col-local,
-  .col-data {
-    display: none;
-  }
-
-  .col-acoes {
-    width: 270px;
-  }
-
-  .acoes button {
-    padding: 0 7px;
-  }
-
-  .detalhe-body {
-    grid-template-columns: 1fr;
-  }
-
-  .fotos-grid img {
-    height: 190px;
-  }
-}
-
-@media (max-width: 650px) {
-  .col-tipo,
-  .col-status {
-    display: none;
-  }
-
-  .col-acoes {
-    width: 210px;
-  }
-
-  .acoes {
-    flex-wrap: wrap;
-  }
-
-  .acoes button {
-    flex: 1;
-  }
-
-  .fotos-grid {
-    grid-template-columns: 1fr;
-  }
-}
+.hidden { display:none; }
 </style>
 </head>
 
@@ -436,11 +170,10 @@ textarea {
 
 <header class="header">
   <div class="header-left">
-    <img src="../logo.png" class="logo" alt="Volante">
-
+    <img src="../logo.png" class="logo">
     <div class="header-title">
       <strong>Painel Administrativo</strong>
-      <span id="adminEmail">Verificando acesso...</span>
+      <span id="adminEmail"></span>
     </div>
   </div>
 
@@ -451,537 +184,144 @@ textarea {
 </header>
 
 <div class="filtros">
-  <button id="filtro-todos" class="ativo" onclick="filtrar('TODOS')">Todos</button>
-  <button id="filtro-pendente" onclick="filtrar('PENDENTE')">Pendentes</button>
-  <button id="filtro-ativo" onclick="filtrar('ATIVO')">Ativos</button>
-  <button id="filtro-recusado" onclick="filtrar('RECUSADO')">Recusados</button>
-  <button id="filtro-excluido" onclick="filtrar('EXCLUIDO')">Excluídos</button>
+  <button onclick="filtrar('TODOS')" class="ativo">Todos</button>
+  <button onclick="filtrar('PENDENTE')">Pendentes</button>
+  <button onclick="filtrar('ATIVO')">Ativos</button>
+  <button onclick="filtrar('RECUSADO')">Recusados</button>
+  <button onclick="filtrar('EXCLUIDO')">Excluídos</button>
 </div>
 
 <div class="wrapper">
-  <table class="tabela">
-    <thead>
-      <tr>
-        <th class="col-foto">Foto</th>
-        <th class="col-tipo">Tipo</th>
-        <th class="col-status">Status</th>
-        <th>Título / usuário</th>
-        <th class="col-local">Local</th>
-        <th class="col-data">Data</th>
-        <th class="col-acoes">Ações</th>
-      </tr>
-    </thead>
+<table>
+<thead>
+<tr>
+<th>Foto</th>
+<th>Tipo</th>
+<th>Status</th>
+<th>Info</th>
+<th>Ações</th>
+</tr>
+</thead>
 
-    <tbody id="lista">
-      <tr>
-        <td colspan="7" class="mensagem">Carregando...</td>
-      </tr>
-    </tbody>
-  </table>
+<tbody id="lista"></tbody>
+</table>
 </div>
 
 <div id="modal" class="modal hidden">
-  <div class="modal-box">
-    <h3>Motivo da devolução</h3>
-
-    <textarea id="motivo" placeholder="Informe o motivo"></textarea>
-
-    <div class="modal-actions">
-      <button class="btn-dev" onclick="confirmarDevolucao()">Confirmar</button>
-      <button class="btn-sec" onclick="fecharModal()">Cancelar</button>
-    </div>
-  </div>
+<div class="modal-box">
+<h4>Motivo</h4>
+<textarea id="motivo"></textarea>
+<button onclick="confirmar()">Confirmar</button>
 </div>
-
-<div id="modalDetalhe" class="detalhe-modal hidden">
-  <div class="detalhe-box">
-    <div class="detalhe-header">
-      <div>
-        <h2 id="detalheTitulo">Detalhes</h2>
-        <span id="detalheSubtitulo"></span>
-      </div>
-
-      <button class="detalhe-fechar" onclick="fecharDetalhe()">×</button>
-    </div>
-
-    <div class="detalhe-body">
-      <div id="detalheFotos"></div>
-
-      <div class="detalhe-info">
-        <div id="detalheCampos"></div>
-
-        <div class="detalhe-actions">
-          <button class="btn-ok" onclick="aprovarDetalhe()">Aprovar</button>
-          <button class="btn-dev" onclick="devolverDetalhe()">Devolver</button>
-          <button class="btn-del" onclick="excluirDetalhe()">Excluir</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
+  projectId: "clube-da-caminhonete-be770"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const ADMIN_EMAIL = "admin@clube.com";
-
 let itens = [];
-let filtroAtual = "TODOS";
-let selecionado = null;
-let detalheSelecionado = null;
-let autenticado = false;
+let filtro = "TODOS";
+let atual = null;
 
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "/admin/login.html";
-    return;
-  }
-
-  const email = (user.email || "").trim().toLowerCase();
-
-  if (email !== ADMIN_EMAIL) {
-    await signOut(auth);
-    window.location.href = "/admin/login.html";
-    return;
-  }
-
-  autenticado = true;
-  document.getElementById("adminEmail").innerText = user.email;
+onAuthStateChanged(auth, user => {
+  if (!user) location.href="/admin/login.html";
+  document.getElementById("adminEmail").innerText=user.email;
   carregar();
 });
 
-window.logout = async function () {
-  await signOut(auth);
-  window.location.href = "/admin/login.html";
-};
+window.logout=()=>signOut(auth);
 
-window.filtrar = function (status) {
-  filtroAtual = status;
+window.filtrar=(f)=>{filtro=f;render();}
 
-  document.querySelectorAll(".filtros button").forEach((btn) => {
-    btn.classList.remove("ativo");
-  });
+async function carregar(){
+  const anuncios=await getDocs(collection(db,"anuncios"));
+  const eventos=await getDocs(collection(db,"eventos"));
 
-  const id = status === "TODOS" ? "filtro-todos" : "filtro-" + status.toLowerCase();
-  const btn = document.getElementById(id);
-  if (btn) btn.classList.add("ativo");
+  itens=[];
 
-  renderizar();
-};
+  anuncios.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Anúncio"}));
+  eventos.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Evento"}));
 
-window.carregar = async function () {
-  if (!autenticado) return;
+  render();
+}
 
-  const lista = document.getElementById("lista");
-  lista.innerHTML = `
-    <tr>
-      <td colspan="7" class="mensagem">Carregando...</td>
-    </tr>
-  `;
-
-  try {
-    const [anunciosSnap, eventosSnap] = await Promise.all([
-      getDocs(collection(db, "anuncios")),
-      getDocs(collection(db, "eventos"))
-    ]);
-
-    itens = [];
-
-    anunciosSnap.forEach((d) => {
-      itens.push({
-        id: d.id,
-        colecao: "anuncios",
-        tipo: "Anúncio",
-        dados: d.data()
-      });
-    });
-
-    eventosSnap.forEach((d) => {
-      itens.push({
-        id: d.id,
-        colecao: "eventos",
-        tipo: "Evento",
-        dados: d.data()
-      });
-    });
-
-    itens.sort((a, b) => obterData(b) - obterData(a));
-    renderizar();
-
-  } catch (erro) {
-    console.error(erro);
-    lista.innerHTML = `
-      <tr>
-        <td colspan="7" class="mensagem">Erro ao carregar dados.</td>
-      </tr>
-    `;
-  }
-};
-
-function obterData(item) {
-  const d = item.dados;
-
+function pegarDescricao(d){
   return (
-    d.atualizadoEm?.seconds ||
-    d.criadoEm?.seconds ||
-    d.createdAt?.seconds ||
-    d.dataCriacao?.seconds ||
-    d.data?.seconds ||
-    0
+    d.descricao ||
+    d.descricaoAnuncio ||
+    d.descricaoEvento ||
+    d.descricaoCompleta ||
+    d.texto ||
+    d.observacoes ||
+    d.desc ||
+    ""
   );
 }
 
-function formatarData(item) {
-  const segundos = obterData(item);
-  if (!segundos) return "-";
+function render(){
+  const el=document.getElementById("lista");
+  el.innerHTML="";
 
-  return new Date(segundos * 1000).toLocaleString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
+  itens
+    .filter(i=>filtro==="TODOS"||(i.status||"PENDENTE")===filtro)
+    .forEach((i,idx)=>{
 
-function formatarPreco(valor) {
-  if (!valor) return "-";
+      const desc=pegarDescricao(i);
+      const curta=desc.length>120?desc.substring(0,120)+"...":desc;
 
-  const numero = Number(valor);
-
-  if (Number.isNaN(numero)) return String(valor);
-
-  return numero.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-}
-
-function descricaoCurtaItem(item) {
-  const d = item.dados;
-  const descricao = d.descricao || d.observacoes || d.texto || d.descricaoEvento || "";
-  const texto = String(descricao).trim();
-
-  if (!texto) return "";
-
-  return texto.length > 120 ? texto.substring(0, 120) + "..." : texto;
-}
-
-function renderizar() {
-  const lista = document.getElementById("lista");
-
-  const filtrados = itens.filter((item) => {
-    const status = (item.dados.status || "PENDENTE").toUpperCase();
-    return filtroAtual === "TODOS" || status === filtroAtual;
-  });
-
-  if (!filtrados.length) {
-    lista.innerHTML = `
+      el.innerHTML+=`
       <tr>
-        <td colspan="7" class="mensagem">Nenhum item encontrado.</td>
-      </tr>
-    `;
-    return;
-  }
-
-  lista.innerHTML = "";
-
-  filtrados.forEach((item) => {
-    const index = itens.indexOf(item);
-    const d = item.dados;
-
-    const foto = primeiraFoto(item);
-    const status = (d.status || "PENDENTE").toUpperCase();
-    const titulo = d.titulo || d.nome || "Sem título";
-    const cidade = d.cidade || "";
-    const estado = d.estado || "";
-    const local = `${cidade} ${estado}`.trim() || "-";
-    const usuario = d.usuarioEmail || d.email || d.emailUsuario || "-";
-    const data = formatarData(item);
-    const descricaoCurta = descricaoCurtaItem(item);
-
-    lista.innerHTML += `
-      <tr>
-        <td class="col-foto">
-          ${
-            foto
-              ? `<img class="foto" src="${escapar(foto)}" alt="">`
-              : `<div class="sem-foto">sem foto</div>`
-          }
-        </td>
-
-        <td class="col-tipo">
-          <span class="tag tipo">${item.tipo}</span>
-        </td>
-
-        <td class="col-status">
-          <span class="${classeStatus(status)}">${status}</span>
-        </td>
-
+        <td><img src="${i.fotos?.[0]||i.imagem||""}" class="foto"></td>
+        <td><span class="tag tipo">${i.tipo}</span></td>
+        <td><span class="status-${(i.status||"pendente").toLowerCase()}">${i.status||"PENDENTE"}</span></td>
         <td>
-          <div class="titulo">${escapar(titulo)}</div>
-          <div class="email">${escapar(usuario)}</div>
-          ${
-            descricaoCurta
-              ? `<div class="descricao-lista">${escapar(descricaoCurta)}</div>`
-              : ""
-          }
+          <div class="titulo">${i.titulo||"Sem título"}</div>
+          <div class="email">${i.usuarioEmail||""}</div>
+          ${curta?`<div class="descricao-lista">${curta}</div>`:""}
         </td>
-
-        <td class="col-local">
-          <span class="texto-sec">${escapar(local)}</span>
-        </td>
-
-        <td class="col-data">
-          <span class="texto-sec">${escapar(data)}</span>
-        </td>
-
-        <td class="col-acoes">
+        <td>
           <div class="acoes">
-            <button class="btn-detail" onclick="detalhar(${index})">Detalhar</button>
-            <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
-            <button class="btn-dev" onclick="abrirModal(${index})">Devolver</button>
-            <button class="btn-del" onclick="excluirItem(${index})">Excluir</button>
+            <button class="btn-ok" onclick="aprovar(${idx})">OK</button>
+            <button class="btn-dev" onclick="devolver(${idx})">Dev</button>
+            <button class="btn-del" onclick="excluir(${idx})">X</button>
           </div>
         </td>
       </tr>
-    `;
-  });
+      `;
+    });
 }
 
-function primeiraFoto(item) {
-  const d = item.dados;
-
-  if (item.tipo === "Anúncio") {
-    return d.fotos?.[0] || d.foto || d.imagem || "";
-  }
-
-  return d.imagem || d.foto || d.fotos?.[0] || "";
-}
-
-function todasFotos(item) {
-  const d = item.dados;
-
-  if (item.tipo === "Anúncio") {
-    if (Array.isArray(d.fotos) && d.fotos.length) return d.fotos;
-    return [d.foto || d.imagem].filter(Boolean);
-  }
-
-  if (Array.isArray(d.fotos) && d.fotos.length) return d.fotos;
-  return [d.imagem || d.foto].filter(Boolean);
-}
-
-function classeStatus(status) {
-  if (status === "ATIVO") return "status-ativo";
-  if (status === "RECUSADO") return "status-recusado";
-  if (status === "EXCLUIDO") return "status-excluido";
-  return "status-pendente";
-}
-
-window.detalhar = function (index) {
-  detalheSelecionado = itens[index];
-  const item = detalheSelecionado;
-  const d = item.dados;
-
-  const status = (d.status || "PENDENTE").toUpperCase();
-  const titulo = d.titulo || d.nome || "Sem título";
-  const usuario = d.usuarioEmail || d.email || d.emailUsuario || "-";
-  const cidade = d.cidade || "";
-  const estado = d.estado || "";
-  const local = `${cidade} ${estado}`.trim() || "-";
-  const data = formatarData(item);
-  const fotos = todasFotos(item);
-
-  document.getElementById("detalheTitulo").innerText = titulo;
-  document.getElementById("detalheSubtitulo").innerText =
-    `${item.tipo} • ${status} • ${data}`;
-
-  const fotosBox = document.getElementById("detalheFotos");
-
-  if (fotos.length) {
-    fotosBox.innerHTML = `
-      <div class="fotos-grid">
-        ${fotos.map((foto) => `<img src="${escapar(foto)}" alt="">`).join("")}
-      </div>
-    `;
-  } else {
-    fotosBox.innerHTML = `<div class="sem-fotos-detalhe">sem fotos</div>`;
-  }
-
-  const campos = [];
-
-  campos.push(["Tipo", item.tipo]);
-  campos.push(["Status", status]);
-  campos.push(["Usuário", usuario]);
-  campos.push(["Local", local]);
-  campos.push(["Data", data]);
-
-  if (item.tipo === "Anúncio") {
-    campos.push(["Marca", d.marca || "-"]);
-    campos.push(["Modelo", d.modelo || "-"]);
-    campos.push(["Ano", d.ano || d.anoFabricacao || "-"]);
-    campos.push(["Preço", formatarPreco(d.preco)]);
-    campos.push(["Telefone / WhatsApp", d.telefone || d.whatsapp || "-"]);
-  }
-
-  if (item.tipo === "Evento") {
-    campos.push(["Data do evento", d.dataEvento || d.data || d.dataFormatada || "-"]);
-    campos.push(["Endereço", d.endereco || d.local || "-"]);
-    campos.push(["Link", d.link || d.url || "-"]);
-  }
-
-  campos.push(["Descrição", d.descricao || d.observacoes || d.texto || d.descricaoEvento || "-"]);
-  campos.push(["Motivo / observação admin", d.motivoDevolucao || d.observacaoAdmin || d.motivo || "-"]);
-
-  document.getElementById("detalheCampos").innerHTML = campos.map(([label, valor]) => `
-    <div class="info-card">
-      <strong>${escapar(label)}</strong>
-      <div>${escapar(valor)}</div>
-    </div>
-  `).join("");
-
-  document.getElementById("modalDetalhe").classList.remove("hidden");
-};
-
-window.fecharDetalhe = function () {
-  detalheSelecionado = null;
-  document.getElementById("modalDetalhe").classList.add("hidden");
-  document.getElementById("detalheFotos").innerHTML = "";
-  document.getElementById("detalheCampos").innerHTML = "";
-};
-
-window.aprovar = async function (index) {
-  const item = itens[index];
-  if (!item) return;
-
-  await updateDoc(doc(db, item.colecao, item.id), {
-    status: "ATIVO",
-    motivoDevolucao: "",
-    observacaoAdmin: "",
-    atualizadoEm: serverTimestamp()
-  });
-
+window.aprovar=async(i)=>{
+  await updateDoc(doc(db,"anuncios",itens[i].id),{status:"ATIVO"});
   carregar();
 };
 
-window.abrirModal = function (index) {
-  selecionado = itens[index];
+window.devolver=(i)=>{
+  atual=i;
   document.getElementById("modal").classList.remove("hidden");
 };
 
-window.fecharModal = function () {
-  selecionado = null;
-  document.getElementById("modal").classList.add("hidden");
-  document.getElementById("motivo").value = "";
-};
-
-window.confirmarDevolucao = async function () {
-  const motivo = document.getElementById("motivo").value.trim();
-
-  if (!selecionado) return;
-
-  if (!motivo) {
-    alert("Informe o motivo.");
-    return;
-  }
-
-  await updateDoc(doc(db, selecionado.colecao, selecionado.id), {
-    status: "RECUSADO",
-    motivoDevolucao: motivo,
-    observacaoAdmin: motivo,
-    atualizadoEm: serverTimestamp()
-  });
-
-  fecharModal();
+window.confirmar=async()=>{
+  const motivo=document.getElementById("motivo").value;
+  await updateDoc(doc(db,"anuncios",itens[atual].id),{status:"RECUSADO",motivo});
   carregar();
 };
 
-window.excluirItem = async function (index) {
-  const item = itens[index];
-  if (!item) return;
-
-  if (!confirm("Excluir este item?")) return;
-
-  await updateDoc(doc(db, item.colecao, item.id), {
-    status: "EXCLUIDO",
-    atualizadoEm: serverTimestamp()
-  });
-
+window.excluir=async(i)=>{
+  await updateDoc(doc(db,"anuncios",itens[i].id),{status:"EXCLUIDO"});
   carregar();
 };
-
-window.aprovarDetalhe = async function () {
-  if (!detalheSelecionado) return;
-
-  await updateDoc(doc(db, detalheSelecionado.colecao, detalheSelecionado.id), {
-    status: "ATIVO",
-    motivoDevolucao: "",
-    observacaoAdmin: "",
-    atualizadoEm: serverTimestamp()
-  });
-
-  fecharDetalhe();
-  carregar();
-};
-
-window.devolverDetalhe = function () {
-  if (!detalheSelecionado) return;
-
-  selecionado = detalheSelecionado;
-  fecharDetalhe();
-  document.getElementById("modal").classList.remove("hidden");
-};
-
-window.excluirDetalhe = async function () {
-  if (!detalheSelecionado) return;
-
-  if (!confirm("Excluir este item?")) return;
-
-  await updateDoc(doc(db, detalheSelecionado.colecao, detalheSelecionado.id), {
-    status: "EXCLUIDO",
-    atualizadoEm: serverTimestamp()
-  });
-
-  fecharDetalhe();
-  carregar();
-};
-
-function escapar(valor) {
-  return String(valor ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
 </script>
 
 </body>
