@@ -12,33 +12,43 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  margin: 0;
-  min-height: 100vh;
-  background: #0f1115;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  min-height: 100%;
+  background: #0f1115 !important;
   color: #e5e7eb;
   font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  background-image: none !important;
 }
 
-.login-box {
+.admin-login-card {
   width: 100%;
   max-width: 320px;
   background: #1c1f24;
   border: 1px solid #2a2f36;
   border-radius: 16px;
-  padding: 24px;
+  padding: 22px;
 }
 
-.logo {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
+.admin-login-logo {
+  width: 42px !important;
+  height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  object-fit: contain !important;
   display: block;
-  margin-bottom: 14px;
+  margin: 0 0 14px 0;
 }
 
 h1 {
@@ -59,7 +69,7 @@ input {
   border-radius: 10px;
   border: 1px solid #374151;
   background: #20242b;
-  color: #ffffff;
+  color: #fff;
   padding: 0 12px;
   outline: none;
 }
@@ -87,8 +97,8 @@ button {
 
 <body>
 
-<div class="login-box">
-  <img src="../logo.png" class="logo" alt="Volante">
+<div class="admin-login-card">
+  <img src="../logo.png" class="admin-login-logo" alt="Volante">
 
   <h1>Painel Admin</h1>
   <p>Volante App</p>
@@ -145,7 +155,6 @@ window.login = async function () {
     await signInWithEmailAndPassword(auth, email, senha);
     window.location.href = "/admin/index.html";
   } catch (e) {
-    console.error(e);
     mostrarErro("Não foi possível entrar. Verifique email e senha.");
   }
 };
