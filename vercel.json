@@ -1,24 +1,25 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/logo.png",
-      "destination": "/logo.png",
-      "has": [
-        {
-          "type": "host",
-          "value": "admin.volante.app.br"
-        }
-      ]
+      "src": "/logo.png",
+      "dest": "/logo.png",
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate"
+      }
     },
     {
-      "source": "/(.*)",
-      "destination": "/admin/index.html",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "admin.volante.app.br"
         }
-      ]
+      ],
+      "dest": "/admin/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
