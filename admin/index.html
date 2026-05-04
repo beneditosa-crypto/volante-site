@@ -24,12 +24,10 @@ header {
   align-items: center;
 }
 
-header small {
-  color: #bbb;
-}
+header small { color: #bbb; }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   padding: 16px;
 }
@@ -56,13 +54,8 @@ button.secondary {
   color: #111;
 }
 
-button.danger {
-  background: #9b111e;
-}
-
-button.success {
-  background: #147a3d;
-}
+button.danger { background: #9b111e; }
+button.success { background: #147a3d; }
 
 .card {
   background: #fff;
@@ -79,7 +72,7 @@ button.success {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 950px;
+  min-width: 1100px;
 }
 
 th, td {
@@ -94,6 +87,30 @@ th {
   background: #fafafa;
   font-size: 13px;
   color: #555;
+}
+
+.thumb {
+  width: 96px;
+  height: 72px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #eee;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.no-image {
+  width: 96px;
+  height: 72px;
+  border-radius: 10px;
+  background: #eee;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 12px;
+  text-align: center;
 }
 
 .status {
@@ -125,6 +142,12 @@ th {
   text-align: right;
 }
 
+@media (max-width: 600px) {
+  header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
 </style>
 </head>
 
@@ -133,7 +156,7 @@ th {
 <header>
   <div>
     <strong>Volante Admin</strong><br>
-    <small>Painel completo</small>
+    <small>Painel completo de moderação</small>
   </div>
 
   <div id="usuarioArea"></div>
@@ -155,6 +178,7 @@ th {
       <table>
         <thead>
           <tr>
+            <th>Imagem</th>
             <th>Status</th>
             <th>Título</th>
             <th>Usuário</th>
@@ -165,7 +189,7 @@ th {
           </tr>
         </thead>
         <tbody id="lista">
-          <tr><td colspan="7">Carregando...</td></tr>
+          <tr><td colspan="8">Carregando...</td></tr>
         </tbody>
       </table>
     </div>
@@ -175,6 +199,7 @@ th {
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -224,7 +249,7 @@ onAuthStateChanged(auth, (user) => {
 
   area.innerHTML = `
     ${user.email}<br>
-    <button onclick="logout()">Sair</button>
+    <button onclick="logout()" style="margin-top:6px;">Sair</button>
   `;
 
   carregar();
@@ -237,49 +262,109 @@ window.logout = async function () {
 
 function formatarPreco(valor) {
   if (!valor) return "-";
-  return Number(valor).toLocaleString("pt-BR", {
+
+  const numero = Number(valor);
+
+  if (Number.isNaN(numero)) return valor;
+
+  return numero.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL"
   });
 }
 
+function limparTexto(valor) {
+  if (valor === undefined || valor === null) return "";
+  return String(valor)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function obterFoto(d) {
+  if (Array.isArray(d.fotos) && d.fotos.length > 0) return d.fotos[0];
+  if (d.foto) return d.foto;
+  if (d.imagem) return d.imagem;
+  return "";
+}
+
+function imagemHtml(url, titulo) {
+  if (!url) {
+    return `<div class="no-image">Sem imagem</div>`;
+  }
+
+  const seguraUrl = limparTexto(url);
+  const seguroTitulo = limparTexto(titulo);
+
+  return `
+    <a href="${seguraUrl}" target="_blank" rel="noopener noreferrer">
+      <img class="thumb" src="${seguraUrl}" alt="${seguroTitulo}" />
+    </a>
+  `;
+}
+
 window.carregar = async function () {
   const lista = document.getElementById("lista");
-  const titulo = document.getElementById("tituloSecao");
+  const tituloSecao = document.getElementById("tituloSecao");
 
-  titulo.innerText = tipoAtual === "anuncios"
+  tituloSecao.innerText = tipoAtual === "anuncios"
     ? "Todos os anúncios"
     : "Todos os eventos";
 
-  lista.innerHTML = `<tr><td colspan="7">Carregando...</td></tr>`;
+  lista.innerHTML = `<tr><td colspan="8">Carregando...</td></tr>`;
 
   try {
     const snapshot = await getDocs(collection(db, tipoAtual));
 
     lista.innerHTML = "";
 
+    if (snapshot.empty) {
+      lista.innerHTML = `<tr><td colspan="8">Nenhum item encontrado.</td></tr>`;
+      return;
+    }
+
     snapshot.forEach((docSnap) => {
       const d = docSnap.data();
       const id = docSnap.id;
 
       const status = d.status || "PENDENTE";
-      const titulo = d.titulo || "Item";
-      const usuario = d.usuarioEmail || "-";
-      const local = [d.cidade, d.estado].join(" - ");
+      const titulo = d.titulo || (tipoAtual === "anuncios" ? "Veículo anunciado" : "Evento");
+      const usuario = d.usuarioEmail || d.email || "Não informado";
+      const local = [d.cidade, d.estado].filter(Boolean).join(" - ") || "Não informado";
       const motivo = d.motivoRecusa || "-";
+      const foto = obterFoto(d);
 
       const dados = tipoAtual === "anuncios"
-        ? `${d.marca || ""} ${d.modelo || ""}<br>Ano: ${d.ano || "-"}<br>${formatarPreco(d.preco)}`
-        : `Data: ${d.data || "-"}`;
+        ? `
+          <strong>${limparTexto(d.marca || "")} ${limparTexto(d.modelo || "")}</strong><br>
+          Ano: ${limparTexto(d.ano || "-")}<br>
+          Preço: ${limparTexto(formatarPreco(d.preco))}
+        `
+        : `
+          Data: ${limparTexto(d.data || "-")}<br>
+          Link: ${limparTexto(d.link || "-")}
+        `;
 
       lista.innerHTML += `
         <tr>
-          <td><span class="status ${status}">${status}</span></td>
-          <td>${titulo}<br><span class="muted">${id}</span></td>
-          <td>${usuario}</td>
-          <td>${local}</td>
+          <td>${imagemHtml(foto, titulo)}</td>
+
+          <td>
+            <span class="status ${limparTexto(status)}">${limparTexto(status)}</span>
+          </td>
+
+          <td>
+            <strong>${limparTexto(titulo)}</strong><br>
+            <span class="muted">ID: ${limparTexto(id)}</span>
+          </td>
+
+          <td>${limparTexto(usuario)}</td>
+          <td>${limparTexto(local)}</td>
           <td>${dados}</td>
-          <td>${motivo}</td>
+          <td>${limparTexto(motivo)}</td>
+
           <td>
             <div class="actions">
               <button class="success" onclick="aprovar('${tipoAtual}', '${id}')">Aprovar</button>
@@ -290,30 +375,49 @@ window.carregar = async function () {
       `;
     });
 
-  } catch (e) {
-    lista.innerHTML = `<tr><td colspan="7">Erro ao carregar</td></tr>`;
+  } catch (error) {
+    console.error(error);
+    lista.innerHTML = `<tr><td colspan="8">Erro ao carregar o painel.</td></tr>`;
   }
 };
 
 window.aprovar = async function (colecao, id) {
-  await updateDoc(doc(db, colecao, id), {
-    status: "ATIVO",
-    motivoRecusa: "",
-    atualizadoEm: serverTimestamp()
-  });
-  carregar();
+  if (!confirm("Aprovar este item?")) return;
+
+  try {
+    await updateDoc(doc(db, colecao, id), {
+      status: "ATIVO",
+      motivoRecusa: "",
+      atualizadoEm: serverTimestamp()
+    });
+
+    carregar();
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao aprovar.");
+  }
 };
 
 window.recusar = async function (colecao, id) {
-  const motivo = prompt("Motivo da recusa:");
-  if (!motivo) return;
+  const motivo = prompt("Informe o motivo da recusa:");
 
-  await updateDoc(doc(db, colecao, id), {
-    status: "RECUSADO",
-    motivoRecusa: motivo,
-    atualizadoEm: serverTimestamp()
-  });
-  carregar();
+  if (!motivo) {
+    alert("Informe um motivo.");
+    return;
+  }
+
+  try {
+    await updateDoc(doc(db, colecao, id), {
+      status: "RECUSADO",
+      motivoRecusa: motivo,
+      atualizadoEm: serverTimestamp()
+    });
+
+    carregar();
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao recusar.");
+  }
 };
 </script>
 
