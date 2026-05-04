@@ -127,7 +127,7 @@ button {
 .col-status { width: 90px; }
 .col-local { width: 170px; }
 .col-data { width: 125px; }
-.col-acoes { width: 245px; text-align: right; }
+.col-acoes { width: 310px; text-align: right; }
 
 .foto {
   width: 58px;
@@ -198,6 +198,7 @@ button {
   white-space: nowrap;
 }
 
+.btn-detail { background: #374151; color: white; }
 .btn-ok { background: #15803d; color: white; }
 .btn-dev { background: #d97706; color: #111827; }
 .btn-del { background: #b91c1c; color: white; }
@@ -207,6 +208,8 @@ button {
   color: #9ca3af;
   padding: 18px;
 }
+
+/* MODAL DEVOLUÇÃO */
 
 .modal {
   position: fixed;
@@ -247,9 +250,158 @@ textarea {
   height: 34px;
 }
 
-@media (max-width: 900px) {
+/* MODAL DETALHE */
+
+.detalhe-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.78);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.detalhe-box {
+  width: min(1120px, 96vw);
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #111827;
+  border: 1px solid #2a2f36;
+  border-radius: 16px;
+}
+
+.detalhe-header {
+  position: sticky;
+  top: 0;
+  background: #111827;
+  border-bottom: 1px solid #2a2f36;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 2;
+}
+
+.detalhe-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.detalhe-header span {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.detalhe-fechar {
+  width: 34px;
+  height: 34px;
+  background: #374151;
+  color: white;
+  border-radius: 10px;
+}
+
+.detalhe-body {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 16px;
+}
+
+.fotos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.fotos-grid img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  background: #2a2f36;
+  border-radius: 12px;
+  border: 1px solid #2a2f36;
+}
+
+.sem-fotos-detalhe {
+  background: #1c1f24;
+  border: 1px solid #2a2f36;
+  border-radius: 12px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+}
+
+.detalhe-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-card {
+  background: #1c1f24;
+  border: 1px solid #2a2f36;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.info-card strong {
+  display: block;
+  color: #9ca3af;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.info-card div {
+  font-size: 14px;
+  color: #f9fafb;
+  white-space: pre-wrap;
+  line-height: 1.35;
+}
+
+.detalhe-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.detalhe-actions button {
+  height: 40px;
+}
+
+@media (max-width: 950px) {
   .col-local,
   .col-data {
+    display: none;
+  }
+
+  .col-acoes {
+    width: 270px;
+  }
+
+  .acoes button {
+    padding: 0 7px;
+  }
+
+  .detalhe-body {
+    grid-template-columns: 1fr;
+  }
+
+  .fotos-grid img {
+    height: 190px;
+  }
+}
+
+@media (max-width: 650px) {
+  .col-tipo,
+  .col-status {
     display: none;
   }
 
@@ -257,8 +409,16 @@ textarea {
     width: 210px;
   }
 
+  .acoes {
+    flex-wrap: wrap;
+  }
+
   .acoes button {
-    padding: 0 7px;
+    flex: 1;
+  }
+
+  .fotos-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -325,6 +485,33 @@ textarea {
   </div>
 </div>
 
+<div id="modalDetalhe" class="detalhe-modal hidden">
+  <div class="detalhe-box">
+    <div class="detalhe-header">
+      <div>
+        <h2 id="detalheTitulo">Detalhes</h2>
+        <span id="detalheSubtitulo"></span>
+      </div>
+
+      <button class="detalhe-fechar" onclick="fecharDetalhe()">×</button>
+    </div>
+
+    <div class="detalhe-body">
+      <div id="detalheFotos"></div>
+
+      <div class="detalhe-info">
+        <div id="detalheCampos"></div>
+
+        <div class="detalhe-actions">
+          <button class="btn-ok" onclick="aprovarDetalhe()">Aprovar</button>
+          <button class="btn-dev" onclick="devolverDetalhe()">Devolver</button>
+          <button class="btn-del" onclick="excluirDetalhe()">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -361,6 +548,7 @@ const ADMIN_EMAIL = "admin@clube.com";
 let itens = [];
 let filtroAtual = "TODOS";
 let selecionado = null;
+let detalheSelecionado = null;
 let autenticado = false;
 
 onAuthStateChanged(auth, async (user) => {
@@ -476,6 +664,19 @@ function formatarData(item) {
   });
 }
 
+function formatarPreco(valor) {
+  if (!valor) return "-";
+
+  const numero = Number(valor);
+
+  if (Number.isNaN(numero)) return String(valor);
+
+  return numero.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
 function renderizar() {
   const lista = document.getElementById("lista");
 
@@ -499,10 +700,7 @@ function renderizar() {
     const index = itens.indexOf(item);
     const d = item.dados;
 
-    const foto = item.tipo === "Anúncio"
-      ? d.fotos?.[0]
-      : d.imagem || d.foto || d.fotos?.[0];
-
+    const foto = primeiraFoto(item);
     const status = (d.status || "PENDENTE").toUpperCase();
     const titulo = d.titulo || d.nome || "Sem título";
     const cidade = d.cidade || "";
@@ -544,6 +742,7 @@ function renderizar() {
 
         <td class="col-acoes">
           <div class="acoes">
+            <button class="btn-detail" onclick="detalhar(${index})">Detalhar</button>
             <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
             <button class="btn-dev" onclick="abrirModal(${index})">Devolver</button>
             <button class="btn-del" onclick="excluirItem(${index})">Excluir</button>
@@ -554,12 +753,106 @@ function renderizar() {
   });
 }
 
+function primeiraFoto(item) {
+  const d = item.dados;
+
+  if (item.tipo === "Anúncio") {
+    return d.fotos?.[0] || d.foto || d.imagem || "";
+  }
+
+  return d.imagem || d.foto || d.fotos?.[0] || "";
+}
+
+function todasFotos(item) {
+  const d = item.dados;
+
+  if (item.tipo === "Anúncio") {
+    if (Array.isArray(d.fotos) && d.fotos.length) return d.fotos;
+    return [d.foto || d.imagem].filter(Boolean);
+  }
+
+  if (Array.isArray(d.fotos) && d.fotos.length) return d.fotos;
+  return [d.imagem || d.foto].filter(Boolean);
+}
+
 function classeStatus(status) {
   if (status === "ATIVO") return "status-ativo";
   if (status === "RECUSADO") return "status-recusado";
   if (status === "EXCLUIDO") return "status-excluido";
   return "status-pendente";
 }
+
+window.detalhar = function (index) {
+  detalheSelecionado = itens[index];
+  const item = detalheSelecionado;
+  const d = item.dados;
+
+  const status = (d.status || "PENDENTE").toUpperCase();
+  const titulo = d.titulo || d.nome || "Sem título";
+  const usuario = d.usuarioEmail || d.email || d.emailUsuario || "-";
+  const cidade = d.cidade || "";
+  const estado = d.estado || "";
+  const local = `${cidade} ${estado}`.trim() || "-";
+  const data = formatarData(item);
+  const fotos = todasFotos(item);
+
+  document.getElementById("detalheTitulo").innerText = titulo;
+  document.getElementById("detalheSubtitulo").innerText =
+    `${item.tipo} • ${status} • ${data}`;
+
+  const fotosBox = document.getElementById("detalheFotos");
+
+  if (fotos.length) {
+    fotosBox.innerHTML = `
+      <div class="fotos-grid">
+        ${fotos.map((foto) => `<img src="${escapar(foto)}" alt="">`).join("")}
+      </div>
+    `;
+  } else {
+    fotosBox.innerHTML = `<div class="sem-fotos-detalhe">sem fotos</div>`;
+  }
+
+  const campos = [];
+
+  campos.push(["Tipo", item.tipo]);
+  campos.push(["Status", status]);
+  campos.push(["Usuário", usuario]);
+  campos.push(["Local", local]);
+  campos.push(["Data", data]);
+
+  if (item.tipo === "Anúncio") {
+    campos.push(["Marca", d.marca || "-"]);
+    campos.push(["Modelo", d.modelo || "-"]);
+    campos.push(["Ano", d.ano || d.anoFabricacao || "-"]);
+    campos.push(["Preço", formatarPreco(d.preco)]);
+    campos.push(["Telefone / WhatsApp", d.telefone || d.whatsapp || "-"]);
+  }
+
+  if (item.tipo === "Evento") {
+    campos.push(["Data do evento", d.dataEvento || d.data || d.dataFormatada || "-"]);
+    campos.push(["Endereço", d.endereco || d.local || "-"]);
+    campos.push(["Link", d.link || d.url || "-"]);
+  }
+
+  campos.push(["Descrição", d.descricao || d.observacoes || d.texto || "-"]);
+  campos.push(["Motivo / observação admin", d.motivoDevolucao || d.observacaoAdmin || d.motivo || "-"]);
+
+  document.getElementById("detalheCampos").innerHTML = campos.map(([label, valor]) => `
+    <div class="info-card">
+      <strong>${escapar(label)}</strong>
+      <div>${escapar(valor)}</div>
+    </div>
+  `).join("");
+
+  document.getElementById("modalDetalhe").classList.remove("hidden");
+};
+
+window.fecharDetalhe = function () {
+  detalheSelecionado = null;
+  document.getElementById("modalDetalhe").classList.add("hidden");
+  document.getElementById("detalheFotos").innerHTML = "";
+  document.getElementById("detalheCampos").innerHTML = "";
+};
 
 window.aprovar = async function (index) {
   const item = itens[index];
@@ -618,6 +911,42 @@ window.excluirItem = async function (index) {
     atualizadoEm: serverTimestamp()
   });
 
+  carregar();
+};
+
+window.aprovarDetalhe = async function () {
+  if (!detalheSelecionado) return;
+
+  await updateDoc(doc(db, detalheSelecionado.colecao, detalheSelecionado.id), {
+    status: "ATIVO",
+    motivoDevolucao: "",
+    observacaoAdmin: "",
+    atualizadoEm: serverTimestamp()
+  });
+
+  fecharDetalhe();
+  carregar();
+};
+
+window.devolverDetalhe = function () {
+  if (!detalheSelecionado) return;
+
+  selecionado = detalheSelecionado;
+  fecharDetalhe();
+  document.getElementById("modal").classList.remove("hidden");
+};
+
+window.excluirDetalhe = async function () {
+  if (!detalheSelecionado) return;
+
+  if (!confirm("Excluir este item?")) return;
+
+  await updateDoc(doc(db, detalheSelecionado.colecao, detalheSelecionado.id), {
+    status: "EXCLUIDO",
+    atualizadoEm: serverTimestamp()
+  });
+
+  fecharDetalhe();
   carregar();
 };
 
