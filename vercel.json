@@ -1,8 +1,8 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/admin/index.html",
+      "src": "/(.*)",
+      "dest": "/admin/index.html",
       "has": [
         {
           "type": "host",
