@@ -16,6 +16,8 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.hidden { display: none !important; }
+
 .header {
   height: 56px;
   display: flex;
@@ -34,12 +36,17 @@ body {
 
 .logo { width: 28px; }
 
+.header-title strong { font-size: 15px; }
+
 .header-title span {
   font-size: 12px;
   color: #9ca3af;
 }
 
-.header-actions { display: flex; gap: 8px; }
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
 
 button {
   border: none;
@@ -83,6 +90,8 @@ th, td {
   border-bottom: 1px solid #1f2937;
   font-size: 13px;
 }
+
+th { color: #9ca3af; }
 
 .foto {
   width: 60px;
@@ -160,7 +169,7 @@ textarea {
     <img src="../logo.png" class="logo">
     <div class="header-title">
       <strong>Painel Administrativo</strong>
-      <span id="adminEmail"></span>
+      <span id="adminEmail">Carregando...</span>
     </div>
   </div>
 
@@ -208,37 +217,58 @@ import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.g
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIza...",
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770"
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+const ADMIN_EMAIL = "admin@clube.com";
+
 let itens = [];
 let filtro = "TODOS";
 let atual = null;
 
-onAuthStateChanged(auth, user => {
-  if (!user) location.href="/admin/login.html";
-  document.getElementById("adminEmail").innerText=user.email;
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "/admin/login.html";
+    return;
+  }
+
+  if ((user.email || "").toLowerCase() !== ADMIN_EMAIL) {
+    await signOut(auth);
+    window.location.href = "/admin/login.html";
+    return;
+  }
+
+  document.getElementById("adminEmail").innerText = user.email;
   carregar();
 });
 
-window.logout=()=>signOut(auth);
+window.logout = async () => {
+  await signOut(auth);
+  window.location.href = "/admin/login.html";
+};
 
-window.filtrar=(f)=>{filtro=f;render();}
+window.filtrar = (f) => {
+  filtro = f;
+  render();
+};
 
-async function carregar(){
-  const anuncios=await getDocs(collection(db,"anuncios"));
-  const eventos=await getDocs(collection(db,"eventos"));
+async function carregar() {
+  const anuncios = await getDocs(collection(db, "anuncios"));
+  const eventos = await getDocs(collection(db, "eventos"));
 
-  itens=[];
+  itens = [];
 
-  anuncios.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Anúncio",colecao:"anuncios"}));
-  eventos.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Evento",colecao:"eventos"}));
+  anuncios.forEach(d => itens.push({ ...d.data(), id: d.id, tipo: "Anúncio", colecao:"anuncios" }));
+  eventos.forEach(d => itens.push({ ...d.data(), id: d.id, tipo: "Evento", colecao:"eventos" }));
 
   render();
 }
@@ -260,7 +290,7 @@ function render(){
     .forEach((i,idx)=>{
 
       const desc=pegarDescricao(i);
-      const curta=desc?desc.substring(0,120):"";
+      const curta=desc.length>120?desc.substring(0,120)+"...":desc;
 
       el.innerHTML+=`
       <tr>
@@ -279,29 +309,38 @@ function render(){
             <button class="btn-del" onclick="excluir(${idx})">X</button>
           </div>
         </td>
-      </tr>`;
+      </tr>
+      `;
     });
 }
 
-window.aprovar=async(i)=>{
+window.aprovar = async(i)=>{
   const item=itens[i];
   await updateDoc(doc(db,item.colecao,item.id),{status:"ATIVO"});
   carregar();
 };
 
-window.devolver=(i)=>{
+window.devolver = (i)=>{
   atual=i;
   document.getElementById("modal").classList.remove("hidden");
 };
 
-window.confirmar=async()=>{
+window.confirmar = async()=>{
   const motivo=document.getElementById("motivo").value;
   const item=itens[atual];
-  await updateDoc(doc(db,item.colecao,item.id),{status:"RECUSADO",motivo});
+
+  await updateDoc(doc(db,item.colecao,item.id),{
+    status:"RECUSADO",
+    motivo,
+    motivoDevolucao:motivo
+  });
+
+  document.getElementById("modal").classList.add("hidden");
+  document.getElementById("motivo").value="";
   carregar();
 };
 
-window.excluir=async(i)=>{
+window.excluir = async(i)=>{
   const item=itens[i];
   await updateDoc(doc(db,item.colecao,item.id),{status:"EXCLUIDO"});
   carregar();
