@@ -1,689 +1,354 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <title>Painel Admin - Volante</title>
 
-<title>Painel Administrativo</title>
-<link rel="icon" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #111315;
+      color: #e5e7eb;
+    }
 
-body {
-  margin: 0;
-  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #121212;
-  color: #e0e0e0;
-}
+    .hidden {
+      display: none;
+    }
 
-header {
-  background: #1f1f1f;
-  padding: 16px 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #2a2a2a;
-}
+    /* LOGIN */
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+    .login-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.brand img {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-}
+    .login-box {
+      background: #1c1f24;
+      padding: 24px;
+      border-radius: 14px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-.brand strong {
-  font-size: 17px;
-  font-weight: 500;
-}
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background: #2a2f36;
+      color: white;
+    }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-#usuarioArea {
-  font-size: 13px;
-  color: #9e9e9e;
-}
+    .btn-login {
+      background: #2563eb;
+      color: white;
+    }
 
-button {
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-}
+    /* HEADER */
 
-.btn {
-  padding: 9px 12px;
-  font-size: 12px;
-}
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: #1c1f24;
+      border-bottom: 1px solid #2a2f36;
+    }
 
-.gray { background: #2a2a2a; color: #fff; }
-.green { background: #43a047; color: #fff; }
-.red { background: #e53935; color: #fff; }
+    .header h1 {
+      font-size: 18px;
+      margin: 0;
+    }
 
-.login {
-  min-height: calc(100vh - 64px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+    }
 
-.login-card {
-  width: 100%;
-  max-width: 360px;
-  background: #1e1e1e;
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid #2a2a2a;
-}
+    .btn-refresh {
+      background: #374151;
+      color: white;
+    }
 
-input {
-  width: 100%;
-  padding: 13px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #121212;
-  color: #fff;
-  margin-bottom: 10px;
-}
+    .btn-logout {
+      background: #dc2626;
+      color: white;
+    }
 
-.login-card button {
-  width: 100%;
-  padding: 13px;
-}
+    /* TABLE */
 
-.alerta {
-  color: #ef5350;
-  font-size: 13px;
-  margin-top: 10px;
-}
+    .container {
+      padding: 16px;
+    }
 
-#painel {
-  display: none;
-  max-width: 1500px;
-  margin: auto;
-  padding: 20px;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-.painel-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
+    th {
+      text-align: left;
+      font-size: 13px;
+      padding: 10px;
+      color: #9ca3af;
+      border-bottom: 1px solid #2a2f36;
+    }
 
-.painel-topo h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 500;
-}
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #1f2937;
+      font-size: 14px;
+    }
 
-.resumo {
-  color: #9e9e9e;
-  font-size: 13px;
-  margin-top: 4px;
-}
+    tr {
+      height: 72px;
+    }
 
-.table {
-  background: #1e1e1e;
-  border-radius: 14px;
-  overflow-x: auto;
-  border: 1px solid #2a2a2a;
-}
+    img {
+      width: 56px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #2a2f36;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 1100px;
-}
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: bold;
+    }
 
-th, td {
-  padding: 14px;
-  border-bottom: 1px solid #2a2a2a;
-  font-size: 13px;
-  vertical-align: middle;
-}
+    .tipo {
+      background: #374151;
+    }
 
-th {
-  background: #181818;
-  color: #9e9e9e;
-  text-align: left;
-  font-weight: 500;
-}
+    .status {
+      background: #16a34a;
+      color: white;
+    }
 
-tr:hover {
-  background: #1a1a1a;
-}
+    /* AÇÕES */
 
-.status,
-.tipo {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-}
+    .acoes {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
 
-.tipo { background: #2a2a2a; }
-.tipo.evento { background: #283593; }
+    .acoes button {
+      height: 36px;
+      padding: 0 12px;
+      font-size: 12px;
+    }
 
-.PENDENTE { background: #fbc02d; color: #000; }
-.ATIVO { background: #43a047; color: #fff; }
-.RECUSADO { background: #e53935; color: #fff; }
-.EXCLUIDO { background: #424242; color: #fff; }
+    .btn-detalhar {
+      background: #374151;
+      color: white;
+    }
 
-.fotos {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  max-width: 260px;
-}
+    .btn-aprovar {
+      background: #16a34a;
+      color: white;
+    }
 
-.thumb {
-  width: 64px;
-  height: 48px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #333;
-}
+    .btn-devolver {
+      background: #f59e0b;
+      color: #111;
+    }
 
-.no-image {
-  width: 64px;
-  height: 48px;
-  border-radius: 6px;
-  background: #2a2a2a;
-  color: #777;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-}
+    .btn-excluir {
+      background: #dc2626;
+      color: white;
+    }
 
-.acoes {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+    /* MODAL */
 
-.acoes button {
-  width: 92px;
-}
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.modal-bg {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.72);
-  z-index: 10;
-  padding: 20px;
-  overflow: auto;
-}
+    .modal-box {
+      background: #1c1f24;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.modal {
-  max-width: 850px;
-  margin: 30px auto;
-  background: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 16px;
-  padding: 20px;
-}
+    textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 8px;
+      border: none;
+      padding: 8px;
+      background: #2a2f36;
+      color: white;
+    }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal h2 {
-  margin: 0 0 14px;
-}
-
-.modal-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.modal-item {
-  background: #181818;
-  border: 1px solid #2a2a2a;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.modal-item small {
-  display: block;
-  color: #9e9e9e;
-  margin-bottom: 4px;
-}
-
-.modal-fotos {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 14px 0;
-}
-
-.modal-fotos img {
-  width: 140px;
-  height: 105px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-@media (max-width: 700px) {
-  .modal-grid {
-    grid-template-columns: 1fr;
-  }
-
-  header {
-    align-items: flex-start;
-  }
-
-  .header-right {
-    flex-direction: column;
-    align-items: flex-end;
-  }
-}
-</style>
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">
-    <img src="/logo.png" alt="Volante" />
-    <strong>Painel Administrativo</strong>
-  </div>
-
-  <div class="header-right">
-    <span id="usuarioArea"></span>
-    <button id="btnSair" class="btn red" onclick="logout()" style="display:none;">Sair</button>
-  </div>
-</header>
-
-<div id="loginArea" class="login">
-  <div class="login-card">
-    <input id="campoEmail" type="email" placeholder="E-mail" />
-    <input id="campoSenha" type="password" placeholder="Senha" />
-
-    <button class="btn gray" onclick="login()">Entrar</button>
-
-    <div id="msg" class="alerta"></div>
+<!-- LOGIN -->
+<div id="login" class="login-container">
+  <div class="login-box">
+    <h2>Admin</h2>
+    <input id="email" placeholder="Email" />
+    <input id="senha" type="password" placeholder="Senha" />
+    <button class="btn-login" onclick="login()">Entrar</button>
   </div>
 </div>
 
-<div id="painel">
+<!-- PAINEL -->
+<div id="painel" class="hidden">
 
-  <div class="painel-topo">
-    <div>
-      <h2>Fila de moderação</h2>
-      <div id="resumo" class="resumo">Carregando...</div>
+  <div class="header">
+    <h1>Painel Admin</h1>
+
+    <div class="header-buttons">
+      <button class="btn-refresh" onclick="carregar()">Atualizar</button>
+      <button class="btn-logout" onclick="logout()">Sair</button>
     </div>
-
-    <button class="btn gray" onclick="carregar()">Atualizar</button>
   </div>
 
-  <div class="table">
+  <div class="container">
     <table>
       <thead>
         <tr>
-          <th>Fotos</th>
+          <th>Foto</th>
           <th>Tipo</th>
           <th>Status</th>
           <th>Título</th>
           <th>Usuário</th>
-          <th>Ações</th>
+          <th style="text-align:right;">Ações</th>
         </tr>
       </thead>
+
       <tbody id="lista"></tbody>
     </table>
   </div>
 
 </div>
 
-<div id="modalDetalhe" class="modal-bg">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>Detalhes do item</h2>
-      <button class="btn gray" onclick="fecharDetalhe()">Fechar</button>
-    </div>
-
-    <div id="conteudoDetalhe"></div>
+<!-- MODAL DEVOLVER -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <h3>Motivo da devolução</h3>
+    <textarea id="motivo"></textarea>
+    <button class="btn-devolver" onclick="confirmarDevolucao()">Confirmar</button>
   </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+<script>
+  let itemSelecionado = null;
 
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  function login() {
+    const email = document.getElementById("email").value;
 
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const ADMIN = "admin@clube.com";
-let itensCarregados = [];
-
-onAuthStateChanged(auth, user => {
-  const loginArea = document.getElementById("loginArea");
-  const painel = document.getElementById("painel");
-  const usuarioArea = document.getElementById("usuarioArea");
-  const btnSair = document.getElementById("btnSair");
-
-  if (!user || user.email.trim().toLowerCase() !== ADMIN) {
-    loginArea.style.display = "flex";
-    painel.style.display = "none";
-    usuarioArea.innerText = "";
-    btnSair.style.display = "none";
-    return;
+    if (email.trim().toLowerCase() === "admin@clube.com") {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("painel").classList.remove("hidden");
+      carregar();
+    } else {
+      alert("Acesso negado");
+    }
   }
 
-  loginArea.style.display = "none";
-  painel.style.display = "block";
-  usuarioArea.innerText = user.email;
-  btnSair.style.display = "inline-block";
-
-  carregar();
-});
-
-window.login = async () => {
-  const email = document.getElementById("campoEmail").value.trim().toLowerCase();
-  const senha = document.getElementById("campoSenha").value.trim();
-  const msg = document.getElementById("msg");
-
-  msg.innerText = "";
-
-  if (!email || !senha) {
-    msg.innerText = "Informe e-mail e senha.";
-    return;
+  function logout() {
+    document.getElementById("painel").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
   }
 
-  if (email !== ADMIN) {
-    msg.innerText = "Acesso não permitido.";
-    return;
-  }
+  function carregar() {
+    const lista = document.getElementById("lista");
 
-  try {
-    await signInWithEmailAndPassword(auth, email, senha);
-  } catch (error) {
-    console.error(error);
-    msg.innerText = "Erro ao entrar. Confira e-mail e senha.";
-  }
-};
-
-window.logout = async () => {
-  await signOut(auth);
-  location.reload();
-};
-
-function limparTexto(valor) {
-  if (valor === undefined || valor === null) return "";
-  return String(valor)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function obterFotos(d) {
-  if (Array.isArray(d.fotos) && d.fotos.length > 0) return d.fotos;
-  if (d.foto) return [d.foto];
-  if (d.imagem) return [d.imagem];
-  return [];
-}
-
-function fotosHTML(d) {
-  const fotos = obterFotos(d);
-
-  if (!fotos.length) {
-    return `<div class="no-image">—</div>`;
-  }
-
-  return `
-    <div class="fotos">
-      ${fotos.map(f => {
-        const url = limparTexto(f);
-        return `
-          <a href="${url}" target="_blank" rel="noopener noreferrer">
-            <img src="${url}" class="thumb" />
-          </a>
-        `;
-      }).join("")}
-    </div>
-  `;
-}
-
-function fotosDetalheHTML(d) {
-  const fotos = obterFotos(d);
-
-  if (!fotos.length) return `<div class="no-image">Sem fotos</div>`;
-
-  return `
-    <div class="modal-fotos">
-      ${fotos.map(f => {
-        const url = limparTexto(f);
-        return `
-          <a href="${url}" target="_blank" rel="noopener noreferrer">
-            <img src="${url}" />
-          </a>
-        `;
-      }).join("")}
-    </div>
-  `;
-}
-
-function formatarPreco(valor) {
-  if (!valor) return "-";
-
-  const numero = Number(valor);
-  if (Number.isNaN(numero)) return valor;
-
-  return numero.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-}
-
-function obterData(d) {
-  if (d.criadoEm?.toMillis) return d.criadoEm.toMillis();
-  if (d.atualizadoEm?.toMillis) return d.atualizadoEm.toMillis();
-  if (d.criadoEm?.seconds) return d.criadoEm.seconds * 1000;
-  if (d.atualizadoEm?.seconds) return d.atualizadoEm.seconds * 1000;
-  return 0;
-}
-
-async function buscarColecao(nome, tipoLabel) {
-  const snap = await getDocs(collection(db, nome));
-  const itens = [];
-
-  snap.forEach(documento => {
-    itens.push({
-      id: documento.id,
-      colecao: nome,
-      tipo: tipoLabel,
-      ...documento.data()
-    });
-  });
-
-  return itens;
-}
-
-window.carregar = async () => {
-  const lista = document.getElementById("lista");
-  const resumo = document.getElementById("resumo");
-
-  lista.innerHTML = `<tr><td colspan="6">Carregando...</td></tr>`;
-  resumo.innerText = "Atualizando fila...";
-
-  try {
-    const anuncios = await buscarColecao("anuncios", "Anúncio");
-    const eventos = await buscarColecao("eventos", "Evento");
-
-    const dados = [...anuncios, ...eventos];
-    dados.sort((a, b) => obterData(b) - obterData(a));
-
-    itensCarregados = dados;
-
-    const total = dados.length;
-    const pendentes = dados.filter(i => (i.status || "PENDENTE") === "PENDENTE").length;
-    const ativos = dados.filter(i => i.status === "ATIVO").length;
-    const recusados = dados.filter(i => i.status === "RECUSADO").length;
-    const excluidos = dados.filter(i => i.status === "EXCLUIDO").length;
-
-    resumo.innerText =
-      `${total} itens • ${pendentes} pendentes • ${ativos} ativos • ${recusados} devolvidos • ${excluidos} excluídos`;
+    // MOCK TEMPORÁRIO
+    const dados = [
+      {
+        id: 1,
+        tipo: "Anúncio",
+        status: "ATIVO",
+        titulo: "teste de integração site/app",
+        usuario: "benedito.sa@gmail.com"
+      }
+    ];
 
     lista.innerHTML = "";
 
-    if (!dados.length) {
-      lista.innerHTML = `<tr><td colspan="6">Nenhum item encontrado.</td></tr>`;
-      return;
-    }
-
-    dados.forEach(d => {
-      const status = d.status || "PENDENTE";
-      const tipoClasse = d.tipo === "Evento" ? "evento" : "";
-
+    dados.forEach(item => {
       lista.innerHTML += `
         <tr>
-          <td>${fotosHTML(d)}</td>
+          <td><img /></td>
 
           <td>
-            <span class="tipo ${tipoClasse}">${limparTexto(d.tipo)}</span>
+            <span class="tag tipo">${item.tipo}</span>
           </td>
 
           <td>
-            <span class="status ${limparTexto(status)}">${limparTexto(status)}</span>
+            <span class="tag status">${item.status}</span>
           </td>
+
+          <td>${item.titulo}</td>
+
+          <td>${item.usuario}</td>
 
           <td>
-            <strong>${limparTexto(d.titulo || "-")}</strong>
-          </td>
-
-          <td>${limparTexto(d.usuarioEmail || d.email || "-")}</td>
-
-          <td class="acoes">
-            <button class="btn gray" onclick="detalhar('${d.colecao}','${d.id}')">Detalhar</button>
-            <button class="btn green" onclick="aprovar('${d.colecao}','${d.id}')">Aprovar</button>
-            <button class="btn gray" onclick="devolver('${d.colecao}','${d.id}')">Devolver</button>
-            <button class="btn red" onclick="excluir('${d.colecao}','${d.id}')">Excluir</button>
+            <div class="acoes">
+              <button class="btn-detalhar">Detalhar</button>
+              <button class="btn-aprovar">Aprovar</button>
+              <button class="btn-devolver" onclick="abrirModal(${item.id})">Devolver</button>
+              <button class="btn-excluir">Excluir</button>
+            </div>
           </td>
         </tr>
       `;
     });
-  } catch (error) {
-    console.error(error);
-    lista.innerHTML = `<tr><td colspan="6">Erro ao carregar a fila.</td></tr>`;
-    resumo.innerText = "Erro ao atualizar.";
-  }
-};
-
-window.detalhar = (colecao, id) => {
-  const item = itensCarregados.find(i => i.colecao === colecao && i.id === id);
-
-  if (!item) return;
-
-  const conteudo = document.getElementById("conteudoDetalhe");
-
-  conteudo.innerHTML = `
-    ${fotosDetalheHTML(item)}
-
-    <div class="modal-grid">
-      <div class="modal-item"><small>Tipo</small>${limparTexto(item.tipo)}</div>
-      <div class="modal-item"><small>Status</small>${limparTexto(item.status || "PENDENTE")}</div>
-      <div class="modal-item"><small>Título</small>${limparTexto(item.titulo || "-")}</div>
-      <div class="modal-item"><small>Usuário</small>${limparTexto(item.usuarioEmail || item.email || "-")}</div>
-      <div class="modal-item"><small>Telefone</small>${limparTexto(item.telefone || "-")}</div>
-      <div class="modal-item"><small>Local</small>${limparTexto([item.cidade, item.estado].filter(Boolean).join(" - ") || "-")}</div>
-      <div class="modal-item"><small>Marca</small>${limparTexto(item.marca || "-")}</div>
-      <div class="modal-item"><small>Modelo</small>${limparTexto(item.modelo || "-")}</div>
-      <div class="modal-item"><small>Ano</small>${limparTexto(item.ano || "-")}</div>
-      <div class="modal-item"><small>Preço</small>${limparTexto(formatarPreco(item.preco))}</div>
-      <div class="modal-item"><small>Motivo devolução</small>${limparTexto(item.motivoRecusa || "-")}</div>
-      <div class="modal-item"><small>ID</small>${limparTexto(item.id)}</div>
-      <div class="modal-item" style="grid-column:1/-1;"><small>Descrição</small>${limparTexto(item.descricao || "-")}</div>
-    </div>
-  `;
-
-  document.getElementById("modalDetalhe").style.display = "block";
-};
-
-window.fecharDetalhe = () => {
-  document.getElementById("modalDetalhe").style.display = "none";
-};
-
-window.aprovar = async (colecao, id) => {
-  if (!confirm("Aprovar este item?")) return;
-
-  await updateDoc(doc(db, colecao, id), {
-    status: "ATIVO",
-    motivoRecusa: "",
-    atualizadoEm: serverTimestamp()
-  });
-
-  carregar();
-};
-
-window.devolver = async (colecao, id) => {
-  const motivo = prompt("Observação para devolução:");
-
-  if (!motivo || !motivo.trim()) {
-    alert("A observação é obrigatória.");
-    return;
   }
 
-  await updateDoc(doc(db, colecao, id), {
-    status: "RECUSADO",
-    motivoRecusa: motivo.trim(),
-    atualizadoEm: serverTimestamp()
-  });
+  function abrirModal(id) {
+    itemSelecionado = id;
+    document.getElementById("modal").classList.remove("hidden");
+  }
 
-  carregar();
-};
+  function confirmarDevolucao() {
+    const motivo = document.getElementById("motivo").value;
 
-window.excluir = async (colecao, id) => {
-  if (!confirm("Excluir este item?")) return;
+    if (!motivo) {
+      alert("Informe o motivo");
+      return;
+    }
 
-  await updateDoc(doc(db, colecao, id), {
-    status: "EXCLUIDO",
-    atualizadoEm: serverTimestamp()
-  });
+    alert("Item devolvido com motivo: " + motivo);
 
-  carregar();
-};
+    document.getElementById("modal").classList.add("hidden");
+    document.getElementById("motivo").value = "";
+  }
 </script>
 
 </body>
