@@ -19,10 +19,11 @@ body {
 .hidden { display: none !important; }
 
 .header {
+  height: 56px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
+  padding: 8px 14px;
   background: #1c1f24;
   border-bottom: 1px solid #2a2f36;
 }
@@ -62,12 +63,12 @@ button {
   border: none;
   cursor: pointer;
   font-weight: 700;
+  border-radius: 8px;
 }
 
 .btn-update,
 .btn-logout {
-  padding: 7px 11px;
-  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 .btn-update { background: #374151; color: white; }
@@ -76,8 +77,8 @@ button {
 .filtros {
   display: flex;
   gap: 6px;
-  padding: 10px 16px;
-  flex-wrap: wrap;
+  padding: 10px 12px;
+  border-bottom: 1px solid #1f2937;
 }
 
 .filtros button {
@@ -93,31 +94,53 @@ button {
   color: #111827;
 }
 
-.lista {
-  padding: 0 16px 16px;
+.wrapper {
+  padding: 0 8px 12px;
 }
 
-.item {
-  display: grid;
-  grid-template-columns: 72px minmax(520px, 1fr) 250px;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
-  border-bottom: 1px solid #1f2937;
-  max-width: 1180px;
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
 }
+
+.tabela th {
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+  background: #0f1115;
+  color: #9ca3af;
+  font-size: 12px;
+  text-align: left;
+  padding: 8px 8px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.tabela td {
+  padding: 7px 8px;
+  border-bottom: 1px solid #1f2937;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.col-foto { width: 76px; }
+.col-tipo { width: 90px; }
+.col-status { width: 90px; }
+.col-local { width: 170px; }
+.col-data { width: 125px; }
+.col-acoes { width: 245px; text-align: right; }
 
 .foto {
-  width: 72px;
-  height: 54px;
+  width: 58px;
+  height: 42px;
   border-radius: 6px;
   object-fit: cover;
   background: #2a2f36;
+  display: block;
 }
 
 .sem-foto {
-  width: 72px;
-  height: 54px;
+  width: 58px;
+  height: 42px;
   border-radius: 6px;
   background: #2a2f36;
   color: #6b7280;
@@ -127,27 +150,10 @@ button {
   justify-content: center;
 }
 
-.titulo {
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.meta {
-  font-size: 12px;
-  color: #9ca3af;
-  margin-top: 2px;
-}
-
-.linha-tags {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  margin-bottom: 3px;
-}
-
 .tag {
+  display: inline-flex;
   font-size: 10px;
-  padding: 2px 7px;
+  padding: 3px 7px;
   border-radius: 999px;
   font-weight: 800;
 }
@@ -157,37 +163,55 @@ button {
   color: white;
 }
 
-.status-pendente { color: #facc15; }
-.status-ativo { color: #22c55e; }
-.status-recusado { color: #f87171; }
-.status-excluido { color: #9ca3af; }
+.status-pendente { color: #facc15; font-weight: 800; }
+.status-ativo { color: #22c55e; font-weight: 800; }
+.status-recusado { color: #f87171; font-weight: 800; }
+.status-excluido { color: #9ca3af; font-weight: 800; }
+
+.titulo {
+  font-weight: 800;
+  font-size: 13px;
+  color: #f9fafb;
+  margin-bottom: 2px;
+}
+
+.email {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.texto-sec {
+  font-size: 12px;
+  color: #cbd5e1;
+}
 
 .acoes {
   display: flex;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 5px;
 }
 
 .acoes button {
-  height: 30px;
+  height: 28px;
+  padding: 0 9px;
   font-size: 11px;
-  padding: 0 10px;
-  border-radius: 7px;
+  white-space: nowrap;
 }
 
 .btn-ok { background: #15803d; color: white; }
 .btn-dev { background: #d97706; color: #111827; }
 .btn-del { background: #b91c1c; color: white; }
+.btn-sec { background: #374151; color: white; }
 
 .mensagem {
   color: #9ca3af;
-  padding: 20px;
+  padding: 18px;
 }
 
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.7);
+  background: rgba(0,0,0,.72);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,22 +245,20 @@ textarea {
 .modal-actions button {
   flex: 1;
   height: 34px;
-  border-radius: 8px;
 }
 
 @media (max-width: 900px) {
-  .item {
-    grid-template-columns: 72px 1fr;
-    max-width: none;
+  .col-local,
+  .col-data {
+    display: none;
   }
 
-  .acoes {
-    grid-column: 1 / -1;
-    justify-content: stretch;
+  .col-acoes {
+    width: 210px;
   }
 
   .acoes button {
-    flex: 1;
+    padding: 0 7px;
   }
 }
 </style>
@@ -268,8 +290,26 @@ textarea {
   <button id="filtro-excluido" onclick="filtrar('EXCLUIDO')">Excluídos</button>
 </div>
 
-<div id="lista" class="lista">
-  <div class="mensagem">Carregando...</div>
+<div class="wrapper">
+  <table class="tabela">
+    <thead>
+      <tr>
+        <th class="col-foto">Foto</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-status">Status</th>
+        <th>Título / usuário</th>
+        <th class="col-local">Local</th>
+        <th class="col-data">Data</th>
+        <th class="col-acoes">Ações</th>
+      </tr>
+    </thead>
+
+    <tbody id="lista">
+      <tr>
+        <td colspan="7" class="mensagem">Carregando...</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div id="modal" class="modal hidden">
@@ -280,7 +320,7 @@ textarea {
 
     <div class="modal-actions">
       <button class="btn-dev" onclick="confirmarDevolucao()">Confirmar</button>
-      <button onclick="fecharModal()">Cancelar</button>
+      <button class="btn-sec" onclick="fecharModal()">Cancelar</button>
     </div>
   </div>
 </div>
@@ -365,7 +405,11 @@ window.carregar = async function () {
   if (!autenticado) return;
 
   const lista = document.getElementById("lista");
-  lista.innerHTML = `<div class="mensagem">Carregando...</div>`;
+  lista.innerHTML = `
+    <tr>
+      <td colspan="7" class="mensagem">Carregando...</td>
+    </tr>
+  `;
 
   try {
     const [anunciosSnap, eventosSnap] = await Promise.all([
@@ -394,12 +438,15 @@ window.carregar = async function () {
     });
 
     itens.sort((a, b) => obterData(b) - obterData(a));
-
     renderizar();
 
   } catch (erro) {
     console.error(erro);
-    lista.innerHTML = `<div class="mensagem">Erro ao carregar dados.</div>`;
+    lista.innerHTML = `
+      <tr>
+        <td colspan="7" class="mensagem">Erro ao carregar dados.</td>
+      </tr>
+    `;
   }
 };
 
@@ -418,7 +465,7 @@ function obterData(item) {
 
 function formatarData(item) {
   const segundos = obterData(item);
-  if (!segundos) return "";
+  if (!segundos) return "-";
 
   return new Date(segundos * 1000).toLocaleString("pt-BR", {
     day: "2-digit",
@@ -438,7 +485,11 @@ function renderizar() {
   });
 
   if (!filtrados.length) {
-    lista.innerHTML = `<div class="mensagem">Nenhum item encontrado.</div>`;
+    lista.innerHTML = `
+      <tr>
+        <td colspan="7" class="mensagem">Nenhum item encontrado.</td>
+      </tr>
+    `;
     return;
   }
 
@@ -456,37 +507,49 @@ function renderizar() {
     const titulo = d.titulo || d.nome || "Sem título";
     const cidade = d.cidade || "";
     const estado = d.estado || "";
-    const local = `${cidade} ${estado}`.trim();
+    const local = `${cidade} ${estado}`.trim() || "-";
     const usuario = d.usuarioEmail || d.email || d.emailUsuario || "-";
     const data = formatarData(item);
 
     lista.innerHTML += `
-      <div class="item">
-        <div>
+      <tr>
+        <td class="col-foto">
           ${
             foto
               ? `<img class="foto" src="${escapar(foto)}" alt="">`
               : `<div class="sem-foto">sem foto</div>`
           }
-        </div>
+        </td>
 
-        <div class="info">
-          <div class="linha-tags">
-            <span class="tag tipo">${item.tipo}</span>
-            <span class="${classeStatus(status)}">${status}</span>
-          </div>
+        <td class="col-tipo">
+          <span class="tag tipo">${item.tipo}</span>
+        </td>
 
+        <td class="col-status">
+          <span class="${classeStatus(status)}">${status}</span>
+        </td>
+
+        <td>
           <div class="titulo">${escapar(titulo)}</div>
-          <div class="meta">${escapar(local)} ${data ? "• " + data : ""}</div>
-          <div class="meta">${escapar(usuario)}</div>
-        </div>
+          <div class="email">${escapar(usuario)}</div>
+        </td>
 
-        <div class="acoes">
-          <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
-          <button class="btn-dev" onclick="abrirModal(${index})">Devolver</button>
-          <button class="btn-del" onclick="excluirItem(${index})">Excluir</button>
-        </div>
-      </div>
+        <td class="col-local">
+          <span class="texto-sec">${escapar(local)}</span>
+        </td>
+
+        <td class="col-data">
+          <span class="texto-sec">${escapar(data)}</span>
+        </td>
+
+        <td class="col-acoes">
+          <div class="acoes">
+            <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
+            <button class="btn-dev" onclick="abrirModal(${index})">Devolver</button>
+            <button class="btn-del" onclick="excluirItem(${index})">Excluir</button>
+          </div>
+        </td>
+      </tr>
     `;
   });
 }
