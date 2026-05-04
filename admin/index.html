@@ -13,18 +13,18 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-  background: #f4f6f8;
-  color: #111827;
+  background: #f5f7fa;
+  color: #111;
 }
 
 /* HEADER */
 header {
   background: #0b0f14;
   color: #fff;
-  padding: 16px 22px;
+  padding: 18px 22px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .brand {
@@ -64,11 +64,6 @@ header {
   box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
 
-.card h2 {
-  margin: 0 0 16px;
-  font-size: 22px;
-}
-
 input {
   width: 100%;
   padding: 14px;
@@ -78,29 +73,17 @@ input {
 }
 
 button {
-  width: 100%;
-  padding: 14px;
+  padding: 12px;
   border-radius: 12px;
   border: none;
   cursor: pointer;
   font-weight: 600;
 }
 
-.primary {
-  background: #111827;
-  color: #fff;
-}
-
-.secondary {
-  margin-top: 10px;
-  background: #e5e7eb;
-}
-
-.alerta {
-  margin-top: 12px;
-  font-size: 13px;
-  color: #b91c1c;
-}
+.primary { background: #111827; color: #fff; }
+.gray { background: #e5e7eb; }
+.red { background: #9b111e; color: #fff; }
+.green { background: #147a3d; color: #fff; }
 
 /* PANEL */
 #painel {
@@ -115,18 +98,6 @@ button {
   gap: 10px;
   margin-bottom: 16px;
 }
-
-.btn {
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.dark { background: #111827; color: #fff; }
-.gray { background: #e5e7eb; }
-.red { background: #9b111e; color: #fff; }
-.green { background: #147a3d; color: #fff; }
 
 /* TABLE */
 .table {
@@ -143,7 +114,7 @@ table {
 }
 
 th, td {
-  padding: 12px;
+  padding: 14px;
   border-bottom: 1px solid #eee;
   font-size: 13px;
 }
@@ -155,7 +126,7 @@ th {
 
 /* STATUS */
 .status {
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 11px;
   font-weight: bold;
@@ -166,19 +137,34 @@ th {
 .RECUSADO { background: #f8d7da; }
 .EXCLUIDO { background: #eee; }
 
-/* IMAGENS */
+/* IMAGES */
 .fotos {
   display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .thumb {
-  width: 60px;
-  height: 45px;
+  width: 64px;
+  height: 48px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #ddd;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  width: 70px;
+}
+
+.alerta {
+  color: #b91c1c;
+  font-size: 13px;
+  margin-top: 10px;
 }
 </style>
 </head>
@@ -194,31 +180,26 @@ th {
   <div id="usuarioArea"></div>
 </header>
 
+<!-- LOGIN -->
 <div id="login" class="login">
   <div class="card">
-    <h2>Acessar painel</h2>
-
     <input id="email" placeholder="E-mail" />
     <input id="senha" type="password" placeholder="Senha" />
 
     <button class="primary" onclick="login()">Entrar</button>
 
-    <button class="secondary" onclick="location.href='https://volante.app.br'">
-      Voltar
-    </button>
-
     <div id="msg" class="alerta"></div>
   </div>
 </div>
 
+<!-- PAINEL -->
 <div id="painel">
 
   <div class="top">
-    <button class="btn gray" onclick="location.href='https://volante.app.br'">Site</button>
-    <button class="btn dark" onclick="tipo='anuncios'; carregar()">Anúncios</button>
-    <button class="btn dark" onclick="tipo='eventos'; carregar()">Eventos</button>
-    <button class="btn gray" onclick="carregar()">Atualizar</button>
-    <button class="btn red" onclick="logout()">Sair</button>
+    <button class="primary" onclick="tipo='anuncios'; carregar()">Anúncios</button>
+    <button class="primary" onclick="tipo='eventos'; carregar()">Eventos</button>
+    <button class="gray" onclick="carregar()">Atualizar</button>
+    <button class="red" onclick="logout()">Sair</button>
   </div>
 
   <div class="table">
@@ -311,9 +292,9 @@ window.carregar = async () => {
         <td><span class="status ${d.status}">${d.status}</span></td>
         <td>${d.titulo || "-"}</td>
         <td>${d.usuarioEmail || "-"}</td>
-        <td>
-          <button class="btn green" onclick="aprovar('${tipo}','${d.id}')">✔</button>
-          <button class="btn red" onclick="recusar('${tipo}','${d.id}')">✖</button>
+        <td class="actions">
+          <button class="green" onclick="aprovar('${tipo}','${d.id}')">✔</button>
+          <button class="red" onclick="recusar('${tipo}','${d.id}')">✖</button>
         </td>
       </tr>
     `;
