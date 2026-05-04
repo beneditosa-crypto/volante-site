@@ -1,1 +1,14 @@
-{}
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/admin/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.volante.app.br"
+        }
+      ]
+    }
+  ]
+}
