@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Painel Admin - Volante</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background: #fff;
+  color: #111;
+}
+
+header {
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
+}
+
+.actions, .tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 11px 14px;
+  border: none;
+  border-radius: 12px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+.secondary {
+  background: #f3f3f3;
+  color: #111;
+}
+
+.danger {
+  background: #8b0000;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 700px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1050px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #f3f3f3;
+}
+
+.card-content {
+  padding: 12px;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.meta {
+  font-size: 13px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.PENDENTE { background: #fff3cd; color: #856404; }
+.ATIVO { background: #d4edda; color: #155724; }
+.RECUSADO { background: #f8d7da; color: #721c24; }
+.EXCLUIDO { background: #eee; color: #555; }
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+#usuarioArea {
+  font-size: 13px;
+  color: #555;
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <strong>Volante 🚗</strong>
+    <div style="font-size:12px;color:#666;">Painel Admin</div>
+  </div>
+
+  <div id="usuarioArea"></div>
+</header>
+
+<div class="container">
+
+  <div class="actions">
+    <button class="secondary" onclick="window.location.href='/'">Início</button>
+    <button class="secondary" onclick="carregar()">Atualizar</button>
+  </div>
+
+  <div class="tabs">
+    <button onclick="tipoAtual='anuncios'; carregar()">Anúncios</button>
+    <button onclick="tipoAtual='eventos'; carregar()">Eventos</button>
+  </div>
+
+  <h2 id="tituloSecao">Anúncios</h2>
+
+  <div id="lista" class="grid">Carregando...</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const ADMIN_EMAIL = "admin@clube.com";
+
+let usuarioAtual = null;
+window.tipoAtual = "anuncios";
+
+onAuthStateChanged(auth, (user) => {
+  const area = document.getElementById("usuarioArea");
+
+  if (!user) {
+    alert("Faça login como administrador.");
+    window.location.href = "/login.html";
+    return;
+  }
+
+  usuarioAtual = user;
+  area.innerHTML = user.email;
+
+  if (user.email.trim().toLowerCase() !== ADMIN_EMAIL) {
+    alert("Acesso permitido apenas para administrador.");
+    window.location.href = "/";
+    return;
+  }
+
+  carregar();
+});
+
+function formatarPreco(valor) {
+  if (!valor) return "Preço sob consulta";
+
+  const numero = Number(valor);
+  if (Number.isNaN(numero)) return valor;
+
+  return numero.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+window.carregar = async function () {
+  const lista = document.getElementById("lista");
+  const tituloSecao = document.getElementById("tituloSecao");
+
+  tituloSecao.innerText = tipoAtual === "anuncios" ? "Anúncios" : "Eventos";
+  lista.innerHTML = "Carregando...";
+
+  try {
+    const snapshot = await getDocs(collection(db, tipoAtual));
+    lista.innerHTML = "";
+
+    if (snapshot.empty) {
+      lista.innerHTML = "<p>Nenhum item encontrado.</p>";
+      return;
+    }
+
+    snapshot.forEach((documento) => {
+      const d = documento.data();
+      const id = documento.id;
+
+      if (d.status === "EXCLUIDO") return;
+
+      const foto =
+        d.fotos?.[0] ||
+        d.foto ||
+        d.imagem ||
+        "https://via.placeholder.com/600x400?text=Volante";
+
+      const titulo = d.titulo || (tipoAtual === "anuncios" ? "Veículo anunciado" : "Evento");
+      const status = d.status || "PENDENTE";
+      const local = [d.cidade, d.estado].filter(Boolean).join(" - ");
+
+      const precoHtml = tipoAtual === "anuncios"
+        ? `<div class="meta"><strong>${formatarPreco(d.preco)}</strong></div>`
+        : "";
+
+      const veiculoHtml = tipoAtual === "anuncios"
+        ? `<div class="meta">${d.marca || ""} ${d.modelo || ""} ${d.ano || ""}</div>`
+        : "";
+
+      lista.innerHTML += `
+        <div class="card">
+          <img src="${foto}" alt="${titulo}" />
+
+          <div class="card-content">
+            <div class="title">${titulo}</div>
+            ${precoHtml}
+            <div class="meta">${local}</div>
+            ${veiculoHtml}
+            <div class="meta">${d.usuarioEmail || d.email || ""}</div>
+            <span class="status ${status}">${status}</span>
+
+            <div class="card-actions">
+              <button onclick="aprovar('${tipoAtual}', '${id}')">Aprovar</button>
+              <button class="danger" onclick="recusar('${tipoAtual}', '${id}')">Recusar</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    console.error(error);
+    lista.innerHTML = "<p>Erro ao carregar painel admin.</p>";
+  }
+};
+
+window.aprovar = async function (colecao, id) {
+  const confirmar = confirm("Aprovar este item?");
+  if (!confirmar) return;
+
+  await updateDoc(doc(db, colecao, id), {
+    status: "ATIVO",
+    motivoRecusa: "",
+    atualizadoEm: serverTimestamp()
+  });
+
+  alert("Item aprovado.");
+  carregar();
+};
+
+window.recusar = async function (colecao, id) {
+  const motivo = prompt("Informe o motivo da recusa:");
+
+  if (!motivo) {
+    alert("Informe um motivo para recusar.");
+    return;
+  }
+
+  await updateDoc(doc(db, colecao, id), {
+    status: "RECUSADO",
+    motivoRecusa: motivo,
+    atualizadoEm: serverTimestamp()
+  });
+
+  alert("Item recusado.");
+  carregar();
+};
+</script>
+
+</body>
+</html>
