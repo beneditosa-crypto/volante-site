@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Administrativo</title>
+<link rel="icon" href="../favicon.png">
 
 <style>
 * { box-sizing: border-box; }
@@ -12,13 +13,15 @@ body {
   margin: 0;
   background: #0f1115;
   color: #e5e7eb;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
 }
 
-/* HEADER */
+.hidden { display: none !important; }
+
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 16px;
   background: #1c1f24;
   border-bottom: 1px solid #2a2f36;
@@ -31,113 +34,154 @@ body {
 }
 
 .logo {
-  width: 26px;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .header-title {
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
 }
 
-.header-actions button {
-  padding: 6px 10px;
-  border-radius: 8px;
+.header-title strong {
+  font-size: 15px;
+}
+
+.header-title span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
   border: none;
   cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-update,
+.btn-logout {
+  padding: 7px 11px;
+  border-radius: 8px;
 }
 
 .btn-update { background: #374151; color: white; }
 .btn-logout { background: #b91c1c; color: white; }
 
-/* FILTRO */
 .filtros {
   display: flex;
   gap: 6px;
   padding: 10px 16px;
+  flex-wrap: wrap;
 }
 
 .filtros button {
   font-size: 12px;
-  padding: 6px 10px;
+  padding: 7px 11px;
   border-radius: 999px;
-  border: none;
   background: #1f2937;
   color: #d1d5db;
-  cursor: pointer;
 }
 
 .filtros button.ativo {
   background: #e5e7eb;
-  color: #111;
+  color: #111827;
 }
 
-/* LISTA */
 .lista {
-  padding: 10px;
+  padding: 0 10px 10px;
 }
 
 .item {
   display: grid;
-  grid-template-columns: 70px 1fr 280px;
+  grid-template-columns: 64px 1fr 230px;
   align-items: center;
   gap: 10px;
-  padding: 8px;
+  padding: 7px 6px;
   border-bottom: 1px solid #1f2937;
 }
 
-/* FOTO */
 .foto {
-  width: 70px;
-  height: 50px;
+  width: 64px;
+  height: 46px;
   border-radius: 6px;
   object-fit: cover;
   background: #2a2f36;
 }
 
-/* INFO */
-.info {
-  font-size: 13px;
+.sem-foto {
+  width: 64px;
+  height: 46px;
+  border-radius: 6px;
+  background: #2a2f36;
+  color: #6b7280;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .titulo {
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .meta {
   font-size: 11px;
   color: #9ca3af;
+  margin-top: 2px;
 }
 
-/* TAGS */
-.tag {
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 999px;
-  margin-right: 4px;
-}
-
-.tipo { background: #374151; }
-.pendente { color: #facc15; }
-.ativo { color: #22c55e; }
-.recusado { color: #f87171; }
-.excluido { color: #9ca3af; }
-
-/* AÇÕES */
-.acoes {
+.linha-tags {
   display: flex;
   gap: 6px;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.tipo {
+  background: #374151;
+  color: white;
+}
+
+.status-pendente { color: #facc15; }
+.status-ativo { color: #22c55e; }
+.status-recusado { color: #f87171; }
+.status-excluido { color: #9ca3af; }
+
+.acoes {
+  display: flex;
   justify-content: flex-end;
+  gap: 6px;
 }
 
 .acoes button {
   height: 28px;
   font-size: 11px;
-  padding: 0 10px;
-  border-radius: 6px;
+  padding: 0 9px;
+  border-radius: 7px;
 }
 
 .btn-ok { background: #15803d; color: white; }
-.btn-dev { background: #d97706; color: black; }
+.btn-dev { background: #d97706; color: #111827; }
 .btn-del { background: #b91c1c; color: white; }
+
+.mensagem {
+  color: #9ca3af;
+  padding: 20px;
+}
 
 .modal {
   position: fixed;
@@ -146,151 +190,380 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 99;
 }
 
 .modal-box {
   background: #1c1f24;
+  border: 1px solid #2a2f36;
   padding: 16px;
-  border-radius: 10px;
-  width: 280px;
+  border-radius: 12px;
+  width: 320px;
 }
 
 textarea {
   width: 100%;
-  height: 80px;
+  height: 90px;
   margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #374151;
+  background: #20242b;
+  color: white;
+  padding: 8px;
 }
 
-.hidden { display: none; }
+.modal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-actions button {
+  flex: 1;
+  height: 34px;
+  border-radius: 8px;
+}
+
+@media (max-width: 800px) {
+  .item {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .acoes {
+    grid-column: 1 / -1;
+    justify-content: stretch;
+  }
+
+  .acoes button {
+    flex: 1;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">
+<header class="header">
   <div class="header-left">
-    <img src="../logo.png" class="logo">
-    <div class="header-title">Painel Administrativo</div>
+    <img src="../logo.png" class="logo" alt="Volante">
+
+    <div class="header-title">
+      <strong>Painel Administrativo</strong>
+      <span id="adminEmail">Verificando acesso...</span>
+    </div>
   </div>
 
   <div class="header-actions">
     <button class="btn-update" onclick="carregar()">Atualizar</button>
     <button class="btn-logout" onclick="logout()">Sair</button>
   </div>
-</div>
+</header>
 
 <div class="filtros">
-  <button onclick="filtrar('TODOS')" class="ativo">Todos</button>
-  <button onclick="filtrar('PENDENTE')">Pendentes</button>
-  <button onclick="filtrar('ATIVO')">Ativos</button>
-  <button onclick="filtrar('RECUSADO')">Recusados</button>
-  <button onclick="filtrar('EXCLUIDO')">Excluídos</button>
+  <button id="filtro-todos" class="ativo" onclick="filtrar('TODOS')">Todos</button>
+  <button id="filtro-pendente" onclick="filtrar('PENDENTE')">Pendentes</button>
+  <button id="filtro-ativo" onclick="filtrar('ATIVO')">Ativos</button>
+  <button id="filtro-recusado" onclick="filtrar('RECUSADO')">Recusados</button>
+  <button id="filtro-excluido" onclick="filtrar('EXCLUIDO')">Excluídos</button>
 </div>
 
-<div id="lista" class="lista"></div>
+<div id="lista" class="lista">
+  <div class="mensagem">Carregando...</div>
+</div>
 
 <div id="modal" class="modal hidden">
   <div class="modal-box">
-    <h4>Motivo</h4>
-    <textarea id="motivo"></textarea>
-    <button onclick="confirmar()">Confirmar</button>
+    <h3>Motivo da devolução</h3>
+
+    <textarea id="motivo" placeholder="Informe o motivo"></textarea>
+
+    <div class="modal-actions">
+      <button class="btn-dev" onclick="confirmarDevolucao()">Confirmar</button>
+      <button onclick="fecharModal()">Cancelar</button>
+    </div>
   </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSy...",
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770"
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-let itens = [];
-let filtro = "TODOS";
-let atual = null;
+const ADMIN_EMAIL = "admin@clube.com";
 
-onAuthStateChanged(auth, user => {
-  if (!user) location.href = "/admin/login.html";
+let itens = [];
+let filtroAtual = "TODOS";
+let selecionado = null;
+let autenticado = false;
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "/admin/login.html";
+    return;
+  }
+
+  const email = (user.email || "").trim().toLowerCase();
+
+  if (email !== ADMIN_EMAIL) {
+    await signOut(auth);
+    window.location.href = "/admin/login.html";
+    return;
+  }
+
+  autenticado = true;
+  document.getElementById("adminEmail").innerText = user.email;
   carregar();
 });
 
-window.logout = () => signOut(auth);
-
-window.filtrar = (f) => {
-  filtro = f;
-  render();
+window.logout = async function () {
+  await signOut(auth);
+  window.location.href = "/admin/login.html";
 };
 
-async function carregar() {
-  const anuncios = await getDocs(collection(db, "anuncios"));
-  const eventos = await getDocs(collection(db, "eventos"));
+window.filtrar = function (status) {
+  filtroAtual = status;
 
-  itens = [];
+  document.querySelectorAll(".filtros button").forEach((btn) => {
+    btn.classList.remove("ativo");
+  });
 
-  anuncios.forEach(d => itens.push({ ...d.data(), id:d.id, tipo:"Anúncio" }));
-  eventos.forEach(d => itens.push({ ...d.data(), id:d.id, tipo:"Evento" }));
+  const id = status === "TODOS" ? "filtro-todos" : "filtro-" + status.toLowerCase();
+  const btn = document.getElementById(id);
+  if (btn) btn.classList.add("ativo");
 
-  itens.sort((a,b) => (b.atualizadoEm?.seconds||0)-(a.atualizadoEm?.seconds||0));
+  renderizar();
+};
 
-  render();
-}
+window.carregar = async function () {
+  if (!autenticado) return;
 
-function render() {
-  const el = document.getElementById("lista");
-  el.innerHTML = "";
+  const lista = document.getElementById("lista");
+  lista.innerHTML = `<div class="mensagem">Carregando...</div>`;
 
-  itens
-    .filter(i => filtro==="TODOS" || (i.status||"PENDENTE")===filtro)
-    .forEach((i,idx)=>{
-      const foto = i.fotos?.[0] || i.imagem || "";
+  try {
+    const [anunciosSnap, eventosSnap] = await Promise.all([
+      getDocs(collection(db, "anuncios")),
+      getDocs(collection(db, "eventos"))
+    ]);
 
-      el.innerHTML += `
-        <div class="item">
-          <img src="${foto}" class="foto">
+    itens = [];
 
-          <div class="info">
-            <div class="titulo">${i.titulo||"Sem título"}</div>
-            <div class="meta">${i.cidade||""} ${i.estado||""}</div>
-            <div class="meta">${i.usuarioEmail||""}</div>
-          </div>
-
-          <div class="acoes">
-            <button class="btn-ok" onclick="aprovar(${idx})">OK</button>
-            <button class="btn-dev" onclick="devolver(${idx})">Dev</button>
-            <button class="btn-del" onclick="excluir(${idx})">X</button>
-          </div>
-        </div>
-      `;
+    anunciosSnap.forEach((d) => {
+      itens.push({
+        id: d.id,
+        colecao: "anuncios",
+        tipo: "Anúncio",
+        dados: d.data()
+      });
     });
+
+    eventosSnap.forEach((d) => {
+      itens.push({
+        id: d.id,
+        colecao: "eventos",
+        tipo: "Evento",
+        dados: d.data()
+      });
+    });
+
+    itens.sort((a, b) => obterData(b) - obterData(a));
+
+    renderizar();
+
+  } catch (erro) {
+    console.error(erro);
+    lista.innerHTML = `<div class="mensagem">Erro ao carregar dados.</div>`;
+  }
+};
+
+function obterData(item) {
+  const d = item.dados;
+
+  return (
+    d.atualizadoEm?.seconds ||
+    d.criadoEm?.seconds ||
+    d.createdAt?.seconds ||
+    d.dataCriacao?.seconds ||
+    d.data?.seconds ||
+    0
+  );
 }
 
-window.aprovar = async (i)=>{
-  await updateDoc(doc(db,"anuncios",itens[i].id),{status:"ATIVO"});
+function formatarData(item) {
+  const segundos = obterData(item);
+  if (!segundos) return "";
+
+  return new Date(segundos * 1000).toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
+function renderizar() {
+  const lista = document.getElementById("lista");
+
+  const filtrados = itens.filter((item) => {
+    const status = (item.dados.status || "PENDENTE").toUpperCase();
+    return filtroAtual === "TODOS" || status === filtroAtual;
+  });
+
+  if (!filtrados.length) {
+    lista.innerHTML = `<div class="mensagem">Nenhum item encontrado.</div>`;
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtrados.forEach((item) => {
+    const index = itens.indexOf(item);
+    const d = item.dados;
+
+    const foto = item.tipo === "Anúncio"
+      ? d.fotos?.[0]
+      : d.imagem || d.foto || d.fotos?.[0];
+
+    const status = (d.status || "PENDENTE").toUpperCase();
+    const titulo = d.titulo || d.nome || "Sem título";
+    const cidade = d.cidade || "";
+    const estado = d.estado || "";
+    const local = `${cidade} ${estado}`.trim();
+    const usuario = d.usuarioEmail || d.email || d.emailUsuario || "-";
+    const data = formatarData(item);
+
+    lista.innerHTML += `
+      <div class="item">
+        <div>
+          ${
+            foto
+              ? `<img class="foto" src="${escapar(foto)}" alt="">`
+              : `<div class="sem-foto">sem foto</div>`
+          }
+        </div>
+
+        <div class="info">
+          <div class="linha-tags">
+            <span class="tag tipo">${item.tipo}</span>
+            <span class="${classeStatus(status)}">${status}</span>
+          </div>
+
+          <div class="titulo">${escapar(titulo)}</div>
+          <div class="meta">${escapar(local)} ${data ? "• " + data : ""}</div>
+          <div class="meta">${escapar(usuario)}</div>
+        </div>
+
+        <div class="acoes">
+          <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
+          <button class="btn-dev" onclick="abrirModal(${index})">Devolver</button>
+          <button class="btn-del" onclick="excluirItem(${index})">Excluir</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function classeStatus(status) {
+  if (status === "ATIVO") return "status-ativo";
+  if (status === "RECUSADO") return "status-recusado";
+  if (status === "EXCLUIDO") return "status-excluido";
+  return "status-pendente";
+}
+
+window.aprovar = async function (index) {
+  const item = itens[index];
+  if (!item) return;
+
+  await updateDoc(doc(db, item.colecao, item.id), {
+    status: "ATIVO",
+    motivoDevolucao: "",
+    observacaoAdmin: "",
+    atualizadoEm: serverTimestamp()
+  });
+
   carregar();
 };
 
-window.devolver = (i)=>{
-  atual=i;
+window.abrirModal = function (index) {
+  selecionado = itens[index];
   document.getElementById("modal").classList.remove("hidden");
 };
 
-window.confirmar = async ()=>{
-  const motivo=document.getElementById("motivo").value;
-  await updateDoc(doc(db,"anuncios",itens[atual].id),{status:"RECUSADO",motivo});
+window.fecharModal = function () {
+  selecionado = null;
+  document.getElementById("modal").classList.add("hidden");
+  document.getElementById("motivo").value = "";
+};
+
+window.confirmarDevolucao = async function () {
+  const motivo = document.getElementById("motivo").value.trim();
+
+  if (!selecionado) return;
+
+  if (!motivo) {
+    alert("Informe o motivo.");
+    return;
+  }
+
+  await updateDoc(doc(db, selecionado.colecao, selecionado.id), {
+    status: "RECUSADO",
+    motivoDevolucao: motivo,
+    observacaoAdmin: motivo,
+    atualizadoEm: serverTimestamp()
+  });
+
+  fecharModal();
   carregar();
 };
 
-window.excluir = async (i)=>{
-  await updateDoc(doc(db,"anuncios",itens[i].id),{status:"EXCLUIDO"});
+window.excluirItem = async function (index) {
+  const item = itens[index];
+  if (!item) return;
+
+  if (!confirm("Excluir este item?")) return;
+
+  await updateDoc(doc(db, item.colecao, item.id), {
+    status: "EXCLUIDO",
+    atualizadoEm: serverTimestamp()
+  });
+
   carregar();
 };
+
+function escapar(valor) {
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 </script>
 
 </body>
