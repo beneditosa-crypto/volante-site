@@ -48,6 +48,7 @@ button {
   background: #111;
   color: #fff;
   cursor: pointer;
+  font-size: 14px;
 }
 
 button.secondary {
@@ -147,12 +148,12 @@ th {
 
   <div class="top-actions">
     <button class="secondary" onclick="window.location.href='/'">Ir para o site</button>
-    <button onclick="tipoAtual='anuncios'; carregar()">Anúncios</button>
-    <button onclick="tipoAtual='eventos'; carregar()">Eventos</button>
+    <button onclick="tipoAtual='anuncios'; carregar()">Anúncios pendentes</button>
+    <button onclick="tipoAtual='eventos'; carregar()">Eventos pendentes</button>
     <button class="secondary" onclick="carregar()">Atualizar</button>
   </div>
 
-  <h2 id="tituloSecao">Anúncios</h2>
+  <h2 id="tituloSecao">Anúncios pendentes</h2>
 
   <div class="card">
     <div class="table-wrap">
@@ -242,7 +243,9 @@ window.logout = async function () {
 
 function formatarPreco(valor) {
   if (!valor) return "Preço não informado";
+
   const numero = Number(valor);
+
   if (Number.isNaN(numero)) return valor;
 
   return numero.toLocaleString("pt-BR", {
@@ -255,7 +258,9 @@ window.carregar = async function () {
   const lista = document.getElementById("lista");
   const tituloSecao = document.getElementById("tituloSecao");
 
-  tituloSecao.innerText = tipoAtual === "anuncios" ? "Anúncios" : "Eventos";
+  tituloSecao.innerText =
+    tipoAtual === "anuncios" ? "Anúncios pendentes" : "Eventos pendentes";
+
   lista.innerHTML = `<tr><td colspan="7">Carregando...</td></tr>`;
 
   try {
@@ -274,12 +279,14 @@ window.carregar = async function () {
       const d = documento.data();
       const id = documento.id;
 
-      if (d.status === "EXCLUIDO") return;
+      if (d.status !== "PENDENTE") return;
 
       encontrou = true;
 
       const status = d.status || "PENDENTE";
-      const titulo = d.titulo || (tipoAtual === "anuncios" ? "Veículo anunciado" : "Evento");
+      const titulo =
+        d.titulo || (tipoAtual === "anuncios" ? "Veículo anunciado" : "Evento");
+
       const usuario = d.usuarioEmail || d.email || "Não informado";
       const local = [d.cidade, d.estado].filter(Boolean).join(" - ") || "Não informado";
       const motivo = d.motivoRecusa || "-";
@@ -298,14 +305,17 @@ window.carregar = async function () {
       lista.innerHTML += `
         <tr>
           <td><span class="status ${status}">${status}</span></td>
+
           <td>
             <strong>${titulo}</strong><br>
             <span class="muted">ID: ${id}</span>
           </td>
+
           <td>${usuario}</td>
           <td>${local}</td>
           <td>${dados}</td>
           <td>${motivo}</td>
+
           <td>
             <div class="actions">
               <button class="success" onclick="aprovar('${tipoAtual}', '${id}')">Aprovar</button>
@@ -317,7 +327,7 @@ window.carregar = async function () {
     });
 
     if (!encontrou) {
-      lista.innerHTML = `<tr><td colspan="7">Nenhum item ativo para administrar.</td></tr>`;
+      lista.innerHTML = `<tr><td colspan="7">Nenhum item pendente 🎉</td></tr>`;
     }
 
   } catch (error) {
