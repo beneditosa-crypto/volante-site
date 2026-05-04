@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin - Volante</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background: #f6f6f6;
+  color: #111;
+}
+
+header {
+  background: #111;
+  color: #fff;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header small {
+  color: #bbb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px;
+}
+
+.top-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #e9e9e9;
+  color: #111;
+}
+
+button.danger {
+  background: #9b111e;
+}
+
+button.success {
+  background: #147a3d;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 950px;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+th {
+  background: #fafafa;
+  font-size: 13px;
+  color: #555;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.PENDENTE { background: #fff3cd; color: #856404; }
+.ATIVO { background: #d4edda; color: #155724; }
+.RECUSADO { background: #f8d7da; color: #721c24; }
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: #666;
+  font-size: 13px;
+}
+
+#usuarioArea {
+  font-size: 13px;
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <strong>Volante Admin</strong><br>
+    <small>Painel administrativo</small>
+  </div>
+
+  <div id="usuarioArea"></div>
+</header>
+
+<div class="container">
+
+  <div class="top-actions">
+    <button class="secondary" onclick="window.location.href='/'">Ir para o site</button>
+    <button onclick="tipoAtual='anuncios'; carregar()">Anúncios</button>
+    <button onclick="tipoAtual='eventos'; carregar()">Eventos</button>
+    <button class="secondary" onclick="carregar()">Atualizar</button>
+  </div>
+
+  <h2 id="tituloSecao">Anúncios</h2>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Título</th>
+            <th>Usuário</th>
+            <th>Local</th>
+            <th>Dados</th>
+            <th>Motivo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista">
+          <tr><td colspan="7">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const ADMIN_EMAIL = "admin@clube.com";
+
+window.tipoAtual = "anuncios";
+
+onAuthStateChanged(auth, (user) => {
+  const area = document.getElementById("usuarioArea");
+
+  if (!user) {
+    alert("Faça login como administrador.");
+    window.location.href = "/login.html";
+    return;
+  }
+
+  if (user.email.trim().toLowerCase() !== ADMIN_EMAIL) {
+    alert("Acesso permitido apenas para administrador.");
+    window.location.href = "/";
+    return;
+  }
+
+  area.innerHTML = `
+    ${user.email}<br>
+    <button onclick="logout()" style="margin-top:6px;">Sair</button>
+  `;
+
+  carregar();
+});
+
+window.logout = async function () {
+  await signOut(auth);
+  window.location.href = "/";
+};
+
+function formatarPreco(valor) {
+  if (!valor) return "Preço não informado";
+  const numero = Number(valor);
+  if (Number.isNaN(numero)) return valor;
+
+  return numero.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+window.carregar = async function () {
+  const lista = document.getElementById("lista");
+  const tituloSecao = document.getElementById("tituloSecao");
+
+  tituloSecao.innerText = tipoAtual === "anuncios" ? "Anúncios" : "Eventos";
+  lista.innerHTML = `<tr><td colspan="7">Carregando...</td></tr>`;
+
+  try {
+    const snapshot = await getDocs(collection(db, tipoAtual));
+
+    lista.innerHTML = "";
+
+    if (snapshot.empty) {
+      lista.innerHTML = `<tr><td colspan="7">Nenhum item encontrado.</td></tr>`;
+      return;
+    }
+
+    let encontrou = false;
+
+    snapshot.forEach((documento) => {
+      const d = documento.data();
+      const id = documento.id;
+
+      if (d.status === "EXCLUIDO") return;
+
+      encontrou = true;
+
+      const status = d.status || "PENDENTE";
+      const titulo = d.titulo || (tipoAtual === "anuncios" ? "Veículo anunciado" : "Evento");
+      const usuario = d.usuarioEmail || d.email || "Não informado";
+      const local = [d.cidade, d.estado].filter(Boolean).join(" - ") || "Não informado";
+      const motivo = d.motivoRecusa || "-";
+
+      const dados = tipoAtual === "anuncios"
+        ? `
+          <strong>${d.marca || ""} ${d.modelo || ""}</strong><br>
+          Ano: ${d.ano || "-"}<br>
+          Preço: ${formatarPreco(d.preco)}
+        `
+        : `
+          Data: ${d.data || "-"}<br>
+          Link: ${d.link || "-"}
+        `;
+
+      lista.innerHTML += `
+        <tr>
+          <td><span class="status ${status}">${status}</span></td>
+          <td>
+            <strong>${titulo}</strong><br>
+            <span class="muted">ID: ${id}</span>
+          </td>
+          <td>${usuario}</td>
+          <td>${local}</td>
+          <td>${dados}</td>
+          <td>${motivo}</td>
+          <td>
+            <div class="actions">
+              <button class="success" onclick="aprovar('${tipoAtual}', '${id}')">Aprovar</button>
+              <button class="danger" onclick="recusar('${tipoAtual}', '${id}')">Recusar</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    });
+
+    if (!encontrou) {
+      lista.innerHTML = `<tr><td colspan="7">Nenhum item ativo para administrar.</td></tr>`;
+    }
+
+  } catch (error) {
+    console.error(error);
+    lista.innerHTML = `<tr><td colspan="7">Erro ao carregar o painel.</td></tr>`;
+  }
+};
+
+window.aprovar = async function (colecao, id) {
+  if (!confirm("Aprovar este item?")) return;
+
+  try {
+    await updateDoc(doc(db, colecao, id), {
+      status: "ATIVO",
+      motivoRecusa: "",
+      atualizadoEm: serverTimestamp()
+    });
+
+    alert("Item aprovado.");
+    carregar();
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao aprovar.");
+  }
+};
+
+window.recusar = async function (colecao, id) {
+  const motivo = prompt("Informe o motivo da recusa:");
+
+  if (!motivo) {
+    alert("Informe um motivo.");
+    return;
+  }
+
+  try {
+    await updateDoc(doc(db, colecao, id), {
+      status: "RECUSADO",
+      motivoRecusa: motivo,
+      atualizadoEm: serverTimestamp()
+    });
+
+    alert("Item recusado.");
+    carregar();
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao recusar.");
+  }
+};
+</script>
+
+</body>
+</html>
