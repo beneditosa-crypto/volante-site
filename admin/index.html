@@ -16,8 +16,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.hidden { display: none !important; }
-
 .header {
   height: 56px;
   display: flex;
@@ -34,20 +32,14 @@ body {
   gap: 10px;
 }
 
-.logo {
-  width: 28px;
-}
+.logo { width: 28px; }
 
-.header-title strong { font-size: 15px; }
 .header-title span {
   font-size: 12px;
   color: #9ca3af;
 }
 
-.header-actions {
-  display: flex;
-  gap: 8px;
-}
+.header-actions { display: flex; gap: 8px; }
 
 button {
   border: none;
@@ -91,8 +83,6 @@ th, td {
   border-bottom: 1px solid #1f2937;
   font-size: 13px;
 }
-
-th { color: #9ca3af; }
 
 .foto {
   width: 60px;
@@ -138,7 +128,6 @@ th { color: #9ca3af; }
 .btn-ok { background:#15803d;color:white;}
 .btn-dev { background:#d97706;}
 .btn-del { background:#b91c1c;color:white;}
-.btn-detail { background:#374151;color:white;}
 
 .modal {
   position: fixed;
@@ -161,8 +150,6 @@ textarea {
   height:80px;
   margin:10px 0;
 }
-
-.hidden { display:none; }
 </style>
 </head>
 
@@ -221,7 +208,7 @@ import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.g
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  apiKey: "AIza...",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
   projectId: "clube-da-caminhonete-be770"
 };
@@ -250,23 +237,18 @@ async function carregar(){
 
   itens=[];
 
-  anuncios.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Anúncio"}));
-  eventos.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Evento"}));
+  anuncios.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Anúncio",colecao:"anuncios"}));
+  eventos.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Evento",colecao:"eventos"}));
 
   render();
 }
 
 function pegarDescricao(d){
-  return (
-    d.descricao ||
-    d.descricaoAnuncio ||
-    d.descricaoEvento ||
-    d.descricaoCompleta ||
-    d.texto ||
-    d.observacoes ||
-    d.desc ||
-    ""
-  );
+  return d.descricao || d.texto || d.observacoes || d.desc || "";
+}
+
+function pegarUsuario(d){
+  return d.usuarioEmail || d.email || d.emailUsuario || "-";
 }
 
 function render(){
@@ -278,7 +260,7 @@ function render(){
     .forEach((i,idx)=>{
 
       const desc=pegarDescricao(i);
-      const curta=desc.length>120?desc.substring(0,120)+"...":desc;
+      const curta=desc?desc.substring(0,120):"";
 
       el.innerHTML+=`
       <tr>
@@ -287,7 +269,7 @@ function render(){
         <td><span class="status-${(i.status||"pendente").toLowerCase()}">${i.status||"PENDENTE"}</span></td>
         <td>
           <div class="titulo">${i.titulo||"Sem título"}</div>
-          <div class="email">${i.usuarioEmail||""}</div>
+          <div class="email">${pegarUsuario(i)}</div>
           ${curta?`<div class="descricao-lista">${curta}</div>`:""}
         </td>
         <td>
@@ -297,13 +279,13 @@ function render(){
             <button class="btn-del" onclick="excluir(${idx})">X</button>
           </div>
         </td>
-      </tr>
-      `;
+      </tr>`;
     });
 }
 
 window.aprovar=async(i)=>{
-  await updateDoc(doc(db,"anuncios",itens[i].id),{status:"ATIVO"});
+  const item=itens[i];
+  await updateDoc(doc(db,item.colecao,item.id),{status:"ATIVO"});
   carregar();
 };
 
@@ -314,12 +296,14 @@ window.devolver=(i)=>{
 
 window.confirmar=async()=>{
   const motivo=document.getElementById("motivo").value;
-  await updateDoc(doc(db,"anuncios",itens[atual].id),{status:"RECUSADO",motivo});
+  const item=itens[atual];
+  await updateDoc(doc(db,item.colecao,item.id),{status:"RECUSADO",motivo});
   carregar();
 };
 
 window.excluir=async(i)=>{
-  await updateDoc(doc(db,"anuncios",itens[i].id),{status:"EXCLUIDO"});
+  const item=itens[i];
+  await updateDoc(doc(db,item.colecao,item.id),{status:"EXCLUIDO"});
   carregar();
 };
 </script>
