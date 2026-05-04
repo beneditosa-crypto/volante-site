@@ -4,91 +4,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login Admin - Volante</title>
-
 <link rel="icon" href="../favicon.png">
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100%;
-  min-height: 100%;
-  background: #0f1115 !important;
-  color: #e5e7eb;
-  font-family: Arial, sans-serif;
-}
+* { box-sizing: border-box; }
 
 body {
+  margin: 0;
   min-height: 100vh;
+  background: #0f1115;
+  color: #e5e7eb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-image: none !important;
 }
 
-.admin-login-card {
+.card {
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   background: #1c1f24;
   border: 1px solid #2a2f36;
-  border-radius: 16px;
-  padding: 22px;
+  border-radius: 18px;
+  padding: 28px;
 }
 
-.admin-login-logo {
-  width: 42px !important;
-  height: 42px !important;
-  max-width: 42px !important;
-  max-height: 42px !important;
-  object-fit: contain !important;
-  display: block;
-  margin: 0 0 14px 0;
+.header-login {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-h1 {
-  margin: 0;
-  font-size: 20px;
+.logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
 }
 
-p {
-  margin: 6px 0 20px;
-  color: #9ca3af;
+.header-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.header-text strong {
+  font-size: 18px;
+  color: #f9fafb;
+}
+
+.header-text span {
   font-size: 13px;
+  color: #9ca3af;
 }
 
 input {
   width: 100%;
-  height: 44px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+  height: 52px;
+  margin-bottom: 12px;
+  border-radius: 14px;
   border: 1px solid #374151;
   background: #20242b;
-  color: #fff;
-  padding: 0 12px;
+  color: white;
+  padding: 0 16px;
+  font-size: 15px;
   outline: none;
+}
+
+input:focus {
+  border-color: #6b7280;
 }
 
 button {
   width: 100%;
-  height: 44px;
+  height: 52px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   background: #e5e7eb;
   color: #111827;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 800;
   cursor: pointer;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .erro {
   display: none;
-  margin-top: 12px;
+  margin-top: 14px;
   color: #fca5a5;
   font-size: 13px;
 }
@@ -97,11 +100,15 @@ button {
 
 <body>
 
-<div class="admin-login-card">
-  <img src="../logo.png" class="admin-login-logo" alt="Volante">
+<div class="card">
+  <div class="header-login">
+    <img src="../logo.png" class="logo" alt="Volante">
 
-  <h1>Painel Admin</h1>
-  <p>Volante App</p>
+    <div class="header-text">
+      <strong>Volante App</strong>
+      <span>Painel Administrativo</span>
+    </div>
+  </div>
 
   <input id="email" type="email" placeholder="Email do administrador">
   <input id="senha" type="password" placeholder="Senha">
@@ -155,6 +162,7 @@ window.login = async function () {
     await signInWithEmailAndPassword(auth, email, senha);
     window.location.href = "/admin/index.html";
   } catch (e) {
+    console.error(e);
     mostrarErro("Não foi possível entrar. Verifique email e senha.");
   }
 };
