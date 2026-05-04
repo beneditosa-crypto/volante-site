@@ -5,9 +5,19 @@ body.dark {
   font-family: Arial;
 }
 
-.logo.small {
-  width: 28px;
+/* REMOVE QUALQUER IMAGEM DE FUNDO */
+body {
+  background-image: none !important;
 }
+
+/* LOGO CONTROLADA */
+.logo.small {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* LOGIN */
 
 .login {
   height: 100vh;
@@ -21,17 +31,28 @@ body.dark {
   padding: 20px;
   border-radius: 12px;
   width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.login-box img {
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+/* INPUTS */
 
 input {
   width: 100%;
-  margin-bottom: 10px;
   padding: 10px;
   border-radius: 8px;
   border: none;
   background: #2a2f36;
   color: white;
 }
+
+/* BOTÕES */
 
 button {
   width: 100%;
@@ -42,20 +63,34 @@ button {
   margin-top: 6px;
 }
 
+/* HEADER */
+
 .header {
   display: flex;
   justify-content: space-between;
   padding: 12px;
   background: #1c1f24;
+  align-items: center;
 }
+
+/* CONTAINER */
 
 .container {
   padding: 16px;
 }
 
+/* TABELA */
+
 table {
   width: 100%;
+  border-collapse: collapse;
 }
+
+td, th {
+  padding: 8px;
+}
+
+/* MODAL */
 
 .modal {
   position: fixed;
