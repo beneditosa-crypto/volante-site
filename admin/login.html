@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Login</title>
 
+<link rel="stylesheet" href="./admin.css">
+<link rel="icon" href="./favicon.png">
+</head>
+
+<body class="dark">
+
+<div class="login">
+  <div class="login-box">
+    <img src="../logo.png" class="logo small">
+
+    <h2>Painel Admin</h2>
+    <p>Volante App</p>
+
+    <input id="email" placeholder="Email">
+    <input id="senha" type="password" placeholder="Senha">
+
+    <button onclick="login()">Entrar</button>
+
+    <div id="erro" class="erro"></div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = async function () {
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const senha = document.getElementById("senha").value;
+
+  if (email !== "admin@clube.com") {
+    mostrarErro("Acesso restrito.");
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(auth, email, senha);
+    window.location.href = "/admin/index.html";
+  } catch (e) {
+    mostrarErro("Erro ao entrar.");
+  }
+};
+
+function mostrarErro(msg) {
+  const erro = document.getElementById("erro");
+  erro.innerText = msg;
+  erro.style.display = "block";
+}
+</script>
+
+</body>
+</html>
