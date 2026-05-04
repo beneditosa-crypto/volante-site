@@ -7,9 +7,7 @@
 <title>Volante App</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -18,16 +16,10 @@ body {
   color: #111;
 }
 
-/* HEADER */
 header {
   text-align: center;
-  padding: 24px 16px;
+  padding: 24px;
   border-bottom: 1px solid #eee;
-}
-
-h1 {
-  margin: 0;
-  font-size: 26px;
 }
 
 .slogan {
@@ -35,14 +27,12 @@ h1 {
   font-size: 14px;
 }
 
-/* CONTAINER */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 16px;
 }
 
-/* BUTTONS */
 .actions {
   display: flex;
   flex-direction: column;
@@ -57,54 +47,29 @@ h1 {
   cursor: pointer;
 }
 
-.primary {
-  background: #111;
-  color: #fff;
-}
+.primary { background: #111; color: #fff; }
+.secondary { background: #f3f3f3; }
 
-.secondary {
-  background: #f3f3f3;
-}
+.section { margin-top: 30px; }
 
-/* SECTION */
-.section {
-  margin-top: 30px;
-}
-
-.section h2 {
-  margin-bottom: 10px;
-}
-
-/* GRID */
 .grid {
   display: grid;
   gap: 16px;
 }
 
-/* RESPONSIVO */
 @media (min-width: 600px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* CARD */
 .card {
   background: #fff;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid #eee;
-  transition: 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-3px);
 }
 
 .card img {
@@ -113,16 +78,10 @@ h1 {
   object-fit: cover;
 }
 
-.card-content {
-  padding: 10px;
-}
+.card-content { padding: 10px; }
 
-.price {
-  font-weight: bold;
-  margin-top: 5px;
-}
+.price { font-weight: bold; }
 
-/* FOOTER */
 footer {
   margin-top: 40px;
   padding: 20px;
@@ -149,63 +108,99 @@ footer {
 
   <div class="section">
     <h2>🚘 Anúncios recentes</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"/>
-        <div class="card-content">
-          <div>Ford F100 1975</div>
-          <div class="price">R$ 85.000</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8"/>
-        <div class="card-content">
-          <div>Chevrolet C10 1980</div>
-          <div class="price">R$ 92.000</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c"/>
-        <div class="card-content">
-          <div>VW Fusca 1972</div>
-          <div class="price">R$ 38.000</div>
-        </div>
-      </div>
-
-    </div>
+    <div id="anuncios" class="grid"></div>
   </div>
 
   <div class="section">
     <h2>📍 Próximos eventos</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"/>
-        <div class="card-content">
-          <div>Encontro de Antigos - Brasília</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a"/>
-        <div class="card-content">
-          <div>Feira de Veículos Clássicos</div>
-        </div>
-      </div>
-
-    </div>
+    <div id="eventos" class="grid"></div>
   </div>
 
 </div>
 
-<footer>
-  Volante App © 2026
-</footer>
+<footer>Volante App © 2026</footer>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 🔥 BUSCAR ANÚNCIOS
+async function carregarAnuncios() {
+  const lista = document.getElementById("anuncios");
+  lista.innerHTML = "Carregando...";
+
+  const q = query(collection(db, "anuncios"), where("status", "==", "ATIVO"));
+  const snapshot = await getDocs(q);
+
+  lista.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+
+    const card = `
+      <div class="card">
+        <img src="${data.fotos?.[0] || 'https://via.placeholder.com/400'}" />
+        <div class="card-content">
+          <div>${data.titulo || "Veículo"}</div>
+          <div class="price">R$ ${data.preco || "-"}</div>
+        </div>
+      </div>
+    `;
+
+    lista.innerHTML += card;
+  });
+
+  if (snapshot.empty) {
+    lista.innerHTML = "<p>Nenhum anúncio disponível</p>";
+  }
+}
+
+// 🔥 BUSCAR EVENTOS
+async function carregarEventos() {
+  const lista = document.getElementById("eventos");
+  lista.innerHTML = "Carregando...";
+
+  const q = query(collection(db, "eventos"), where("status", "==", "ATIVO"));
+  const snapshot = await getDocs(q);
+
+  lista.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+
+    const card = `
+      <div class="card">
+        <img src="${data.imagem || 'https://via.placeholder.com/400'}" />
+        <div class="card-content">
+          <div>${data.titulo || "Evento"}</div>
+        </div>
+      </div>
+    `;
+
+    lista.innerHTML += card;
+  });
+
+  if (snapshot.empty) {
+    lista.innerHTML = "<p>Nenhum evento disponível</p>";
+  }
+}
+
+carregarAnuncios();
+carregarEventos();
+</script>
 
 </body>
 </html>
