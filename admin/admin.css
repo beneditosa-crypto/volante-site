@@ -1,6 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
   background: #0f1115;
   color: #e5e7eb;
 }
@@ -9,78 +13,394 @@ body {
   display: none !important;
 }
 
-/* LOGIN */
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #374151;
+  background: #20242b;
+  color: #fff;
+  border-radius: 10px;
+  padding: 11px;
+  outline: none;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
 
 .login {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .login-box {
+  width: 340px;
   background: #1c1f24;
+  border: 1px solid #2a2f36;
+  border-radius: 18px;
   padding: 24px;
-  border-radius: 12px;
-  width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .login-logo {
-  width: 60px;
-  margin-bottom: 10px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
-/* HEADER */
+.login-box h2 {
+  margin: 4px 0 0;
+  font-size: 20px;
+}
+
+.login-box p {
+  margin: -6px 0 8px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.login-box small {
+  color: #9ca3af;
+}
+
+.btn-login {
+  background: #e5e7eb;
+  color: #111827;
+}
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  padding: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background: #1c1f24;
+  border-bottom: 1px solid #2a2f36;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
-  width: 32px;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
 }
 
-/* TABLE */
+.header-left div {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-left strong {
+  font-size: 16px;
+}
+
+.header-left span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
 
 .container {
-  padding: 16px;
+  max-width: 1400px;
+  margin: auto;
+  padding: 14px;
+}
+
+.resumo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.resumo div {
+  min-width: 130px;
+  background: #1c1f24;
+  border: 1px solid #2a2f36;
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.resumo strong {
+  display: block;
+  font-size: 20px;
+}
+
+.resumo span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.tabela-box {
+  background: #15181d;
+  border: 1px solid #242933;
+  border-radius: 16px;
+  overflow-x: auto;
 }
 
 table {
   width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
 }
 
-td, th {
+th {
+  text-align: left;
+  color: #9ca3af;
+  font-size: 12px;
   padding: 10px;
+  border-bottom: 1px solid #242933;
+}
+
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #20242b;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.preview,
+.sem-foto {
+  width: 64px;
+  height: 46px;
+  border-radius: 8px;
+  background: #2a2f36;
 }
 
 .preview {
-  width: 60px;
-  height: 45px;
   object-fit: cover;
-  border-radius: 6px;
+  display: block;
 }
 
-/* MODAL */
+.sem-foto {
+  color: #6b7280;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.tipo {
+  background: #374151;
+  color: #fff;
+}
+
+.status-ativo {
+  background: #14532d;
+  color: #bbf7d0;
+}
+
+.status-pendente {
+  background: #78350f;
+  color: #fde68a;
+}
+
+.status-recusado {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.status-excluido {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.titulo-item {
+  font-weight: 700;
+  color: #f9fafb;
+  max-width: 280px;
+}
+
+.subinfo {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.usuario {
+  max-width: 240px;
+  word-break: break-word;
+}
+
+.acoes {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.acoes button {
+  height: 32px;
+  padding: 0 10px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.btn-detalhar {
+  background: #374151;
+  color: #fff;
+}
+
+.btn-aprovar {
+  background: #15803d;
+  color: #fff;
+}
+
+.btn-devolver {
+  background: #d97706;
+  color: #111827;
+}
+
+.btn-excluir {
+  background: #991b1b;
+  color: #fff;
+}
+
+.btn-secundario {
+  background: #374151;
+  color: #fff;
+}
+
+.btn-sair {
+  background: #991b1b;
+  color: #fff;
+}
+
+.mensagem {
+  color: #9ca3af;
+  padding: 18px;
+}
+
+.erro {
+  color: #fca5a5;
+  padding: 18px;
+}
 
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,.72);
+  z-index: 50;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 18px;
 }
 
 .modal-box {
+  width: min(520px, 100%);
   background: #1c1f24;
-  padding: 20px;
+  border: 1px solid #2a2f36;
+  border-radius: 16px;
+  padding: 18px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.modal-box h3 {
+  margin: 0 0 10px;
+}
+
+.modal-box p {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.detalhe-fotos {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.detalhe-fotos img {
+  width: 140px;
+  height: 95px;
   border-radius: 10px;
-  width: 300px;
+  object-fit: cover;
+  background: #2a2f36;
+}
+
+.detalhe-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.detalhe-grid div {
+  background: #15181d;
+  border: 1px solid #242933;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 13px;
+}
+
+.detalhe-grid strong {
+  display: block;
+  color: #9ca3af;
+  font-size: 11px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions button {
+    flex: 1;
+  }
+
+  .login-box {
+    width: 100%;
+  }
 }
