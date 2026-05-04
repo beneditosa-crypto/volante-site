@@ -4,61 +4,446 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Administrativo - Volante</title>
-
-<link rel="stylesheet" href="./admin.css">
 <link rel="icon" href="../favicon.png">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #0f1115;
+  color: #e5e7eb;
+  font-family: Arial, sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #1c1f24;
+  border-bottom: 1px solid #2a2f36;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 34px !important;
+  height: 34px !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title strong {
+  font-size: 16px;
+}
+
+.header-title span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  background: #374151;
+  color: white;
+}
+
+.btn-danger {
+  background: #991b1b;
+  color: white;
+}
+
+.btn-ok {
+  background: #15803d;
+  color: white;
+}
+
+.btn-warning {
+  background: #d97706;
+  color: #111827;
+}
+
+.container {
+  padding: 16px;
+}
+
+.table-box {
+  background: #15181d;
+  border: 1px solid #242933;
+  border-radius: 14px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #242933;
+  font-size: 13px;
+  text-align: left;
+}
+
+th {
+  color: #9ca3af;
+}
+
+.preview {
+  width: 64px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #2a2f36;
+}
+
+.tag {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #374151;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.acoes {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.acoes button {
+  height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.modal-box {
+  width: 320px;
+  background: #1c1f24;
+  border: 1px solid #2a2f36;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+textarea {
+  width: 100%;
+  height: 90px;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #20242b;
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-actions button {
+  flex: 1;
+}
+
+.mensagem {
+  color: #9ca3af;
+}
+</style>
 </head>
 
-<body class="dark">
+<body>
 
-<div class="header">
+<header class="header">
   <div class="header-left">
-    <img src="../logo.png" class="logo small">
+    <img src="../logo.png" class="logo" alt="Volante">
 
-    <div>
+    <div class="header-title">
       <strong>Painel Administrativo</strong>
-      <span id="email"></span>
+      <span id="adminEmail">Volante App</span>
     </div>
   </div>
 
-  <button onclick="logout()">Sair</button>
-</div>
+  <div class="header-actions">
+    <button class="btn-secondary" onclick="carregar()">Atualizar</button>
+    <button class="btn-danger" onclick="logout()">Sair</button>
+  </div>
+</header>
 
-<div class="container">
+<main class="container">
+  <div class="table-box">
+    <table>
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Título</th>
+          <th>Usuário</th>
+          <th style="text-align:right;">Ações</th>
+        </tr>
+      </thead>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Foto</th>
-        <th>Tipo</th>
-        <th>Status</th>
-        <th>Título</th>
-        <th>Usuário</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-
-    <tbody id="lista">
-      <tr>
-        <td colspan="6">Carregando...</td>
-      </tr>
-    </tbody>
-  </table>
-
-</div>
+      <tbody id="lista">
+        <tr>
+          <td colspan="6" class="mensagem">Carregando...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 
 <div id="modal" class="modal hidden">
   <div class="modal-box">
     <h3>Motivo da devolução</h3>
 
-    <textarea id="motivo"></textarea>
+    <textarea id="motivo" placeholder="Informe o motivo"></textarea>
 
-    <button onclick="confirmar()">Confirmar</button>
-    <button onclick="fechar()">Cancelar</button>
+    <div class="modal-actions">
+      <button class="btn-warning" onclick="confirmarDevolucao()">Confirmar</button>
+      <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
+    </div>
   </div>
 </div>
 
-<script type="module" src="./admin.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+const ADMIN_EMAIL = "admin@clube.com";
+
+let itens = [];
+let selecionado = null;
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "/admin/login.html";
+    return;
+  }
+
+  if ((user.email || "").toLowerCase() !== ADMIN_EMAIL) {
+    await signOut(auth);
+    window.location.href = "/admin/login.html";
+    return;
+  }
+
+  document.getElementById("adminEmail").innerText = user.email;
+  carregar();
+});
+
+window.logout = async function () {
+  await signOut(auth);
+  window.location.href = "/admin/login.html";
+};
+
+window.carregar = async function () {
+  const lista = document.getElementById("lista");
+
+  lista.innerHTML = `
+    <tr>
+      <td colspan="6" class="mensagem">Carregando...</td>
+    </tr>
+  `;
+
+  try {
+    const [anunciosSnap, eventosSnap] = await Promise.all([
+      getDocs(collection(db, "anuncios")),
+      getDocs(collection(db, "eventos"))
+    ]);
+
+    itens = [];
+
+    anunciosSnap.forEach((d) => {
+      itens.push({
+        id: d.id,
+        colecao: "anuncios",
+        tipo: "Anúncio",
+        dados: d.data()
+      });
+    });
+
+    eventosSnap.forEach((d) => {
+      itens.push({
+        id: d.id,
+        colecao: "eventos",
+        tipo: "Evento",
+        dados: d.data()
+      });
+    });
+
+    itens = itens.filter(i => (i.dados.status || "").toUpperCase() !== "EXCLUIDO");
+
+    renderizar();
+
+  } catch (e) {
+    console.error(e);
+    lista.innerHTML = `
+      <tr>
+        <td colspan="6">Erro ao carregar dados.</td>
+      </tr>
+    `;
+  }
+};
+
+function renderizar() {
+  const lista = document.getElementById("lista");
+
+  if (!itens.length) {
+    lista.innerHTML = `
+      <tr>
+        <td colspan="6" class="mensagem">Nenhum item encontrado.</td>
+      </tr>
+    `;
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  itens.forEach((item, index) => {
+    const d = item.dados;
+    const foto = item.tipo === "Anúncio"
+      ? d.fotos?.[0]
+      : d.imagem || d.foto || d.fotos?.[0];
+
+    lista.innerHTML += `
+      <tr>
+        <td>${foto ? `<img class="preview" src="${foto}">` : "-"}</td>
+        <td><span class="tag">${item.tipo}</span></td>
+        <td>${d.status || "PENDENTE"}</td>
+        <td>${d.titulo || d.nome || "Sem título"}</td>
+        <td>${d.usuarioEmail || d.email || d.emailUsuario || "-"}</td>
+        <td>
+          <div class="acoes">
+            <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
+            <button class="btn-warning" onclick="abrirModal(${index})">Devolver</button>
+            <button class="btn-danger" onclick="excluirItem(${index})">Excluir</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+window.aprovar = async function (index) {
+  const item = itens[index];
+
+  await updateDoc(doc(db, item.colecao, item.id), {
+    status: "ATIVO",
+    motivoDevolucao: "",
+    observacaoAdmin: "",
+    atualizadoEm: serverTimestamp()
+  });
+
+  carregar();
+};
+
+window.abrirModal = function (index) {
+  selecionado = itens[index];
+  document.getElementById("modal").classList.remove("hidden");
+};
+
+window.fecharModal = function () {
+  selecionado = null;
+  document.getElementById("modal").classList.add("hidden");
+  document.getElementById("motivo").value = "";
+};
+
+window.confirmarDevolucao = async function () {
+  const motivo = document.getElementById("motivo").value.trim();
+
+  if (!motivo) {
+    alert("Informe o motivo.");
+    return;
+  }
+
+  await updateDoc(doc(db, selecionado.colecao, selecionado.id), {
+    status: "RECUSADO",
+    motivoDevolucao: motivo,
+    observacaoAdmin: motivo,
+    atualizadoEm: serverTimestamp()
+  });
+
+  fecharModal();
+  carregar();
+};
+
+window.excluirItem = async function (index) {
+  const item = itens[index];
+
+  if (!confirm("Excluir este item?")) return;
+
+  await updateDoc(doc(db, item.colecao, item.id), {
+    status: "EXCLUIDO",
+    atualizadoEm: serverTimestamp()
+  });
+
+  carregar();
+};
+</script>
 
 </body>
 </html>
