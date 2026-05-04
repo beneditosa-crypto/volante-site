@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel Admin</title>
+<title>Painel Administrativo - Volante</title>
 
 <link rel="stylesheet" href="./admin.css">
-<link rel="icon" href="./favicon.png">
+<link rel="icon" href="../favicon.png">
 </head>
 
 <body class="dark">
@@ -16,7 +16,7 @@
     <img src="../logo.png" class="logo small">
 
     <div>
-      <strong>Painel Admin</strong>
+      <strong>Painel Administrativo</strong>
       <span id="email"></span>
     </div>
   </div>
@@ -25,6 +25,7 @@
 </div>
 
 <div class="container">
+
   <table>
     <thead>
       <tr>
@@ -37,14 +38,21 @@
       </tr>
     </thead>
 
-    <tbody id="lista"></tbody>
+    <tbody id="lista">
+      <tr>
+        <td colspan="6">Carregando...</td>
+      </tr>
+    </tbody>
   </table>
+
 </div>
 
 <div id="modal" class="modal hidden">
   <div class="modal-box">
-    <h3>Motivo</h3>
+    <h3>Motivo da devolução</h3>
+
     <textarea id="motivo"></textarea>
+
     <button onclick="confirmar()">Confirmar</button>
     <button onclick="fechar()">Cancelar</button>
   </div>
