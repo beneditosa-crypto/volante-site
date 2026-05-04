@@ -1,8 +1,18 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/admin/index.html",
+      "source": "/logo.png",
+      "destination": "/logo.png",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.volante.app.br"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/admin/index.html",
       "has": [
         {
           "type": "host",
