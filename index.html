@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -21,7 +22,6 @@ header {
   align-items: center;
   padding: 18px 20px;
   border-bottom: 1px solid #eee;
-  gap: 12px;
 }
 
 .logo-area strong {
@@ -35,13 +35,12 @@ header {
 
 #usuarioArea {
   font-size: 13px;
-  color: #333;
   text-align: right;
 }
 
 #usuarioArea button {
-  margin-top: 6px;
-  padding: 7px 12px;
+  margin-top: 5px;
+  padding: 6px 10px;
   border: none;
   border-radius: 10px;
   background: #111;
@@ -69,19 +68,10 @@ header {
   cursor: pointer;
 }
 
-.primary {
-  background: #111;
-  color: #fff;
-}
+.primary { background: #111; color: #fff; }
+.secondary { background: #f3f3f3; }
 
-.secondary {
-  background: #f3f3f3;
-  color: #111;
-}
-
-.section {
-  margin-top: 30px;
-}
+.section { margin-top: 30px; }
 
 .grid {
   display: grid;
@@ -89,23 +79,13 @@ header {
 }
 
 @media (min-width: 600px) {
-  .actions {
-    flex-direction: row;
-  }
-
-  .button {
-    flex: 1;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .actions { flex-direction: row; }
+  .button { flex: 1; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .card {
@@ -119,26 +99,19 @@ header {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  background: #f3f3f3;
 }
 
 .card-content {
   padding: 12px;
 }
 
-.card-title {
-  font-weight: 600;
-}
-
 .price {
   font-weight: bold;
-  margin-top: 5px;
 }
 
 .meta {
-  color: #666;
   font-size: 13px;
-  margin-top: 4px;
+  color: #666;
 }
 
 footer {
@@ -146,17 +119,6 @@ footer {
   padding: 20px;
   text-align: center;
   color: #777;
-}
-
-@media (max-width: 480px) {
-  header {
-    align-items: flex-start;
-  }
-
-  #usuarioArea {
-    max-width: 160px;
-    font-size: 12px;
-  }
 }
 </style>
 </head>
@@ -179,7 +141,7 @@ footer {
       Anunciar veículo
     </button>
 
-    <button class="button secondary" onclick="irPublicarEvento()">
+    <button class="button secondary">
       Publicar evento
     </button>
 
@@ -200,9 +162,7 @@ footer {
 
 </div>
 
-<footer>
-  Volante App © 2026
-</footer>
+<footer>Volante App © 2026</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -234,6 +194,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// 🔐 USUÁRIO
 onAuthStateChanged(auth, (user) => {
   const area = document.getElementById("usuarioArea");
 
@@ -254,6 +215,7 @@ window.logout = async function () {
   location.reload();
 };
 
+// 🔒 PUBLICAR
 window.irPublicar = function () {
   const user = auth.currentUser;
 
@@ -263,36 +225,19 @@ window.irPublicar = function () {
     return;
   }
 
-  alert("Próxima etapa: criar a página publicar.html");
+  window.location.href = "/publicar.html";
 };
 
-window.irPublicarEvento = function () {
-  const user = auth.currentUser;
-
-  if (!user) {
-    alert("Faça login para publicar um evento.");
-    window.location.href = "/login.html";
-    return;
-  }
-
-  alert("Próxima etapa: criar a página publicar-evento.html");
-};
-
+// 💰 FORMATO PREÇO
 function formatarPreco(valor) {
   if (!valor) return "Preço sob consulta";
-
-  const numero = Number(valor);
-
-  if (Number.isNaN(numero)) {
-    return valor;
-  }
-
-  return numero.toLocaleString("pt-BR", {
+  return Number(valor).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL"
   });
 }
 
+// 🚘 ANÚNCIOS
 async function carregarAnuncios() {
   const lista = document.getElementById("anuncios");
 
@@ -307,39 +252,36 @@ async function carregarAnuncios() {
     lista.innerHTML = "";
 
     if (snapshot.empty) {
-      lista.innerHTML = "<p>Nenhum anúncio disponível no momento.</p>";
+      lista.innerHTML = "<p>Nenhum anúncio disponível</p>";
       return;
     }
 
     snapshot.forEach((doc) => {
-      const data = doc.data();
+      const d = doc.data();
 
-      const foto =
-        data.fotos?.[0] ||
-        data.foto ||
-        "https://via.placeholder.com/600x400?text=Volante";
-
-      const titulo = data.titulo || "Veículo anunciado";
-      const preco = formatarPreco(data.preco);
-      const local = [data.cidade, data.estado].filter(Boolean).join(" - ");
+      const foto = d.fotos?.[0] || "https://via.placeholder.com/400";
+      const titulo = d.titulo || "Veículo";
+      const preco = formatarPreco(d.preco);
+      const local = `${d.cidade || ""} ${d.estado || ""}`;
 
       lista.innerHTML += `
         <div class="card">
-          <img src="${foto}" alt="${titulo}" />
+          <img src="${foto}">
           <div class="card-content">
-            <div class="card-title">${titulo}</div>
+            <div>${titulo}</div>
             <div class="price">${preco}</div>
             <div class="meta">${local}</div>
           </div>
         </div>
       `;
     });
-  } catch (error) {
-    console.error(error);
-    lista.innerHTML = "<p>Não foi possível carregar os anúncios.</p>";
+
+  } catch (e) {
+    lista.innerHTML = "<p>Erro ao carregar anúncios</p>";
   }
 }
 
+// 📍 EVENTOS
 async function carregarEventos() {
   const lista = document.getElementById("eventos");
 
@@ -354,35 +296,28 @@ async function carregarEventos() {
     lista.innerHTML = "";
 
     if (snapshot.empty) {
-      lista.innerHTML = "<p>Nenhum evento disponível no momento.</p>";
+      lista.innerHTML = "<p>Nenhum evento disponível</p>";
       return;
     }
 
     snapshot.forEach((doc) => {
-      const data = doc.data();
+      const d = doc.data();
 
-      const foto =
-        data.imagem ||
-        data.foto ||
-        data.fotos?.[0] ||
-        "https://via.placeholder.com/600x400?text=Evento";
-
-      const titulo = data.titulo || "Evento";
-      const local = [data.cidade, data.estado].filter(Boolean).join(" - ");
+      const foto = d.imagem || "https://via.placeholder.com/400";
+      const titulo = d.titulo || "Evento";
 
       lista.innerHTML += `
         <div class="card">
-          <img src="${foto}" alt="${titulo}" />
+          <img src="${foto}">
           <div class="card-content">
-            <div class="card-title">${titulo}</div>
-            <div class="meta">${local}</div>
+            <div>${titulo}</div>
           </div>
         </div>
       `;
     });
-  } catch (error) {
-    console.error(error);
-    lista.innerHTML = "<p>Não foi possível carregar os eventos.</p>";
+
+  } catch (e) {
+    lista.innerHTML = "<p>Erro ao carregar eventos</p>";
   }
 }
 
@@ -392,3 +327,4 @@ carregarEventos();
 
 </body>
 </html>
+```
