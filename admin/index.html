@@ -94,29 +94,30 @@ button {
 }
 
 .lista {
-  padding: 0 10px 10px;
+  padding: 0 16px 16px;
 }
 
 .item {
   display: grid;
-  grid-template-columns: 64px 1fr 230px;
+  grid-template-columns: 72px minmax(520px, 1fr) 250px;
   align-items: center;
-  gap: 10px;
-  padding: 7px 6px;
+  gap: 14px;
+  padding: 10px 14px;
   border-bottom: 1px solid #1f2937;
+  max-width: 1180px;
 }
 
 .foto {
-  width: 64px;
-  height: 46px;
+  width: 72px;
+  height: 54px;
   border-radius: 6px;
   object-fit: cover;
   background: #2a2f36;
 }
 
 .sem-foto {
-  width: 64px;
-  height: 46px;
+  width: 72px;
+  height: 54px;
   border-radius: 6px;
   background: #2a2f36;
   color: #6b7280;
@@ -127,12 +128,12 @@ button {
 }
 
 .titulo {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
 }
 
 .meta {
-  font-size: 11px;
+  font-size: 12px;
   color: #9ca3af;
   margin-top: 2px;
 }
@@ -168,9 +169,9 @@ button {
 }
 
 .acoes button {
-  height: 28px;
+  height: 30px;
   font-size: 11px;
-  padding: 0 9px;
+  padding: 0 10px;
   border-radius: 7px;
 }
 
@@ -223,9 +224,10 @@ textarea {
   border-radius: 8px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .item {
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 72px 1fr;
+    max-width: none;
   }
 
   .acoes {
