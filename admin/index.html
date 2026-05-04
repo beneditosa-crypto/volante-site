@@ -25,6 +25,9 @@ body {
   padding: 14px 20px;
   background: #1c1f24;
   border-bottom: 1px solid #2a2f36;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .header-left {
@@ -75,6 +78,8 @@ button {
 
 .container {
   padding: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .filtros {
@@ -94,53 +99,50 @@ button {
   color: #111827;
 }
 
-.table-box {
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-card {
+  display: grid;
+  grid-template-columns: 96px 1fr 230px;
+  gap: 14px;
+  align-items: center;
   background: #111827;
   border: 1px solid #1f2937;
-  border-radius: 14px;
-  overflow-x: auto;
+  border-radius: 16px;
+  padding: 12px;
 }
 
-table {
-  width: 100%;
-  min-width: 1050px;
-  border-collapse: collapse;
-}
-
-th {
-  text-align: left;
-  padding: 10px 12px;
-  font-size: 12px;
-  color: #9ca3af;
-  border-bottom: 1px solid #1f2937;
-}
-
-td {
-  padding: 9px 12px;
-  border-bottom: 1px solid #1f2937;
-  font-size: 13px;
-  vertical-align: middle;
-}
-
-.preview {
-  width: 76px;
-  height: 54px;
+.foto {
+  width: 96px;
+  height: 72px;
+  border-radius: 12px;
   object-fit: cover;
-  border-radius: 9px;
   background: #2a2f36;
   display: block;
 }
 
 .sem-foto {
-  width: 76px;
-  height: 54px;
-  border-radius: 9px;
+  width: 96px;
+  height: 72px;
+  border-radius: 12px;
   background: #2a2f36;
   color: #6b7280;
-  font-size: 11px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.info-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
 }
 
 .tag {
@@ -153,38 +155,73 @@ td {
 
 .tipo { background: #374151; color: white; }
 
-.status-pendente { color: #facc15; font-weight: 800; }
-.status-ativo { color: #22c55e; font-weight: 800; }
-.status-recusado { color: #f87171; font-weight: 800; }
-.status-excluido { color: #9ca3af; font-weight: 800; }
-
-.titulo-item {
-  font-weight: 700;
-  color: #f9fafb;
+.status-pendente {
+  background: #78350f;
+  color: #fde68a;
 }
 
-.subinfo {
-  margin-top: 3px;
-  font-size: 12px;
+.status-ativo {
+  background: #14532d;
+  color: #bbf7d0;
+}
+
+.status-recusado {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.status-excluido {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.titulo-item {
+  font-size: 15px;
+  font-weight: 800;
+  color: #f9fafb;
+  margin-bottom: 5px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   color: #9ca3af;
+  font-size: 12px;
 }
 
 .usuario {
+  color: #d1d5db;
+  font-size: 13px;
+  margin-top: 6px;
   word-break: break-word;
 }
 
 .acoes {
-  display: flex;
-  gap: 6px;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
 }
 
 .acoes button {
-  height: 34px;
-  padding: 0 11px;
+  width: 100%;
+  height: 36px;
+  font-size: 13px;
+}
+
+.data {
   font-size: 12px;
-  white-space: nowrap;
+  color: #9ca3af;
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.mensagem {
+  color: #9ca3af;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  padding: 18px;
 }
 
 .modal {
@@ -223,9 +260,25 @@ textarea {
   justify-content: flex-end;
 }
 
-.mensagem {
-  color: #9ca3af;
-  padding: 18px;
+@media (max-width: 800px) {
+  .item-card {
+    grid-template-columns: 84px 1fr;
+  }
+
+  .foto,
+  .sem-foto {
+    width: 84px;
+    height: 64px;
+  }
+
+  .acoes {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .data {
+    text-align: left;
+  }
 }
 </style>
 </head>
@@ -258,25 +311,8 @@ textarea {
     <button id="filtro-excluido" onclick="filtrar('EXCLUIDO')">Excluídos</button>
   </div>
 
-  <div class="table-box">
-    <table>
-      <thead>
-        <tr>
-          <th>Foto</th>
-          <th>Tipo</th>
-          <th>Status</th>
-          <th>Título</th>
-          <th>Usuário</th>
-          <th style="text-align:right;">Ações</th>
-        </tr>
-      </thead>
-
-      <tbody id="lista">
-        <tr>
-          <td colspan="6" class="mensagem">Carregando...</td>
-        </tr>
-      </tbody>
-    </table>
+  <div id="lista" class="lista">
+    <div class="mensagem">Carregando...</div>
   </div>
 
 </main>
@@ -360,7 +396,10 @@ window.filtrar = function (status) {
 
   const id = "filtro-" + status.toLowerCase();
   const btn = document.getElementById(id);
-  if (btn) btn.classList.add("ativo");
+
+  if (btn) {
+    btn.classList.add("ativo");
+  }
 
   if (status === "TODOS") {
     document.getElementById("filtro-todos").classList.add("ativo");
@@ -371,12 +410,7 @@ window.filtrar = function (status) {
 
 window.carregar = async function () {
   const lista = document.getElementById("lista");
-
-  lista.innerHTML = `
-    <tr>
-      <td colspan="6" class="mensagem">Carregando...</td>
-    </tr>
-  `;
+  lista.innerHTML = `<div class="mensagem">Carregando...</div>`;
 
   try {
     const [anunciosSnap, eventosSnap] = await Promise.all([
@@ -404,17 +438,42 @@ window.carregar = async function () {
       });
     });
 
+    itens.sort((a, b) => obterData(b) - obterData(a));
+
     renderizar();
 
   } catch (e) {
     console.error(e);
-    lista.innerHTML = `
-      <tr>
-        <td colspan="6" class="mensagem">Erro ao carregar dados.</td>
-      </tr>
-    `;
+    lista.innerHTML = `<div class="mensagem">Erro ao carregar dados.</div>`;
   }
 };
+
+function obterData(item) {
+  const d = item.dados;
+
+  return (
+    d.atualizadoEm?.seconds ||
+    d.criadoEm?.seconds ||
+    d.createdAt?.seconds ||
+    d.dataCriacao?.seconds ||
+    d.data?.seconds ||
+    0
+  );
+}
+
+function formatarData(item) {
+  const segundos = obterData(item);
+
+  if (!segundos) return "sem data";
+
+  return new Date(segundos * 1000).toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
 
 function renderizar() {
   const lista = document.getElementById("lista");
@@ -425,11 +484,7 @@ function renderizar() {
   });
 
   if (!filtrados.length) {
-    lista.innerHTML = `
-      <tr>
-        <td colspan="6" class="mensagem">Nenhum item encontrado.</td>
-      </tr>
-    `;
+    lista.innerHTML = `<div class="mensagem">Nenhum item encontrado.</div>`;
     return;
   }
 
@@ -438,41 +493,50 @@ function renderizar() {
   filtrados.forEach((item) => {
     const index = itens.indexOf(item);
     const d = item.dados;
+
     const foto = item.tipo === "Anúncio"
       ? d.fotos?.[0]
       : d.imagem || d.foto || d.fotos?.[0];
 
     const status = (d.status || "PENDENTE").toUpperCase();
+    const titulo = d.titulo || d.nome || "Sem título";
+    const cidade = d.cidade || "";
+    const estado = d.estado || "";
+    const usuario = d.usuarioEmail || d.email || d.emailUsuario || "-";
+    const local = `${cidade} ${estado}`.trim();
 
     lista.innerHTML += `
-      <tr>
-        <td>
-          ${foto ? `<img class="preview" src="${foto}">` : `<div class="sem-foto">sem foto</div>`}
-        </td>
+      <div class="item-card">
+        <div>
+          ${foto ? `<img class="foto" src="${foto}">` : `<div class="sem-foto">sem foto</div>`}
+        </div>
 
-        <td><span class="tag tipo">${item.tipo}</span></td>
+        <div>
+          <div class="info-top">
+            <span class="tag tipo">${item.tipo}</span>
+            <span class="tag ${classeStatus(status)}">${status}</span>
+          </div>
 
-        <td>
-          <span class="${classeStatus(status)}">${status}</span>
-        </td>
+          <div class="titulo-item">${titulo}</div>
 
-        <td>
-          <div class="titulo-item">${d.titulo || d.nome || "Sem título"}</div>
-          <div class="subinfo">${d.cidade || ""} ${d.estado || ""}</div>
-        </td>
+          <div class="meta">
+            ${local ? `<span>${local}</span>` : ""}
+            <span>${formatarData(item)}</span>
+          </div>
 
-        <td>
-          <div class="usuario">${d.usuarioEmail || d.email || d.emailUsuario || "-"}</div>
-        </td>
+          <div class="usuario">${usuario}</div>
+        </div>
 
-        <td>
+        <div>
+          <div class="data">${formatarData(item)}</div>
+
           <div class="acoes">
             <button class="btn-ok" onclick="aprovar(${index})">Aprovar</button>
             <button class="btn-dev" onclick="abrirModal(${index})">Devolver</button>
             <button class="btn-del" onclick="excluirItem(${index})">Excluir</button>
           </div>
-        </td>
-      </tr>
+        </div>
+      </div>
     `;
   });
 }
