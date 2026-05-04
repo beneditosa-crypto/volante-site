@@ -1,24 +1,15 @@
 {
   "routes": [
     {
-      "src": "/logo.png",
-      "dest": "/logo.png",
-      "headers": {
-        "cache-control": "public, max-age=0, must-revalidate"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "admin.volante.app.br"
-        }
-      ],
+      "src": "^/$",
       "dest": "/admin/index.html"
     },
     {
-      "src": "/(.*)",
+      "src": "^/login.html$",
+      "dest": "/admin/login.html"
+    },
+    {
+      "src": "^/(.*)",
       "dest": "/$1"
     }
   ]
