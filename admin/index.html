@@ -12,247 +12,205 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background: #0b0f14;
-  color: #e5e7eb;
+  font-family: Roboto, -apple-system, sans-serif;
+  background: #121212;
+  color: #e0e0e0;
 }
 
+/* HEADER */
 header {
-  background: #070a0e;
-  padding: 18px 22px;
+  background: #1f1f1f;
+  padding: 16px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #1f2937;
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .brand img {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  object-fit: contain;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
 }
 
 .brand strong {
-  font-size: 18px;
-  color: #fff;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 #usuarioArea {
   font-size: 13px;
-  color: #9ca3af;
+  color: #9e9e9e;
 }
 
+/* BUTTONS */
 button {
   border: none;
+  border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: 700;
-  border-radius: 12px;
 }
 
 .btn {
-  padding: 11px 16px;
+  padding: 10px 14px;
 }
 
-.gray { background: #1f2937; color: #e5e7eb; }
-.red { background: #b91c1c; color: #fff; }
-.green { background: #15803d; color: #fff; }
+.gray { background: #2a2a2a; color: #e0e0e0; }
+.red { background: #d32f2f; color: #fff; }
+.green { background: #388e3c; color: #fff; }
 
+/* LOGIN */
 .login {
-  min-height: calc(100vh - 72px);
+  min-height: calc(100vh - 64px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 22px;
 }
 
 .login-card {
   width: 100%;
   max-width: 360px;
-  background: #111827;
-  border-radius: 18px;
-  padding: 28px;
-  border: 1px solid #1f2937;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #2a2a2a;
 }
 
 input {
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #374151;
-  background: #0b0f14;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #121212;
   color: #fff;
   margin-bottom: 10px;
-  font-size: 15px;
 }
 
 input::placeholder {
-  color: #6b7280;
+  color: #777;
 }
 
-.login-card button {
-  width: 100%;
-  padding: 14px;
-  font-size: 15px;
-}
-
-.alerta {
-  color: #f87171;
-  font-size: 13px;
-  margin-top: 10px;
-}
-
+/* PANEL */
 #painel {
   display: none;
   max-width: 1500px;
   margin: auto;
-  padding: 18px;
+  padding: 20px;
 }
 
 .painel-topo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .painel-topo h2 {
   margin: 0;
-  color: #fff;
+  font-size: 20px;
 }
 
 .resumo {
-  color: #9ca3af;
   font-size: 13px;
-  margin-top: 4px;
+  color: #9e9e9e;
 }
 
+/* TABLE */
 .table {
-  background: #111827;
-  border-radius: 16px;
+  background: #1e1e1e;
+  border-radius: 14px;
   overflow-x: auto;
-  border: 1px solid #1f2937;
+  border: 1px solid #2a2a2a;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1200px;
+  min-width: 1100px;
 }
 
 th, td {
   padding: 14px;
-  border-bottom: 1px solid #1f2937;
+  border-bottom: 1px solid #2a2a2a;
   font-size: 13px;
-  text-align: left;
-  vertical-align: middle;
 }
 
 th {
-  background: #0b0f14;
-  color: #9ca3af;
-  font-weight: 800;
+  background: #181818;
+  color: #9e9e9e;
 }
 
+/* BADGES */
 .tipo {
-  display: inline-block;
-  padding: 5px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 11px;
-  font-weight: 800;
-  background: #1f2937;
-  color: #e5e7eb;
+  background: #2a2a2a;
 }
 
 .tipo.evento {
-  background: #1e3a8a;
-  color: #dbeafe;
+  background: #283593;
 }
 
 .status {
-  display: inline-block;
-  padding: 5px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 11px;
-  font-weight: 800;
 }
 
-.PENDENTE { background: #facc15; color: #111; }
-.ATIVO { background: #16a34a; color: #fff; }
-.RECUSADO { background: #dc2626; color: #fff; }
-.EXCLUIDO { background: #374151; color: #e5e7eb; }
+.PENDENTE { background: #fbc02d; color: #000; }
+.ATIVO { background: #43a047; }
+.RECUSADO { background: #e53935; }
+.EXCLUIDO { background: #424242; }
 
+/* IMAGES */
 .fotos {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
-  max-width: 270px;
 }
 
 .thumb {
   width: 64px;
   height: 48px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #374151;
-  background: #1f2937;
+  border-radius: 6px;
+  border: 1px solid #333;
 }
 
 .no-image {
-  width: 80px;
+  width: 64px;
   height: 48px;
-  border-radius: 8px;
-  background: #1f2937;
-  color: #777;
-  font-size: 11px;
+  border-radius: 6px;
+  background: #2a2a2a;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 11px;
+  color: #777;
 }
 
+/* ACTIONS */
 .acoes {
   display: flex;
   gap: 8px;
 }
 
 .acoes button {
-  width: 72px;
-  padding: 10px;
+  width: 60px;
+  padding: 8px;
 }
 
-.muted {
-  color: #9ca3af;
-  font-size: 12px;
-}
-
-@media (max-width: 700px) {
-  header {
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .header-actions {
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .painel-topo {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+/* ALERT */
+.alerta {
+  color: #ef5350;
+  font-size: 13px;
+  margin-top: 10px;
 }
 </style>
 </head>
@@ -261,35 +219,28 @@ th {
 
 <header>
   <div class="brand">
-    <img src="/logo.png" alt="Volante" />
+    <img src="/logo.png" />
     <strong>Painel Administrativo</strong>
   </div>
 
-  <div class="header-actions">
-    <div id="usuarioArea"></div>
-    <button id="botaoSairHeader" class="btn red" onclick="logout()" style="display:none;">Sair</button>
+  <div>
+    <span id="usuarioArea"></span>
+    <button class="btn red" onclick="logout()">Sair</button>
   </div>
 </header>
 
 <div id="login" class="login">
   <div class="login-card">
-    <input id="email" type="email" placeholder="E-mail" />
+    <input id="email" placeholder="E-mail" />
     <input id="senha" type="password" placeholder="Senha" />
-
-    <button class="gray" onclick="login()">Entrar</button>
-
+    <button class="btn gray" onclick="login()">Entrar</button>
     <div id="msg" class="alerta"></div>
   </div>
 </div>
 
 <div id="painel">
-
   <div class="painel-topo">
-    <div>
-      <h2>Fila de moderação</h2>
-      <div id="resumo" class="resumo">Carregando...</div>
-    </div>
-
+    <h2>Fila de moderação</h2>
     <button class="btn gray" onclick="carregar()">Atualizar</button>
   </div>
 
@@ -302,283 +253,94 @@ th {
           <th>Status</th>
           <th>Título</th>
           <th>Usuário</th>
-          <th>Local</th>
-          <th>Dados</th>
           <th>Ações</th>
         </tr>
       </thead>
-
       <tbody id="lista"></tbody>
     </table>
   </div>
-
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
+const app = initializeApp({
   apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
-};
+  projectId: "clube-da-caminhonete-be770"
+});
 
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 const ADMIN = "admin@clube.com";
 
 onAuthStateChanged(auth, user => {
-  if (!user || user.email.trim().toLowerCase() !== ADMIN) {
+  if (!user || user.email !== ADMIN) {
     document.getElementById("login").style.display = "flex";
     document.getElementById("painel").style.display = "none";
-    document.getElementById("usuarioArea").innerText = "";
-    document.getElementById("botaoSairHeader").style.display = "none";
     return;
   }
 
   document.getElementById("login").style.display = "none";
   document.getElementById("painel").style.display = "block";
   document.getElementById("usuarioArea").innerText = user.email;
-  document.getElementById("botaoSairHeader").style.display = "inline-block";
 
   carregar();
 });
 
 window.login = async () => {
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const senha = document.getElementById("senha").value.trim();
-  const msg = document.getElementById("msg");
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
 
-  msg.innerText = "";
+  if (email !== ADMIN) return;
 
-  if (!email || !senha) {
-    msg.innerText = "Informe e-mail e senha.";
-    return;
-  }
-
-  if (email !== ADMIN) {
-    msg.innerText = "Acesso não permitido.";
-    return;
-  }
-
-  try {
-    await signInWithEmailAndPassword(auth, email, senha);
-  } catch (error) {
-    console.error(error);
-    msg.innerText = "Erro ao entrar. Confira e-mail e senha.";
-  }
+  await signInWithEmailAndPassword(auth, email, senha);
 };
 
-window.logout = async () => {
-  await signOut(auth);
-  location.reload();
-};
-
-function limparTexto(valor) {
-  if (valor === undefined || valor === null) return "";
-  return String(valor)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function obterFotos(d) {
-  if (Array.isArray(d.fotos) && d.fotos.length > 0) return d.fotos;
-  if (d.foto) return [d.foto];
-  if (d.imagem) return [d.imagem];
-  return [];
-}
+window.logout = () => signOut(auth);
 
 function fotosHTML(d) {
-  const fotos = obterFotos(d);
-
-  if (!fotos.length) {
-    return `<div class="no-image">Sem foto</div>`;
-  }
-
-  return `
-    <div class="fotos">
-      ${fotos.map(f => {
-        const url = limparTexto(f);
-        return `
-          <a href="${url}" target="_blank" rel="noopener noreferrer">
-            <img src="${url}" class="thumb" />
-          </a>
-        `;
-      }).join("")}
-    </div>
-  `;
-}
-
-function formatarPreco(valor) {
-  if (!valor) return "-";
-
-  const numero = Number(valor);
-
-  if (Number.isNaN(numero)) return valor;
-
-  return numero.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-}
-
-function obterData(d) {
-  if (d.criadoEm?.toMillis) return d.criadoEm.toMillis();
-  if (d.atualizadoEm?.toMillis) return d.atualizadoEm.toMillis();
-  if (d.criadoEm?.seconds) return d.criadoEm.seconds * 1000;
-  if (d.atualizadoEm?.seconds) return d.atualizadoEm.seconds * 1000;
-  return 0;
-}
-
-async function buscarColecao(nome, tipoLabel) {
-  const snap = await getDocs(collection(db, nome));
-  const itens = [];
-
-  snap.forEach(documento => {
-    itens.push({
-      id: documento.id,
-      colecao: nome,
-      tipo: tipoLabel,
-      ...documento.data()
-    });
-  });
-
-  return itens;
+  const fotos = d.fotos || (d.foto ? [d.foto] : []);
+  return fotos.length ? fotos.map(f => `<img src="${f}" class="thumb"/>`).join("") : `<div class="no-image">—</div>`;
 }
 
 window.carregar = async () => {
   const lista = document.getElementById("lista");
-  const resumo = document.getElementById("resumo");
 
-  lista.innerHTML = `<tr><td colspan="8">Carregando...</td></tr>`;
-  resumo.innerText = "Atualizando fila...";
+  const anuncios = await getDocs(collection(db, "anuncios"));
+  const eventos = await getDocs(collection(db, "eventos"));
 
-  try {
-    const anuncios = await buscarColecao("anuncios", "Anúncio");
-    const eventos = await buscarColecao("eventos", "Evento");
+  let dados = [];
 
-    const dados = [...anuncios, ...eventos];
+  anuncios.forEach(doc => dados.push({ id: doc.id, tipo: "Anúncio", col: "anuncios", ...doc.data() }));
+  eventos.forEach(doc => dados.push({ id: doc.id, tipo: "Evento", col: "eventos", ...doc.data() }));
 
-    dados.sort((a, b) => obterData(b) - obterData(a));
+  dados.sort((a,b) => (b.criadoEm?.seconds||0)-(a.criadoEm?.seconds||0));
 
-    const total = dados.length;
-    const pendentes = dados.filter(i => (i.status || "PENDENTE") === "PENDENTE").length;
-    const ativos = dados.filter(i => i.status === "ATIVO").length;
-    const recusados = dados.filter(i => i.status === "RECUSADO").length;
+  lista.innerHTML = "";
 
-    resumo.innerText =
-      `${total} itens • ${pendentes} pendentes • ${ativos} ativos • ${recusados} recusados`;
-
-    lista.innerHTML = "";
-
-    if (!dados.length) {
-      lista.innerHTML = `<tr><td colspan="8">Nenhum item encontrado.</td></tr>`;
-      return;
-    }
-
-    dados.forEach(d => {
-      const status = d.status || "PENDENTE";
-      const tipoClasse = d.tipo === "Evento" ? "evento" : "anuncio";
-
-      const local = [d.cidade, d.estado].filter(Boolean).join(" - ") || "-";
-
-      const dadosItem = d.tipo === "Anúncio"
-        ? `
-          <strong>${limparTexto(d.marca || "")} ${limparTexto(d.modelo || "")}</strong><br>
-          <span class="muted">Ano: ${limparTexto(d.ano || "-")}</span><br>
-          <span class="muted">${limparTexto(formatarPreco(d.preco))}</span>
-        `
-        : `
-          <strong>${limparTexto(d.data || "-")}</strong><br>
-          <span class="muted">${limparTexto(d.link || "")}</span>
-        `;
-
-      lista.innerHTML += `
-        <tr>
-          <td>${fotosHTML(d)}</td>
-
-          <td>
-            <span class="tipo ${tipoClasse}">${limparTexto(d.tipo)}</span>
-          </td>
-
-          <td>
-            <span class="status ${limparTexto(status)}">${limparTexto(status)}</span>
-          </td>
-
-          <td>
-            <strong>${limparTexto(d.titulo || "-")}</strong><br>
-            <span class="muted">${limparTexto(d.id)}</span>
-          </td>
-
-          <td>${limparTexto(d.usuarioEmail || d.email || "-")}</td>
-
-          <td>${limparTexto(local)}</td>
-
-          <td>${dadosItem}</td>
-
-          <td>
-            <div class="acoes">
-              <button class="green" onclick="aprovar('${d.colecao}','${d.id}')">✔</button>
-              <button class="red" onclick="recusar('${d.colecao}','${d.id}')">✖</button>
-            </div>
-          </td>
-        </tr>
-      `;
-    });
-  } catch (error) {
-    console.error(error);
-    lista.innerHTML = `<tr><td colspan="8">Erro ao carregar a fila.</td></tr>`;
-    resumo.innerText = "Erro ao atualizar.";
-  }
-};
-
-window.aprovar = async (colecao, id) => {
-  await updateDoc(doc(db, colecao, id), {
-    status: "ATIVO",
-    motivoRecusa: "",
-    atualizadoEm: serverTimestamp()
+  dados.forEach(d => {
+    lista.innerHTML += `
+      <tr>
+        <td>${fotosHTML(d)}</td>
+        <td><span class="tipo ${d.tipo==='Evento'?'evento':''}">${d.tipo}</span></td>
+        <td><span class="status ${d.status}">${d.status}</span></td>
+        <td>${d.titulo||'-'}</td>
+        <td>${d.usuarioEmail||'-'}</td>
+        <td class="acoes">
+          <button class="green" onclick="aprovar('${d.col}','${d.id}')">✔</button>
+          <button class="red" onclick="recusar('${d.col}','${d.id}')">✖</button>
+        </td>
+      </tr>
+    `;
   });
-
-  carregar();
 };
 
-window.recusar = async (colecao, id) => {
-  const motivo = prompt("Motivo da recusa:");
-
-  if (!motivo) return;
-
-  await updateDoc(doc(db, colecao, id), {
-    status: "RECUSADO",
-    motivoRecusa: motivo,
-    atualizadoEm: serverTimestamp()
-  });
-
-  carregar();
-};
+window.aprovar = async (c,id)=>{ await updateDoc(doc(db,c,id),{status:"ATIVO"}); carregar(); };
+window.recusar = async (c,id)=>{ await updateDoc(doc(db,c,id),{status:"RECUSADO"}); carregar(); };
 </script>
 
 </body>
