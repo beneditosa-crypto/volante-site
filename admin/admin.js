@@ -1,11 +1,28 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+/* 🔒 CONFIG COMPLETO — NÃO ALTERAR */
 const firebaseConfig = {
-  apiKey: "AIzaSyA9",
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
   projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:dd265c86d0a3db6a6b9064",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -16,111 +33,264 @@ const ADMIN_EMAIL = "admin@clube.com";
 
 const lista = document.getElementById("lista");
 const resumo = document.getElementById("resumo");
+const btnAtualizar = document.getElementById("btnAtualizar");
+const btnSair = document.getElementById("btnSair");
 
 let dados = [];
+let filtroAtual = "TODOS";
 
-onAuthStateChanged(auth, (user) => {
-  if (!user || user.email !== ADMIN_EMAIL) {
-    location.href = "./login.html";
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "./login.html";
     return;
   }
+
+  const email = (user.email || "").trim().toLowerCase();
+
+  if (email !== ADMIN_EMAIL) {
+    alert("Acesso restrito ao administrador.");
+    await signOut(auth);
+    window.location.href = "./login.html";
+    return;
+  }
+
   carregar();
 });
 
-document.getElementById("btnAtualizar").onclick = carregar;
+btnAtualizar.addEventListener("click", carregar);
 
-document.getElementById("btnSair").onclick = async () => {
+btnSair.addEventListener("click", async () => {
   await signOut(auth);
-  location.href = "./login.html";
-};
+  window.location.href = "./login.html";
+});
+
+document.querySelectorAll(".filtro").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filtro").forEach((b) => b.classList.remove("ativo"));
+    btn.classList.add("ativo");
+    filtroAtual = btn.dataset.status || "TODOS";
+    render();
+  });
+});
 
 async function carregar() {
-  const a = await getDocs(collection(db, "anuncios"));
-  const e = await getDocs(collection(db, "eventos"));
+  lista.innerHTML = `<div class="vazio">Atualizando painel...</div>`;
+
+  const anunciosSnap = await getDocs(collection(db, "anuncios"));
+  const eventosSnap = await getDocs(collection(db, "eventos"));
 
   dados = [
-    ...a.docs.map(d => ({...d.data(), id:d.id, colecao:"anuncios", tipo:"ANÚNCIO"})),
-    ...e.docs.map(d => ({...d.data(), id:d.id, colecao:"eventos", tipo:"EVENTO"}))
+    ...anunciosSnap.docs.map((d) => ({
+      ...d.data(),
+      id: d.id,
+      tipo: "ANÚNCIO",
+      colecao: "anuncios",
+    })),
+    ...eventosSnap.docs.map((d) => ({
+      ...d.data(),
+      id: d.id,
+      tipo: "EVENTO",
+      colecao: "eventos",
+    })),
   ];
 
-  dados.sort((a,b)=> getTime(b)-getTime(a));
+  dados.sort((a, b) => obterTempo(b) - obterTempo(a));
 
   render();
 }
 
 function render() {
-  lista.innerHTML = dados.map(i => linha(i)).join("");
+  renderResumo();
+
+  const filtrados = dados.filter((item) => {
+    const status = normalizarStatus(item.status);
+    return filtroAtual === "TODOS" || status === filtroAtual;
+  });
+
+  if (!filtrados.length) {
+    lista.innerHTML = `<div class="vazio">Nenhum item encontrado.</div>`;
+    return;
+  }
+
+  lista.innerHTML = filtrados.map(card).join("");
 }
 
-function linha(i){
-  return `
-    <div class="linha">
-
-      <div>${i.tipo}</div>
-
-      <div class="status ${i.status}" onclick="filtrar('${i.status}')">
-        ${i.status}
-      </div>
-
-      <div>${i.titulo}</div>
-
-      <div>${i.descricao || ""}</div>
-
-      <div>${i.email || ""}</div>
-
-      <div>${i.cidade} / ${i.estado}</div>
-
-      <div>${formatar(i.criadoEm)}</div>
-
-      <div class="acoes">
-        <button class="aprovar" onclick="aprovar('${i.id}','${i.colecao}')">Aprovar</button>
-        <button class="devolver" onclick="devolver('${i.id}','${i.colecao}')">Devolver</button>
-        <button class="inativar" onclick="inativar('${i.id}','${i.colecao}')">Inativar</button>
-        <button class="excluir" onclick="excluir('${i.id}','${i.colecao}')">Excluir</button>
-      </div>
-
-      <div class="fotos">
-        ${(i.fotos || []).map(f=>`<img src="${f}">`).join("")}
-      </div>
-
-    </div>
+function renderResumo() {
+  resumo.innerHTML = `
+    <div class="card-resumo"><span>Total</span><strong>${dados.length}</strong></div>
+    <div class="card-resumo"><span>Pendentes</span><strong>${contar("PENDENTE")}</strong></div>
+    <div class="card-resumo"><span>Devolvidos</span><strong>${contar("DEVOLVIDO")}</strong></div>
+    <div class="card-resumo"><span>Ativos</span><strong>${contar("ATIVO")}</strong></div>
+    <div class="card-resumo"><span>Inativos</span><strong>${contar("INATIVO")}</strong></div>
   `;
 }
 
-function getTime(i){
-  return i.criadoEm?.seconds ? i.criadoEm.seconds*1000 : 0;
+function contar(status) {
+  return dados.filter((item) => normalizarStatus(item.status) === status).length;
 }
 
-function formatar(t){
-  if(!t?.seconds) return "";
-  return new Date(t.seconds*1000).toLocaleString("pt-BR");
+function card(item) {
+  const status = normalizarStatus(item.status);
+  const fotos = Array.isArray(item.fotos) ? item.fotos : [];
+
+  const titulo = escapar(item.titulo || item.nome || "Sem título");
+
+  const descricao = escapar(
+    item.descricao ||
+    item.descrição ||
+    item.detalhes ||
+    item.observacao ||
+    item.observação ||
+    ""
+  );
+
+  const email = escapar(
+    item.email ||
+    item.usuarioEmail ||
+    item.criadorEmail ||
+    item.vendedorEmail ||
+    item.userEmail ||
+    "Não informado"
+  );
+
+  const cidade = escapar(item.cidade || "");
+  const estado = escapar(item.estado || "");
+  const data = formatarData(item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao);
+
+  return `
+    <article class="item">
+      <div class="col-tipo">
+        <span class="tipo">${item.tipo}</span>
+        <button class="status ${status}" onclick="filtrarStatus('${status}')">${status}</button>
+      </div>
+
+      <div class="info">
+        <h3>${titulo}</h3>
+        <p class="descricao">${descricao}</p>
+
+        <div class="meta">
+          <span><strong>Usuário:</strong> ${email}</span>
+          <span><strong>Local:</strong> ${cidade}${cidade && estado ? " / " : ""}${estado}</span>
+          <span><strong>Criado:</strong> ${data}</span>
+        </div>
+      </div>
+
+      <div class="botoes">
+        <button class="btn-aprovar" onclick="aprovar('${item.id}','${item.colecao}')">Aprovar</button>
+        <button class="btn-devolver" onclick="devolver('${item.id}','${item.colecao}')">Devolver</button>
+        <button class="btn-inativar" onclick="inativar('${item.id}','${item.colecao}')">Inativar</button>
+        <button class="btn-excluir" onclick="excluirDaBase('${item.id}','${item.colecao}')">Excluir</button>
+      </div>
+
+      <div class="fotos">
+        ${fotos.map((foto) => `<img src="${escapar(foto)}" alt="Foto" />`).join("")}
+      </div>
+    </article>
+  `;
 }
 
-window.aprovar = async(id,c)=>{
-  await updateDoc(doc(db,c,id),{status:"ATIVO"});
-  carregar();
-}
+window.filtrarStatus = function (status) {
+  filtroAtual = status;
 
-window.devolver = async(id,c)=>{
-  const m = prompt("Motivo:");
-  if(!m) return;
-  await updateDoc(doc(db,c,id),{status:"DEVOLVIDO"});
-  carregar();
-}
+  document.querySelectorAll(".filtro").forEach((b) => {
+    b.classList.toggle("ativo", b.dataset.status === status);
+  });
 
-window.inativar = async(id,c)=>{
-  await updateDoc(doc(db,c,id),{status:"INATIVO"});
-  carregar();
-}
-
-window.excluir = async(id,c)=>{
-  if(confirm("Excluir?")){
-    await deleteDoc(doc(db,c,id));
-    carregar();
-  }
-}
-
-window.filtrar = (s)=>{
-  dados = dados.filter(i=>i.status===s);
   render();
+};
+
+window.aprovar = async function (id, colecao) {
+  await updateDoc(doc(db, colecao, id), {
+    status: "ATIVO",
+    motivoDevolucao: "",
+    motivoInativacao: "",
+  });
+
+  await carregar();
+};
+
+window.devolver = async function (id, colecao) {
+  const motivo = prompt("Informe o motivo da devolução:");
+
+  if (!motivo || !motivo.trim()) {
+    alert("O motivo da devolução é obrigatório.");
+    return;
+  }
+
+  await updateDoc(doc(db, colecao, id), {
+    status: "DEVOLVIDO",
+    motivoDevolucao: motivo.trim(),
+  });
+
+  await carregar();
+};
+
+window.inativar = async function (id, colecao) {
+  const motivo = prompt("Motivo da inativação:");
+
+  await updateDoc(doc(db, colecao, id), {
+    status: "INATIVO",
+    motivoInativacao: motivo?.trim() || "Inativado pelo administrador",
+  });
+
+  await carregar();
+};
+
+window.excluirDaBase = async function (id, colecao) {
+  const confirmar = confirm("Excluir definitivamente da base? Esta ação não pode ser desfeita.");
+
+  if (!confirmar) return;
+
+  await deleteDoc(doc(db, colecao, id));
+  await carregar();
+};
+
+function normalizarStatus(status) {
+  const s = String(status || "PENDENTE").trim().toUpperCase();
+
+  if (s === "RECUSADO") return "DEVOLVIDO";
+  if (s === "APROVADO") return "ATIVO";
+  if (s === "EXCLUIDO") return "INATIVO";
+
+  return s;
+}
+
+function obterTempo(item) {
+  const data = item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao;
+
+  if (data?.seconds) return data.seconds * 1000;
+
+  const tentativa = new Date(data);
+  return isNaN(tentativa.getTime()) ? 0 : tentativa.getTime();
+}
+
+function formatarData(data) {
+  if (!data) return "";
+
+  let d;
+
+  if (data.seconds) {
+    d = new Date(data.seconds * 1000);
+  } else {
+    d = new Date(data);
+  }
+
+  if (isNaN(d.getTime())) return "";
+
+  return d.toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function escapar(valor) {
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
