@@ -33,17 +33,16 @@ body {
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
 .topo h1 {
   margin: 0;
   text-align: center;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
-  text-transform: uppercase;
 }
 
 .top-actions {
@@ -74,31 +73,34 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .card-resumo {
   border: 1px solid #2b394a;
   border-left: 5px solid #64748b;
-  border-radius: 10px;
-  padding: 9px 12px;
-  min-height: 48px;
+  border-radius: 9px;
+  padding: 8px 12px;
+  min-height: 42px;
   background: #17212c;
   color: #f8fafc;
   cursor: pointer;
-  text-align: left;
+  text-align: center;
   box-shadow: none;
+  font-size: 13px;
 }
 
 .card-resumo span {
   font-size: 13px;
   color: #e5e7eb;
+  font-weight: 500;
 }
 
 .card-resumo strong {
-  margin-left: 5px;
-  font-size: 17px;
+  margin-left: 4px;
+  font-size: 16px;
   color: #ffffff;
+  font-weight: 800;
 }
 
 .card-resumo.TODOS {
@@ -126,90 +128,126 @@ body {
   outline: 1px solid #94a3b8;
 }
 
+/* CABEÇALHO DA LISTA */
+
+.cabecalho-lista {
+  display: grid;
+  grid-template-columns: 90px 190px 260px 210px 170px 130px 90px 230px 150px;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 10px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #111c27;
+  border: 1px solid #263548;
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 /* LISTA */
 
 .lista {
   display: grid;
-  gap: 7px;
+  gap: 6px;
 }
 
 .item {
   display: grid;
-  grid-template-columns: 90px minmax(520px, 1fr) 300px 190px;
+  grid-template-columns: 90px 190px 260px 210px 170px 130px 90px 230px 150px;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background: #17212c;
   border: 1px solid #263548;
-  border-radius: 10px;
-  padding: 9px 11px;
+  border-radius: 9px;
+  padding: 8px 10px;
+  min-height: 58px;
 }
 
-/* TIPO */
-
-.col-status {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
+/* CAMPOS */
 
 .tipo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
   border-radius: 999px;
-  padding: 6px 10px;
+  padding: 5px 10px;
   font-size: 11px;
   font-weight: 800;
   color: white;
   background: #1e3a8a;
 }
 
-.status {
-  display: none;
+.titulo {
+  font-size: 13px;
+  font-weight: 800;
+  color: #f9fafb;
+  line-height: 1.25;
 }
 
-/* INFORMAÇÕES */
-
-.info h3 {
-  margin: 0 0 3px;
-  font-size: 15px;
-  line-height: 1.2;
+.descricao,
+.usuario,
+.local,
+.data {
+  font-size: 12px;
+  color: #d1d5db;
+  line-height: 1.25;
 }
 
 .descricao {
-  margin: 0 0 4px;
-  font-size: 12px;
-  line-height: 1.25;
   color: #cbd5e1;
 }
 
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  font-size: 11.5px;
-  color: #e5e7eb;
+/* STATUS DA LINHA */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: 0;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
 }
 
-.meta strong {
-  color: #ffffff;
+.status.ATIVO {
+  background: #15803d;
+}
+
+.status.PENDENTE {
+  background: #a16207;
+}
+
+.status.DEVOLVIDO,
+.status.RECUSADO {
+  background: #c2410c;
+}
+
+.status.INATIVO {
+  background: #4b5563;
 }
 
 /* BOTÕES */
 
 .botoes {
   display: flex;
-  gap: 6px;
-  justify-content: flex-end;
+  gap: 5px;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .botoes button {
   border: 0;
-  border-radius: 8px;
-  padding: 7px 9px;
+  border-radius: 7px;
+  padding: 6px 8px;
   color: white;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   cursor: pointer;
   white-space: nowrap;
@@ -235,14 +273,14 @@ body {
 
 .fotos {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 5px;
   overflow-x: auto;
 }
 
 .fotos img {
-  width: 48px;
-  height: 38px;
+  width: 44px;
+  height: 34px;
   object-fit: cover;
   border-radius: 6px;
   flex: 0 0 auto;
