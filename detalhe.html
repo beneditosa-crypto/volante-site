@@ -1,1 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<title>Volante App | Detalhe</title>
+<meta name="description" content="Veja este anúncio no Volante App." />
+
+<link rel="icon" type="image/png" href="/favicon.png" />
+
+<style>
+:root {
+  --azul-principal: #1e3a8a;
+  --azul-hover: #172e6b;
+  --fundo: #f3f4f6;
+  --texto: #141414;
+  --cinza: #6b7280;
+  --dourado: #c9a24a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(243, 244, 246, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.topo {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.nome {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -0.7px;
+  line-height: 1;
+}
+
+.slogan {
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--cinza);
+  font-weight: 700;
+}
+
+.btn-voltar {
+  border: none;
+  border-radius: 999px;
+  padding: 11px 18px;
+  background: var(--azul-principal);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(30, 58, 138, 0.28);
+}
+
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.loading,
+.erro {
+  background: #fff;
+  border-radius: 22px;
+  padding: 22px;
+  color: var(--cinza);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.detalhe {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.galeria {
+  background: #fff;
+  border-radius: 28px;
+  padding: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+}
+
+.foto-principal-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.foto-principal-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.48),
+    rgba(0, 0, 0, 0.12),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.foto-principal {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: #e5e7eb;
+}
+
+.tipo-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.miniaturas {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.miniatura {
+  width: 82px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.76;
+  flex-shrink: 0;
+}
+
+.miniatura.ativa {
+  border-color: var(--azul-principal);
+  opacity: 1;
+}
+
+.painel {
+  background: #fff;
+  border-radius: 28px;
+  padding: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+}
+
+.titulo {
+  font-size: 30px;
+  line-height: 1.08;
+  letter-spacing: -0.8px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.meta {
+  font-size: 14px;
+  color: var(--cinza);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.preco {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--azul-principal);
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+
+.descricao {
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.descricao h3,
+.bloco h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.descricao p,
+.bloco p {
+  font-size: 14px;
+  color: var(--cinza);
+  line-height: 1.55;
+}
+
+.cta-app {
+  margin-top: 18px;
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cta-app strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.cta-app p {
+  font-size: 13px;
+  color: var(--cinza);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.btn-app {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  background: var(--azul-principal);
+  color: #fff;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.btn-app:hover {
+  background: var(--azul-hover);
+}
+
+.compartilhar {
+  margin-top: 18px;
+}
+
+.share-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.share-btn {
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: #fff;
+  color: #151515;
+  border-radius: 15px;
+  padding: 12px 10px;
+  font-size: 13px;
+  font-weight: 900;
+  transition: 0.2s;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+}
+
+.share-whatsapp {
+  color: #166534;
+}
+
+.share-facebook {
+  color: #1e3a8a;
+}
+
+.share-email {
+  color: #92400e;
+}
+
+.bloco {
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.footer {
+  margin-top: 34px;
+  background: #ffffff;
+  color: #151515;
+  border-radius: 26px;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 20px;
+}
+
+.footer h3,
+.footer h4 {
+  margin-bottom: 9px;
+}
+
+.footer p,
+.footer a {
+  display: block;
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.footer-bottom {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: #8a8177;
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  .detalhe {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo {
+    font-size: 26px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .topo {
+    padding: 12px 14px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nome {
+    font-size: 21px;
+  }
+
+  .slogan {
+    font-size: 11px;
+  }
+
+  .btn-voltar {
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
+  main {
+    padding: 14px;
+  }
+
+  .galeria,
+  .painel {
+    border-radius: 22px;
+  }
+
+  .titulo {
+    font-size: 24px;
+  }
+
+  .preco {
+    font-size: 22px;
+  }
+
+  .share-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="topo">
+    <div class="marca">
+      <img src="/logo.png" alt="Volante App" class="logo" />
+      <div>
+        <div class="nome">Volante</div>
+        <div class="slogan">Mais que carros, paixão</div>
+      </div>
+    </div>
+
+    <button class="btn-voltar" onclick="window.location.href='/'">Voltar</button>
+  </div>
+</header>
+
+<main>
+  <div id="conteudo">
+    <div class="loading">Carregando detalhe...</div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>Volante</h3>
+        <p>Mais que carros, paixão.</p>
+        <p>Uma vitrine para clássicos, antigos, eventos e conexões automotivas.</p>
+      </div>
+
+      <div>
+        <h4>Fale conosco</h4>
+        <p>contato@volante.app.br</p>
+        <p>volante.app.br</p>
+      </div>
+
+      <div>
+        <h4>App</h4>
+        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
+        <a href="#" onclick="baixarApp(); return false;">App Store</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      Volante App © 2026. Todos os direitos reservados.
+    </div>
+  </footer>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+  projectId: "clube-da-caminhonete-be770",
+  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+  messagingSenderId: "559157035885",
+  appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const tipo = params.get("tipo") === "evento" ? "evento" : "anuncio";
+const colecao = tipo === "evento" ? "eventos" : "anuncios";
+
+let itemAtual = null;
+
+window.baixarApp = function () {
+  alert("Em breve, o Volante estará disponível nas lojas. Continue acompanhando pelo site volante.app.br.");
+};
+
+window.trocarFoto = function (url) {
+  const principal = document.getElementById("fotoPrincipal");
+  if (principal) principal.src = url;
+
+  document.querySelectorAll(".miniatura").forEach((img) => {
+    img.classList.toggle("ativa", img.src === url);
+  });
+};
+
+window.compartilharWhatsApp = function () {
+  if (!itemAtual) return;
+
+  const titulo = itemAtual.titulo || itemAtual.nome || "anúncio";
+  const url = window.location.href;
+
+  const mensagem = encodeURIComponent(
+    `Olha este ${tipo === "evento" ? "evento" : "anúncio"} que eu vi no Volante:\n\n${titulo}\n${url}\n\nNo Volante você encontra clássicos, antigos e eventos automotivos.\n\nBaixe o app e anuncie você também.`
+  );
+
+  window.open(`https://wa.me/?text=${mensagem}`, "_blank");
+};
+
+window.compartilharEmail = function () {
+  if (!itemAtual) return;
+
+  const titulo = itemAtual.titulo || itemAtual.nome || "Anúncio no Volante";
+  const url = window.location.href;
+
+  const assunto = encodeURIComponent(`Volante App: ${titulo}`);
+  const corpo = encodeURIComponent(
+    `Olha este ${tipo === "evento" ? "evento" : "anúncio"} que eu vi no Volante:\n\n${titulo}\n${url}\n\nNo Volante você encontra clássicos, antigos e eventos automotivos.\n\nBaixe o app e anuncie você também.`
+  );
+
+  window.location.href = `mailto:?subject=${assunto}&body=${corpo}`;
+};
+
+window.compartilharFacebook = function () {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+};
+
+function escapeHtml(valor) {
+  return String(valor || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function getImagens(item) {
+  if (Array.isArray(item.fotos) && item.fotos.length > 0) return item.fotos;
+  if (Array.isArray(item.imagens) && item.imagens.length > 0) return item.imagens;
+  if (item.foto) return [item.foto];
+  if (item.imagem) return [item.imagem];
+  if (item.imageUrl) return [item.imageUrl];
+  return [];
+}
+
+function textoLocal(item) {
+  const cidade = item.cidade || "";
+  const estado = item.estado || item.uf || "";
+
+  if (cidade && estado) return `${cidade} - ${estado}`;
+  return cidade || estado || "";
+}
+
+function formatarPreco(valor) {
+  if (!valor || tipo === "evento") return "";
+
+  const texto = String(valor);
+  if (texto.includes("R$")) return texto;
+
+  const numero = Number(texto.replace(/\D/g, ""));
+  if (!numero) return texto;
+
+  return numero.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function formatarData(valor) {
+  if (!valor) return "";
+
+  if (valor.seconds) {
+    return new Date(valor.seconds * 1000).toLocaleDateString("pt-BR");
+  }
+
+  return String(valor);
+}
+
+function atualizarMetas(item) {
+  const titulo = item.titulo || item.nome || "Volante App";
+  document.title = `${titulo} | Volante App`;
+
+  const description = document.querySelector('meta[name="description"]');
+  if (description) {
+    description.setAttribute(
+      "content",
+      `Veja ${tipo === "evento" ? "este evento" : "este anúncio"} no Volante App.`
+    );
+  }
+}
+
+function renderizar(item) {
+  itemAtual = item;
+  atualizarMetas(item);
+
+  const imagens = getImagens(item);
+  const imagemPrincipal = imagens[0] || "";
+  const titulo = item.titulo || item.nome || "Detalhe";
+  const local = textoLocal(item);
+  const preco = formatarPreco(item.preco);
+  const ano = tipo === "evento" ? "" : (item.ano || item.anoFabricacao || "");
+  const data = tipo === "evento" ? formatarData(item.dataEvento || item.data || item.criadoEm) : "";
+  const descricao = item.descricao || "";
+  const tipoTexto = tipo === "evento" ? "Evento" : "Anúncio";
+
+  document.getElementById("conteudo").innerHTML = `
+    <section class="detalhe">
+      <div class="galeria">
+        <div class="foto-principal-wrap">
+          ${
+            imagemPrincipal
+              ? `<img id="fotoPrincipal" class="foto-principal" src="${imagemPrincipal}" alt="${escapeHtml(titulo)}" />`
+              : `<div class="foto-principal"></div>`
+          }
+          <span class="tipo-badge">${tipoTexto}</span>
+        </div>
+
+        ${
+          imagens.length > 1
+            ? `<div class="miniaturas">
+                ${imagens.map((img, index) => `
+                  <img
+                    class="miniatura ${index === 0 ? "ativa" : ""}"
+                    src="${img}"
+                    alt="Foto ${index + 1}"
+                    onclick="trocarFoto('${img}')"
+                  />
+                `).join("")}
+              </div>`
+            : ""
+        }
+      </div>
+
+      <aside class="painel">
+        <h1 class="titulo">${escapeHtml(titulo)}</h1>
+        <div class="meta">${[ano, data, local].filter(Boolean).join(" • ")}</div>
+        ${preco ? `<div class="preco">${escapeHtml(preco)}</div>` : ""}
+
+        ${
+          descricao
+            ? `<div class="descricao">
+                <h3>Descrição</h3>
+                <p>${escapeHtml(descricao)}</p>
+              </div>`
+            : ""
+        }
+
+        <div class="cta-app">
+          <strong>Quer falar com o anunciante?</strong>
+          <p>
+            A visualização é pública. Para ver contato, conversar com o anunciante,
+            publicar ou salvar favoritos, entre pelo app Volante.
+          </p>
+          <button class="btn-app" onclick="baixarApp()">Ver contato no app</button>
+        </div>
+
+        <div class="compartilhar">
+          <div class="bloco">
+            <h3>Compartilhar</h3>
+            <p>
+              Envie este ${tipo === "evento" ? "evento" : "anúncio"} para amigos e grupos.
+            </p>
+
+            <div class="share-grid">
+              <button class="share-btn share-whatsapp" onclick="compartilharWhatsApp()">WhatsApp</button>
+              <button class="share-btn share-email" onclick="compartilharEmail()">E-mail</button>
+              <button class="share-btn share-facebook" onclick="compartilharFacebook()">Facebook</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  `;
+}
+
+async function carregar() {
+  const conteudo = document.getElementById("conteudo");
+
+  if (!id) {
+    conteudo.innerHTML = `<div class="erro">Anúncio não encontrado.</div>`;
+    return;
+  }
+
+  try {
+    const ref = doc(db, colecao, id);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+      conteudo.innerHTML = `<div class="erro">Conteúdo não encontrado.</div>`;
+      return;
+    }
+
+    const dados = {
+      id: snap.id,
+      ...snap.data()
+    };
+
+    if (dados.status !== "ATIVO") {
+      conteudo.innerHTML = `<div class="erro">Este conteúdo não está disponível.</div>`;
+      return;
+    }
+
+    renderizar(dados);
+  } catch (error) {
+    console.error(error);
+    conteudo.innerHTML = `<div class="erro">Erro ao carregar o conteúdo.</div>`;
+  }
+}
+
+carregar();
+</script>
+</body>
+</html>
