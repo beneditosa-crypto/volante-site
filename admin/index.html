@@ -2,48 +2,50 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel Admin | Volante</title>
-  <link rel="stylesheet" href="./admin.css" />
-  <link rel="icon" href="../favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Painel administrativo | Volante</title>
+
+  <link rel="stylesheet" href="./admin.css"/>
+  <link rel="icon" href="../favicon.png"/>
 </head>
+
 <body>
   <main class="app">
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">Volante</p>
-        <h1>Painel Admin</h1>
+
+    <header class="topo">
+      <div class="titulo">
+        <img src="../logo.png" class="logo"/>
+        <div>
+          <p class="marca">VOLANTE</p>
+          <h1>Painel administrativo</h1>
+        </div>
       </div>
 
-      <div class="top-actions">
-        <button id="btnAtualizar" class="btn secondary">Atualizar</button>
-        <button id="btnSair" class="btn danger-soft">Sair</button>
+      <div class="acoes-topo">
+        <button id="btnAtualizar">Atualizar</button>
+        <button id="btnSair" class="sair">Sair</button>
       </div>
     </header>
 
-    <section class="filters">
-      <button class="filter active" data-status="TODOS">Todos</button>
-      <button class="filter" data-status="PENDENTE">Pendentes</button>
-      <button class="filter" data-status="DEVOLVIDO">Devolvidos</button>
-      <button class="filter" data-status="ATIVO">Ativos</button>
-      <button class="filter" data-status="INATIVO">Inativos</button>
+    <section class="filtros">
+      <button class="filtro ativo" data-status="TODOS">Todos</button>
+      <button class="filtro" data-status="PENDENTE">Pendentes</button>
+      <button class="filtro" data-status="DEVOLVIDO">Devolvidos</button>
+      <button class="filtro" data-status="ATIVO">Ativos</button>
+      <button class="filtro" data-status="INATIVO">Inativos</button>
     </section>
 
-    <section id="resumo" class="summary"></section>
+    <section id="resumo" class="resumo"></section>
 
-    <section id="lista" class="list">
-      <p class="empty">Carregando itens...</p>
-    </section>
+    <section id="lista"></section>
+
   </main>
 
   <div id="modal" class="modal hidden">
     <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="modalTitulo">Detalhes</h2>
-        <button id="fecharModal" class="icon-btn">×</button>
-      </div>
-
+      <h2 id="modalTitulo"></h2>
       <div id="modalConteudo"></div>
+      <button onclick="fecharModal()">Fechar</button>
     </div>
   </div>
 
