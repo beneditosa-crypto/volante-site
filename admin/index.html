@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Painel administrativo | Volante</title>
 
   <link rel="stylesheet" href="./admin.css" />
@@ -22,6 +21,7 @@
       <h1>PAINEL ADMINISTRATIVO</h1>
 
       <div class="top-actions">
+        <input id="busca" placeholder="Buscar..." />
         <button id="btnAtualizar">Atualizar</button>
         <button id="btnSair" class="sair">Sair</button>
       </div>
@@ -29,15 +29,14 @@
 
     <section id="resumo" class="resumo"></section>
 
-    <!-- CABEÇALHO DO GRID -->
     <section class="cabecalho-lista">
-      <div>Tipo</div>
-      <div>Título</div>
+      <div onclick="ordenar('tipo')">Tipo</div>
+      <div onclick="ordenar('titulo')">Título</div>
       <div>Descrição</div>
-      <div>Usuário</div>
+      <div onclick="ordenar('email')">Usuário</div>
       <div>Local</div>
-      <div>Data</div>
-      <div>Status</div>
+      <div onclick="ordenar('data')">Data</div>
+      <div onclick="ordenar('status')">Status</div>
       <div>Ações</div>
       <div>Fotos</div>
     </section>
@@ -45,6 +44,14 @@
     <section id="lista" class="lista"></section>
 
   </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="fecharModal">✖</span>
+      <div id="modalBody"></div>
+    </div>
+  </div>
 
   <script type="module" src="./admin.js"></script>
 </body>
