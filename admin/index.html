@@ -161,9 +161,11 @@ textarea {
 <header class="header">
   <div class="header-left">
     <img src="./logo.png" class="logo">
+
     <div class="header-title">
       <strong>Volante App</strong><br>
-      <span>Painel Administrativo</span>
+      <span>Painel Administrativo</span><br>
+      <span id="adminEmail"></span>
     </div>
   </div>
 
@@ -230,6 +232,9 @@ onAuthStateChanged(auth, async (user) => {
     window.location.href = "/login.html";
     return;
   }
+
+  const el = document.getElementById("adminEmail");
+  if (el) el.innerText = user.email;
 
   carregar();
 });
