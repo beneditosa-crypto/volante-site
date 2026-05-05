@@ -4,26 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Entrar — Volante App</title>
-  <meta name="description" content="Entre no Volante App para interagir com anúncios, eventos e publicações." />
-
+  <title>Conta — Volante App</title>
+  <meta name="description" content="Entrar ou criar conta no Volante App." />
   <link rel="icon" href="/favicon.png" type="image/png" />
 
   <style>
     :root {
-      --bg: #f7f7f5;
+      --background: #ffffff;
       --surface: #ffffff;
-      --surface-soft: #f0f0ec;
-      --text: #111827;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --dark: #111111;
-      --green: #1db954;
-      --green-dark: #15803d;
+      --text: #111111;
+      --text-muted: #6b7280;
+      --icon-muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #1e3a8a;
       --danger: #dc2626;
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --shadow: 0 18px 50px rgba(17, 24, 39, 0.08);
     }
 
     * {
@@ -33,14 +27,9 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(29, 185, 84, 0.12), transparent 34%),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      background: var(--background);
       color: var(--text);
-      display: grid;
-      place-items: center;
-      padding: 18px;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
 
     a {
@@ -53,369 +42,217 @@
       font: inherit;
     }
 
-    .shell {
-      width: min(1040px, 100%);
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      background: rgba(255, 255, 255, 0.86);
-      border: 1px solid rgba(229, 231, 235, 0.9);
-      border-radius: 34px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      min-height: 650px;
-    }
-
-    .visual {
-      background:
-        radial-gradient(circle at top right, rgba(29, 185, 84, 0.38), transparent 38%),
-        #111;
-      color: #fff;
-      padding: clamp(26px, 5vw, 48px);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .visual::after {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      right: -140px;
-      bottom: -120px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .brand-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 17px;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-
-    .brand-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .brand-fallback {
-      color: #111;
-      font-weight: 950;
-      font-size: 22px;
-    }
-
-    .brand strong {
-      display: block;
-      font-size: 18px;
-      letter-spacing: -0.04em;
-    }
-
-    .brand span {
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 12px;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-copy h1 {
-      margin: 0;
-      font-size: clamp(38px, 6vw, 68px);
-      line-height: 0.92;
-      letter-spacing: -0.075em;
-    }
-
-    .hero-copy p {
-      margin: 18px 0 0;
-      color: rgba(255, 255, 255, 0.68);
-      line-height: 1.55;
-      font-size: 17px;
-      max-width: 440px;
-    }
-
-    .chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    .chip {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      padding: 9px 12px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .content {
-      padding: clamp(24px, 5vw, 54px);
-      display: grid;
-      align-content: center;
-    }
-
-    .back {
-      width: fit-content;
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
-
-    .back:hover {
-      color: var(--text);
-    }
-
-    .form-head {
-      margin-bottom: 24px;
-    }
-
-    .form-head h2 {
-      margin: 0;
-      font-size: clamp(30px, 5vw, 48px);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-    }
-
-    .form-head p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      background: var(--surface-soft);
-      padding: 6px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-    }
-
-    .tab {
-      min-height: 42px;
+    button {
       border: 0;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--muted);
-      font-weight: 900;
       cursor: pointer;
     }
 
-    .tab.active {
-      background: #fff;
-      color: var(--text);
-      box-shadow: 0 8px 18px rgba(17, 24, 39, 0.06);
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    .field {
-      height: 54px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: #fff;
-      padding: 0 16px;
-      outline: none;
-      color: var(--text);
-    }
-
-    .field:focus {
-      border-color: rgba(29, 185, 84, 0.55);
-      box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.11);
-    }
-
-    .btn {
-      min-height: 54px;
-      border: 0;
-      border-radius: 18px;
-      font-weight: 950;
-      cursor: pointer;
-      display: inline-flex;
+    .screen {
+      min-height: 100vh;
+      display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.18s ease;
+      padding: 24px;
+      background: var(--background);
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
+    .box {
+      width: min(100%, 420px);
     }
 
-    .btn-primary {
-      background: #111;
-      color: #fff;
-      box-shadow: 0 14px 26px rgba(17, 17, 17, 0.14);
+    .logo {
+      width: 120px;
+      height: 100px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 24px;
     }
 
-    .btn-primary:disabled {
-      opacity: 0.55;
-      cursor: wait;
-      transform: none;
-    }
-
-    .btn-ghost {
-      background: #fff;
-      color: var(--text);
-      border: 1px solid var(--line);
-    }
-
-    .divider {
+    .fallback-logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: var(--primary);
+      color: #ffffff;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 12px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      margin: 18px 0;
+      place-items: center;
+      font-weight: 900;
+      font-size: 40px;
+      margin: 0 auto 24px;
     }
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      height: 1px;
-      background: var(--line);
+    .logged-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .title {
+      margin: 0 0 15px;
+      font-size: 20px;
+      font-weight: 900;
+      text-align: center;
+      color: var(--text);
+    }
+
+    .label {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .email {
+      margin-top: 5px;
+      text-align: center;
+      font-weight: 900;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .input {
+      width: 100%;
+      height: 52px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0 15px;
+      margin-bottom: 12px;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      font-size: 15px;
+    }
+
+    .input::placeholder {
+      color: var(--icon-muted);
+    }
+
+    .input:focus {
+      border-color: var(--primary);
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      background: transparent;
+      width: 100%;
+    }
+
+    .main-button {
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      margin-top: 6px;
+      min-height: 52px;
+    }
+
+    .main-button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .link-button {
+      width: 100%;
+      margin-top: 15px;
+      color: var(--primary);
+      text-align: center;
+      font-weight: 600;
+      background: transparent;
+      min-height: 32px;
+    }
+
+    .google-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 15px;
+      background: #ffffff;
+      color: #333333;
+      font-weight: 800;
+    }
+
+    .info {
+      margin-top: 8px;
+      text-align: center;
+      color: #999999;
+      font-size: 12px;
     }
 
     .notice {
-      margin-top: 16px;
-      min-height: 24px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.4;
+      margin-top: 12px;
+      min-height: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--text-muted);
     }
 
     .notice.error {
       color: var(--danger);
-      font-weight: 750;
     }
 
     .notice.success {
-      color: var(--green-dark);
-      font-weight: 800;
+      color: var(--primary);
     }
 
-    .small {
-      color: var(--muted);
+    .back {
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+      color: var(--text-muted);
       font-size: 13px;
-      line-height: 1.45;
-      margin-top: 16px;
+      font-weight: 700;
     }
 
-    .small strong {
-      color: var(--text);
-    }
-
-    @media (max-width: 820px) {
-      body {
-        display: block;
-        padding: 0;
-        background: #fff;
+    @media (max-width: 520px) {
+      .screen {
+        align-items: stretch;
+        padding: 24px;
       }
 
-      .shell {
-        grid-template-columns: 1fr;
-        min-height: 100vh;
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .visual {
-        min-height: 288px;
-        border-radius: 0 0 30px 30px;
-      }
-
-      .hero-copy h1 {
-        font-size: clamp(40px, 13vw, 58px);
-      }
-
-      .content {
-        padding: 26px 18px 36px;
+      .box {
+        margin: auto 0;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="shell">
-    <section class="visual">
-      <a class="brand" href="/">
-        <div class="brand-icon">
-          <img src="/logo.png" alt="" onerror="this.remove(); this.parentElement.innerHTML='<span class=&quot;brand-fallback&quot;>V</span>';" />
-        </div>
-        <div>
-          <strong>Volante App</strong>
-          <span>Mais que carros, paixão</span>
-        </div>
-      </a>
-
-      <div class="hero-copy">
-        <h1>Entre para viver a experiência completa.</h1>
-        <p>Visualize livremente. Ao entrar, você poderá interagir, compartilhar, publicar e acompanhar seus anúncios e eventos.</p>
-      </div>
-
-      <div class="chips">
-        <span class="chip">Anúncios</span>
-        <span class="chip">Eventos</span>
-        <span class="chip">Comunidade</span>
-      </div>
-    </section>
-
-    <section class="content">
-      <a class="back" href="/">← Voltar ao site</a>
-
-      <div class="form-head">
-        <h2 id="formTitle">Entrar</h2>
-        <p id="formSubtitle">Use seu e-mail para acessar o Volante App.</p>
-      </div>
-
-      <div class="tabs">
-        <button class="tab active" id="tabLogin" type="button">Entrar</button>
-        <button class="tab" id="tabCadastro" type="button">Criar conta</button>
-      </div>
+  <main class="screen">
+    <section class="box" id="appBox">
+      <img class="logo" src="/logo.png" alt="Volante App" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'fallback-logo', textContent:'V'}));" />
 
       <form id="authForm">
-        <input class="field" id="email" type="email" autocomplete="email" placeholder="E-mail" required />
-        <input class="field" id="password" type="password" autocomplete="current-password" placeholder="Senha" minlength="6" required />
-        <button class="btn btn-primary" id="submitBtn" type="submit">Entrar</button>
+        <input class="input" id="email" type="email" placeholder="Email" autocomplete="email" />
+        <input class="input" id="senha" type="password" placeholder="Senha" autocomplete="current-password" />
+
+        <button class="forgot" id="forgotButton" type="button">Esqueci minha senha</button>
+
+        <button class="main-button" id="submitButton" type="submit">Entrar</button>
+
+        <button class="link-button" id="modeButton" type="button">Criar uma conta</button>
+
+        <button class="google-button" type="button" disabled>
+          <span>G</span>
+          <span>Entrar com Google</span>
+        </button>
+
+        <p class="info">Google será ativado em breve</p>
+        <div class="notice" id="notice"></div>
+        <a class="back" href="/">Continuar visualizando</a>
       </form>
-
-      <div class="divider">ou</div>
-
-      <a class="btn btn-ghost" href="/">Continuar apenas visualizando</a>
-
-      <div class="notice" id="notice"></div>
-
-      <p class="small">
-        <strong>Segurança:</strong> seus dados de autenticação são processados pelo Firebase Auth.
-        Para publicar ou interagir, use uma conta válida.
-      </p>
     </section>
   </main>
 
@@ -425,6 +262,8 @@
       getAuth,
       createUserWithEmailAndPassword,
       signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      signOut,
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -439,87 +278,125 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-
     const $ = (id) => document.getElementById(id);
 
-    let modo = "login";
+    let modoCadastro = false;
+    let usuarioAtual = null;
 
-    function setModo(novoModo) {
-      modo = novoModo;
-
-      $("tabLogin").classList.toggle("active", modo === "login");
-      $("tabCadastro").classList.toggle("active", modo === "cadastro");
-
-      $("formTitle").textContent = modo === "login" ? "Entrar" : "Criar conta";
-      $("formSubtitle").textContent = modo === "login"
-        ? "Use seu e-mail para acessar o Volante App."
-        : "Crie sua conta para interagir com anúncios e eventos.";
-
-      $("submitBtn").textContent = modo === "login" ? "Entrar" : "Criar conta";
-      $("password").autocomplete = modo === "login" ? "current-password" : "new-password";
-      setNotice("");
-    }
-
-    function setNotice(message, type = "") {
-      const notice = $("notice");
-      notice.textContent = message;
-      notice.className = `notice ${type}`;
+    function setNotice(texto, tipo = "") {
+      const el = $("notice");
+      el.textContent = texto;
+      el.className = `notice ${tipo}`;
     }
 
     function traduzirErro(error) {
       const code = error?.code || "";
-
-      const mensagens = {
-        "auth/invalid-email": "E-mail inválido.",
-        "auth/user-disabled": "Esta conta foi desativada.",
-        "auth/user-not-found": "Conta não encontrada.",
-        "auth/wrong-password": "Senha incorreta.",
-        "auth/invalid-credential": "E-mail ou senha incorretos.",
-        "auth/email-already-in-use": "Este e-mail já está cadastrado.",
-        "auth/weak-password": "A senha deve ter pelo menos 6 caracteres.",
+      const mapa = {
+        "auth/invalid-email": "Email inválido.",
+        "auth/invalid-credential": "Email ou senha inválidos.",
+        "auth/wrong-password": "Email ou senha inválidos.",
+        "auth/user-not-found": "Email ou senha inválidos.",
+        "auth/email-already-in-use": "Este email já está cadastrado.",
+        "auth/weak-password": "A senha precisa ter pelo menos 6 caracteres.",
         "auth/network-request-failed": "Falha de conexão. Verifique sua internet."
       };
 
-      return mensagens[code] || "Não foi possível concluir. Verifique os dados e tente novamente.";
+      return mapa[code] || "Não foi possível concluir. Tente novamente.";
     }
 
-    $("tabLogin").addEventListener("click", () => setModo("login"));
-    $("tabCadastro").addEventListener("click", () => setModo("cadastro"));
+    function atualizarModo() {
+      $("submitButton").textContent = modoCadastro ? "Criar conta" : "Entrar";
+      $("modeButton").textContent = modoCadastro ? "Já tenho conta" : "Criar uma conta";
+      $("forgotButton").style.display = modoCadastro ? "none" : "block";
+      $("senha").autocomplete = modoCadastro ? "new-password" : "current-password";
+      setNotice("");
+    }
+
+    function renderLogado(usuario) {
+      $("appBox").innerHTML = `
+        <img class="logo" src="/logo.png" alt="Volante App" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'fallback-logo', textContent:'V'}));" />
+
+        <div class="logged-card">
+          <h1 class="title">Minha conta</h1>
+          <div class="label">Logado como</div>
+          <div class="email">${usuario.email || ""}</div>
+          <button class="main-button" id="logoutButton" type="button">Sair</button>
+          <a class="back" href="/">Voltar ao site</a>
+        </div>
+      `;
+
+      $("logoutButton").addEventListener("click", async () => {
+        await signOut(auth);
+        location.reload();
+      });
+    }
+
+    $("modeButton").addEventListener("click", () => {
+      modoCadastro = !modoCadastro;
+      atualizarModo();
+    });
+
+    $("forgotButton").addEventListener("click", async () => {
+      const email = $("email").value.trim().toLowerCase();
+
+      if (!email) {
+        setNotice("Digite seu email para recuperar a senha.", "error");
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        setNotice("Email enviado. Verifique sua caixa de entrada.", "success");
+      } catch (error) {
+        setNotice("Não foi possível enviar o email.", "error");
+      }
+    });
 
     $("authForm").addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const email = $("email").value.trim();
-      const password = $("password").value;
+      const email = $("email").value.trim().toLowerCase();
+      const senha = $("senha").value;
 
-      $("submitBtn").disabled = true;
-      setNotice(modo === "login" ? "Entrando..." : "Criando conta...");
+      if (!email || !senha) {
+        setNotice("Informe email e senha.", "error");
+        return;
+      }
+
+      if (modoCadastro && senha.length < 6) {
+        setNotice("A senha precisa ter pelo menos 6 caracteres.", "error");
+        return;
+      }
+
+      $("submitButton").disabled = true;
+      $("submitButton").textContent = "Aguarde...";
 
       try {
-        if (modo === "login") {
-          await signInWithEmailAndPassword(auth, email, password);
-          setNotice("Login realizado. Redirecionando...", "success");
+        if (modoCadastro) {
+          await createUserWithEmailAndPassword(auth, email, senha);
+          setNotice("Conta criada com sucesso.", "success");
         } else {
-          await createUserWithEmailAndPassword(auth, email, password);
-          setNotice("Conta criada. Redirecionando...", "success");
+          await signInWithEmailAndPassword(auth, email, senha);
+          setNotice("Login realizado.", "success");
         }
 
         setTimeout(() => {
           window.location.href = "/";
-        }, 700);
+        }, 650);
       } catch (error) {
-        console.error(error);
         setNotice(traduzirErro(error), "error");
       } finally {
-        $("submitBtn").disabled = false;
+        $("submitButton").disabled = false;
+        atualizarModo();
       }
     });
 
     onAuthStateChanged(auth, (usuario) => {
-      if (usuario && document.referrer && document.referrer.includes(location.origin)) {
-        // Mantém a tela estável; o envio do formulário já redireciona.
-      }
+      usuarioAtual = usuario;
+      if (usuario) renderLogado(usuario);
     });
+
+    atualizarModo();
   </script>
 </body>
 </html>
