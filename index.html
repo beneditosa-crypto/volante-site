@@ -1,679 +1,492 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volante App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title>Volante App</title>
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f4ee;
-      color: #1f2933;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    .page {
-      width: 100%;
-      min-height: 100vh;
-      padding-bottom: 40px;
-    }
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f7f4ee;
+color:#151515;
+}
 
-    header {
-      padding: 22px 18px 14px;
-      background: #f7f4ee;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
+/* HEADER */
 
-    .topo {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
+header{
+position:sticky;
+top:0;
+background:#f7f4ee;
+z-index:10;
+border-bottom:1px solid rgba(0,0,0,0.05);
+}
 
-    .marca {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
+.topo{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 14px;
+max-width:1100px;
+margin:auto;
+}
 
-    .logo {
-      width: 58px;
-      height: 58px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
+.marca{
+display:flex;
+align-items:center;
+gap:10px;
+}
 
-    .marca-texto {
-      min-width: 0;
-    }
+.logo{
+width:44px;
+height:44px;
+object-fit:contain;
+}
 
-    .nome {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #151515;
-      line-height: 1;
-    }
+.nome{
+font-weight:900;
+font-size:20px;
+}
 
-    .slogan {
-      margin-top: 5px;
-      font-size: 14px;
-      color: #6b6257;
-      font-weight: 500;
-    }
+.slogan{
+font-size:11px;
+color:#6f665d;
+}
 
-    .btn-conta {
-      border: none;
-      background: #151515;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+.actions{
+display:flex;
+gap:8px;
+}
 
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 18px;
-    }
+.btn{
+border:none;
+border-radius:999px;
+padding:8px 12px;
+font-weight:700;
+font-size:12px;
+}
 
-    .hero {
-      background: #fffaf2;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 28px;
-      padding: 22px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
-      margin-bottom: 22px;
-    }
+.btn-dark{background:#151515;color:#fff;}
+.btn-light{background:#fff;border:1px solid #ddd;}
 
-    .hero h1 {
-      font-size: 30px;
-      line-height: 1.08;
-      letter-spacing: -0.8px;
-      color: #111;
-      margin-bottom: 10px;
-    }
+main{
+padding:14px;
+max-width:1100px;
+margin:auto;
+}
 
-    .hero p {
-      font-size: 15px;
-      color: #6b6257;
-      line-height: 1.45;
-      max-width: 640px;
-    }
+/* HERO */
 
-    .busca-box {
-      margin-top: 18px;
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 18px;
-      padding: 12px 14px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      gap: 10px;
-    }
+.hero{
+background:#fffaf2;
+border-radius:20px;
+padding:16px;
+margin-bottom:14px;
+}
 
-    .busca-box span {
-      font-size: 18px;
-    }
+.hero h1{
+font-size:22px;
+margin-bottom:6px;
+}
 
-    #busca {
-      width: 100%;
-      border: none;
-      outline: none;
-      background: transparent;
-      font-size: 15px;
-      color: #111;
-    }
+.hero p{
+font-size:13px;
+color:#6f665d;
+}
 
-    .secao {
-      margin-top: 28px;
-    }
+/* BUSCA */
 
-    .secao-header {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      gap: 12px;
-    }
+.busca{
+margin-top:10px;
+display:flex;
+align-items:center;
+gap:8px;
+background:#fff;
+padding:10px;
+border-radius:14px;
+border:1px solid #eee;
+}
 
-    .secao h2 {
-      font-size: 22px;
-      color: #151515;
-      letter-spacing: -0.4px;
-    }
+.busca input{
+border:none;
+width:100%;
+outline:none;
+font-size:14px;
+}
 
-    .contador {
-      font-size: 13px;
-      color: #8a8177;
-      white-space: nowrap;
-    }
+/* LOJAS */
 
-    .grid {
-      display: grid;
-      gap: 14px;
-    }
+.stores{
+margin-top:12px;
+display:flex;
+gap:8px;
+}
 
-    .grid.destaques,
-    .grid.recentes {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+.store{
+flex:1;
+background:#151515;
+color:#fff;
+border-radius:12px;
+padding:10px;
+text-align:center;
+font-size:12px;
+font-weight:800;
+}
 
-    .grid.eventos {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+/* NAV */
 
-    .card {
-      background: #fff;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
-    }
+.nav{
+display:flex;
+gap:8px;
+overflow:auto;
+margin:12px 0;
+}
 
-    .foto {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      background: #e8e1d7;
-      display: block;
-    }
+.nav button{
+white-space:nowrap;
+padding:8px 12px;
+border-radius:999px;
+border:1px solid #ddd;
+background:#fff;
+font-size:12px;
+font-weight:700;
+}
 
-    .card-body {
-      padding: 13px;
-    }
+.nav .active{
+background:#151515;
+color:#fff;
+}
 
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #f1ece3;
-      color: #6f5d42;
-      font-size: 11px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
+/* SEÇÕES */
 
-    .titulo {
-      font-size: 15px;
-      font-weight: 800;
-      color: #151515;
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
+.section{display:none;}
+.section.active{display:block;}
 
-    .meta {
-      font-size: 13px;
-      color: #6b6257;
-      line-height: 1.35;
-    }
+.section h2{
+font-size:18px;
+margin-bottom:8px;
+}
 
-    .preco {
-      margin-top: 9px;
-      font-size: 15px;
-      font-weight: 900;
-      color: #151515;
-    }
+/* GRID */
 
-    .vazio {
-      background: #fff;
-      border-radius: 20px;
-      padding: 18px;
-      color: #7b7167;
-      font-size: 14px;
-      border: 1px dashed rgba(0, 0, 0, 0.14);
-    }
+.grid{
+display:grid;
+gap:10px;
+}
 
-    footer {
-      max-width: 1120px;
-      margin: 34px auto 0;
-      padding: 0 18px;
-      color: #8a8177;
-      font-size: 13px;
-    }
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
 
-    @media (max-width: 760px) {
-      header {
-        padding: 16px 14px 12px;
-      }
+/* CARD */
 
-      .logo {
-        width: 48px;
-        height: 48px;
-      }
+.card{
+background:#fff;
+border-radius:14px;
+overflow:hidden;
+border:1px solid #eee;
+}
 
-      .nome {
-        font-size: 20px;
-      }
+.card img{
+width:100%;
+aspect-ratio:4/3;
+object-fit:cover;
+}
 
-      .slogan {
-        font-size: 12px;
-      }
+.card-body{
+padding:8px;
+}
 
-      .btn-conta {
-        padding: 10px 14px;
-        font-size: 13px;
-      }
+.tag{
+font-size:9px;
+font-weight:900;
+margin-bottom:4px;
+color:#6f5d42;
+}
 
-      main {
-        padding: 14px;
-      }
+.title{
+font-size:12px;
+font-weight:800;
+}
 
-      .hero {
-        padding: 18px;
-        border-radius: 24px;
-      }
+.meta{
+font-size:11px;
+color:#6f665d;
+}
 
-      .hero h1 {
-        font-size: 25px;
-      }
+.price{
+font-size:12px;
+font-weight:900;
+margin-top:4px;
+}
 
-      .grid.destaques,
-      .grid.recentes {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+/* FOOTER */
 
-      .grid.eventos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+.footer{
+margin-top:20px;
+background:#151515;
+color:#fff;
+padding:14px;
+border-radius:16px;
+}
 
-      .card {
-        border-radius: 18px;
-      }
+.footer a{
+color:#ccc;
+display:block;
+font-size:12px;
+margin:4px 0;
+text-decoration:none;
+}
 
-      .card-body {
-        padding: 10px;
-      }
+/* DESKTOP */
 
-      .titulo {
-        font-size: 13px;
-      }
+@media(min-width:800px){
 
-      .meta,
-      .preco {
-        font-size: 12px;
-      }
+.logo{width:60px;height:60px;}
 
-      .tag {
-        font-size: 9px;
-        padding: 4px 7px;
-      }
-    }
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+}
 
-    @media (max-width: 480px) {
-      .grid.destaques,
-      .grid.recentes {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+.hero h1{font-size:32px;}
 
-      .grid.eventos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 9px;
-      }
+.stores{
+flex-direction:column;
+width:220px;
+}
 
-      .secao h2 {
-        font-size: 19px;
-      }
+.grid-2{grid-template-columns:repeat(4,1fr);}
+.grid-3{grid-template-columns:repeat(6,1fr);}
 
-      .contador {
-        font-size: 11px;
-      }
-    }
-  </style>
+}
+
+</style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <div class="topo">
-        <div class="marca">
-          <img src="./logo.png" alt="Volante App" class="logo" />
-          <div class="marca-texto">
-            <div class="nome">Volante</div>
-            <div class="slogan">Mais que carros, paixão</div>
-          </div>
-        </div>
 
-        <button class="btn-conta" id="btnConta">Entrar / Conta</button>
-      </div>
-    </header>
+<header>
+<div class="topo">
 
-    <main>
-      <section class="hero">
-        <h1>Clássicos, antigos e eventos em um só lugar.</h1>
-        <p>
-          Encontre veículos especiais, acompanhe novidades e descubra eventos para quem vive a cultura automotiva.
-        </p>
+<div class="marca">
+<img src="./logo.png" class="logo">
+<div>
+<div class="nome">Volante</div>
+<div class="slogan">Mais que carros, paixão</div>
+</div>
+</div>
 
-        <div class="busca-box">
-          <span>⌕</span>
-          <input
-            id="busca"
-            type="search"
-            placeholder="Buscar por modelo, cidade, estado..."
-          />
-        </div>
-      </section>
+<div class="actions">
+<button class="btn btn-light" id="btnPublicar">Publicar</button>
+<button class="btn btn-dark" id="btnConta">Entrar</button>
+</div>
 
-      <section class="secao">
-        <div class="secao-header">
-          <h2>Destaques</h2>
-          <span class="contador" id="contadorDestaques"></span>
-        </div>
-        <div class="grid destaques" id="gridDestaques"></div>
-      </section>
+</div>
+</header>
 
-      <section class="secao">
-        <div class="secao-header">
-          <h2>Recentes</h2>
-          <span class="contador" id="contadorRecentes"></span>
-        </div>
-        <div class="grid recentes" id="gridRecentes"></div>
-      </section>
+<main>
 
-      <section class="secao">
-        <div class="secao-header">
-          <h2>Eventos</h2>
-          <span class="contador" id="contadorEventos"></span>
-        </div>
-        <div class="grid eventos" id="gridEventos"></div>
-      </section>
-    </main>
+<div class="hero">
 
-    <footer>
-      Volante App © 2026
-    </footer>
-  </div>
+<div>
+<h1>Clássicos e eventos em um só lugar</h1>
+<p>Encontre veículos antigos, participe de eventos e conecte-se.</p>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      query,
-      where
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<div class="busca">
+<input id="busca" placeholder="Buscar...">
+</div>
+</div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-      authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-      projectId: "clube-da-caminhonete-be770",
-      storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-      messagingSenderId: "559157035885",
-      appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
-    };
+<div class="stores">
+<div class="store">Google Play</div>
+<div class="store">App Store</div>
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
+</div>
 
-    const buscaInput = document.getElementById("busca");
-    const btnConta = document.getElementById("btnConta");
+<div class="nav">
+<button class="active" data-tab="inicio">Início</button>
+<button data-tab="meus">Meus Anúncios</button>
+<button data-tab="eventos">Meus Eventos</button>
+<button data-tab="msg">Mensagens</button>
+<button data-tab="conta">Conta</button>
+<button data-tab="sobre">Quem somos</button>
+<button data-tab="politica">Políticas</button>
+<button data-tab="contato">Contato</button>
+</div>
 
-    const gridDestaques = document.getElementById("gridDestaques");
-    const gridRecentes = document.getElementById("gridRecentes");
-    const gridEventos = document.getElementById("gridEventos");
+<!-- INICIO -->
 
-    const contadorDestaques = document.getElementById("contadorDestaques");
-    const contadorRecentes = document.getElementById("contadorRecentes");
-    const contadorEventos = document.getElementById("contadorEventos");
+<div class="section active" id="inicio">
 
-    let anuncios = [];
-    let eventos = [];
-    let usuarioAtual = null;
+<h2>Destaques</h2>
+<div class="grid grid-2" id="destaques"></div>
 
-    onAuthStateChanged(auth, (user) => {
-      usuarioAtual = user;
-      btnConta.textContent = user ? "Conta / Sair" : "Entrar / Conta";
-    });
+<h2 style="margin-top:12px;">Recentes</h2>
+<div class="grid grid-2" id="recentes"></div>
 
-    btnConta.addEventListener("click", async () => {
-      if (usuarioAtual) {
-        await signOut(auth);
-        return;
-      }
+<h2 style="margin-top:12px;">Eventos</h2>
+<div class="grid grid-3" id="eventosPublicos"></div>
 
-      const email = prompt("Digite seu e-mail:");
-      if (!email) return;
+</div>
 
-      const senha = prompt("Digite sua senha:");
-      if (!senha) return;
+<!-- MEUS -->
 
-      try {
-        await signInWithEmailAndPassword(auth, email.trim(), senha);
-      } catch (error) {
-        alert("Não foi possível entrar. Verifique e-mail e senha.");
-      }
-    });
+<div class="section" id="meus">
+<h2>Meus Anúncios</h2>
+<div class="grid grid-2" id="meusAnuncios"></div>
+</div>
 
-    buscaInput.addEventListener("input", renderizarTudo);
+<div class="section" id="eventos">
+<h2>Meus Eventos</h2>
+<div class="grid grid-2" id="meusEventos"></div>
+</div>
 
-    function normalizar(valor) {
-      return String(valor || "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-    }
+<div class="section" id="msg">
+<h2>Mensagens</h2>
+<div id="mensagens"></div>
+</div>
 
-    function getImagem(item) {
-      if (Array.isArray(item.fotos) && item.fotos.length > 0) return item.fotos[0];
-      if (Array.isArray(item.imagens) && item.imagens.length > 0) return item.imagens[0];
-      if (item.foto) return item.foto;
-      if (item.imagem) return item.imagem;
-      if (item.imageUrl) return item.imageUrl;
-      return "";
-    }
+<div class="section" id="conta">
+<h2>Conta</h2>
+<div id="infoConta"></div>
+</div>
 
-    function getDataMs(item) {
-      if (item.data?.seconds) return item.data.seconds * 1000;
-      if (item.criadoEm?.seconds) return item.criadoEm.seconds * 1000;
-      if (item.createdAt?.seconds) return item.createdAt.seconds * 1000;
-      if (item.atualizadoEm?.seconds) return item.atualizadoEm.seconds * 1000;
-      return 0;
-    }
+<div class="section" id="sobre">
+<h2>Quem somos</h2>
+<p>Plataforma para apaixonados por carros clássicos.</p>
+</div>
 
-    function formatarPreco(valor) {
-      if (!valor) return "";
-      const numero = Number(String(valor).replace(/\D/g, ""));
-      if (!numero) return String(valor);
-      return numero.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+<div class="section" id="politica">
+<h2>Políticas</h2>
+<p>Inserir termos e políticas aqui.</p>
+</div>
 
-    function textoLocal(item) {
-      const cidade = item.cidade || "";
-      const estado = item.estado || item.uf || "";
-      if (cidade && estado) return `${cidade} - ${estado}`;
-      return cidade || estado || "";
-    }
+<div class="section" id="contato">
+<h2>Contato</h2>
+<p>contato@volante.app.br</p>
+</div>
 
-    function filtrarLista(lista) {
-      const termo = normalizar(buscaInput.value);
+<div class="footer">
+<strong>Volante</strong>
+<a>Quem somos</a>
+<a>Políticas</a>
+<a>Contato</a>
+</div>
 
-      if (!termo) return lista;
+</main>
 
-      return lista.filter((item) => {
-        const texto = normalizar([
-          item.titulo,
-          item.marca,
-          item.modelo,
-          item.descricao,
-          item.cidade,
-          item.estado,
-          item.uf,
-          item.nome
-        ].join(" "));
+<script type="module">
 
-        return texto.includes(termo);
-      });
-    }
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    function criarCardAnuncio(item) {
-      const imagem = getImagem(item);
-      const titulo = item.titulo || `${item.marca || ""} ${item.modelo || ""}`.trim() || "Anúncio";
-      const local = textoLocal(item);
-      const ano = item.ano || item.anoFabricacao || "";
-      const preco = formatarPreco(item.preco);
+const firebaseConfig = {
+apiKey:"AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+authDomain:"clube-da-caminhonete-be770.firebaseapp.com",
+projectId:"clube-da-caminhonete-be770",
+storageBucket:"clube-da-caminhonete-be770.firebasestorage.app",
+messagingSenderId:"559157035885",
+appId:"1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
+};
 
-      return `
-        <article class="card">
-          ${
-            imagem
-              ? `<img class="foto" src="${imagem}" alt="${titulo}" />`
-              : `<div class="foto"></div>`
-          }
-          <div class="card-body">
-            <div class="tag">Anúncio</div>
-            <div class="titulo">${titulo}</div>
-            <div class="meta">${[ano, local].filter(Boolean).join(" • ")}</div>
-            ${preco ? `<div class="preco">${preco}</div>` : ""}
-          </div>
-        </article>
-      `;
-    }
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
 
-    function criarCardEvento(item) {
-      const imagem = getImagem(item);
-      const titulo = item.titulo || item.nome || "Evento";
-      const local = textoLocal(item);
-      const data = item.dataTexto || item.dataEvento || item.data || "";
+let user=null;
 
-      return `
-        <article class="card">
-          ${
-            imagem
-              ? `<img class="foto" src="${imagem}" alt="${titulo}" />`
-              : `<div class="foto"></div>`
-          }
-          <div class="card-body">
-            <div class="tag">Evento</div>
-            <div class="titulo">${titulo}</div>
-            <div class="meta">${[data, local].filter(Boolean).join(" • ")}</div>
-          </div>
-        </article>
-      `;
-    }
+onAuthStateChanged(auth,u=>{
+user=u;
+document.getElementById("infoConta").innerHTML=
+u?`Logado: ${u.email}`:"Visitante";
+});
 
-    function renderizarGrid(elemento, lista, criador, vazioTexto) {
-      if (!lista.length) {
-        elemento.innerHTML = `<div class="vazio">${vazioTexto}</div>`;
-        return;
-      }
+/* NAV */
 
-      elemento.innerHTML = lista.map(criador).join("");
-    }
+document.querySelectorAll(".nav button").forEach(b=>{
+b.onclick=()=>{
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+document.getElementById(b.dataset.tab).classList.add("active");
+b.classList.add("active");
+};
+});
 
-    function renderizarTudo() {
-      const anunciosFiltrados = filtrarLista(anuncios);
-      const eventosFiltrados = filtrarLista(eventos);
+/* LOGIN */
 
-      const anunciosOrdenados = [...anunciosFiltrados].sort((a, b) => getDataMs(b) - getDataMs(a));
-      const eventosOrdenados = [...eventosFiltrados].sort((a, b) => getDataMs(b) - getDataMs(a));
+document.getElementById("btnConta").onclick=async()=>{
+if(user){
+alert("Você já está logado");
+return;
+}
+const email=prompt("Email");
+const senha=prompt("Senha");
+try{
+await signInWithEmailAndPassword(auth,email,senha);
+}catch{
+alert("Erro login");
+}
+};
 
-      const destaques = anunciosOrdenados.slice(0, 4);
-      const recentes = anunciosOrdenados.slice(0, 4);
-      const eventosTela = eventosOrdenados.slice(0, 9);
+/* CARREGAR DADOS */
 
-      contadorDestaques.textContent = `${destaques.length} exibidos`;
-      contadorRecentes.textContent = `${recentes.length} exibidos`;
-      contadorEventos.textContent = `${eventosTela.length} exibidos`;
+async function load(){
 
-      renderizarGrid(
-        gridDestaques,
-        destaques,
-        criarCardAnuncio,
-        "Nenhum destaque ativo encontrado."
-      );
+const aSnap=await getDocs(query(collection(db,"anuncios"),where("status","==","ATIVO")));
+const eSnap=await getDocs(query(collection(db,"eventos"),where("status","==","ATIVO")));
 
-      renderizarGrid(
-        gridRecentes,
-        recentes,
-        criarCardAnuncio,
-        "Nenhum anúncio recente ativo encontrado."
-      );
+const anuncios=aSnap.docs.map(d=>d.data());
+const eventos=eSnap.docs.map(d=>d.data());
 
-      renderizarGrid(
-        gridEventos,
-        eventosTela,
-        criarCardEvento,
-        "Nenhum evento ativo encontrado."
-      );
-    }
+render(anuncios,eventos);
 
-    async function carregarAnuncios() {
-      const q = query(
-        collection(db, "anuncios"),
-        where("status", "==", "ATIVO")
-      );
+}
 
-      const snap = await getDocs(q);
+function card(a){
+return `
+<div class="card">
+<img src="${a.fotos?.[0]||""}">
+<div class="card-body">
+<div class="tag">Anúncio</div>
+<div class="title">${a.titulo||""}</div>
+<div class="meta">${a.cidade||""}</div>
+<div class="price">${a.preco||""}</div>
+</div>
+</div>
+`;
+}
 
-      anuncios = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-    }
+function cardEvento(e){
+return `
+<div class="card">
+<img src="${e.fotos?.[0]||""}">
+<div class="card-body">
+<div class="tag">Evento</div>
+<div class="title">${e.titulo||""}</div>
+<div class="meta">${e.cidade||""}</div>
+</div>
+</div>
+`;
+}
 
-    async function carregarEventos() {
-      const q = query(
-        collection(db, "eventos"),
-        where("status", "==", "ATIVO")
-      );
+function render(a,e){
 
-      const snap = await getDocs(q);
+document.getElementById("destaques").innerHTML=a.slice(0,4).map(card).join("");
+document.getElementById("recentes").innerHTML=a.slice(0,4).map(card).join("");
+document.getElementById("eventosPublicos").innerHTML=e.slice(0,9).map(cardEvento).join("");
 
-      eventos = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-    }
+}
 
-    async function iniciar() {
-      try {
-        await Promise.all([
-          carregarAnuncios(),
-          carregarEventos()
-        ]);
+load();
 
-        renderizarTudo();
-      } catch (error) {
-        console.error(error);
+</script>
 
-        gridDestaques.innerHTML = `<div class="vazio">Erro ao carregar anúncios.</div>`;
-        gridRecentes.innerHTML = `<div class="vazio">Erro ao carregar recentes.</div>`;
-        gridEventos.innerHTML = `<div class="vazio">Erro ao carregar eventos.</div>`;
-      }
-    }
-
-    iniciar();
-  </script>
 </body>
 </html>
