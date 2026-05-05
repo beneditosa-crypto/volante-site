@@ -1,8 +1,4 @@
-<!-- SOMENTE A PARTE DO RENDER FOI MELHORADA, RESTO IGUAL -->
-
 <script type="module">
-/* MANTIVE TODO SEU FIREBASE IGUAL */
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -27,112 +23,133 @@ let filtro = "TODOS";
 let atual = null;
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user) return window.location.href="/admin/login.html";
-
-  if ((user.email||"").toLowerCase()!==ADMIN_EMAIL){
-    await signOut(auth);
-    return window.location.href="/admin/login.html";
+  if (!user) {
+    window.location.href = "/login.html";
+    return;
   }
 
-  document.getElementById("adminEmail").innerText=user.email;
+  if ((user.email || "").toLowerCase() !== ADMIN_EMAIL) {
+    await signOut(auth);
+    window.location.href = "/login.html";
+    return;
+  }
+
+  document.getElementById("adminEmail").innerText = user.email;
   carregar();
 });
 
-window.logout=()=>signOut(auth).then(()=>location.href="/admin/login.html");
+window.logout = async function () {
+  await signOut(auth);
+  window.location.href = "/login.html";
+};
 
-window.filtrar=(f)=>{filtro=f;render();}
+window.filtrar = function (f) {
+  filtro = f;
+  render();
+};
 
-async function carregar(){
-  const anuncios=await getDocs(collection(db,"anuncios"));
-  const eventos=await getDocs(collection(db,"eventos"));
+async function carregar() {
+  const anuncios = await getDocs(collection(db, "anuncios"));
+  const eventos = await getDocs(collection(db, "eventos"));
 
-  itens=[];
+  itens = [];
 
-  anuncios.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Anúncio",colecao:"anuncios"}));
-  eventos.forEach(d=>itens.push({...d.data(),id:d.id,tipo:"Evento",colecao:"eventos"}));
+  anuncios.forEach(d =>
+    itens.push({ ...d.data(), id: d.id, tipo: "Anúncio", colecao: "anuncios" })
+  );
+
+  eventos.forEach(d =>
+    itens.push({ ...d.data(), id: d.id, tipo: "Evento", colecao: "eventos" })
+  );
 
   render();
 }
 
-function pegarDescricao(d){
-  return d.descricao || d.texto || d.observacoes || d.desc || "";
+function pegarDescricao(d) {
+  return (
+    d.descricao ||
+    d.descricaoAnuncio ||
+    d.descricaoEvento ||
+    d.descricaoCompleta ||
+    d.texto ||
+    d.observacoes ||
+    d.desc ||
+    ""
+  );
 }
 
-function pegarUsuario(d){
+function pegarUsuario(d) {
   return d.usuarioEmail || d.email || d.emailUsuario || "-";
 }
 
-function render(){
-  const el=document.getElementById("lista");
-  el.innerHTML="";
+function render() {
+  const el = document.getElementById("lista");
+  el.innerHTML = "";
 
   itens
-    .filter(i=>filtro==="TODOS"||(i.status||"PENDENTE")===filtro)
-    .forEach((i,idx)=>{
+    .filter(i => filtro === "TODOS" || (i.status || "PENDENTE") === filtro)
+    .forEach((i, idx) => {
+      const desc = pegarDescricao(i);
+      const curta = desc.length > 100 ? desc.substring(0, 100) + "..." : desc;
 
-      const desc=pegarDescricao(i);
-      const curta=desc.length>100?desc.substring(0,100)+"...":desc;
+      el.innerHTML += `
+        <tr>
+          <td colspan="5" style="padding:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <img src="${i.fotos?.[0] || i.imagem || ""}" class="foto">
 
-      el.innerHTML+=`
-      <tr>
-        <td colspan="5" style="padding:10px;">
-          <div style="display:flex;align-items:center;gap:12px;">
+              <div style="flex:1;">
+                <div style="font-weight:bold">${i.titulo || "Sem título"}</div>
+                <div style="font-size:11px;color:#9ca3af">${pegarUsuario(i)}</div>
+                ${curta ? `<div style="font-size:12px;color:#cbd5e1">${curta}</div>` : ""}
 
-            <img src="${i.fotos?.[0]||i.imagem||""}" class="foto">
+                <div style="margin-top:6px;display:flex;gap:6px;">
+                  <span class="tag tipo">${i.tipo}</span>
+                  <span class="status-${(i.status || "pendente").toLowerCase()}">${i.status || "PENDENTE"}</span>
+                </div>
+              </div>
 
-            <div style="flex:1;">
-              <div style="font-weight:bold">${i.titulo||"Sem título"}</div>
-              <div style="font-size:11px;color:#9ca3af">${pegarUsuario(i)}</div>
-              ${curta?`<div style="font-size:12px;color:#cbd5e1">${curta}</div>`:""}
-
-              <div style="margin-top:6px;display:flex;gap:6px;">
-                <span class="tag tipo">${i.tipo}</span>
-                <span class="status-${(i.status||"pendente").toLowerCase()}">${i.status||"PENDENTE"}</span>
+              <div class="acoes">
+                <button class="btn-ok" onclick="aprovar(${idx})">Aprovar</button>
+                <button class="btn-dev" onclick="devolver(${idx})">Devolver</button>
+                <button class="btn-del" onclick="excluir(${idx})">Excluir</button>
               </div>
             </div>
-
-            <div class="acoes">
-              <button class="btn-ok" onclick="aprovar(${idx})">Aprovar</button>
-              <button class="btn-dev" onclick="devolver(${idx})">Devolver</button>
-              <button class="btn-del" onclick="excluir(${idx})">Excluir</button>
-            </div>
-
-          </div>
-        </td>
-      </tr>
+          </td>
+        </tr>
       `;
     });
 }
 
-window.aprovar=async(i)=>{
-  const item=itens[i];
-  await updateDoc(doc(db,item.colecao,item.id),{status:"ATIVO"});
+window.aprovar = async function (i) {
+  const item = itens[i];
+  await updateDoc(doc(db, item.colecao, item.id), { status: "ATIVO" });
   carregar();
 };
 
-window.devolver=(i)=>{
-  atual=i;
+window.devolver = function (i) {
+  atual = i;
   document.getElementById("modal").classList.remove("hidden");
 };
 
-window.confirmar=async()=>{
-  const motivo=document.getElementById("motivo").value;
-  const item=itens[atual];
+window.confirmar = async function () {
+  const motivo = document.getElementById("motivo").value;
+  const item = itens[atual];
 
-  await updateDoc(doc(db,item.colecao,item.id),{
-    status:"RECUSADO",
+  await updateDoc(doc(db, item.colecao, item.id), {
+    status: "RECUSADO",
     motivo,
-    motivoDevolucao:motivo
+    motivoDevolucao: motivo
   });
 
   document.getElementById("modal").classList.add("hidden");
-  document.getElementById("motivo").value="";
+  document.getElementById("motivo").value = "";
   carregar();
 };
 
-window.excluir=async(i)=>{
-  const item=itens[i];
-  await updateDoc(doc(db,item.colecao,item.id),{status:"EXCLUIDO"});
+window.excluir = async function (i) {
+  const item = itens[i];
+  await updateDoc(doc(db, item.colecao, item.id), { status: "EXCLUIDO" });
   carregar();
 };
 </script>
