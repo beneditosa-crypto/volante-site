@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Volante App</title>
-  <meta name="description" content="Volante App — anúncios e eventos para apaixonados por carros antigos." />
+  <meta name="description" content="Volante App — anúncios e eventos para apaixonados por veículos clássicos." />
   <link rel="icon" href="/favicon.png" type="image/png" />
 
   <style>
@@ -14,24 +14,22 @@
       --surface: #ffffff;
       --surface-soft: #f3f4f6;
       --text: #050505;
-      --muted: #6b7280;
+      --text-muted: #6b7280;
       --border: #e5e7eb;
       --primary: #1e3a8a;
-      --shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
-      --radius: 22px;
+      --primary-dark: #172554;
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
 
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0;
       background: var(--background);
       color: var(--text);
-      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
 
     a {
@@ -44,27 +42,23 @@
       font: inherit;
     }
 
-    button {
-      border: 0;
-      cursor: pointer;
-    }
-
     .page {
       width: 100%;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
     .container {
       width: min(100%, 1480px);
       margin: 0 auto;
-      padding: 26px 28px 60px;
+      padding: 26px 30px 60px;
     }
 
-    header {
+    .topbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 22px;
+      align-items: center;
+      gap: 18px;
       margin-bottom: 34px;
     }
 
@@ -75,131 +69,101 @@
       min-width: 0;
     }
 
-    .brand img {
-      width: 62px;
-      height: 62px;
+    .brand-logo {
+      width: 60px;
+      height: 60px;
       object-fit: contain;
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
 
-    .brand-title {
+    .brand-name {
       font-size: 25px;
       font-weight: 950;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.05em;
       line-height: 1;
     }
 
-    .brand-subtitle {
-      margin-top: 7px;
+    .brand-slogan {
+      margin-top: 6px;
       font-size: 14px;
+      color: var(--text-muted);
       font-weight: 800;
-      color: var(--muted);
     }
 
-    .header-actions {
+    .top-actions {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
     }
 
     .icon-button {
       width: 54px;
       height: 54px;
-      border-radius: 18px;
-      background: #ffffff;
-      color: #0f172a;
+      border-radius: 20px;
       border: 1px solid var(--border);
+      background: #ffffff;
+      color: #111827;
       display: grid;
       place-items: center;
       font-size: 22px;
       font-weight: 900;
+      cursor: pointer;
     }
 
     .login-button {
-      min-height: 54px;
-      padding: 0 26px;
-      border-radius: 18px;
+      min-width: 98px;
+      height: 54px;
+      padding: 0 24px;
+      border-radius: 20px;
+      border: 0;
       background: var(--primary);
       color: #ffffff;
-      font-weight: 900;
+      font-weight: 950;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      white-space: nowrap;
-    }
-
-    .user-pill {
-      min-height: 54px;
-      padding: 0 18px;
-      border-radius: 18px;
-      background: var(--surface-soft);
-      color: var(--primary);
-      font-weight: 900;
-      border: 1px solid var(--border);
-      display: none;
-      align-items: center;
-      max-width: 260px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      cursor: pointer;
     }
 
     .search-wrap {
-      max-width: 900px;
+      width: min(100%, 900px);
       margin-bottom: 34px;
     }
 
-    .search-box {
+    .search {
       width: 100%;
       height: 62px;
       border-radius: 22px;
       border: 1px solid var(--border);
       background: var(--surface-soft);
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 0 18px;
-    }
-
-    .search-icon {
-      color: var(--muted);
-      font-size: 22px;
-      line-height: 1;
-    }
-
-    .search {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
       color: var(--text);
+      padding: 0 22px;
+      outline: none;
       font-size: 16px;
-      font-weight: 750;
+      font-weight: 700;
     }
 
     .search::placeholder {
       color: #9ca3af;
-      font-weight: 750;
+      font-weight: 800;
     }
 
     .section {
-      margin-bottom: 40px;
+      margin-top: 34px;
     }
 
     .section-head {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
+      gap: 18px;
       margin-bottom: 16px;
     }
 
-    .section h2 {
-      font-size: 25px;
+    .section-title {
+      font-size: 26px;
       font-weight: 950;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.05em;
     }
 
     .section-link {
@@ -216,59 +180,535 @@
     }
 
     .card {
-      position: relative;
-      min-height: 276px;
-      border-radius: var(--radius);
+      min-width: 0;
+      border-radius: 22px;
       overflow: hidden;
-      background: #eef0f3;
-      box-shadow: none;
-      border: 1px solid rgba(15, 23, 42, 0.04);
-      isolation: isolate;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
     }
 
-    .card.clickable {
-      cursor: pointer;
+    .ad-card {
+      height: 276px;
+    }
+
+    .event-card {
+      height: 230px;
     }
 
     .card-image {
       width: 100%;
       height: 100%;
-      min-height: 276px;
-      background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+      background: #f3f4f6;
+      position: relative;
+      overflow: hidden;
     }
 
     .card-image img {
       width: 100%;
       height: 100%;
-      min-height: 276px;
       object-fit: cover;
       display: block;
     }
 
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.58) 0%,
-        rgba(0, 0, 0, 0.28) 34%,
-        rgba(0, 0, 0, 0.02) 70%
-      );
-      z-index: 1;
-      pointer-events: none;
+    .placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      background: #f3f4f6;
+      color: var(--primary);
+      font-weight: 950;
+      font-size: 44px;
     }
 
-    .card-content {
+    .overlay {
       position: absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 15px;
-      z-index: 2;
+      inset: auto 0 0 0;
+      padding: 46px 16px 16px;
       color: #ffffff;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.72),
+        rgba(0, 0, 0, 0.34),
+        rgba(0, 0, 0, 0)
+      );
     }
 
     .card-title {
       font-size: 20px;
-      line-height: 1.1;
-      font-weight: 950
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-meta {
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 850;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-price {
+      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 950;
+      color: #ffffff;
+    }
+
+    .event-date {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      z-index: 2;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 950;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.14);
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      min-height: 120px;
+      border-radius: 22px;
+      border: 1px dashed var(--border);
+      background: var(--surface-soft);
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      font-weight: 800;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .footer {
+      margin-top: 56px;
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1100px) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        padding: 20px 16px 46px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand-logo {
+        width: 52px;
+        height: 52px;
+      }
+
+      .brand-name {
+        font-size: 22px;
+      }
+
+      .brand-slogan {
+        font-size: 13px;
+      }
+
+      .icon-button {
+        display: none;
+      }
+
+      .login-button {
+        min-width: 84px;
+        height: 48px;
+        border-radius: 17px;
+        padding: 0 18px;
+      }
+
+      .search {
+        height: 58px;
+        border-radius: 20px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .ad-card {
+        height: 220px;
+      }
+
+      .event-card {
+        height: 205px;
+      }
+
+      .section-title {
+        font-size: 23px;
+      }
+
+      .card-title {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ad-card,
+      .event-card {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="container">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Voltar para a home">
+          <img class="brand-logo" src="/logo.png" alt="Volante App" />
+          <div>
+            <div class="brand-name">Volante App</div>
+            <div class="brand-slogan">Mais que carros, uma paixão</div>
+          </div>
+        </a>
+
+        <div class="top-actions">
+          <button class="icon-button" type="button" aria-label="Favoritos">♡</button>
+          <a class="login-button" id="loginLink" href="/conta.html">Entrar</a>
+        </div>
+      </header>
+
+      <div class="search-wrap">
+        <input
+          class="search"
+          id="busca"
+          type="search"
+          placeholder="Buscar por modelo, cidade, marca..."
+          autocomplete="off"
+        />
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Destaques</h2>
+          <a class="section-link" href="#recentes">Ver todos</a>
+        </div>
+        <div class="grid" id="destaques"></div>
+      </section>
+
+      <section class="section" id="recentes">
+        <div class="section-head">
+          <h2 class="section-title">Recentes</h2>
+          <a class="section-link" href="#recentes">Ver todos</a>
+        </div>
+        <div class="grid" id="recentesLista"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Eventos</h2>
+          <a class="section-link" href="#eventos">Ver eventos</a>
+        </div>
+        <div class="grid" id="eventos"></div>
+      </section>
+
+      <footer class="footer">
+        <span>© <span id="ano"></span> Volante App</span>
+        <span>volante.app.br</span>
+      </footer>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      query,
+      where
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+      authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
+      projectId: "clube-da-caminhonete-be770",
+      storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
+      messagingSenderId: "559157035885",
+      appId: "1:559157035885:web:7b01f7d15a0b5a8c6f4b6f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    const buscaInput = document.getElementById("busca");
+    const destaquesEl = document.getElementById("destaques");
+    const recentesEl = document.getElementById("recentesLista");
+    const eventosEl = document.getElementById("eventos");
+    const loginLink = document.getElementById("loginLink");
+
+    let anuncios = [];
+    let eventos = [];
+
+    document.getElementById("ano").textContent = new Date().getFullYear();
+
+    buscaInput.addEventListener("input", render);
+
+    onAuthStateChanged(auth, (usuario) => {
+      if (usuario) {
+        loginLink.textContent = "Conta";
+        loginLink.href = "/conta.html";
+      } else {
+        loginLink.textContent = "Entrar";
+        loginLink.href = "/conta.html";
+      }
+    });
+
+    function texto(valor) {
+      return String(valor || "").trim();
+    }
+
+    function normalizar(valor) {
+      return texto(valor).toLowerCase();
+    }
+
+    function fotoPrincipal(item) {
+      if (Array.isArray(item.fotos) && item.fotos.length > 0) return item.fotos[0];
+      if (Array.isArray(item.imagens) && item.imagens.length > 0) return item.imagens[0];
+      if (item.foto) return item.foto;
+      if (item.imagem) return item.imagem;
+      return "";
+    }
+
+    function formatarPreco(valor) {
+      const numero = Number(valor);
+
+      if (!numero || Number.isNaN(numero)) {
+        return "Consultar";
+      }
+
+      return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+        maximumFractionDigits: 0
+      });
+    }
+
+    function formatarData(valor) {
+      if (!valor) return "";
+
+      try {
+        if (valor.toDate) {
+          return valor.toDate().toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "short"
+          });
+        }
+
+        const data = new Date(valor);
+
+        if (!Number.isNaN(data.getTime())) {
+          return data.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "short"
+          });
+        }
+      } catch (erro) {}
+
+      return texto(valor);
+    }
+
+    function dataOrdenacao(item) {
+      const campos = [
+        item.destaqueEm,
+        item.atualizadoEm,
+        item.updatedAt,
+        item.criadoEm,
+        item.createdAt,
+        item.data,
+        item.dataEvento
+      ];
+
+      for (const campo of campos) {
+        if (!campo) continue;
+
+        if (campo.toDate) return campo.toDate().getTime();
+
+        const data = new Date(campo);
+        if (!Number.isNaN(data.getTime())) return data.getTime();
+      }
+
+      return 0;
+    }
+
+    function filtrar(lista) {
+      const termo = normalizar(buscaInput.value);
+
+      if (!termo) return lista;
+
+      return lista.filter((item) => {
+        const base = [
+          item.titulo,
+          item.descricao,
+          item.marca,
+          item.modelo,
+          item.cidade,
+          item.estado,
+          item.local,
+          item.nome
+        ].map(normalizar).join(" ");
+
+        return base.includes(termo);
+      });
+    }
+
+    function cardAnuncio(item) {
+      const imagem = fotoPrincipal(item);
+      const titulo = texto(item.titulo) || "Veículo anunciado";
+      const marca = texto(item.marca);
+      const modelo = texto(item.modelo);
+      const ano = texto(item.ano || item.anoFabricacao);
+      const meta = [marca, modelo].filter(Boolean).join(" ");
+      const linhaMeta = [meta, ano].filter(Boolean).join(" • ");
+
+      return `
+        <article class="card ad-card">
+          <div class="card-image">
+            ${
+              imagem
+                ? `<img src="${imagem}" alt="${titulo}" loading="lazy" />`
+                : `<div class="placeholder">V</div>`
+            }
+            <div class="overlay">
+              <div class="card-title">${titulo}</div>
+              <div class="card-meta">${linhaMeta || "Veículo clássico"}</div>
+              <div class="card-price">${formatarPreco(item.preco)}</div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function cardEvento(item) {
+      const imagem = fotoPrincipal(item);
+      const titulo = texto(item.titulo || item.nome) || "Evento";
+      const data = formatarData(item.dataEvento || item.data);
+      const local = [item.cidade, item.estado].map(texto).filter(Boolean).join(" / ");
+
+      return `
+        <article class="card event-card">
+          <div class="card-image">
+            ${
+              imagem
+                ? `<img src="${imagem}" alt="${titulo}" loading="lazy" />`
+                : `<div class="placeholder">V</div>`
+            }
+            ${data ? `<div class="event-date">${data}</div>` : ""}
+            <div class="overlay">
+              <div class="card-title">${titulo}</div>
+              <div class="card-meta">${local || "Evento Volante"}</div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function render() {
+      const anunciosFiltrados = filtrar(anuncios);
+      const eventosFiltrados = filtrar(eventos);
+
+      const destaques = anunciosFiltrados
+        .filter((item) => item.destaque === true || item.destaque === "true")
+        .slice(0, 8);
+
+      const fallbackDestaques = anunciosFiltrados.slice(0, 8);
+      const listaDestaques = destaques.length ? destaques : fallbackDestaques;
+
+      const idsDestaques = new Set(listaDestaques.map((item) => item.id));
+      const recentes = anunciosFiltrados
+        .filter((item) => !idsDestaques.has(item.id))
+        .slice(0, 8);
+
+      destaquesEl.innerHTML = listaDestaques.length
+        ? listaDestaques.map(cardAnuncio).join("")
+        : `<div class="empty">Nenhum anúncio aprovado encontrado.</div>`;
+
+      recentesEl.innerHTML = recentes.length
+        ? recentes.map(cardAnuncio).join("")
+        : `<div class="empty">Nenhum anúncio recente encontrado.</div>`;
+
+      eventosEl.innerHTML = eventosFiltrados.length
+        ? eventosFiltrados.slice(0, 12).map(cardEvento).join("")
+        : `<div class="empty">Nenhum evento aprovado encontrado.</div>`;
+    }
+
+    async function carregarDados() {
+      try {
+        const anunciosQuery = query(
+          collection(db, "anuncios"),
+          where("status", "==", "ATIVO")
+        );
+
+        const eventosQuery = query(
+          collection(db, "eventos"),
+          where("status", "==", "ATIVO")
+        );
+
+        const [anunciosSnap, eventosSnap] = await Promise.all([
+          getDocs(anunciosQuery),
+          getDocs(eventosQuery)
+        ]);
+
+        anuncios = anunciosSnap.docs
+          .map((doc) => ({ id: doc.id, ...doc.data() }))
+          .sort((a, b) => dataOrdenacao(b) - dataOrdenacao(a));
+
+        eventos = eventosSnap.docs
+          .map((doc) => ({ id: doc.id, ...doc.data() }))
+          .sort((a, b) => dataOrdenacao(b) - dataOrdenacao(a));
+
+        render();
+      } catch (erro) {
+        console.error("Erro ao carregar dados:", erro);
+
+        destaquesEl.innerHTML = `<div class="empty">Não foi possível carregar os destaques agora.</div>`;
+        recentesEl.innerHTML = `<div class="empty">Não foi possível carregar os recentes agora.</div>`;
+        eventosEl.innerHTML = `<div class="empty">Não foi possível carregar os eventos agora.</div>`;
+      }
+    }
+
+    carregarDados();
+  </script>
+</body>
+</html>
