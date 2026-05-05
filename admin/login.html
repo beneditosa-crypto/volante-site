@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Admin - Volante</title>
-<link rel="icon" href="./favicon.png">
+<title>Login administrativo | Volante</title>
+
+<link rel="icon" href="../favicon.png">
 
 <style>
 * { box-sizing: border-box; }
@@ -12,7 +13,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #0f1115;
+  background: #0b1320;
   color: #e5e7eb;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
   display: flex;
@@ -21,51 +22,57 @@ body {
   padding: 20px;
 }
 
+/* CARD */
+
 .card {
   width: 100%;
-  max-width: 400px;
-  background: #1c1f24;
+  max-width: 420px;
+  background: #1c2a3a;
   border: 1px solid #2a2f36;
-  border-radius: 18px;
-  padding: 28px;
+  border-radius: 22px;
+  padding: 32px;
 }
+
+/* HEADER */
 
 .header-login {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
 .logo {
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
 .header-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  gap: 2px;
 }
 
 .header-text strong {
-  font-size: 18px;
-  color: #f9fafb;
+  font-size: 22px;
+  color: #ffffff;
 }
 
 .header-text span {
-  font-size: 13px;
+  font-size: 14px;
   color: #9ca3af;
 }
 
+/* INPUTS */
+
 input {
   width: 100%;
-  height: 52px;
-  margin-bottom: 12px;
-  border-radius: 14px;
+  height: 54px;
+  margin-bottom: 14px;
+  border-radius: 16px;
   border: 1px solid #374151;
-  background: #20242b;
+  background: #111827;
   color: white;
   padding: 0 16px;
   font-size: 15px;
@@ -76,18 +83,26 @@ input:focus {
   border-color: #6b7280;
 }
 
+/* BOTÃO */
+
 button {
   width: 100%;
-  height: 52px;
+  height: 54px;
   border: none;
-  border-radius: 14px;
-  background: #e5e7eb;
-  color: #111827;
-  font-size: 15px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #0b1320;
+  font-size: 16px;
   font-weight: 800;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 6px;
 }
+
+button:disabled {
+  opacity: 0.7;
+}
+
+/* ERRO */
 
 .erro {
   display: none;
@@ -101,31 +116,35 @@ button {
 <body>
 
 <div class="card">
+
   <div class="header-login">
-    <img src="./logo.png" class="logo" alt="Volante">
+    <img src="../logo.png" class="logo" alt="Volante">
 
     <div class="header-text">
-      <strong>Volante App</strong>
-      <span>Painel Administrativo</span>
+      <strong>Volante</strong>
+      <span>Painel administrativo</span>
     </div>
   </div>
 
   <input id="email" type="email" placeholder="Email do administrador">
   <input id="senha" type="password" placeholder="Senha">
 
-  <button onclick="login()">Entrar</button>
+  <button id="btnEntrar">Entrar</button>
 
   <div id="erro" class="erro"></div>
+
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 import {
   getAuth,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+/* 🔒 CONFIG COMPLETO — NÃO ALTERAR */
 const firebaseConfig = {
   apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
   authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
@@ -138,34 +157,69 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-function mostrarErro(mensagem) {
-  const erro = document.getElementById("erro");
-  erro.innerText = mensagem;
-  erro.style.display = "block";
-}
+const ADMIN_EMAIL = "admin@clube.com";
 
-window.login = async function () {
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const senha = document.getElementById("senha").value;
+const emailInput = document.getElementById("email");
+const senhaInput = document.getElementById("senha");
+const erro = document.getElementById("erro");
+const btnEntrar = document.getElementById("btnEntrar");
+
+/* 🔁 Se já estiver logado corretamente, entra direto */
+onAuthStateChanged(auth, async (user) => {
+  if (!user) return;
+
+  const email = (user.email || "").trim().toLowerCase();
+
+  if (email === ADMIN_EMAIL) {
+    window.location.href = "./index.html";
+    return;
+  }
+
+  await signOut(auth);
+});
+
+/* LOGIN */
+btnEntrar.onclick = entrar;
+
+senhaInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") entrar();
+});
+
+async function entrar() {
+  const email = emailInput.value.trim().toLowerCase();
+  const senha = senhaInput.value;
+
+  erro.style.display = "none";
 
   if (!email || !senha) {
     mostrarErro("Informe email e senha.");
     return;
   }
 
-  if (email !== "admin@clube.com") {
+  if (email !== ADMIN_EMAIL) {
     mostrarErro("Acesso restrito ao administrador.");
     return;
   }
 
+  btnEntrar.disabled = true;
+  btnEntrar.textContent = "Entrando...";
+
   try {
     await signInWithEmailAndPassword(auth, email, senha);
-    window.location.href = "/index.html";
+    window.location.href = "./index.html"; // 🔥 CORREÇÃO CRÍTICA
   } catch (e) {
     console.error(e);
-    mostrarErro("Não foi possível entrar. Verifique email e senha.");
+    mostrarErro("Email ou senha inválidos.");
+  } finally {
+    btnEntrar.disabled = false;
+    btnEntrar.textContent = "Entrar";
   }
-};
+}
+
+function mostrarErro(msg) {
+  erro.innerText = msg;
+  erro.style.display = "block";
+}
 </script>
 
 </body>
