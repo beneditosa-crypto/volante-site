@@ -3,231 +3,272 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Volante App</title>
+  <meta name="description" content="Volante App — anúncios e eventos para apaixonados por carros antigos." />
+  <link rel="icon" href="/favicon.png" type="image/png" />
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --background: #ffffff;
+      --surface: #ffffff;
+      --surface-soft: #f3f4f6;
+      --text: #050505;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #1e3a8a;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background:#0b0f14;
-      color:#fff;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .page {
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width:1200px;
-      margin:auto;
-      padding:20px;
+      width: min(100%, 1480px);
+      margin: 0 auto;
+      padding: 26px 28px 60px;
     }
 
     header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 34px;
     }
 
-    .logo {
-      font-size:22px;
-      font-weight:800;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 62px;
+      height: 62px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 25px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .brand-subtitle {
+      margin-top: 7px;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .icon-button {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .login-button {
+      min-height: 54px;
+      padding: 0 26px;
+      border-radius: 18px;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .user-pill {
+      min-height: 54px;
+      padding: 0 18px;
+      border-radius: 18px;
+      background: var(--surface-soft);
+      color: var(--primary);
+      font-weight: 900;
+      border: 1px solid var(--border);
+      display: none;
+      align-items: center;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .search-wrap {
+      max-width: 900px;
+      margin-bottom: 34px;
+    }
+
+    .search-box {
+      width: 100%;
+      height: 62px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 0 18px;
+    }
+
+    .search-icon {
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1;
     }
 
     .search {
-      background:#111827;
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:999px;
-      padding:10px 15px;
-      width:300px;
-      color:#fff;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    .search::placeholder {
+      color: #9ca3af;
+      font-weight: 750;
     }
 
     .section {
-      margin-bottom:40px;
+      margin-bottom: 40px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .section h2 {
-      margin-bottom:15px;
-      font-size:20px;
+      font-size: 25px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
+
+    .section-link {
+      color: var(--primary);
+      font-size: 15px;
+      font-weight: 950;
+      white-space: nowrap;
     }
 
     .grid {
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:15px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .card {
-      background:#111827;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.1);
+      position: relative;
+      min-height: 276px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #eef0f3;
+      box-shadow: none;
+      border: 1px solid rgba(15, 23, 42, 0.04);
+      isolation: isolate;
     }
 
-    .img {
-      height:140px;
-      background:#222;
+    .card.clickable {
+      cursor: pointer;
     }
 
-    .img img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
+    .card-image {
+      width: 100%;
+      height: 100%;
+      min-height: 276px;
+      background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
     }
 
-    .content {
-      padding:12px;
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 276px;
+      object-fit: cover;
+      display: block;
     }
 
-    .title {
-      font-weight:700;
-      margin-bottom:6px;
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.58) 0%,
+        rgba(0, 0, 0, 0.28) 34%,
+        rgba(0, 0, 0, 0.02) 70%
+      );
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .meta {
-      font-size:12px;
-      color:#9ca3af;
+    .card-content {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 15px;
+      z-index: 2;
+      color: #ffffff;
     }
 
-    .price {
-      margin-top:8px;
-      font-weight:800;
-    }
-
-    @media(max-width:900px){
-      .grid { grid-template-columns:repeat(2,1fr); }
-    }
-
-  </style>
-</head>
-
-<body>
-  <div class="container">
-
-    <header>
-      <div class="logo">Volante</div>
-      <input class="search" id="busca" placeholder="Buscar..." />
-    </header>
-
-    <!-- DESTAQUES -->
-    <section class="section">
-      <h2>Destaques</h2>
-      <div class="grid" id="destaques"></div>
-    </section>
-
-    <!-- RECENTES -->
-    <section class="section">
-      <h2>Recentes</h2>
-      <div class="grid" id="recentes"></div>
-    </section>
-
-    <!-- EVENTOS -->
-    <section class="section">
-      <h2>Eventos</h2>
-      <div class="grid" id="eventos"></div>
-    </section>
-
-  </div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:7b01f7d15a0b5a8c6f4b6f"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-let anuncios = [];
-let eventos = [];
-
-const busca = document.getElementById("busca");
-
-busca.addEventListener("input", render);
-
-function img(item){
-  return item.fotos?.[0] || "";
-}
-
-function card(a){
-  return `
-    <div class="card">
-      <div class="img">
-        ${img(a) ? `<img src="${img(a)}">` : ""}
-      </div>
-      <div class="content">
-        <div class="title">${a.titulo || "Veículo"}</div>
-        <div class="meta">${a.cidade || ""} ${a.estado || ""}</div>
-        <div class="price">${formatar(a.preco)}</div>
-      </div>
-    </div>
-  `;
-}
-
-function cardEvento(e){
-  return `
-    <div class="card">
-      <div class="img">
-        ${img(e) ? `<img src="${img(e)}">` : ""}
-      </div>
-      <div class="content">
-        <div class="title">${e.titulo}</div>
-        <div class="meta">${e.cidade || ""}</div>
-      </div>
-    </div>
-  `;
-}
-
-function formatar(v){
-  if(!v) return "Consultar";
-  return Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-}
-
-function filtro(lista){
-  const t = busca.value.toLowerCase();
-  if(!t) return lista;
-
-  return lista.filter(i =>
-    (i.titulo || "").toLowerCase().includes(t)
-  );
-}
-
-function render(){
-
-  const f = filtro(anuncios);
-
-  // DESTAQUES (primeiros 8)
-  document.getElementById("destaques").innerHTML =
-    f.slice(0,8).map(card).join("");
-
-  // RECENTES (próximos 8)
-  document.getElementById("recentes").innerHTML =
-    f.slice(8,16).map(card).join("");
-
-  // EVENTOS (12 = 3 linhas)
-  document.getElementById("eventos").innerHTML =
-    filtro(eventos).slice(0,12).map(cardEvento).join("");
-}
-
-async function load(){
-
-  const aSnap = await getDocs(query(collection(db,"anuncios"),where("status","==","ATIVO")));
-  anuncios = aSnap.docs.map(d=>d.data());
-
-  const eSnap = await getDocs(query(collection(db,"eventos"),where("status","==","ATIVO")));
-  eventos = eSnap.docs.map(d=>d.data());
-
-  render();
-}
-
-load();
-</script>
-
-</body>
-</html>
+    .card-title {
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 950
