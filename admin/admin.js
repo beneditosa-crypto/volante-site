@@ -193,4 +193,93 @@ function card(item) {
     </article>
   `;
 }
-// deploy-forcado-2026-05-05
+
+window.aprovar = async function (id, colecao) {
+  await updateDoc(doc(db, colecao, id), {
+    status: "ATIVO",
+    motivoDevolucao: "",
+    motivoInativacao: "",
+  });
+
+  await carregar();
+};
+
+window.devolver = async function (id, colecao) {
+  const motivo = prompt("Informe o motivo da devolução:");
+
+  if (!motivo || !motivo.trim()) {
+    alert("O motivo da devolução é obrigatório.");
+    return;
+  }
+
+  await updateDoc(doc(db, colecao, id), {
+    status: "DEVOLVIDO",
+    motivoDevolucao: motivo.trim(),
+  });
+
+  await carregar();
+};
+
+window.inativar = async function (id, colecao) {
+  const motivo = prompt("Motivo da inativação:");
+
+  await updateDoc(doc(db, colecao, id), {
+    status: "INATIVO",
+    motivoInativacao: motivo?.trim() || "Inativado pelo administrador",
+  });
+
+  await carregar();
+};
+
+window.excluirDaBase = async function (id, colecao) {
+  const confirmar = confirm("Excluir definitivamente da base?");
+
+  if (!confirmar) return;
+
+  await deleteDoc(doc(db, colecao, id));
+  await carregar();
+};
+
+function normalizarStatus(status) {
+  const s = String(status || "PENDENTE").trim().toUpperCase();
+
+  if (s === "RECUSADO") return "DEVOLVIDO";
+  if (s === "APROVADO") return "ATIVO";
+  if (s === "EXCLUIDO") return "INATIVO";
+
+  return s;
+}
+
+function obterTempo(item) {
+  const data = item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao;
+
+  if (data?.seconds) return data.seconds * 1000;
+
+  const tentativa = new Date(data);
+  return isNaN(tentativa.getTime()) ? 0 : tentativa.getTime();
+}
+
+function formatarData(data) {
+  if (!data) return "";
+
+  const d = data.seconds ? new Date(data.seconds * 1000) : new Date(data);
+
+  if (isNaN(d.getTime())) return "";
+
+  return d.toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function escapar(valor) {
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
