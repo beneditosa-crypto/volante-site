@@ -1,1276 +1,456 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Volante App</title>
-<meta name="description" content="Volante App - anúncios, eventos e paixão por veículos clássicos." />
+
+<link rel="icon" href="./logo.png">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f7f4ee;
-  color: #151515;
-}
-
-button,
-input {
-  font-family: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-img {
-  display: block;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(247, 244, 238, 0.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.topo {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 14px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.marca {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  min-width: 0;
-}
-
-.logo {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-}
-
-.nome {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: -0.7px;
-  line-height: 1;
-}
-
-.slogan {
-  margin-top: 4px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #756c62;
-}
-
-.actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.btn {
-  border: none;
-  border-radius: 999px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 900;
-  transition: 0.18s;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-.btn-dark {
-  background: #151515;
-  color: #fff;
-}
-
-.btn-light {
-  background: #fff;
-  color: #151515;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-main {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 16px;
-}
-
-.hero {
-  background: linear-gradient(135deg, #fffaf2, #f0e7d8);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 30px;
-  padding: 22px;
-  box-shadow: 0 18px 42px rgba(0,0,0,0.06);
-  margin-bottom: 16px;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 0.75fr;
-  gap: 22px;
-  align-items: center;
-}
-
-.hero h1 {
-  font-size: 36px;
-  line-height: 1.04;
-  letter-spacing: -1.2px;
-  max-width: 660px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  color: #685f55;
-  font-size: 15px;
-  line-height: 1.5;
-  max-width: 620px;
-}
-
-.busca {
-  margin-top: 17px;
-  background: #fff;
-  border-radius: 18px;
-  padding: 13px 15px;
-  border: 1px solid rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
-.busca span {
-  color: #7a7065;
-  font-size: 18px;
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f6f3ed;
+color:#1a1a1a;
 }
 
-.busca input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  background: transparent;
-}
-
-.app-box {
-  background: #151515;
-  color: #fff;
-  border-radius: 24px;
-  padding: 18px;
-}
-
-.app-box h3 {
-  font-size: 19px;
-  margin-bottom: 7px;
-}
+/* HEADER */
 
-.app-box p {
-  color: #d9d1c7;
-  font-size: 13px;
-  line-height: 1.45;
-  margin-bottom: 13px;
+header{
+position:sticky;
+top:0;
+background:#f6f3ed;
+border-bottom:1px solid #e5dfd5;
+z-index:10;
 }
 
-.store-buttons {
-  display: grid;
-  gap: 9px;
+.topo{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px;
 }
 
-.store-btn {
-  background: #fff;
-  color: #151515;
-  text-decoration: none;
-  border-radius: 14px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 14px;
+.marca{
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-.nav-wrap {
-  position: sticky;
-  top: 81px;
-  z-index: 40;
-  background: rgba(247, 244, 238, 0.96);
-  backdrop-filter: blur(10px);
-  padding: 10px 0;
-  margin-bottom: 8px;
+.logo{
+width:64px;
+height:64px;
 }
 
-.nav {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
+.nome{
+font-size:24px;
+font-weight:900;
 }
 
-.nav::-webkit-scrollbar {
-  display: none;
+.slogan{
+font-size:12px;
+color:#7a7267;
 }
 
-.nav button {
-  border: 1px solid rgba(0,0,0,0.09);
-  background: #fff;
-  color: #151515;
-  border-radius: 999px;
-  padding: 10px 14px;
-  white-space: nowrap;
-  font-size: 13px;
-  font-weight: 900;
+.actions{
+display:flex;
+gap:8px;
 }
 
-.nav button.active {
-  background: #151515;
-  color: #fff;
+.btn{
+border:none;
+border-radius:999px;
+padding:10px 14px;
+font-weight:800;
+font-size:13px;
 }
 
-.section {
-  display: none;
-  margin-top: 18px;
-}
-
-.section.active {
-  display: block;
-}
+.btn-dark{background:#151515;color:#fff;}
+.btn-gold{background:#c9a24a;color:#151515;}
 
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 12px;
-  margin: 20px 0 12px;
+main{
+max-width:1100px;
+margin:auto;
+padding:14px;
 }
 
-.section-head h2 {
-  font-size: 23px;
-  letter-spacing: -0.5px;
-}
+/* HERO */
 
-.section-head p {
-  margin-top: 3px;
-  color: #776d63;
-  font-size: 13px;
+.hero{
+background:#fffaf2;
+border-radius:20px;
+padding:16px;
+margin-bottom:14px;
 }
 
-.contador {
-  color: #8d8277;
-  font-size: 12px;
-  white-space: nowrap;
+.hero h1{
+font-size:22px;
+margin-bottom:6px;
 }
 
-.grid {
-  display: grid;
-  gap: 14px;
+.hero p{
+font-size:14px;
+color:#6f665d;
 }
 
-.grid-anuncios {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.busca{
+margin-top:10px;
+background:#fff;
+border-radius:14px;
+padding:10px;
+display:flex;
+align-items:center;
 }
 
-.grid-eventos {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.busca input{
+border:none;
+width:100%;
+outline:none;
 }
 
-.card {
-  background: #fff;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.05);
-  transition: 0.18s;
-}
+/* LOJAS */
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.08);
+.stores{
+margin-top:14px;
+display:flex;
+gap:10px;
 }
 
-.foto {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  background: #e7ded2;
+.store{
+flex:1;
+background:#fff;
+border-radius:12px;
+padding:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:6px;
+border:1px solid #ddd;
+font-weight:800;
 }
 
-.foto-placeholder {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, #e9dfd3, #f7f1e8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #8c8175;
-  font-size: 12px;
-  font-weight: 800;
+.store img{
+width:18px;
 }
 
-.card-body {
-  padding: 12px;
-}
+/* NAV */
 
-.tag-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+.nav{
+display:flex;
+gap:8px;
+overflow:auto;
+margin:12px 0;
 }
 
-.tag {
-  display: inline-flex;
-  border-radius: 999px;
-  padding: 5px 8px;
-  background: #f1ece3;
-  color: #6d5a3e;
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.35px;
+.nav button{
+padding:8px 12px;
+border-radius:999px;
+border:1px solid #ddd;
+background:#fff;
+font-size:12px;
+font-weight:800;
 }
 
-.tag-evento {
-  background: #eee8ff;
-  color: #513e91;
+.nav .active{
+background:#151515;
+color:#fff;
 }
 
-.tag-status {
-  background: #eef7ed;
-  color: #2f763a;
-}
+/* GRID */
 
-.card-title {
-  font-size: 15px;
-  font-weight: 900;
-  line-height: 1.25;
-  margin-bottom: 6px;
+.grid{
+display:grid;
+gap:10px;
 }
 
-.meta {
-  color: #6f665d;
-  font-size: 13px;
-  line-height: 1.35;
-}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
 
-.price {
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: 900;
-}
+/* CARD */
 
-.card-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-  flex-wrap: wrap;
+.card{
+background:#fff;
+border-radius:14px;
+overflow:hidden;
+border:1px solid #eee;
 }
 
-.mini-btn {
-  border: none;
-  background: #f1ece3;
-  color: #151515;
-  border-radius: 12px;
-  padding: 8px 10px;
-  font-size: 12px;
-  font-weight: 900;
+.card img{
+width:100%;
+aspect-ratio:4/3;
+object-fit:cover;
 }
 
-.empty {
-  background: #fff;
-  border: 1px dashed rgba(0,0,0,0.14);
-  border-radius: 20px;
-  padding: 18px;
-  color: #746a60;
-  font-size: 14px;
+.card-body{
+padding:8px;
 }
 
-.panel {
-  background: #fffaf2;
-  border-radius: 26px;
-  padding: 20px;
-  border: 1px solid rgba(0,0,0,0.06);
-  margin-bottom: 16px;
+.tag{
+font-size:10px;
+font-weight:900;
+color:#a0803c;
 }
 
-.panel h2 {
-  font-size: 24px;
-  letter-spacing: -0.5px;
-  margin-bottom: 7px;
+.title{
+font-size:13px;
+font-weight:900;
 }
 
-.panel p {
-  color: #6d645a;
-  font-size: 14px;
-  line-height: 1.5;
+.meta{
+font-size:12px;
+color:#6f665d;
 }
 
-.account-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+.price{
+font-weight:900;
+margin-top:4px;
 }
 
-.info-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 16px;
-  border: 1px solid rgba(0,0,0,0.06);
-}
+/* FOOTER */
 
-.info-card strong {
-  display: block;
-  color: #82786d;
-  font-size: 12px;
-  margin-bottom: 6px;
+.footer{
+margin-top:20px;
+background:#1a1a1a;
+color:#fff;
+padding:16px;
+border-radius:16px;
 }
 
-.info-card span {
-  font-size: 15px;
-  font-weight: 900;
+.footer h3{
+margin-bottom:6px;
 }
 
-.footer {
-  margin-top: 36px;
-  background: #151515;
-  color: #fff;
-  border-radius: 28px;
-  padding: 22px;
+.footer p, .footer a{
+font-size:12px;
+color:#ccc;
+text-decoration:none;
+display:block;
+margin:3px 0;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1fr;
-  gap: 18px;
-}
+/* RESPONSIVO */
 
-.footer h3,
-.footer h4 {
-  margin-bottom: 9px;
-}
+@media(min-width:800px){
 
-.footer p,
-.footer a {
-  color: #d7d0c7;
-  text-decoration: none;
-  font-size: 13px;
-  line-height: 1.5;
-  display: block;
-  margin-bottom: 6px;
-}
+.logo{width:80px;height:80px;}
 
-.footer-bottom {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  color: #aaa197;
-  font-size: 12px;
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-@media (max-width: 920px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
+.grid-2{grid-template-columns:repeat(4,1fr);}
+.grid-3{grid-template-columns:repeat(6,1fr);}
 
-  .grid-anuncios {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .grid-eventos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
-
-@media (max-width: 620px) {
-  .topo {
-    padding: 12px 14px;
-  }
 
-  .logo {
-    width: 46px;
-    height: 46px;
-  }
-
-  .nome {
-    font-size: 20px;
-  }
-
-  .slogan {
-    font-size: 11px;
-  }
-
-  .btn {
-    padding: 9px 11px;
-    font-size: 12px;
-  }
-
-  main {
-    padding: 14px;
-  }
-
-  .hero {
-    border-radius: 24px;
-    padding: 17px;
-  }
-
-  .hero h1 {
-    font-size: 27px;
-  }
-
-  .hero p {
-    font-size: 13px;
-  }
-
-  .app-box {
-    border-radius: 20px;
-    padding: 15px;
-  }
-
-  .nav-wrap {
-    top: 71px;
-  }
-
-  .grid-anuncios {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .grid-eventos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
-  }
-
-  .card {
-    border-radius: 17px;
-  }
-
-  .card-body {
-    padding: 9px;
-  }
-
-  .card-title {
-    font-size: 13px;
-  }
-
-  .meta,
-  .price {
-    font-size: 12px;
-  }
-
-  .tag {
-    font-size: 9px;
-    padding: 4px 7px;
-  }
-
-  .section-head h2 {
-    font-size: 20px;
-  }
-
-  .section-head p {
-    font-size: 12px;
-  }
-
-  .account-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer {
-    border-radius: 22px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="topo">
-    <div class="marca">
-      <img src="./logo.png" alt="Volante App" class="logo" />
-      <div>
-        <div class="nome">Volante</div>
-        <div class="slogan">Mais que carros, paixão</div>
-      </div>
-    </div>
+<div class="topo">
 
-    <div class="actions">
-      <button class="btn btn-light" id="btnPublicar">Publicar</button>
-      <button class="btn btn-dark" id="btnConta">Entrar</button>
-    </div>
-  </div>
+<div class="marca">
+<img src="./logo.png" class="logo">
+<div>
+<div class="nome">Volante</div>
+<div class="slogan">Mais que carros, paixão</div>
+</div>
+</div>
+
+<div class="actions">
+<button class="btn btn-gold" id="btnPublicar" style="display:none;">Publicar</button>
+<button class="btn btn-dark" id="btnConta">Entrar</button>
+</div>
+
+</div>
 </header>
 
 <main>
 
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <h1>Clássicos, antigos e eventos em um só lugar.</h1>
-        <p>
-          O Volante conecta apaixonados por veículos clássicos, anúncios selecionados,
-          encontros automotivos e boas histórias sobre rodas.
-        </p>
+<div class="hero">
 
-        <div class="busca">
-          <span>⌕</span>
-          <input id="busca" type="search" placeholder="Buscar por modelo, cidade, estado ou evento..." />
-        </div>
-      </div>
+<div>
+<h1>Clássicos e eventos em um só lugar</h1>
+<p>Encontre veículos antigos, participe de eventos e conecte-se.</p>
 
-      <div class="app-box">
-        <h3>Baixe o app Volante</h3>
-        <p>Tenha anúncios, eventos, mensagens e sua conta sempre à mão.</p>
+<div class="busca">
+<input id="busca" placeholder="Buscar...">
+</div>
 
-        <div class="store-buttons">
-          <a class="store-btn" href="#" target="_blank">Google Play</a>
-          <a class="store-btn" href="#" target="_blank">App Store</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="stores">
+<div class="store">
+<img src="https://cdn-icons-png.flaticon.com/512/888/888857.png">
+Google Play
+</div>
 
-  <div class="nav-wrap">
-    <nav class="nav">
-      <button class="active" data-tab="inicio">Início</button>
-      <button data-tab="meusAnuncios">Meus Anúncios</button>
-      <button data-tab="meusEventos">Meus Eventos</button>
-      <button data-tab="mensagens">Mensagens</button>
-      <button data-tab="conta">Conta</button>
-      <button data-tab="quemSomos">Quem somos</button>
-      <button data-tab="politicas">Políticas</button>
-      <button data-tab="faleConosco">Fale conosco</button>
-    </nav>
-  </div>
+<div class="store">
+<img src="https://cdn-icons-png.flaticon.com/512/731/731985.png">
+App Store
+</div>
+</div>
 
-  <section class="section active" id="inicio">
-    <div class="section-head">
-      <div>
-        <h2>Destaques</h2>
-        <p>Selecionados entre os anúncios ativos.</p>
-      </div>
-      <span class="contador" id="contadorDestaques"></span>
-    </div>
-    <div class="grid grid-anuncios" id="gridDestaques"></div>
+</div>
 
-    <div class="section-head">
-      <div>
-        <h2>Recentes</h2>
-        <p>Últimos veículos publicados.</p>
-      </div>
-      <span class="contador" id="contadorRecentes"></span>
-    </div>
-    <div class="grid grid-anuncios" id="gridRecentes"></div>
+</div>
 
-    <div class="section-head">
-      <div>
-        <h2>Eventos</h2>
-        <p>Encontros, exposições e experiências.</p>
-      </div>
-      <span class="contador" id="contadorEventos"></span>
-    </div>
-    <div class="grid grid-eventos" id="gridEventos"></div>
-  </section>
+<div class="nav" id="nav"></div>
 
-  <section class="section" id="meusAnuncios">
-    <div class="panel">
-      <h2>Meus Anúncios</h2>
-      <p>Acompanhe seus anúncios enviados, aprovados, pendentes ou devolvidos.</p>
-    </div>
-    <div class="grid grid-anuncios" id="gridMeusAnuncios"></div>
-  </section>
+<h2>Destaques</h2>
+<div class="grid grid-2" id="destaques"></div>
 
-  <section class="section" id="meusEventos">
-    <div class="panel">
-      <h2>Meus Eventos</h2>
-      <p>Acompanhe seus eventos enviados para publicação.</p>
-    </div>
-    <div class="grid grid-anuncios" id="gridMeusEventos"></div>
-  </section>
+<h2 style="margin-top:12px;">Recentes</h2>
+<div class="grid grid-2" id="recentes"></div>
 
-  <section class="section" id="mensagens">
-    <div class="panel">
-      <h2>Mensagens</h2>
-      <p>Conversas iniciadas a partir de anúncios e contatos dentro do Volante.</p>
-    </div>
-    <div class="grid grid-anuncios" id="gridMensagens"></div>
-  </section>
+<h2 style="margin-top:12px;">Eventos</h2>
+<div class="grid grid-3" id="eventos"></div>
 
-  <section class="section" id="conta">
-    <div class="panel">
-      <h2>Conta</h2>
-      <p>Informações básicas do usuário logado no Volante.</p>
-    </div>
+<div class="footer">
+<h3>Volante App</h3>
+<p>Mais que carros, paixão.</p>
 
-    <div class="account-grid">
-      <div class="info-card">
-        <strong>Status</strong>
-        <span id="contaStatus">Visitante</span>
-      </div>
+<p>volante.app.br</p>
 
-      <div class="info-card">
-        <strong>E-mail</strong>
-        <span id="contaEmail">Não logado</span>
-      </div>
-    </div>
-  </section>
+<p>contato@volante.app.br</p>
 
-  <section class="section" id="quemSomos">
-    <div class="panel">
-      <h2>Quem somos</h2>
-      <p>
-        O Volante nasceu para aproximar pessoas apaixonadas por veículos clássicos,
-        antigos, encontros automotivos e boas histórias sobre rodas.
-      </p>
-      <br />
-      <p>
-        Nosso objetivo é oferecer uma plataforma simples, segura e organizada para
-        encontrar anúncios, divulgar eventos e fortalecer a comunidade automotiva.
-      </p>
-    </div>
-  </section>
+<p>Política de privacidade</p>
+<p>Termos de uso</p>
 
-  <section class="section" id="politicas">
-    <div class="panel">
-      <h2>Políticas</h2>
-      <p>
-        Espaço reservado para Política de Privacidade, Termos de Uso,
-        Política de Anúncios e orientações de segurança.
-      </p>
-    </div>
-  </section>
-
-  <section class="section" id="faleConosco">
-    <div class="panel">
-      <h2>Fale conosco</h2>
-      <p>E-mail: contato@volante.app.br</p>
-      <p>Instagram: @volanteapp</p>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div>
-        <h3>Volante</h3>
-        <p>Mais que carros, paixão.</p>
-        <p>Anúncios, eventos e conexões para apaixonados por veículos clássicos.</p>
-      </div>
-
-      <div>
-        <h4>App</h4>
-        <a href="#">Google Play</a>
-        <a href="#">App Store</a>
-      </div>
-
-      <div>
-        <h4>Institucional</h4>
-        <a href="#" data-footer-tab="quemSomos">Quem somos</a>
-        <a href="#" data-footer-tab="politicas">Políticas</a>
-        <a href="#" data-footer-tab="faleConosco">Fale conosco</a>
-      </div>
-
-      <div>
-        <h4>Usuário</h4>
-        <a href="#" data-footer-tab="meusAnuncios">Meus Anúncios</a>
-        <a href="#" data-footer-tab="meusEventos">Meus Eventos</a>
-        <a href="#" data-footer-tab="mensagens">Mensagens</a>
-        <a href="#" data-footer-tab="conta">Conta</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      Volante App © 2026. Todos os direitos reservados.
-    </div>
-  </footer>
+</div>
 
 </main>
 
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
+apiKey:"AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
+authDomain:"clube-da-caminhonete-be770.firebaseapp.com",
+projectId:"clube-da-caminhonete-be770",
+storageBucket:"clube-da-caminhonete-be770.firebasestorage.app",
+messagingSenderId:"559157035885",
+appId:"1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
 
-let usuarioAtual = null;
-let anuncios = [];
-let eventos = [];
-let meusAnuncios = [];
-let meusEventos = [];
-let mensagens = [];
+let user=null;
 
-const buscaInput = document.getElementById("busca");
-const btnConta = document.getElementById("btnConta");
-const btnPublicar = document.getElementById("btnPublicar");
+const nav=document.getElementById("nav");
 
-const gridDestaques = document.getElementById("gridDestaques");
-const gridRecentes = document.getElementById("gridRecentes");
-const gridEventos = document.getElementById("gridEventos");
-const gridMeusAnuncios = document.getElementById("gridMeusAnuncios");
-const gridMeusEventos = document.getElementById("gridMeusEventos");
-const gridMensagens = document.getElementById("gridMensagens");
-
-const contadorDestaques = document.getElementById("contadorDestaques");
-const contadorRecentes = document.getElementById("contadorRecentes");
-const contadorEventos = document.getElementById("contadorEventos");
-
-const contaStatus = document.getElementById("contaStatus");
-const contaEmail = document.getElementById("contaEmail");
-
-buscaInput.addEventListener("input", renderizarInicio);
-
-btnConta.addEventListener("click", async () => {
-  if (usuarioAtual) {
-    const sair = confirm("Deseja sair da sua conta?");
-    if (sair) await signOut(auth);
-    return;
-  }
-
-  abrirLogin();
+onAuthStateChanged(auth,u=>{
+user=u;
+renderNav();
+document.getElementById("btnPublicar").style.display = u ? "block" : "none";
 });
 
-btnPublicar.addEventListener("click", () => {
-  if (!usuarioAtual) {
-    alert("Entre na sua conta para publicar.");
-    abrirLogin();
-    return;
-  }
+/* NAV DINÂMICO */
 
-  alert("Área de publicação será conectada na próxima etapa.");
-});
+function renderNav(){
 
-document.querySelectorAll("[data-tab]").forEach((botao) => {
-  botao.addEventListener("click", () => abrirAba(botao.dataset.tab));
-});
-
-document.querySelectorAll("[data-footer-tab]").forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-    abrirAba(link.dataset.footerTab);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-});
-
-onAuthStateChanged(auth, async (user) => {
-  usuarioAtual = user;
-
-  if (user) {
-    btnConta.textContent = "Conta / Sair";
-    contaStatus.textContent = "Usuário logado";
-    contaEmail.textContent = user.email || "E-mail não informado";
-    await carregarAreaUsuario();
-  } else {
-    btnConta.textContent = "Entrar";
-    contaStatus.textContent = "Visitante";
-    contaEmail.textContent = "Não logado";
-    meusAnuncios = [];
-    meusEventos = [];
-    mensagens = [];
-    renderizarAreaUsuario();
-  }
-});
-
-function abrirAba(id) {
-  const abasProtegidas = ["meusAnuncios", "meusEventos", "mensagens", "conta"];
-
-  if (abasProtegidas.includes(id) && !usuarioAtual) {
-    alert("Entre na sua conta para acessar esta área.");
-    abrirLogin();
-    return;
-  }
-
-  document.querySelectorAll(".section").forEach((secao) => secao.classList.remove("active"));
-  document.querySelectorAll(".nav button").forEach((botao) => botao.classList.remove("active"));
-
-  document.getElementById(id).classList.add("active");
-
-  const botaoAtivo = document.querySelector(`[data-tab="${id}"]`);
-  if (botaoAtivo) botaoAtivo.classList.add("active");
+if(!user){
+nav.innerHTML=`
+<button class="active">Início</button>
+<button>Quem somos</button>
+<button>Políticas</button>
+<button>Contato</button>
+`;
+}else{
+nav.innerHTML=`
+<button class="active">Início</button>
+<button>Meus Anúncios</button>
+<button>Meus Eventos</button>
+<button>Mensagens</button>
+<button>Conta</button>
+`;
 }
 
-async function abrirLogin() {
-  const opcao = prompt("Digite:\n1 para entrar\n2 para criar conta");
-
-  if (opcao !== "1" && opcao !== "2") return;
-
-  const email = prompt("Digite seu e-mail:");
-  if (!email) return;
-
-  const senha = prompt("Digite sua senha:");
-  if (!senha) return;
-
-  try {
-    if (opcao === "2") {
-      await createUserWithEmailAndPassword(auth, email.trim(), senha);
-    } else {
-      await signInWithEmailAndPassword(auth, email.trim(), senha);
-    }
-  } catch (error) {
-    alert("Não foi possível concluir. Verifique os dados e tente novamente.");
-  }
 }
 
-function normalizar(valor) {
-  return String(valor || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+/* LOGIN */
+
+document.getElementById("btnConta").onclick=async()=>{
+
+if(user){
+alert("Você já está logado");
+return;
 }
 
-function getImagem(item) {
-  if (Array.isArray(item.fotos) && item.fotos.length > 0) return item.fotos[0];
-  if (Array.isArray(item.imagens) && item.imagens.length > 0) return item.imagens[0];
-  if (item.foto) return item.foto;
-  if (item.imagem) return item.imagem;
-  if (item.imageUrl) return item.imageUrl;
-  return "";
+const email=prompt("Email");
+const senha=prompt("Senha");
+
+try{
+await signInWithEmailAndPassword(auth,email,senha);
+}catch{
+alert("Erro login");
 }
 
-function getDataMs(item) {
-  if (item.data?.seconds) return item.data.seconds * 1000;
-  if (item.criadoEm?.seconds) return item.criadoEm.seconds * 1000;
-  if (item.createdAt?.seconds) return item.createdAt.seconds * 1000;
-  if (item.atualizadoEm?.seconds) return item.atualizadoEm.seconds * 1000;
-  return 0;
+};
+
+/* LOAD */
+
+async function load(){
+
+const aSnap=await getDocs(query(collection(db,"anuncios"),where("status","==","ATIVO")));
+const eSnap=await getDocs(query(collection(db,"eventos"),where("status","==","ATIVO")));
+
+const anuncios=aSnap.docs.map(d=>d.data());
+const eventos=eSnap.docs.map(d=>d.data());
+
+render(anuncios,eventos);
+
 }
 
-function textoLocal(item) {
-  const cidade = item.cidade || "";
-  const estado = item.estado || item.uf || "";
-  if (cidade && estado) return `${cidade} - ${estado}`;
-  return cidade || estado || "";
+function card(a){
+return `
+<div class="card">
+<img src="${a.fotos?.[0]||""}">
+<div class="card-body">
+<div class="tag">Anúncio</div>
+<div class="title">${a.titulo||""}</div>
+<div class="meta">${a.cidade||""}</div>
+<div class="price">${a.preco||""}</div>
+</div>
+</div>
+`;
 }
 
-function formatarPreco(valor) {
-  if (!valor) return "";
-  const texto = String(valor);
-  if (texto.includes("R$")) return texto;
-
-  const numero = Number(texto.replace(/\D/g, ""));
-  if (!numero) return texto;
-
-  return numero.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
+function cardEvento(e){
+return `
+<div class="card">
+<img src="${e.fotos?.[0]||""}">
+<div class="card-body">
+<div class="tag">Evento</div>
+<div class="title">${e.titulo||""}</div>
+<div class="meta">${e.cidade||""}</div>
+</div>
+</div>
+`;
 }
 
-function formatarData(valor) {
-  if (!valor) return "";
+function render(a,e){
 
-  if (valor.seconds) {
-    return new Date(valor.seconds * 1000).toLocaleDateString("pt-BR");
-  }
+document.getElementById("destaques").innerHTML=a.slice(0,4).map(card).join("");
+document.getElementById("recentes").innerHTML=a.slice(0,4).map(card).join("");
+document.getElementById("eventos").innerHTML=e.slice(0,9).map(cardEvento).join("");
 
-  return String(valor);
 }
 
-function pertenceAoUsuario(item) {
-  if (!usuarioAtual) return false;
+load();
 
-  const email = usuarioAtual.email || "";
-  const uid = usuarioAtual.uid || "";
-
-  return (
-    item.usuarioEmail === email ||
-    item.emailUsuario === email ||
-    item.userEmail === email ||
-    item.email === email ||
-    item.donoEmail === email ||
-    item.usuarioId === uid ||
-    item.userId === uid ||
-    item.uid === uid
-  );
-}
-
-function filtrarLista(lista) {
-  const termo = normalizar(buscaInput.value);
-  if (!termo) return lista;
-
-  return lista.filter((item) => {
-    const texto = normalizar([
-      item.titulo,
-      item.nome,
-      item.marca,
-      item.modelo,
-      item.descricao,
-      item.cidade,
-      item.estado,
-      item.uf,
-      item.status
-    ].join(" "));
-
-    return texto.includes(termo);
-  });
-}
-
-function imagemHtml(item, titulo) {
-  const imagem = getImagem(item);
-
-  if (imagem) {
-    return `<img class="foto" src="${imagem}" alt="${titulo}" />`;
-  }
-
-  return `<div class="foto-placeholder">Sem foto</div>`;
-}
-
-function criarCardAnuncio(item, mostrarStatus = false) {
-  const titulo = item.titulo || `${item.marca || ""} ${item.modelo || ""}`.trim() || "Anúncio";
-  const local = textoLocal(item);
-  const ano = item.ano || item.anoFabricacao || "";
-  const preco = formatarPreco(item.preco);
-  const status = item.status || "";
-
-  return `
-    <article class="card">
-      ${imagemHtml(item, titulo)}
-      <div class="card-body">
-        <div class="tag-row">
-          <span class="tag">Anúncio</span>
-          ${mostrarStatus ? `<span class="tag tag-status">${status}</span>` : ""}
-        </div>
-        <div class="card-title">${titulo}</div>
-        <div class="meta">${[ano, local].filter(Boolean).join(" • ")}</div>
-        ${preco ? `<div class="price">${preco}</div>` : ""}
-        <div class="card-actions">
-          <button class="mini-btn" onclick="alert('Detalhe do anúncio será conectado na próxima etapa.')">Ver detalhe</button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function criarCardEvento(item, mostrarStatus = false) {
-  const titulo = item.titulo || item.nome || "Evento";
-  const local = textoLocal(item);
-  const data = formatarData(item.dataEvento || item.data || item.criadoEm);
-  const status = item.status || "";
-
-  return `
-    <article class="card">
-      ${imagemHtml(item, titulo)}
-      <div class="card-body">
-        <div class="tag-row">
-          <span class="tag tag-evento">Evento</span>
-          ${mostrarStatus ? `<span class="tag tag-status">${status}</span>` : ""}
-        </div>
-        <div class="card-title">${titulo}</div>
-        <div class="meta">${[data, local].filter(Boolean).join(" • ")}</div>
-        <div class="card-actions">
-          <button class="mini-btn" onclick="alert('Detalhe do evento será conectado na próxima etapa.')">Ver detalhe</button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function criarCardMensagem(item) {
-  const titulo = item.anuncioTitulo || item.titulo || "Conversa";
-  const ultima = item.ultimaMensagem || item.mensagem || "Sem mensagens recentes";
-
-  return `
-    <article class="card">
-      <div class="card-body">
-        <div class="tag-row">
-          <span class="tag">Mensagem</span>
-        </div>
-        <div class="card-title">${titulo}</div>
-        <div class="meta">${ultima}</div>
-        <div class="card-actions">
-          <button class="mini-btn" onclick="alert('Conversa será conectada na próxima etapa.')">Abrir conversa</button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function renderizarGrid(elemento, lista, criador, vazioTexto) {
-  if (!lista.length) {
-    elemento.innerHTML = `<div class="empty">${vazioTexto}</div>`;
-    return;
-  }
-
-  elemento.innerHTML = lista.map(criador).join("");
-}
-
-function renderizarInicio() {
-  const anunciosFiltrados = filtrarLista(anuncios);
-  const eventosFiltrados = filtrarLista(eventos);
-
-  const anunciosOrdenados = [...anunciosFiltrados].sort((a, b) => getDataMs(b) - getDataMs(a));
-  const eventosOrdenados = [...eventosFiltrados].sort((a, b) => getDataMs(b) - getDataMs(a));
-
-  const destaques = anunciosOrdenados.slice(0, 4);
-  const recentes = anunciosOrdenados.slice(0, 4);
-  const eventosTela = eventosOrdenados.slice(0, 9);
-
-  contadorDestaques.textContent = `${destaques.length} exibidos`;
-  contadorRecentes.textContent = `${recentes.length} exibidos`;
-  contadorEventos.textContent = `${eventosTela.length} exibidos`;
-
-  renderizarGrid(gridDestaques, destaques, (item) => criarCardAnuncio(item, false), "Nenhum destaque ativo encontrado.");
-  renderizarGrid(gridRecentes, recentes, (item) => criarCardAnuncio(item, false), "Nenhum anúncio recente ativo encontrado.");
-  renderizarGrid(gridEventos, eventosTela, (item) => criarCardEvento(item, false), "Nenhum evento ativo encontrado.");
-}
-
-function renderizarAreaUsuario() {
-  renderizarGrid(
-    gridMeusAnuncios,
-    meusAnuncios,
-    (item) => criarCardAnuncio(item, true),
-    usuarioAtual ? "Você ainda não possui anúncios." : "Entre para ver seus anúncios."
-  );
-
-  renderizarGrid(
-    gridMeusEventos,
-    meusEventos,
-    (item) => criarCardEvento(item, true),
-    usuarioAtual ? "Você ainda não possui eventos." : "Entre para ver seus eventos."
-  );
-
-  renderizarGrid(
-    gridMensagens,
-    mensagens,
-    criarCardMensagem,
-    usuarioAtual ? "Você ainda não possui mensagens." : "Entre para ver suas mensagens."
-  );
-}
-
-async function carregarPublico() {
-  const qAnuncios = query(collection(db, "anuncios"), where("status", "==", "ATIVO"));
-  const qEventos = query(collection(db, "eventos"), where("status", "==", "ATIVO"));
-
-  const [snapAnuncios, snapEventos] = await Promise.all([
-    getDocs(qAnuncios),
-    getDocs(qEventos)
-  ]);
-
-  anuncios = snapAnuncios.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  eventos = snapEventos.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  renderizarInicio();
-}
-
-async function carregarAreaUsuario() {
-  if (!usuarioAtual) return;
-
-  try {
-    const [snapAnuncios, snapEventos, snapConversas] = await Promise.all([
-      getDocs(collection(db, "anuncios")),
-      getDocs(collection(db, "eventos")),
-      getDocs(collection(db, "conversas"))
-    ]);
-
-    meusAnuncios = snapAnuncios.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter(pertenceAoUsuario)
-      .sort((a, b) => getDataMs(b) - getDataMs(a));
-
-    meusEventos = snapEventos.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter(pertenceAoUsuario)
-      .sort((a, b) => getDataMs(b) - getDataMs(a));
-
-    mensagens = snapConversas.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter((item) => {
-        const email = usuarioAtual.email || "";
-        const uid = usuarioAtual.uid || "";
-
-        if (Array.isArray(item.participantes)) {
-          return item.participantes.includes(email) || item.participantes.includes(uid);
-        }
-
-        return (
-          item.compradorEmail === email ||
-          item.vendedorEmail === email ||
-          item.usuarioEmail === email ||
-          item.userEmail === email
-        );
-      })
-      .sort((a, b) => getDataMs(b) - getDataMs(a));
-
-    renderizarAreaUsuario();
-  } catch (error) {
-    console.error(error);
-    renderizarAreaUsuario();
-  }
-}
-
-async function iniciar() {
-  gridDestaques.innerHTML = `<div class="empty">Carregando destaques...</div>`;
-  gridRecentes.innerHTML = `<div class="empty">Carregando anúncios...</div>`;
-  gridEventos.innerHTML = `<div class="empty">Carregando eventos...</div>`;
-
-  try {
-    await carregarPublico();
-  } catch (error) {
-    console.error(error);
-
-    gridDestaques.innerHTML = `<div class="empty">Erro ao carregar destaques.</div>`;
-    gridRecentes.innerHTML = `<div class="empty">Erro ao carregar anúncios.</div>`;
-    gridEventos.innerHTML = `<div class="empty">Erro ao carregar eventos.</div>`;
-  }
-
-  renderizarAreaUsuario();
-}
-
-iniciar();
 </script>
 
 </body>
