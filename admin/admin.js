@@ -253,9 +253,13 @@ function card(item) {
     item.dataCriacao
   );
 
+  const tipoClasse = item.tipo === "EVENTO" ? "evento" : "anuncio";
+
   return `
     <article class="item">
-      <div><span class="tipo">${item.tipo}</span></div>
+      <div>
+        <span class="tipo ${tipoClasse}">${item.tipo}</span>
+      </div>
 
       <div class="titulo" onclick="abrirDetalhe('${item.id}', '${item.colecao}')">
         ${titulo}
@@ -317,7 +321,12 @@ window.abrirDetalhe = function (id, colecao) {
 
   const cidade = escapar(item.cidade || "");
   const estado = escapar(item.estado || "");
-  const data = formatarData(item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao);
+  const data = formatarData(
+    item.criadoEm ||
+    item.createdAt ||
+    item.atualizadoEm ||
+    item.dataCriacao
+  );
 
   const modal = document.getElementById("modal");
   const modalBody = document.getElementById("modalBody");
@@ -455,4 +464,4 @@ function escapar(valor) {
     .replaceAll("'", "&#039;");
 }
 
-// versao-completa-icones-busca-modal-2026
+// versao-ajuste-botoes-tipos-2026
