@@ -6,6 +6,7 @@
 
 <title>Volante App</title>
 
+<!-- FAVICON -->
 <link rel="icon" href="./logo.png">
 
 <style>
@@ -13,7 +14,7 @@
 
 body{
 font-family:Arial,Helvetica,sans-serif;
-background:#f6f3ed;
+background:#f5f2eb;
 color:#1a1a1a;
 }
 
@@ -22,8 +23,8 @@ color:#1a1a1a;
 header{
 position:sticky;
 top:0;
-background:#f6f3ed;
-border-bottom:1px solid #e5dfd5;
+background:#f5f2eb;
+border-bottom:1px solid #e4ded2;
 z-index:10;
 }
 
@@ -43,12 +44,12 @@ gap:12px;
 }
 
 .logo{
-width:64px;
-height:64px;
+width:72px;
+height:72px;
 }
 
 .nome{
-font-size:24px;
+font-size:26px;
 font-weight:900;
 }
 
@@ -65,7 +66,7 @@ gap:8px;
 .btn{
 border:none;
 border-radius:999px;
-padding:10px 14px;
+padding:10px 16px;
 font-weight:800;
 font-size:13px;
 }
@@ -82,14 +83,18 @@ padding:14px;
 /* HERO */
 
 .hero{
-background:#fffaf2;
-border-radius:20px;
-padding:16px;
-margin-bottom:14px;
+background:linear-gradient(135deg,#fffaf2,#efe6d8);
+border-radius:22px;
+padding:18px;
+margin-bottom:16px;
+display:flex;
+justify-content:space-between;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .hero h1{
-font-size:22px;
+font-size:26px;
 margin-bottom:6px;
 }
 
@@ -101,41 +106,40 @@ color:#6f665d;
 .busca{
 margin-top:10px;
 background:#fff;
-border-radius:14px;
-padding:10px;
+border-radius:16px;
+padding:12px;
 display:flex;
-align-items:center;
 }
 
 .busca input{
 border:none;
 width:100%;
 outline:none;
+font-size:14px;
 }
 
 /* LOJAS */
 
 .stores{
-margin-top:14px;
 display:flex;
+flex-direction:column;
 gap:10px;
 }
 
 .store{
-flex:1;
-background:#fff;
-border-radius:12px;
-padding:10px;
 display:flex;
 align-items:center;
-justify-content:center;
-gap:6px;
-border:1px solid #ddd;
+gap:10px;
+background:#000;
+color:#fff;
+border-radius:12px;
+padding:10px 14px;
+font-size:13px;
 font-weight:800;
 }
 
 .store img{
-width:18px;
+width:22px;
 }
 
 /* NAV */
@@ -144,7 +148,7 @@ width:18px;
 display:flex;
 gap:8px;
 overflow:auto;
-margin:12px 0;
+margin:14px 0;
 }
 
 .nav button{
@@ -165,7 +169,7 @@ color:#fff;
 
 .grid{
 display:grid;
-gap:10px;
+gap:12px;
 }
 
 .grid-2{grid-template-columns:repeat(2,1fr);}
@@ -175,7 +179,7 @@ gap:10px;
 
 .card{
 background:#fff;
-border-radius:14px;
+border-radius:16px;
 overflow:hidden;
 border:1px solid #eee;
 }
@@ -187,17 +191,17 @@ object-fit:cover;
 }
 
 .card-body{
-padding:8px;
+padding:10px;
 }
 
 .tag{
 font-size:10px;
 font-weight:900;
-color:#a0803c;
+color:#b58a2f;
 }
 
 .title{
-font-size:13px;
+font-size:14px;
 font-weight:900;
 }
 
@@ -214,15 +218,21 @@ margin-top:4px;
 /* FOOTER */
 
 .footer{
-margin-top:20px;
+margin-top:30px;
 background:#1a1a1a;
 color:#fff;
-padding:16px;
-border-radius:16px;
+padding:20px;
+border-radius:18px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
 
 .footer h3{
-margin-bottom:6px;
+margin-bottom:8px;
 }
 
 .footer p, .footer a{
@@ -230,26 +240,21 @@ font-size:12px;
 color:#ccc;
 text-decoration:none;
 display:block;
-margin:3px 0;
+margin:4px 0;
 }
 
 /* RESPONSIVO */
 
 @media(min-width:800px){
 
-.logo{width:80px;height:80px;}
-
-.hero{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
 .grid-2{grid-template-columns:repeat(4,1fr);}
 .grid-3{grid-template-columns:repeat(6,1fr);}
 
+.footer-grid{
+grid-template-columns:repeat(4,1fr);
 }
 
+}
 </style>
 </head>
 
@@ -283,19 +288,20 @@ align-items:center;
 <p>Encontre veículos antigos, participe de eventos e conecte-se.</p>
 
 <div class="busca">
-<input id="busca" placeholder="Buscar...">
+<input placeholder="Buscar...">
+</div>
 </div>
 
 <div class="stores">
+
 <div class="store">
-<img src="https://cdn-icons-png.flaticon.com/512/888/888857.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
 Google Play
 </div>
 
 <div class="store">
-<img src="https://cdn-icons-png.flaticon.com/512/731/731985.png">
+<img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
 App Store
-</div>
 </div>
 
 </div>
@@ -307,23 +313,40 @@ App Store
 <h2>Destaques</h2>
 <div class="grid grid-2" id="destaques"></div>
 
-<h2 style="margin-top:12px;">Recentes</h2>
+<h2 style="margin-top:14px;">Recentes</h2>
 <div class="grid grid-2" id="recentes"></div>
 
-<h2 style="margin-top:12px;">Eventos</h2>
+<h2 style="margin-top:14px;">Eventos</h2>
 <div class="grid grid-3" id="eventos"></div>
 
 <div class="footer">
-<h3>Volante App</h3>
+<div class="footer-grid">
+
+<div>
+<h3>Volante</h3>
 <p>Mais que carros, paixão.</p>
+<p>Plataforma para anúncios e eventos automotivos.</p>
+</div>
 
-<p>volante.app.br</p>
+<div>
+<h3>Institucional</h3>
+<a>Quem somos</a>
+<a>Políticas</a>
+<a>Termos de uso</a>
+</div>
 
+<div>
+<h3>Contato</h3>
 <p>contato@volante.app.br</p>
+<p>volante.app.br</p>
+</div>
 
-<p>Política de privacidade</p>
-<p>Termos de uso</p>
+<div>
+<h3>App</h3>
+<p>Disponível nas lojas</p>
+</div>
 
+</div>
 </div>
 
 </main>
@@ -348,7 +371,6 @@ const db=getFirestore(app);
 const auth=getAuth(app);
 
 let user=null;
-
 const nav=document.getElementById("nav");
 
 onAuthStateChanged(auth,u=>{
@@ -357,7 +379,7 @@ renderNav();
 document.getElementById("btnPublicar").style.display = u ? "block" : "none";
 });
 
-/* NAV DINÂMICO */
+/* NAV CORRIGIDO */
 
 function renderNav(){
 
@@ -383,24 +405,20 @@ nav.innerHTML=`
 /* LOGIN */
 
 document.getElementById("btnConta").onclick=async()=>{
-
 if(user){
 alert("Você já está logado");
 return;
 }
-
 const email=prompt("Email");
 const senha=prompt("Senha");
-
 try{
 await signInWithEmailAndPassword(auth,email,senha);
 }catch{
 alert("Erro login");
 }
-
 };
 
-/* LOAD */
+/* DADOS */
 
 async function load(){
 
@@ -442,11 +460,9 @@ return `
 }
 
 function render(a,e){
-
 document.getElementById("destaques").innerHTML=a.slice(0,4).map(card).join("");
 document.getElementById("recentes").innerHTML=a.slice(0,4).map(card).join("");
 document.getElementById("eventos").innerHTML=e.slice(0,9).map(cardEvento).join("");
-
 }
 
 load();
