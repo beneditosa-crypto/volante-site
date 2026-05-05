@@ -12,7 +12,7 @@ body {
 .app {
   width: min(1500px, 100%);
   margin: 0 auto;
-  padding: 14px 16px;
+  padding: 12px 14px;
 }
 
 /* TOPO */
@@ -41,8 +41,9 @@ body {
 .topo h1 {
   margin: 0;
   text-align: center;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 .top-actions {
@@ -67,7 +68,7 @@ body {
   color: white;
 }
 
-/* RESUMO / STATUS */
+/* RESUMO */
 
 .resumo {
   display: grid;
@@ -87,20 +88,19 @@ body {
   cursor: pointer;
   text-align: center;
   box-shadow: none;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 800;
 }
 
-.card-resumo span {
-  font-size: 13px;
-  color: #e5e7eb;
-  font-weight: 500;
+.card-resumo span,
+.card-resumo strong {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .card-resumo strong {
-  margin-left: 4px;
-  font-size: 16px;
-  color: #ffffff;
-  font-weight: 800;
+  margin-left: 5px;
 }
 
 .card-resumo.TODOS {
@@ -128,13 +128,17 @@ body {
   outline: 1px solid #94a3b8;
 }
 
-/* CABEÇALHO DA LISTA */
+/* GRID */
 
-.cabecalho-lista {
+.cabecalho-lista,
+.item {
   display: grid;
-  grid-template-columns: 90px 190px 260px 210px 170px 130px 90px 230px 150px;
+  grid-template-columns: 90px 190px 260px 210px 170px 130px 90px 190px 150px;
   gap: 8px;
   align-items: center;
+}
+
+.cabecalho-lista {
   padding: 7px 10px;
   margin-bottom: 6px;
   border-radius: 8px;
@@ -147,23 +151,17 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* LISTA */
-
 .lista {
   display: grid;
   gap: 6px;
 }
 
 .item {
-  display: grid;
-  grid-template-columns: 90px 190px 260px 210px 170px 130px 90px 230px 150px;
-  align-items: center;
-  gap: 8px;
   background: #17212c;
   border: 1px solid #263548;
   border-radius: 9px;
   padding: 8px 10px;
-  min-height: 58px;
+  min-height: 54px;
 }
 
 /* CAMPOS */
@@ -185,7 +183,7 @@ body {
   font-size: 13px;
   font-weight: 800;
   color: #f9fafb;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .descricao,
@@ -194,14 +192,8 @@ body {
 .data {
   font-size: 12px;
   color: #d1d5db;
-  line-height: 1.25;
+  line-height: 1.2;
 }
-
-.descricao {
-  color: #cbd5e1;
-}
-
-/* STATUS DA LINHA */
 
 .status {
   display: inline-flex;
@@ -237,17 +229,18 @@ body {
 
 .botoes {
   display: flex;
-  gap: 5px;
+  gap: 4px;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .botoes button {
   border: 0;
-  border-radius: 7px;
-  padding: 6px 8px;
+  border-radius: 6px;
+  padding: 5px 7px;
   color: white;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   cursor: pointer;
   white-space: nowrap;
