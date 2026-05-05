@@ -163,6 +163,11 @@ function aplicarBusca(listaBase) {
       item.nome,
       item.descricao,
       item.descrição,
+      item.detalhes,
+      item.observacao,
+      item.observação,
+      item.texto,
+      item.sobre,
       item.email,
       item.usuarioEmail,
       item.criadorEmail,
@@ -200,6 +205,7 @@ function aplicarOrdenacao(listaBase) {
 function obterValorOrdenacao(item, campo) {
   if (campo === "tipo") return item.tipo || "";
   if (campo === "titulo") return item.titulo || item.nome || "";
+
   if (campo === "email") {
     return (
       item.email ||
@@ -210,6 +216,7 @@ function obterValorOrdenacao(item, campo) {
       ""
     );
   }
+
   if (campo === "status") return normalizarStatus(item.status);
   if (campo === "data") return obterTempo(item);
 
@@ -244,7 +251,11 @@ function card(item) {
 
   const cidade = escapar(item.cidade || "");
   const estado = escapar(item.estado || "");
-  const local = cidade || estado ? `${cidade}${cidade && estado ? " / " : ""}${estado}` : "";
+
+  const local =
+    cidade || estado
+      ? `${cidade}${cidade && estado ? " / " : ""}${estado}`
+      : "";
 
   const data = formatarData(
     item.criadoEm ||
@@ -258,7 +269,7 @@ function card(item) {
   return `
     <article class="item">
       <div>
-        <span class="tipo ${tipoClasse}">${item.tipo}</span>
+        <span class="tipo ${tipoClasse}">${escapar(item.tipo)}</span>
       </div>
 
       <div class="titulo" onclick="abrirDetalhe('${item.id}', '${item.colecao}')">
@@ -299,6 +310,7 @@ window.abrirDetalhe = function (id, colecao) {
   const fotos = Array.isArray(item.fotos) ? item.fotos : [];
 
   const titulo = escapar(item.titulo || item.nome || "Sem título");
+
   const descricao = escapar(
     item.descricao ||
     item.descrição ||
@@ -321,6 +333,7 @@ window.abrirDetalhe = function (id, colecao) {
 
   const cidade = escapar(item.cidade || "");
   const estado = escapar(item.estado || "");
+
   const data = formatarData(
     item.criadoEm ||
     item.createdAt ||
@@ -355,6 +368,7 @@ window.abrirDetalhe = function (id, colecao) {
 };
 
 const fecharModal = document.getElementById("fecharModal");
+
 if (fecharModal) {
   fecharModal.onclick = function () {
     document.getElementById("modal")?.classList.add("hidden");
@@ -362,6 +376,7 @@ if (fecharModal) {
 }
 
 const modal = document.getElementById("modal");
+
 if (modal) {
   modal.addEventListener("click", (event) => {
     if (event.target === modal) {
@@ -408,7 +423,9 @@ window.inativar = async function (id, colecao) {
 };
 
 window.excluirDaBase = async function (id, colecao) {
-  const confirmar = confirm("Excluir definitivamente da base? Esta ação não pode ser desfeita.");
+  const confirmar = confirm(
+    "Excluir definitivamente da base? Esta ação não pode ser desfeita."
+  );
 
   if (!confirmar) return;
 
@@ -464,4 +481,4 @@ function escapar(valor) {
     .replaceAll("'", "&#039;");
 }
 
-// versao-ajuste-botoes-tipos-2026
+// versao-revisada-final-admin-2026
