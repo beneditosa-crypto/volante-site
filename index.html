@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Volante App</title>
-
-<!-- FAVICON -->
 <link rel="icon" href="./logo.png">
 
 <style>
@@ -37,26 +35,10 @@ align-items:center;
 padding:14px;
 }
 
-.marca{
-display:flex;
-align-items:center;
-gap:12px;
-}
+.logo{width:64px;}
 
-.logo{
-width:72px;
-height:72px;
-}
-
-.nome{
-font-size:26px;
-font-weight:900;
-}
-
-.slogan{
-font-size:12px;
-color:#7a7267;
-}
+.nome{font-size:24px;font-weight:900;}
+.slogan{font-size:12px;color:#7a7267;}
 
 .actions{
 display:flex;
@@ -66,7 +48,7 @@ gap:8px;
 .btn{
 border:none;
 border-radius:999px;
-padding:10px 16px;
+padding:10px 14px;
 font-weight:800;
 font-size:13px;
 }
@@ -74,95 +56,54 @@ font-size:13px;
 .btn-dark{background:#151515;color:#fff;}
 .btn-gold{background:#c9a24a;color:#151515;}
 
+/* HERO */
+
 main{
 max-width:1100px;
 margin:auto;
 padding:14px;
 }
 
-/* HERO */
-
 .hero{
 background:linear-gradient(135deg,#fffaf2,#efe6d8);
-border-radius:22px;
-padding:18px;
+border-radius:20px;
+padding:16px;
 margin-bottom:16px;
-display:flex;
-justify-content:space-between;
-gap:20px;
-flex-wrap:wrap;
 }
 
-.hero h1{
-font-size:26px;
-margin-bottom:6px;
-}
-
-.hero p{
-font-size:14px;
-color:#6f665d;
-}
+.hero h1{font-size:24px;margin-bottom:6px;}
+.hero p{font-size:14px;color:#6f665d;}
 
 .busca{
 margin-top:10px;
 background:#fff;
-border-radius:16px;
-padding:12px;
-display:flex;
+border-radius:14px;
+padding:10px;
 }
 
 .busca input{
 border:none;
 width:100%;
 outline:none;
-font-size:14px;
 }
 
-/* LOJAS */
+/* CTA APP */
 
-.stores{
+.cta{
+margin-top:14px;
 display:flex;
-flex-direction:column;
 gap:10px;
 }
 
 .store{
-display:flex;
-align-items:center;
-gap:10px;
+flex:1;
 background:#000;
 color:#fff;
 border-radius:12px;
-padding:10px 14px;
+padding:10px;
+text-align:center;
+font-weight:800;
 font-size:13px;
-font-weight:800;
-}
-
-.store img{
-width:22px;
-}
-
-/* NAV */
-
-.nav{
-display:flex;
-gap:8px;
-overflow:auto;
-margin:14px 0;
-}
-
-.nav button{
-padding:8px 12px;
-border-radius:999px;
-border:1px solid #ddd;
-background:#fff;
-font-size:12px;
-font-weight:800;
-}
-
-.nav .active{
-background:#151515;
-color:#fff;
 }
 
 /* GRID */
@@ -178,26 +119,18 @@ gap:12px;
 /* CARD */
 
 .card{
-background:#fff;
-border-radius:16px;
-overflow:hidden;
-border:1px solid #eee;
+cursor:pointer;
 }
 
 .card img{
 width:100%;
-aspect-ratio:4/3;
+aspect-ratio:1/1;
 object-fit:cover;
+border-radius:14px;
 }
 
 .card-body{
-padding:10px;
-}
-
-.tag{
-font-size:10px;
-font-weight:900;
-color:#b58a2f;
+padding:6px 2px;
 }
 
 .title{
@@ -212,49 +145,72 @@ color:#6f665d;
 
 .price{
 font-weight:900;
-margin-top:4px;
 }
 
-/* FOOTER */
+/* MODAL */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-box{
+background:#fff;
+border-radius:16px;
+max-width:400px;
+width:100%;
+padding:16px;
+}
+
+.modal img{
+width:100%;
+border-radius:12px;
+margin-bottom:10px;
+}
+
+.cta-login{
+margin-top:12px;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.cta-login button{
+border:none;
+padding:10px;
+border-radius:12px;
+font-weight:900;
+}
 
 .footer{
-margin-top:30px;
+margin-top:20px;
 background:#1a1a1a;
 color:#fff;
-padding:20px;
-border-radius:18px;
+padding:16px;
+border-radius:16px;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-.footer h3{
-margin-bottom:8px;
-}
-
-.footer p, .footer a{
+.footer p{
 font-size:12px;
 color:#ccc;
-text-decoration:none;
-display:block;
 margin:4px 0;
 }
 
-/* RESPONSIVO */
+/* DESKTOP */
 
 @media(min-width:800px){
-
 .grid-2{grid-template-columns:repeat(4,1fr);}
 .grid-3{grid-template-columns:repeat(6,1fr);}
-
-.footer-grid{
-grid-template-columns:repeat(4,1fr);
 }
 
-}
 </style>
 </head>
 
@@ -263,17 +219,14 @@ grid-template-columns:repeat(4,1fr);
 <header>
 <div class="topo">
 
-<div class="marca">
-<img src="./logo.png" class="logo">
 <div>
 <div class="nome">Volante</div>
 <div class="slogan">Mais que carros, paixão</div>
 </div>
-</div>
 
 <div class="actions">
-<button class="btn btn-gold" id="btnPublicar" style="display:none;">Publicar</button>
-<button class="btn btn-dark" id="btnConta">Entrar</button>
+<button class="btn btn-gold">Baixar App</button>
+<button class="btn btn-dark">Entrar</button>
 </div>
 
 </div>
@@ -282,71 +235,35 @@ grid-template-columns:repeat(4,1fr);
 <main>
 
 <div class="hero">
-
-<div>
 <h1>Clássicos e eventos em um só lugar</h1>
-<p>Encontre veículos antigos, participe de eventos e conecte-se.</p>
+<p>Explore anúncios e descubra eventos.</p>
 
 <div class="busca">
 <input placeholder="Buscar...">
 </div>
+
+<div class="cta">
+<div class="store">Google Play</div>
+<div class="store">App Store</div>
 </div>
-
-<div class="stores">
-
-<div class="store">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
-Google Play
 </div>
-
-<div class="store">
-<img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
-App Store
-</div>
-
-</div>
-
-</div>
-
-<div class="nav" id="nav"></div>
 
 <h2>Destaques</h2>
 <div class="grid grid-2" id="destaques"></div>
 
-<h2 style="margin-top:14px;">Recentes</h2>
-<div class="grid grid-2" id="recentes"></div>
-
 <h2 style="margin-top:14px;">Eventos</h2>
 <div class="grid grid-3" id="eventos"></div>
 
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box" id="modalContent"></div>
+</div>
+
 <div class="footer">
-<div class="footer-grid">
-
-<div>
-<h3>Volante</h3>
-<p>Mais que carros, paixão.</p>
-<p>Plataforma para anúncios e eventos automotivos.</p>
-</div>
-
-<div>
-<h3>Institucional</h3>
-<a>Quem somos</a>
-<a>Políticas</a>
-<a>Termos de uso</a>
-</div>
-
-<div>
-<h3>Contato</h3>
+<p>Volante App</p>
 <p>contato@volante.app.br</p>
 <p>volante.app.br</p>
-</div>
-
-<div>
-<h3>App</h3>
-<p>Disponível nas lojas</p>
-</div>
-
-</div>
+<p>Políticas • Termos • Quem somos</p>
 </div>
 
 </main>
@@ -355,7 +272,6 @@ App Store
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
 apiKey:"AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
@@ -368,57 +284,30 @@ appId:"1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
 
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
-const auth=getAuth(app);
 
-let user=null;
-const nav=document.getElementById("nav");
+const modal=document.getElementById("modal");
 
-onAuthStateChanged(auth,u=>{
-user=u;
-renderNav();
-document.getElementById("btnPublicar").style.display = u ? "block" : "none";
-});
+function abrirModal(item){
 
-/* NAV CORRIGIDO */
+document.getElementById("modalContent").innerHTML=`
+<img src="${item.fotos?.[0]||""}">
+<h3>${item.titulo||""}</h3>
+<p>${item.cidade||""}</p>
 
-function renderNav(){
+<div class="cta-login">
+<button style="background:#c9a24a;">Criar conta</button>
+<button style="background:#151515;color:#fff;">Baixar app</button>
+</div>
 
-if(!user){
-nav.innerHTML=`
-<button class="active">Início</button>
-<button>Quem somos</button>
-<button>Políticas</button>
-<button>Contato</button>
+<p style="font-size:12px;color:#777;margin-top:10px;">
+Para ver contato e falar com o anunciante, entre no app.
+</p>
 `;
-}else{
-nav.innerHTML=`
-<button class="active">Início</button>
-<button>Meus Anúncios</button>
-<button>Meus Eventos</button>
-<button>Mensagens</button>
-<button>Conta</button>
-`;
+
+modal.style.display="flex";
 }
 
-}
-
-/* LOGIN */
-
-document.getElementById("btnConta").onclick=async()=>{
-if(user){
-alert("Você já está logado");
-return;
-}
-const email=prompt("Email");
-const senha=prompt("Senha");
-try{
-await signInWithEmailAndPassword(auth,email,senha);
-}catch{
-alert("Erro login");
-}
-};
-
-/* DADOS */
+modal.onclick=()=>modal.style.display="none";
 
 async function load(){
 
@@ -428,41 +317,29 @@ const eSnap=await getDocs(query(collection(db,"eventos"),where("status","==","AT
 const anuncios=aSnap.docs.map(d=>d.data());
 const eventos=eSnap.docs.map(d=>d.data());
 
-render(anuncios,eventos);
-
-}
-
-function card(a){
-return `
-<div class="card">
+document.getElementById("destaques").innerHTML=
+anuncios.slice(0,8).map(a=>`
+<div class="card" onclick='abrirModal(${JSON.stringify(a)})'>
 <img src="${a.fotos?.[0]||""}">
 <div class="card-body">
-<div class="tag">Anúncio</div>
 <div class="title">${a.titulo||""}</div>
 <div class="meta">${a.cidade||""}</div>
 <div class="price">${a.preco||""}</div>
 </div>
 </div>
-`;
-}
+`).join("");
 
-function cardEvento(e){
-return `
-<div class="card">
+document.getElementById("eventos").innerHTML=
+eventos.slice(0,6).map(e=>`
+<div class="card" onclick='abrirModal(${JSON.stringify(e)})'>
 <img src="${e.fotos?.[0]||""}">
 <div class="card-body">
-<div class="tag">Evento</div>
 <div class="title">${e.titulo||""}</div>
 <div class="meta">${e.cidade||""}</div>
 </div>
 </div>
-`;
-}
+`).join("");
 
-function render(a,e){
-document.getElementById("destaques").innerHTML=a.slice(0,4).map(card).join("");
-document.getElementById("recentes").innerHTML=a.slice(0,4).map(card).join("");
-document.getElementById("eventos").innerHTML=e.slice(0,9).map(cardEvento).join("");
 }
 
 load();
