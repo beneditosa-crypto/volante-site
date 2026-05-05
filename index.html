@@ -3,446 +3,406 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Volante App</title>
-  <meta name="description" content="Volante App — anúncios e eventos para apaixonados por veículos clássicos." />
-  <link rel="icon" href="/favicon.png" type="image/png" />
 
   <style>
-    :root {
-      --background: #ffffff;
-      --surface: #ffffff;
-      --surface-soft: #f3f4f6;
-      --text: #050505;
-      --text-muted: #6b7280;
-      --border: #e5e7eb;
-      --primary: #1e3a8a;
-      --primary-dark: #172554;
-      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    }
-
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f4ee;
+      color: #1f2933;
     }
 
     .page {
       width: 100%;
       min-height: 100vh;
-      overflow-x: hidden;
+      padding-bottom: 40px;
     }
 
-    .container {
-      width: min(100%, 1480px);
+    header {
+      padding: 22px 18px 14px;
+      background: #f7f4ee;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .topo {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 26px 30px 60px;
-    }
-
-    .topbar {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 34px;
+      gap: 14px;
     }
 
-    .brand {
+    .marca {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       min-width: 0;
     }
 
-    .brand-logo {
-      width: 60px;
-      height: 60px;
+    .logo {
+      width: 58px;
+      height: 58px;
       object-fit: contain;
-      flex: 0 0 auto;
+      flex-shrink: 0;
     }
 
-    .brand-name {
-      font-size: 25px;
-      font-weight: 950;
-      letter-spacing: -0.05em;
+    .marca-texto {
+      min-width: 0;
+    }
+
+    .nome {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #151515;
       line-height: 1;
     }
 
-    .brand-slogan {
-      margin-top: 6px;
+    .slogan {
+      margin-top: 5px;
       font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 800;
+      color: #6b6257;
+      font-weight: 500;
     }
 
-    .top-actions {
+    .btn-conta {
+      border: none;
+      background: #151515;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .hero {
+      background: #fffaf2;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.8px;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: #6b6257;
+      line-height: 1.45;
+      max-width: 640px;
+    }
+
+    .busca-box {
+      margin-top: 18px;
       display: flex;
       align-items: center;
+      background: #fff;
+      border-radius: 18px;
+      padding: 12px 14px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       gap: 10px;
     }
 
-    .icon-button {
-      width: 54px;
-      height: 54px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      color: #111827;
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
+    .busca-box span {
+      font-size: 18px;
     }
 
-    .login-button {
-      min-width: 98px;
-      height: 54px;
-      padding: 0 24px;
-      border-radius: 20px;
-      border: 0;
-      background: var(--primary);
-      color: #ffffff;
-      font-weight: 950;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .search-wrap {
-      width: min(100%, 900px);
-      margin-bottom: 34px;
-    }
-
-    .search {
+    #busca {
       width: 100%;
-      height: 62px;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      color: var(--text);
-      padding: 0 22px;
+      border: none;
       outline: none;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .search::placeholder {
-      color: #9ca3af;
-      font-weight: 800;
-    }
-
-    .section {
-      margin-top: 34px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 26px;
-      font-weight: 950;
-      letter-spacing: -0.05em;
-    }
-
-    .section-link {
-      color: var(--primary);
+      background: transparent;
       font-size: 15px;
-      font-weight: 950;
+      color: #111;
+    }
+
+    .secao {
+      margin-top: 28px;
+    }
+
+    .secao-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .secao h2 {
+      font-size: 22px;
+      color: #151515;
+      letter-spacing: -0.4px;
+    }
+
+    .contador {
+      font-size: 13px;
+      color: #8a8177;
       white-space: nowrap;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      gap: 14px;
+    }
+
+    .grid.destaques,
+    .grid.recentes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.eventos {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .card {
-      min-width: 0;
+      background: #fff;
       border-radius: 22px;
       overflow: hidden;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
     }
 
-    .ad-card {
-      height: 276px;
-    }
-
-    .event-card {
-      height: 230px;
-    }
-
-    .card-image {
+    .foto {
       width: 100%;
-      height: 100%;
-      background: #f3f4f6;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
+      background: #e8e1d7;
       display: block;
     }
 
-    .placeholder {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      background: #f3f4f6;
-      color: var(--primary);
-      font-weight: 950;
-      font-size: 44px;
+    .card-body {
+      padding: 13px;
     }
 
-    .overlay {
-      position: absolute;
-      inset: auto 0 0 0;
-      padding: 46px 16px 16px;
-      color: #ffffff;
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.72),
-        rgba(0, 0, 0, 0.34),
-        rgba(0, 0, 0, 0)
-      );
-    }
-
-    .card-title {
-      font-size: 20px;
-      line-height: 1.08;
-      font-weight: 950;
-      letter-spacing: -0.04em;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .card-meta {
-      margin-top: 5px;
-      font-size: 13px;
-      font-weight: 850;
-      color: #ffffff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .card-price {
-      margin-top: 6px;
-      font-size: 14px;
-      font-weight: 950;
-      color: #ffffff;
-    }
-
-    .event-date {
-      position: absolute;
-      left: 14px;
-      top: 14px;
-      z-index: 2;
-      padding: 7px 10px;
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.92);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 950;
-      box-shadow: 0 8px 20px rgba(15,23,42,0.14);
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-      min-height: 120px;
-      border-radius: 22px;
-      border: 1px dashed var(--border);
-      background: var(--surface-soft);
-      display: grid;
-      place-items: center;
-      color: var(--text-muted);
+      background: #f1ece3;
+      color: #6f5d42;
+      font-size: 11px;
       font-weight: 800;
-      text-align: center;
-      padding: 20px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
 
-    .footer {
-      margin-top: 56px;
-      padding-top: 26px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--text-muted);
+    .titulo {
+      font-size: 15px;
+      font-weight: 800;
+      color: #151515;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .meta {
       font-size: 13px;
-      font-weight: 700;
+      color: #6b6257;
+      line-height: 1.35;
     }
 
-    @media (max-width: 1100px) {
-      .grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    .preco {
+      margin-top: 9px;
+      font-size: 15px;
+      font-weight: 900;
+      color: #151515;
+    }
+
+    .vazio {
+      background: #fff;
+      border-radius: 20px;
+      padding: 18px;
+      color: #7b7167;
+      font-size: 14px;
+      border: 1px dashed rgba(0, 0, 0, 0.14);
+    }
+
+    footer {
+      max-width: 1120px;
+      margin: 34px auto 0;
+      padding: 0 18px;
+      color: #8a8177;
+      font-size: 13px;
     }
 
     @media (max-width: 760px) {
-      .container {
-        padding: 20px 16px 46px;
+      header {
+        padding: 16px 14px 12px;
       }
 
-      .topbar {
-        align-items: flex-start;
+      .logo {
+        width: 48px;
+        height: 48px;
       }
 
-      .brand-logo {
-        width: 52px;
-        height: 52px;
+      .nome {
+        font-size: 20px;
       }
 
-      .brand-name {
-        font-size: 22px;
+      .slogan {
+        font-size: 12px;
       }
 
-      .brand-slogan {
+      .btn-conta {
+        padding: 10px 14px;
         font-size: 13px;
       }
 
-      .icon-button {
-        display: none;
+      main {
+        padding: 14px;
       }
 
-      .login-button {
-        min-width: 84px;
-        height: 48px;
-        border-radius: 17px;
-        padding: 0 18px;
+      .hero {
+        padding: 18px;
+        border-radius: 24px;
       }
 
-      .search {
-        height: 58px;
-        border-radius: 20px;
+      .hero h1 {
+        font-size: 25px;
       }
 
-      .grid {
+      .grid.destaques,
+      .grid.recentes {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
       }
 
-      .ad-card {
-        height: 220px;
+      .grid.eventos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .event-card {
-        height: 205px;
+      .card {
+        border-radius: 18px;
       }
 
-      .section-title {
-        font-size: 23px;
+      .card-body {
+        padding: 10px;
       }
 
-      .card-title {
-        font-size: 17px;
+      .titulo {
+        font-size: 13px;
+      }
+
+      .meta,
+      .preco {
+        font-size: 12px;
+      }
+
+      .tag {
+        font-size: 9px;
+        padding: 4px 7px;
       }
     }
 
-    @media (max-width: 440px) {
-      .grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+      .grid.destaques,
+      .grid.recentes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .ad-card,
-      .event-card {
-        height: 240px;
+      .grid.eventos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .secao h2 {
+        font-size: 19px;
+      }
+
+      .contador {
+        font-size: 11px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="page">
-    <div class="container">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="Voltar para a home">
-          <img class="brand-logo" src="/logo.png" alt="Volante App" />
-          <div>
-            <div class="brand-name">Volante App</div>
-            <div class="brand-slogan">Mais que carros, uma paixão</div>
+  <div class="page">
+    <header>
+      <div class="topo">
+        <div class="marca">
+          <img src="./logo.png" alt="Volante App" class="logo" />
+          <div class="marca-texto">
+            <div class="nome">Volante</div>
+            <div class="slogan">Mais que carros, paixão</div>
           </div>
-        </a>
-
-        <div class="top-actions">
-          <button class="icon-button" type="button" aria-label="Favoritos">♡</button>
-          <a class="login-button" id="loginLink" href="/conta.html">Entrar</a>
         </div>
-      </header>
 
-      <div class="search-wrap">
-        <input
-          class="search"
-          id="busca"
-          type="search"
-          placeholder="Buscar por modelo, cidade, marca..."
-          autocomplete="off"
-        />
+        <button class="btn-conta" id="btnConta">Entrar / Conta</button>
       </div>
+    </header>
 
-      <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">Destaques</h2>
-          <a class="section-link" href="#recentes">Ver todos</a>
+    <main>
+      <section class="hero">
+        <h1>Clássicos, antigos e eventos em um só lugar.</h1>
+        <p>
+          Encontre veículos especiais, acompanhe novidades e descubra eventos para quem vive a cultura automotiva.
+        </p>
+
+        <div class="busca-box">
+          <span>⌕</span>
+          <input
+            id="busca"
+            type="search"
+            placeholder="Buscar por modelo, cidade, estado..."
+          />
         </div>
-        <div class="grid" id="destaques"></div>
       </section>
 
-      <section class="section" id="recentes">
-        <div class="section-head">
-          <h2 class="section-title">Recentes</h2>
-          <a class="section-link" href="#recentes">Ver todos</a>
+      <section class="secao">
+        <div class="secao-header">
+          <h2>Destaques</h2>
+          <span class="contador" id="contadorDestaques"></span>
         </div>
-        <div class="grid" id="recentesLista"></div>
+        <div class="grid destaques" id="gridDestaques"></div>
       </section>
 
-      <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">Eventos</h2>
-          <a class="section-link" href="#eventos">Ver eventos</a>
+      <section class="secao">
+        <div class="secao-header">
+          <h2>Recentes</h2>
+          <span class="contador" id="contadorRecentes"></span>
         </div>
-        <div class="grid" id="eventos"></div>
+        <div class="grid recentes" id="gridRecentes"></div>
       </section>
 
-      <footer class="footer">
-        <span>© <span id="ano"></span> Volante App</span>
-        <span>volante.app.br</span>
-      </footer>
-    </div>
-  </main>
+      <section class="secao">
+        <div class="secao-header">
+          <h2>Eventos</h2>
+          <span class="contador" id="contadorEventos"></span>
+        </div>
+        <div class="grid eventos" id="gridEventos"></div>
+      </section>
+    </main>
+
+    <footer>
+      Volante App © 2026
+    </footer>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -453,10 +413,11 @@
       query,
       where
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
     import {
       getAuth,
-      onAuthStateChanged
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
@@ -465,7 +426,7 @@
       projectId: "clube-da-caminhonete-be770",
       storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
       messagingSenderId: "559157035885",
-      appId: "1:559157035885:web:7b01f7d15a0b5a8c6f4b6f"
+      appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -473,242 +434,246 @@
     const auth = getAuth(app);
 
     const buscaInput = document.getElementById("busca");
-    const destaquesEl = document.getElementById("destaques");
-    const recentesEl = document.getElementById("recentesLista");
-    const eventosEl = document.getElementById("eventos");
-    const loginLink = document.getElementById("loginLink");
+    const btnConta = document.getElementById("btnConta");
+
+    const gridDestaques = document.getElementById("gridDestaques");
+    const gridRecentes = document.getElementById("gridRecentes");
+    const gridEventos = document.getElementById("gridEventos");
+
+    const contadorDestaques = document.getElementById("contadorDestaques");
+    const contadorRecentes = document.getElementById("contadorRecentes");
+    const contadorEventos = document.getElementById("contadorEventos");
 
     let anuncios = [];
     let eventos = [];
+    let usuarioAtual = null;
 
-    document.getElementById("ano").textContent = new Date().getFullYear();
+    onAuthStateChanged(auth, (user) => {
+      usuarioAtual = user;
+      btnConta.textContent = user ? "Conta / Sair" : "Entrar / Conta";
+    });
 
-    buscaInput.addEventListener("input", render);
+    btnConta.addEventListener("click", async () => {
+      if (usuarioAtual) {
+        await signOut(auth);
+        return;
+      }
 
-    onAuthStateChanged(auth, (usuario) => {
-      if (usuario) {
-        loginLink.textContent = "Conta";
-        loginLink.href = "/conta.html";
-      } else {
-        loginLink.textContent = "Entrar";
-        loginLink.href = "/conta.html";
+      const email = prompt("Digite seu e-mail:");
+      if (!email) return;
+
+      const senha = prompt("Digite sua senha:");
+      if (!senha) return;
+
+      try {
+        await signInWithEmailAndPassword(auth, email.trim(), senha);
+      } catch (error) {
+        alert("Não foi possível entrar. Verifique e-mail e senha.");
       }
     });
 
-    function texto(valor) {
-      return String(valor || "").trim();
-    }
+    buscaInput.addEventListener("input", renderizarTudo);
 
     function normalizar(valor) {
-      return texto(valor).toLowerCase();
+      return String(valor || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
     }
 
-    function fotoPrincipal(item) {
+    function getImagem(item) {
       if (Array.isArray(item.fotos) && item.fotos.length > 0) return item.fotos[0];
       if (Array.isArray(item.imagens) && item.imagens.length > 0) return item.imagens[0];
       if (item.foto) return item.foto;
       if (item.imagem) return item.imagem;
+      if (item.imageUrl) return item.imageUrl;
       return "";
     }
 
-    function formatarPreco(valor) {
-      const numero = Number(valor);
-
-      if (!numero || Number.isNaN(numero)) {
-        return "Consultar";
-      }
-
-      return numero.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-        maximumFractionDigits: 0
-      });
-    }
-
-    function formatarData(valor) {
-      if (!valor) return "";
-
-      try {
-        if (valor.toDate) {
-          return valor.toDate().toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "short"
-          });
-        }
-
-        const data = new Date(valor);
-
-        if (!Number.isNaN(data.getTime())) {
-          return data.toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "short"
-          });
-        }
-      } catch (erro) {}
-
-      return texto(valor);
-    }
-
-    function dataOrdenacao(item) {
-      const campos = [
-        item.destaqueEm,
-        item.atualizadoEm,
-        item.updatedAt,
-        item.criadoEm,
-        item.createdAt,
-        item.data,
-        item.dataEvento
-      ];
-
-      for (const campo of campos) {
-        if (!campo) continue;
-
-        if (campo.toDate) return campo.toDate().getTime();
-
-        const data = new Date(campo);
-        if (!Number.isNaN(data.getTime())) return data.getTime();
-      }
-
+    function getDataMs(item) {
+      if (item.data?.seconds) return item.data.seconds * 1000;
+      if (item.criadoEm?.seconds) return item.criadoEm.seconds * 1000;
+      if (item.createdAt?.seconds) return item.createdAt.seconds * 1000;
+      if (item.atualizadoEm?.seconds) return item.atualizadoEm.seconds * 1000;
       return 0;
     }
 
-    function filtrar(lista) {
+    function formatarPreco(valor) {
+      if (!valor) return "";
+      const numero = Number(String(valor).replace(/\D/g, ""));
+      if (!numero) return String(valor);
+      return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function textoLocal(item) {
+      const cidade = item.cidade || "";
+      const estado = item.estado || item.uf || "";
+      if (cidade && estado) return `${cidade} - ${estado}`;
+      return cidade || estado || "";
+    }
+
+    function filtrarLista(lista) {
       const termo = normalizar(buscaInput.value);
 
       if (!termo) return lista;
 
       return lista.filter((item) => {
-        const base = [
+        const texto = normalizar([
           item.titulo,
-          item.descricao,
           item.marca,
           item.modelo,
+          item.descricao,
           item.cidade,
           item.estado,
-          item.local,
+          item.uf,
           item.nome
-        ].map(normalizar).join(" ");
+        ].join(" "));
 
-        return base.includes(termo);
+        return texto.includes(termo);
       });
     }
 
-    function cardAnuncio(item) {
-      const imagem = fotoPrincipal(item);
-      const titulo = texto(item.titulo) || "Veículo anunciado";
-      const marca = texto(item.marca);
-      const modelo = texto(item.modelo);
-      const ano = texto(item.ano || item.anoFabricacao);
-      const meta = [marca, modelo].filter(Boolean).join(" ");
-      const linhaMeta = [meta, ano].filter(Boolean).join(" • ");
+    function criarCardAnuncio(item) {
+      const imagem = getImagem(item);
+      const titulo = item.titulo || `${item.marca || ""} ${item.modelo || ""}`.trim() || "Anúncio";
+      const local = textoLocal(item);
+      const ano = item.ano || item.anoFabricacao || "";
+      const preco = formatarPreco(item.preco);
 
       return `
-        <article class="card ad-card">
-          <div class="card-image">
-            ${
-              imagem
-                ? `<img src="${imagem}" alt="${titulo}" loading="lazy" />`
-                : `<div class="placeholder">V</div>`
-            }
-            <div class="overlay">
-              <div class="card-title">${titulo}</div>
-              <div class="card-meta">${linhaMeta || "Veículo clássico"}</div>
-              <div class="card-price">${formatarPreco(item.preco)}</div>
-            </div>
+        <article class="card">
+          ${
+            imagem
+              ? `<img class="foto" src="${imagem}" alt="${titulo}" />`
+              : `<div class="foto"></div>`
+          }
+          <div class="card-body">
+            <div class="tag">Anúncio</div>
+            <div class="titulo">${titulo}</div>
+            <div class="meta">${[ano, local].filter(Boolean).join(" • ")}</div>
+            ${preco ? `<div class="preco">${preco}</div>` : ""}
           </div>
         </article>
       `;
     }
 
-    function cardEvento(item) {
-      const imagem = fotoPrincipal(item);
-      const titulo = texto(item.titulo || item.nome) || "Evento";
-      const data = formatarData(item.dataEvento || item.data);
-      const local = [item.cidade, item.estado].map(texto).filter(Boolean).join(" / ");
+    function criarCardEvento(item) {
+      const imagem = getImagem(item);
+      const titulo = item.titulo || item.nome || "Evento";
+      const local = textoLocal(item);
+      const data = item.dataTexto || item.dataEvento || item.data || "";
 
       return `
-        <article class="card event-card">
-          <div class="card-image">
-            ${
-              imagem
-                ? `<img src="${imagem}" alt="${titulo}" loading="lazy" />`
-                : `<div class="placeholder">V</div>`
-            }
-            ${data ? `<div class="event-date">${data}</div>` : ""}
-            <div class="overlay">
-              <div class="card-title">${titulo}</div>
-              <div class="card-meta">${local || "Evento Volante"}</div>
-            </div>
+        <article class="card">
+          ${
+            imagem
+              ? `<img class="foto" src="${imagem}" alt="${titulo}" />`
+              : `<div class="foto"></div>`
+          }
+          <div class="card-body">
+            <div class="tag">Evento</div>
+            <div class="titulo">${titulo}</div>
+            <div class="meta">${[data, local].filter(Boolean).join(" • ")}</div>
           </div>
         </article>
       `;
     }
 
-    function render() {
-      const anunciosFiltrados = filtrar(anuncios);
-      const eventosFiltrados = filtrar(eventos);
+    function renderizarGrid(elemento, lista, criador, vazioTexto) {
+      if (!lista.length) {
+        elemento.innerHTML = `<div class="vazio">${vazioTexto}</div>`;
+        return;
+      }
 
-      const destaques = anunciosFiltrados
-        .filter((item) => item.destaque === true || item.destaque === "true")
-        .slice(0, 8);
-
-      const fallbackDestaques = anunciosFiltrados.slice(0, 8);
-      const listaDestaques = destaques.length ? destaques : fallbackDestaques;
-
-      const idsDestaques = new Set(listaDestaques.map((item) => item.id));
-      const recentes = anunciosFiltrados
-        .filter((item) => !idsDestaques.has(item.id))
-        .slice(0, 8);
-
-      destaquesEl.innerHTML = listaDestaques.length
-        ? listaDestaques.map(cardAnuncio).join("")
-        : `<div class="empty">Nenhum anúncio aprovado encontrado.</div>`;
-
-      recentesEl.innerHTML = recentes.length
-        ? recentes.map(cardAnuncio).join("")
-        : `<div class="empty">Nenhum anúncio recente encontrado.</div>`;
-
-      eventosEl.innerHTML = eventosFiltrados.length
-        ? eventosFiltrados.slice(0, 12).map(cardEvento).join("")
-        : `<div class="empty">Nenhum evento aprovado encontrado.</div>`;
+      elemento.innerHTML = lista.map(criador).join("");
     }
 
-    async function carregarDados() {
+    function renderizarTudo() {
+      const anunciosFiltrados = filtrarLista(anuncios);
+      const eventosFiltrados = filtrarLista(eventos);
+
+      const anunciosOrdenados = [...anunciosFiltrados].sort((a, b) => getDataMs(b) - getDataMs(a));
+      const eventosOrdenados = [...eventosFiltrados].sort((a, b) => getDataMs(b) - getDataMs(a));
+
+      const destaques = anunciosOrdenados.slice(0, 4);
+      const recentes = anunciosOrdenados.slice(0, 4);
+      const eventosTela = eventosOrdenados.slice(0, 9);
+
+      contadorDestaques.textContent = `${destaques.length} exibidos`;
+      contadorRecentes.textContent = `${recentes.length} exibidos`;
+      contadorEventos.textContent = `${eventosTela.length} exibidos`;
+
+      renderizarGrid(
+        gridDestaques,
+        destaques,
+        criarCardAnuncio,
+        "Nenhum destaque ativo encontrado."
+      );
+
+      renderizarGrid(
+        gridRecentes,
+        recentes,
+        criarCardAnuncio,
+        "Nenhum anúncio recente ativo encontrado."
+      );
+
+      renderizarGrid(
+        gridEventos,
+        eventosTela,
+        criarCardEvento,
+        "Nenhum evento ativo encontrado."
+      );
+    }
+
+    async function carregarAnuncios() {
+      const q = query(
+        collection(db, "anuncios"),
+        where("status", "==", "ATIVO")
+      );
+
+      const snap = await getDocs(q);
+
+      anuncios = snap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    }
+
+    async function carregarEventos() {
+      const q = query(
+        collection(db, "eventos"),
+        where("status", "==", "ATIVO")
+      );
+
+      const snap = await getDocs(q);
+
+      eventos = snap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    }
+
+    async function iniciar() {
       try {
-        const anunciosQuery = query(
-          collection(db, "anuncios"),
-          where("status", "==", "ATIVO")
-        );
-
-        const eventosQuery = query(
-          collection(db, "eventos"),
-          where("status", "==", "ATIVO")
-        );
-
-        const [anunciosSnap, eventosSnap] = await Promise.all([
-          getDocs(anunciosQuery),
-          getDocs(eventosQuery)
+        await Promise.all([
+          carregarAnuncios(),
+          carregarEventos()
         ]);
 
-        anuncios = anunciosSnap.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .sort((a, b) => dataOrdenacao(b) - dataOrdenacao(a));
+        renderizarTudo();
+      } catch (error) {
+        console.error(error);
 
-        eventos = eventosSnap.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .sort((a, b) => dataOrdenacao(b) - dataOrdenacao(a));
-
-        render();
-      } catch (erro) {
-        console.error("Erro ao carregar dados:", erro);
-
-        destaquesEl.innerHTML = `<div class="empty">Não foi possível carregar os destaques agora.</div>`;
-        recentesEl.innerHTML = `<div class="empty">Não foi possível carregar os recentes agora.</div>`;
-        eventosEl.innerHTML = `<div class="empty">Não foi possível carregar os eventos agora.</div>`;
+        gridDestaques.innerHTML = `<div class="vazio">Erro ao carregar anúncios.</div>`;
+        gridRecentes.innerHTML = `<div class="vazio">Erro ao carregar recentes.</div>`;
+        gridEventos.innerHTML = `<div class="vazio">Erro ao carregar eventos.</div>`;
       }
     }
 
-    carregarDados();
+    iniciar();
   </script>
 </body>
 </html>
