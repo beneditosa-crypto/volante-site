@@ -167,7 +167,12 @@ function card(item) {
 
   const cidade = escapar(item.cidade || "");
   const estado = escapar(item.estado || "");
-  const data = formatarData(item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao);
+  const data = formatarData(
+    item.criadoEm ||
+    item.createdAt ||
+    item.atualizadoEm ||
+    item.dataCriacao
+  );
 
   return `
     <article class="item">
@@ -258,7 +263,11 @@ function normalizarStatus(status) {
 }
 
 function obterTempo(item) {
-  const data = item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao;
+  const data =
+    item.criadoEm ||
+    item.createdAt ||
+    item.atualizadoEm ||
+    item.dataCriacao;
 
   if (data?.seconds) return data.seconds * 1000;
 
