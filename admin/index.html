@@ -2,27 +2,30 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Painel administrativo | Volante</title>
-  <link rel="stylesheet" href="./admin.css" />
-  <link rel="icon" href="../favicon.png" />
+
+  <link rel="stylesheet" href="./admin.css"/>
+  <link rel="icon" href="../favicon.png"/>
 </head>
 
 <body>
   <main class="app">
+
     <header class="topo">
-      <div class="titulo">
-        <img src="../logo.png" class="logo" alt="Volante" />
-        <div>
-          <p class="marca">VOLANTE</p>
-          <h1>Painel administrativo</h1>
-        </div>
+
+      <div class="topo-esquerda">
+        <img src="../logo.png" class="logo"/>
+        <span class="nome-app">Volante</span>
       </div>
 
-      <div class="acoes-topo">
-        <button id="btnAtualizar" class="btn-topo">Atualizar</button>
-        <button id="btnSair" class="btn-topo sair">Sair</button>
+      <h1 class="titulo-central">Painel administrativo</h1>
+
+      <div class="topo-direita">
+        <button id="btnAtualizar">Atualizar</button>
+        <button id="btnSair" class="sair">Sair</button>
       </div>
+
     </header>
 
     <section class="filtros">
@@ -35,7 +38,8 @@
 
     <section id="resumo" class="resumo"></section>
 
-    <section id="lista" class="lista"></section>
+    <section id="lista" class="tabela"></section>
+
   </main>
 
   <script type="module" src="./admin.js"></script>
