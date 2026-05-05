@@ -137,6 +137,7 @@ function contar(status) {
 }
 
 function card(item) {
+  const status = normalizarStatus(item.status);
   const fotos = Array.isArray(item.fotos) ? item.fotos : [];
 
   const titulo = escapar(item.titulo || item.nome || "Sem título");
@@ -163,23 +164,33 @@ function card(item) {
 
   const cidade = escapar(item.cidade || "");
   const estado = escapar(item.estado || "");
-  const data = formatarData(item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao);
+  const local = cidade || estado ? `${cidade}${cidade && estado ? " / " : ""}${estado}` : "";
+
+  const data = formatarData(
+    item.criadoEm ||
+    item.createdAt ||
+    item.atualizadoEm ||
+    item.dataCriacao
+  );
 
   return `
     <article class="item">
-      <div class="col-status">
+      <div>
         <span class="tipo">${item.tipo}</span>
       </div>
 
-      <div class="info">
-        <h3>${titulo}</h3>
-        <p class="descricao">${descricao}</p>
+      <div class="titulo">${titulo}</div>
 
-        <div class="meta">
-          <span><strong>Usuário:</strong> ${email}</span>
-          <span><strong>Local:</strong> ${cidade}${cidade && estado ? " / " : ""}${estado}</span>
-          <span><strong>Criado:</strong> ${data}</span>
-        </div>
+      <div class="descricao">${descricao}</div>
+
+      <div class="usuario">${email}</div>
+
+      <div class="local">${escapar(local)}</div>
+
+      <div class="data">${data}</div>
+
+      <div>
+        <span class="status ${status}">${status}</span>
       </div>
 
       <div class="botoes">
@@ -253,7 +264,11 @@ function normalizarStatus(status) {
 }
 
 function obterTempo(item) {
-  const data = item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao;
+  const data =
+    item.criadoEm ||
+    item.createdAt ||
+    item.atualizadoEm ||
+    item.dataCriacao;
 
   if (data?.seconds) return data.seconds * 1000;
 
