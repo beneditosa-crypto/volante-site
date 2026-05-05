@@ -84,7 +84,6 @@ async function carregar() {
   ];
 
   dados.sort((a, b) => obterTempo(b) - obterTempo(a));
-
   render();
 }
 
@@ -172,7 +171,7 @@ function card(item) {
 
   return `
     <article class="item">
-      <div class="col-tipo">
+      <div class="col-status">
         <span class="tipo">${item.tipo}</span>
         <span class="status ${status}">${status}</span>
       </div>
