@@ -106,28 +106,23 @@ function render() {
 function renderResumo() {
   resumo.innerHTML = `
     <button class="card-resumo TODOS ${filtroAtual === "TODOS" ? "ativo" : ""}" onclick="filtrarResumo('TODOS')">
-      <span>Total</span>
-      <strong>${dados.length}</strong>
+      <span>Total</span><strong>${dados.length}</strong>
     </button>
 
     <button class="card-resumo PENDENTE ${filtroAtual === "PENDENTE" ? "ativo" : ""}" onclick="filtrarResumo('PENDENTE')">
-      <span>Pendentes</span>
-      <strong>${contar("PENDENTE")}</strong>
+      <span>Pendentes</span><strong>${contar("PENDENTE")}</strong>
     </button>
 
     <button class="card-resumo DEVOLVIDO ${filtroAtual === "DEVOLVIDO" ? "ativo" : ""}" onclick="filtrarResumo('DEVOLVIDO')">
-      <span>Devolvidos</span>
-      <strong>${contar("DEVOLVIDO")}</strong>
+      <span>Devolvidos</span><strong>${contar("DEVOLVIDO")}</strong>
     </button>
 
     <button class="card-resumo ATIVO ${filtroAtual === "ATIVO" ? "ativo" : ""}" onclick="filtrarResumo('ATIVO')">
-      <span>Ativos</span>
-      <strong>${contar("ATIVO")}</strong>
+      <span>Ativos</span><strong>${contar("ATIVO")}</strong>
     </button>
 
     <button class="card-resumo INATIVO ${filtroAtual === "INATIVO" ? "ativo" : ""}" onclick="filtrarResumo('INATIVO')">
-      <span>Inativos</span>
-      <strong>${contar("INATIVO")}</strong>
+      <span>Inativos</span><strong>${contar("INATIVO")}</strong>
     </button>
   `;
 }
@@ -142,7 +137,6 @@ function contar(status) {
 }
 
 function card(item) {
-  const status = normalizarStatus(item.status);
   const fotos = Array.isArray(item.fotos) ? item.fotos : [];
 
   const titulo = escapar(item.titulo || item.nome || "Sem título");
@@ -153,6 +147,8 @@ function card(item) {
     item.detalhes ||
     item.observacao ||
     item.observação ||
+    item.texto ||
+    item.sobre ||
     ""
   );
 
@@ -167,18 +163,12 @@ function card(item) {
 
   const cidade = escapar(item.cidade || "");
   const estado = escapar(item.estado || "");
-  const data = formatarData(
-    item.criadoEm ||
-    item.createdAt ||
-    item.atualizadoEm ||
-    item.dataCriacao
-  );
+  const data = formatarData(item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao);
 
   return `
     <article class="item">
       <div class="col-status">
         <span class="tipo">${item.tipo}</span>
-        <span class="status ${status}">${status}</span>
       </div>
 
       <div class="info">
@@ -263,11 +253,7 @@ function normalizarStatus(status) {
 }
 
 function obterTempo(item) {
-  const data =
-    item.criadoEm ||
-    item.createdAt ||
-    item.atualizadoEm ||
-    item.dataCriacao;
+  const data = item.criadoEm || item.createdAt || item.atualizadoEm || item.dataCriacao;
 
   if (data?.seconds) return data.seconds * 1000;
 
