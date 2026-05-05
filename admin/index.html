@@ -1,3 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo</title>
+<link rel="icon" href="./favicon.png">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #0f1115;
+  color: #e5e7eb;
+  font-family: Arial, sans-serif;
+}
+
+.hidden { display: none !important; }
+
+.header {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: #1c1f24;
+  border-bottom: 1px solid #2a2f36;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 28px;
+}
+
+.header-title strong {
+  font-size: 15px;
+}
+
+.header-title span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.btn-update { background: #374151; color: white; padding:8px 12px;}
+.btn-logout { background: #b91c1c; color: white; padding:8px 12px;}
+
+.filtros {
+  display: flex;
+  gap: 6px;
+  padding: 10px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.filtros button {
+  font-size: 12px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #1f2937;
+  color: #d1d5db;
+}
+
+.filtros button.ativo {
+  background: #e5e7eb;
+  color: #111;
+}
+
+.wrapper {
+  padding: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 6px;
+  border-bottom: 1px solid #1f2937;
+  font-size: 13px;
+}
+
+.foto {
+  width: 60px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.tag {
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 999px;
+}
+
+.tipo { background:#374151; }
+
+.status-pendente { color:#facc15;}
+.status-ativo { color:#22c55e;}
+.status-recusado { color:#f87171;}
+.status-excluido { color:#9ca3af;}
+
+.acoes {
+  display: flex;
+  gap: 5px;
+}
+
+.acoes button {
+  height: 28px;
+  font-size: 11px;
+  padding: 0 8px;
+}
+
+.btn-ok { background:#15803d;color:white;}
+.btn-dev { background:#d97706;}
+.btn-del { background:#b91c1c;color:white;}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background:#1c1f24;
+  padding:16px;
+  border-radius:10px;
+  width:300px;
+}
+
+textarea {
+  width:100%;
+  height:80px;
+  margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <img src="./logo.png" class="logo">
+    <div class="header-title">
+      <strong>Volante App</strong><br>
+      <span>Painel Administrativo</span>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <button class="btn-update" onclick="carregar()">Atualizar</button>
+    <button class="btn-logout" onclick="logout()">Sair</button>
+  </div>
+</header>
+
+<div class="filtros">
+  <button onclick="filtrar('TODOS')" class="ativo">Todos</button>
+  <button onclick="filtrar('PENDENTE')">Pendentes</button>
+  <button onclick="filtrar('ATIVO')">Ativos</button>
+  <button onclick="filtrar('RECUSADO')">Recusados</button>
+  <button onclick="filtrar('EXCLUIDO')">Excluídos</button>
+</div>
+
+<div class="wrapper">
+<table>
+<tbody id="lista"></tbody>
+</table>
+</div>
+
+<div id="modal" class="modal hidden">
+<div class="modal-box">
+<h4>Motivo da devolução</h4>
+<textarea id="motivo"></textarea>
+<button onclick="confirmar()">Confirmar</button>
+</div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -34,16 +231,15 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  document.getElementById("adminEmail").innerText = user.email;
   carregar();
 });
 
-window.logout = async function () {
+window.logout = async () => {
   await signOut(auth);
   window.location.href = "/login.html";
 };
 
-window.filtrar = function (f) {
+window.filtrar = (f) => {
   filtro = f;
   render();
 };
@@ -54,102 +250,94 @@ async function carregar() {
 
   itens = [];
 
-  anuncios.forEach(d =>
-    itens.push({ ...d.data(), id: d.id, tipo: "Anúncio", colecao: "anuncios" })
-  );
-
-  eventos.forEach(d =>
-    itens.push({ ...d.data(), id: d.id, tipo: "Evento", colecao: "eventos" })
-  );
+  anuncios.forEach(d => itens.push({ ...d.data(), id: d.id, tipo: "Anúncio", colecao:"anuncios" }));
+  eventos.forEach(d => itens.push({ ...d.data(), id: d.id, tipo: "Evento", colecao:"eventos" }));
 
   render();
 }
 
-function pegarDescricao(d) {
-  return (
-    d.descricao ||
-    d.descricaoAnuncio ||
-    d.descricaoEvento ||
-    d.descricaoCompleta ||
-    d.texto ||
-    d.observacoes ||
-    d.desc ||
-    ""
-  );
+function pegarDescricao(d){
+  return d.descricao || d.texto || d.observacoes || d.desc || "";
 }
 
-function pegarUsuario(d) {
+function pegarUsuario(d){
   return d.usuarioEmail || d.email || d.emailUsuario || "-";
 }
 
-function render() {
-  const el = document.getElementById("lista");
-  el.innerHTML = "";
+function render(){
+  const el=document.getElementById("lista");
+  el.innerHTML="";
 
   itens
-    .filter(i => filtro === "TODOS" || (i.status || "PENDENTE") === filtro)
-    .forEach((i, idx) => {
-      const desc = pegarDescricao(i);
-      const curta = desc.length > 100 ? desc.substring(0, 100) + "..." : desc;
+    .filter(i=>filtro==="TODOS"||(i.status||"PENDENTE")===filtro)
+    .forEach((i,idx)=>{
 
-      el.innerHTML += `
-        <tr>
-          <td colspan="5" style="padding:10px;">
-            <div style="display:flex;align-items:center;gap:12px;">
-              <img src="${i.fotos?.[0] || i.imagem || ""}" class="foto">
+      const desc=pegarDescricao(i);
+      const curta=desc.length>100?desc.substring(0,100)+"...":desc;
 
-              <div style="flex:1;">
-                <div style="font-weight:bold">${i.titulo || "Sem título"}</div>
-                <div style="font-size:11px;color:#9ca3af">${pegarUsuario(i)}</div>
-                ${curta ? `<div style="font-size:12px;color:#cbd5e1">${curta}</div>` : ""}
+      el.innerHTML+=`
+      <tr>
+        <td colspan="5">
+          <div style="display:flex;gap:10px;align-items:center">
 
-                <div style="margin-top:6px;display:flex;gap:6px;">
-                  <span class="tag tipo">${i.tipo}</span>
-                  <span class="status-${(i.status || "pendente").toLowerCase()}">${i.status || "PENDENTE"}</span>
-                </div>
-              </div>
+            <img src="${i.fotos?.[0]||i.imagem||""}" class="foto">
 
-              <div class="acoes">
-                <button class="btn-ok" onclick="aprovar(${idx})">Aprovar</button>
-                <button class="btn-dev" onclick="devolver(${idx})">Devolver</button>
-                <button class="btn-del" onclick="excluir(${idx})">Excluir</button>
+            <div style="flex:1">
+              <div style="font-weight:bold">${i.titulo||"Sem título"}</div>
+              <div style="font-size:11px;color:#9ca3af">${pegarUsuario(i)}</div>
+              ${curta?`<div style="font-size:12px;color:#cbd5e1">${curta}</div>`:""}
+
+              <div style="margin-top:6px;display:flex;gap:6px;">
+                <span class="tag tipo">${i.tipo}</span>
+                <span class="status-${(i.status||"pendente").toLowerCase()}">${i.status||"PENDENTE"}</span>
               </div>
             </div>
-          </td>
-        </tr>
+
+            <div class="acoes">
+              <button class="btn-ok" onclick="aprovar(${idx})">Aprovar</button>
+              <button class="btn-dev" onclick="devolver(${idx})">Devolver</button>
+              <button class="btn-del" onclick="excluir(${idx})">Excluir</button>
+            </div>
+
+          </div>
+        </td>
+      </tr>
       `;
     });
 }
 
-window.aprovar = async function (i) {
-  const item = itens[i];
-  await updateDoc(doc(db, item.colecao, item.id), { status: "ATIVO" });
+window.aprovar = async(i)=>{
+  const item=itens[i];
+  await updateDoc(doc(db,item.colecao,item.id),{status:"ATIVO"});
   carregar();
 };
 
-window.devolver = function (i) {
-  atual = i;
+window.devolver = (i)=>{
+  atual=i;
   document.getElementById("modal").classList.remove("hidden");
 };
 
-window.confirmar = async function () {
-  const motivo = document.getElementById("motivo").value;
-  const item = itens[atual];
+window.confirmar = async()=>{
+  const motivo=document.getElementById("motivo").value;
+  const item=itens[atual];
 
-  await updateDoc(doc(db, item.colecao, item.id), {
-    status: "RECUSADO",
+  await updateDoc(doc(db,item.colecao,item.id),{
+    status:"RECUSADO",
     motivo,
-    motivoDevolucao: motivo
+    motivoDevolucao:motivo
   });
 
   document.getElementById("modal").classList.add("hidden");
-  document.getElementById("motivo").value = "";
+  document.getElementById("motivo").value="";
   carregar();
 };
 
-window.excluir = async function (i) {
-  const item = itens[i];
-  await updateDoc(doc(db, item.colecao, item.id), { status: "EXCLUIDO" });
+window.excluir = async(i)=>{
+  const item=itens[i];
+  await updateDoc(doc(db,item.colecao,item.id),{status:"EXCLUIDO"});
   carregar();
 };
 </script>
+
+</body>
+</html>
