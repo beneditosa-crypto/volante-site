@@ -101,8 +101,6 @@ h1 {
   gap: 20px;
 }
 
-/* INFO */
-
 .info {
   width: 65%;
 }
@@ -111,32 +109,41 @@ h1 {
   margin: 10px 0;
 }
 
-/* STATUS */
+/* TIPO */
 
-.status {
+.tipo {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
-  margin-right: 8px;
+  background: #1e3a8a;
+  margin-bottom: 6px;
 }
 
-/* CORES PADRÃO DO APP */
+/* STATUS GRANDE */
 
-.status.ATIVO {
+.status-grande {
+  margin: 10px 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.status-grande.ATIVO {
   background: #16a34a;
 }
 
-.status.PENDENTE {
+.status-grande.PENDENTE {
   background: #ca8a04;
 }
 
-.status.DEVOLVIDO {
+.status-grande.DEVOLVIDO {
   background: #ea580c;
 }
 
-.status.INATIVO {
+.status-grande.INATIVO {
   background: #4b5563;
 }
 
@@ -156,8 +163,6 @@ h1 {
   font-weight: bold;
 }
 
-/* CORES BOTÕES */
-
 .botoes button:nth-child(1) { background: #16a34a; color: white; }
 .botoes button:nth-child(2) { background: #f59e0b; color: white; }
 .botoes button:nth-child(3) { background: #6b7280; color: white; }
@@ -176,17 +181,5 @@ h1 {
   width: 140px;
   height: 100px;
   border-radius: 12px;
-  object-fit: cover; /* CORRIGE DISTORÇÃO */
-}
-
-/* MODAL */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-}
-
-.hidden {
-  display: none;
+  object-fit: cover;
 }
