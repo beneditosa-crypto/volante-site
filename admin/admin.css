@@ -15,8 +15,6 @@ body {
   padding: 24px 32px;
 }
 
-/* TOPO */
-
 .topo {
   display: grid;
   grid-template-columns: 220px 1fr 220px;
@@ -39,7 +37,6 @@ body {
 .nome-app {
   font-size: 18px;
   font-weight: 800;
-  color: #ffffff;
 }
 
 .titulo-central {
@@ -48,7 +45,6 @@ body {
   font-size: 40px;
   font-weight: 800;
   line-height: 1;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .topo-direita {
@@ -76,31 +72,7 @@ body {
   color: #ffffff;
 }
 
-/* FILTROS */
-
-.filtros {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.filtro {
-  border: none;
-  border-radius: 999px;
-  padding: 12px 22px;
-  background: #1c2a3a;
-  color: #e5e7eb;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.filtro.ativo {
-  background: #ffffff;
-  color: #111827;
-}
-
-/* RESUMO */
+/* RESUMO CLICÁVEL */
 
 .resumo {
   display: grid;
@@ -110,23 +82,49 @@ body {
 }
 
 .card-resumo {
-  background: #1c2a3a;
-  border-radius: 16px;
-  padding: 16px 20px;
-  min-height: 78px;
+  border: none;
+  border-radius: 18px;
+  padding: 18px 22px;
+  min-height: 88px;
+  text-align: left;
+  color: #ffffff;
+  cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .card-resumo span {
   display: block;
   font-size: 16px;
-  color: #d1d5db;
 }
 
 .card-resumo strong {
   display: block;
   margin-top: 4px;
-  font-size: 26px;
+  font-size: 28px;
+}
+
+.card-resumo.TODOS {
+  background: #1c2a3a;
+}
+
+.card-resumo.PENDENTE {
+  background: #ca8a04;
+}
+
+.card-resumo.DEVOLVIDO {
+  background: #ea580c;
+}
+
+.card-resumo.ATIVO {
+  background: #16a34a;
+}
+
+.card-resumo.INATIVO {
+  background: #6b7280;
+}
+
+.card-resumo.ativo {
+  outline: 3px solid #ffffff;
 }
 
 /* LISTA */
@@ -136,8 +134,6 @@ body {
   gap: 10px;
 }
 
-/* LINHA */
-
 .item {
   display: grid;
   grid-template-columns: 140px 1fr 260px 260px;
@@ -146,10 +142,7 @@ body {
   background: #1c2a3a;
   border-radius: 18px;
   padding: 16px 20px;
-  font-family: Arial, Helvetica, sans-serif;
 }
-
-/* COLUNA TIPO / STATUS */
 
 .col-tipo {
   display: flex;
@@ -159,9 +152,6 @@ body {
 }
 
 .tipo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 999px;
   padding: 7px 14px;
   font-size: 12px;
@@ -177,7 +167,6 @@ body {
   font-size: 12px;
   font-weight: 800;
   color: #ffffff;
-  cursor: pointer;
 }
 
 .status.ATIVO {
@@ -197,8 +186,6 @@ body {
   background: #6b7280;
 }
 
-/* INFORMAÇÕES */
-
 .info h3 {
   margin: 0 0 6px;
   font-size: 22px;
@@ -216,15 +203,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  color: #ffffff;
   font-size: 14px;
 }
-
-.meta strong {
-  font-weight: 800;
-}
-
-/* BOTÕES */
 
 .botoes {
   display: grid;
@@ -240,7 +220,6 @@ body {
   font-weight: 800;
   font-size: 15px;
   cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .btn-aprovar {
@@ -259,8 +238,6 @@ body {
   background: #dc2626;
 }
 
-/* FOTOS */
-
 .fotos {
   display: flex;
   justify-content: flex-end;
@@ -276,50 +253,10 @@ body {
   flex: 0 0 auto;
 }
 
-/* ESTADOS */
-
 .vazio {
   background: #1c2a3a;
   border-radius: 18px;
   padding: 28px;
   text-align: center;
   color: #cbd5e1;
-}
-
-/* RESPONSIVO */
-
-@media (max-width: 1000px) {
-  .app {
-    padding: 18px;
-  }
-
-  .topo {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .titulo-central {
-    text-align: left;
-    font-size: 32px;
-  }
-
-  .topo-direita {
-    justify-content: flex-start;
-  }
-
-  .resumo {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .item {
-    grid-template-columns: 1fr;
-  }
-
-  .botoes {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-  }
-
-  .fotos {
-    justify-content: flex-start;
-  }
 }
