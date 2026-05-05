@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login Admin - Volante</title>
-<link rel="icon" href="../favicon.png">
+<link rel="icon" href="./favicon.png">
 
 <style>
 * { box-sizing: border-box; }
@@ -102,7 +102,7 @@ button {
 
 <div class="card">
   <div class="header-login">
-    <img src="../logo.png" class="logo" alt="Volante">
+    <img src="./logo.png" class="logo" alt="Volante">
 
     <div class="header-text">
       <strong>Volante App</strong>
@@ -160,7 +160,7 @@ window.login = async function () {
 
   try {
     await signInWithEmailAndPassword(auth, email, senha);
-    window.location.href = "/admin/index.html";
+    window.location.href = "/index.html";
   } catch (e) {
     console.error(e);
     mostrarErro("Não foi possível entrar. Verifique email e senha.");
