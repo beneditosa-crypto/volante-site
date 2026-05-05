@@ -1,214 +1,135 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
   background: #0f1720;
   color: #e5e7eb;
 }
 
 .app {
-  width: 100%;
   max-width: 1500px;
-  margin: 0 auto;
+  margin: auto;
   padding: 12px;
 }
 
 /* TOPO */
-
 .topo {
   display: grid;
-  grid-template-columns: 200px 1fr 200px;
+  grid-template-columns: 200px 1fr 300px;
   align-items: center;
-  margin-bottom: 12px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 900;
-}
-
-.logo {
-  width: 60px;
-}
-
-.topo h1 {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 900;
-  margin: 0;
-}
+.logo { width: 60px; }
 
 .top-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 6px;
+  justify-content: flex-end;
 }
 
-.top-actions button {
-  padding: 6px 10px;
+.top-actions input {
+  padding: 6px;
   border-radius: 6px;
   border: none;
-  font-size: 11px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.top-actions .sair {
-  background: #991b1b;
-  color: white;
 }
 
 /* RESUMO */
-
 .resumo {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 6px;
+  margin: 10px 0;
 }
 
 .card-resumo {
-  padding: 10px;
-  border-radius: 6px;
-  background: #17212c;
-  border-left: 4px solid #64748b;
+  padding: 8px;
   text-align: center;
-  font-weight: 900;
+  background: #17212c;
+  border-left: 4px solid gray;
   cursor: pointer;
 }
 
-.card-resumo span {
-  display: block;
-  font-size: 12px;
-}
-
-.card-resumo strong {
-  font-size: 18px;
-}
-
-.card-resumo.PENDENTE { border-left-color: #a16207; }
-.card-resumo.DEVOLVIDO { border-left-color: #c2410c; }
-.card-resumo.ATIVO { border-left-color: #15803d; }
-.card-resumo.INATIVO { border-left-color: #6b7280; }
-
-.card-resumo.ativo {
-  outline: 1px solid #94a3b8;
-}
-
-/* GRID FIXO */
-
+/* GRID */
 .cabecalho-lista,
 .item {
   display: grid;
-  grid-template-columns: 80px 200px 260px 200px 150px 130px 90px 160px 140px;
-  gap: 8px;
+  grid-template-columns: 80px 200px 240px 200px 150px 130px 90px 150px 140px;
+  gap: 6px;
   align-items: center;
 }
 
 .cabecalho-lista {
+  position: sticky;
+  top: 0;
   background: #111c27;
   padding: 8px;
-  border-radius: 6px;
   font-size: 11px;
-  font-weight: 900;
-  color: #9ca3af;
-  text-transform: uppercase;
-  border: 1px solid #263548;
-}
-
-/* LISTA */
-
-.lista {
-  display: grid;
-  gap: 6px;
+  font-weight: bold;
 }
 
 .item {
-  background: #17212c;
+  padding: 8px;
   border: 1px solid #263548;
   border-radius: 6px;
-  padding: 8px;
+}
+
+.item:hover {
+  background: #1f2b38;
 }
 
 /* CAMPOS */
+.tipo { background: #1e3a8a; padding: 3px 6px; border-radius: 999px; }
+.titulo { font-weight: bold; }
 
-.tipo {
-  font-size: 10px;
-  padding: 4px 6px;
-  background: #1e3a8a;
-  border-radius: 999px;
-  text-align: center;
-  font-weight: 900;
-}
-
-.titulo {
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.descricao,
-.usuario,
-.local,
-.data {
-  font-size: 11px;
+.descricao {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* STATUS */
-
-.status {
-  padding: 4px 6px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 900;
-  text-align: center;
-}
-
-.status.ATIVO { background: #15803d; }
-.status.PENDENTE { background: #a16207; }
-.status.DEVOLVIDO { background: #c2410c; }
-.status.INATIVO { background: #4b5563; }
+.status { padding: 3px 6px; border-radius: 999px; }
+.status.ATIVO { background: green; }
+.status.DEVOLVIDO { background: orange; }
+.status.INATIVO { background: gray; }
 
 /* BOTÕES */
-
-.botoes {
-  display: flex;
-  gap: 4px;
-}
-
 .botoes button {
   padding: 3px 6px;
-  font-size: 10px;
-  border-radius: 4px;
+  font-size: 12px;
   border: none;
-  font-weight: 900;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.btn-aprovar { background: #15803d; }
-.btn-devolver { background: #a16207; }
-.btn-inativar { background: #4b5563; }
-.btn-excluir { background: #991b1b; }
+.btn-aprovar { background: green; }
+.btn-devolver { background: orange; }
+.btn-inativar { background: gray; }
+.btn-excluir { background: red; }
 
 /* FOTOS */
-
-.fotos {
-  display: flex;
-  gap: 4px;
-}
-
 .fotos img {
-  width: 38px;
+  width: 35px;
   height: 30px;
-  border-radius: 4px;
-  object-fit: cover;
 }
 
-.vazio {
-  text-align: center;
-  padding: 20px;
+/* MODAL */
+.modal {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hidden { display:none; }
+
+.modal-content {
+  background:#111c27;
+  padding:20px;
+  border-radius:8px;
+  width:500px;
 }
