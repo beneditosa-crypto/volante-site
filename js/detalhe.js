@@ -1,3 +1,6 @@
+# detalhe.js (COMPLETO E CORRIGIDO)
+
+```javascript
 import { db } from "./firebase.js";
 import { baixarApp } from "./shared.js";
 
@@ -57,6 +60,25 @@ async function carregarDetalhe() {
   }
 }
 
+function formatarPreco(valor) {
+  if (!valor) return "";
+
+  if (typeof valor === "string" && valor.includes("R$")) {
+    return valor;
+  }
+
+  const numero = Number(String(valor).replace(/\D/g, ""));
+
+  if (isNaN(numero)) {
+    return valor;
+  }
+
+  return numero.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
+
 function renderizar(item) {
   const fotos =
     item.fotos && item.fotos.length
@@ -70,7 +92,7 @@ function renderizar(item) {
   const titulo =
     item.titulo || "Veículo anunciado";
 
-  const preco = item.preco || "";
+  const preco = formatarPreco(item.preco);
 
   const cidade = item.cidade || "";
 
@@ -148,9 +170,7 @@ function renderizar(item) {
           ${cidade}${estado ? ` • ${estado}` : ""}
         </div>
 
-        <div class="preco">
-          ${preco}
-        </div>
+        ${preco ? `<div class="preco">${preco}</div>` : ""}
 
         <div class="descricao">
           <h3>
@@ -289,3 +309,8 @@ function iniciarGaleria() {
 }
 
 carregarDetalhe();
+```
+
+---
+
+# detalhe.css (COMPLETO E CORRIGIDO)
