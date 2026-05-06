@@ -89,9 +89,7 @@
 
   color: #fff;
 
-  padding:
-    8px
-    13px;
+  padding: 8px 13px;
 
   border-radius: 999px;
 
@@ -121,8 +119,7 @@
 }
 
 .miniaturas::-webkit-scrollbar-thumb {
-  background:
-    rgba(22, 59, 120, 0.2);
+  background: rgba(22, 59, 120, 0.2);
 
   border-radius: 999px;
 }
@@ -204,14 +201,16 @@
 }
 
 .descricao h3,
-.bloco h3 {
+.bloco h3,
+.cta-app h3 {
   font-size: 18px;
 
   margin-bottom: 10px;
 }
 
 .descricao p,
-.bloco p {
+.bloco p,
+.cta-app p {
   color: var(--cinza);
 
   font-size: 14px;
@@ -222,48 +221,65 @@
 .cta-app {
   margin-top: 22px;
 
-  background: #f5f7fa;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.98),
+      rgba(238, 243, 251, 0.98)
+    );
 
-  border-radius: 24px;
+  border-radius: 26px;
 
-  padding: 20px;
+  padding: 22px;
 
-  border: 1px solid var(--linha);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.04);
 }
 
-.cta-app strong {
-  display: block;
+.app-store-box {
+  margin-top: 18px;
 
-  font-size: 17px;
-
-  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.cta-app p {
-  color: var(--cinza);
+.app-store-btn {
+  height: 58px;
 
-  font-size: 14px;
-
-  line-height: 1.5;
-
-  margin-bottom: 16px;
-}
-
-.btn-app {
-  width: 100%;
-
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
   border-radius: 18px;
 
-  background: var(--azul-principal);
+  background: #fff;
 
-  color: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.07);
 
-  padding: 15px;
+  color: #0f172a;
 
   font-size: 15px;
   font-weight: 900;
+
+  transition: 0.2s;
+
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.app-store-btn:hover {
+  transform: translateY(-2px);
+}
+
+.app-store-btn svg {
+  width: 21px;
+  height: 21px;
+
+  fill: currentColor;
 }
 
 .compartilhar {
@@ -273,23 +289,26 @@
 .bloco {
   background: #fff;
 
-  border-radius: 24px;
+  border-radius: 26px;
 
-  padding: 20px;
+  padding: 22px;
 
   border: 1px solid var(--linha);
+
+  box-shadow:
+    0 10px 26px rgba(15, 23, 42, 0.035);
 }
 
 .share-grid {
-  margin-top: 14px;
+  margin-top: 16px;
 
   display: flex;
   gap: 12px;
 }
 
 .share-btn {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
 
   border-radius: 18px;
 
@@ -302,6 +321,9 @@
   justify-content: center;
 
   transition: 0.2s;
+
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.05);
 }
 
 .share-btn:hover {
@@ -309,8 +331,8 @@
 }
 
 .share-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 .share-whatsapp {
@@ -368,6 +390,16 @@
 
   .preco {
     font-size: 24px;
+  }
+
+  .cta-app,
+  .bloco {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  .app-store-box {
+    grid-template-columns: 1fr;
   }
 
   .share-btn {
