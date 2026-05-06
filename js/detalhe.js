@@ -14,6 +14,7 @@ const id = params.get("id");
 
 let fotosGaleria = [];
 let fotoAtual = 0;
+let inicioToqueX = 0;
 
 async function carregarDetalhe() {
   if (!id) {
@@ -38,9 +39,7 @@ async function carregarDetalhe() {
     renderizar(item);
   } catch (error) {
     console.error(error);
-
-    conteudo.innerHTML =
-      `<div class="loading">Erro ao carregar detalhe.</div>`;
+    conteudo.innerHTML = `<div class="loading">Erro ao carregar detalhe.</div>`;
   }
 }
 
@@ -92,71 +91,44 @@ function renderizar(item) {
 
   fotoAtual = 0;
 
-  const fotoPrincipal = fotosGaleria[0];
-
-  const titulo =
-    escaparTexto(item.titulo || "Veículo anunciado");
-
+  const titulo = escaparTexto(item.titulo || "Veículo anunciado");
   const preco = formatarPreco(item.preco);
-
-  const cidade =
-    escaparTexto(item.cidade || "");
-
-  const estado =
-    escaparTexto(item.estado || "");
-
-  const descricao =
-    escaparTexto(item.descricao || "Sem descrição.");
-
-  const tipo =
-    item.tipo === "EVENTO"
-      ? "Evento"
-      : "Anúncio";
+  const cidade = escaparTexto(item.cidade || "");
+  const estado = escaparTexto(item.estado || "");
+  const descricao = escaparTexto(item.descricao || "Sem descrição.");
+  const tipo = item.tipo === "EVENTO" ? "Evento" : "Anúncio";
 
   const urlAtual = window.location.href;
+  const textoCompartilhar = `${item.titulo || "Veículo anunciado"} no Volante App`;
 
-  const textoCompartilhar =
-    `${item.titulo || "Veículo anunciado"} no Volante App`;
+  const whatsapp = `https://wa.me/?text=${encodeURIComponent(
+    textoCompartilhar + " " + urlAtual
+  )}`;
 
-  const whatsapp =
-    `https://wa.me/?text=${encodeURIComponent(
-      textoCompartilhar + " " + urlAtual
-    )}`;
+  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    urlAtual
+  )}`;
 
-  const facebook =
-    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      urlAtual
-    )}`;
-
-  const email =
-    `mailto:?subject=${encodeURIComponent(
-      textoCompartilhar
-    )}&body=${encodeURIComponent(urlAtual)}`;
+  const email = `mailto:?subject=${encodeURIComponent(
+    textoCompartilhar
+  )}&body=${encodeURIComponent(urlAtual)}`;
 
   conteudo.innerHTML = `
     <section class="detalhe">
       <div class="galeria">
-        <div class="foto-principal-wrap">
-          <button
-            class="seta seta-esquerda"
-            id="setaEsquerda"
-            aria-label="Foto anterior"
-          >
+        <div class="foto-principal-wrap" id="fotoWrap">
+          <button class="seta-foto seta-foto-esquerda" id="fotoAnterior" aria-label="Foto anterior">
             ‹
           </button>
 
           <img
             id="fotoPrincipal"
             class="foto-principal"
-            src="${fotoPrincipal}"
+            src="${fotosGaleria[0]}"
             alt="${titulo}"
           />
 
-          <button
-            class="seta seta-direita"
-            id="setaDireita"
-            aria-label="Próxima foto"
-          >
+          <button class="seta-foto seta-foto-direita" id="fotoProxima" aria-label="Próxima foto">
             ›
           </button>
 
@@ -182,9 +154,7 @@ function renderizar(item) {
       </div>
 
       <div class="painel">
-        <h1 class="titulo">
-          ${titulo}
-        </h1>
+        <h1 class="titulo">${titulo}</h1>
 
         <div class="meta">
           ${cidade}${estado ? ` • ${estado}` : ""}
@@ -209,25 +179,16 @@ function renderizar(item) {
           <h3>Aplicativo disponível nas lojas</h3>
 
           <p>
-            Converse com anunciantes, publique veículos,
-            favorite anúncios e acesse todos os recursos
-            pelo aplicativo Volante.
+            Converse com anunciantes, publique veículos, favorite anúncios
+            e acesse todos os recursos pelo aplicativo Volante.
           </p>
 
           <div class="app-store-box">
-            <a
-              class="app-store-btn"
-              href="#"
-              onclick="baixarApp(); return false;"
-            >
+            <a class="app-store-btn" href="#" onclick="baixarApp(); return false;">
               Google Play
             </a>
 
-            <a
-              class="app-store-btn"
-              href="#"
-              onclick="baixarApp(); return false;"
-            >
+            <a class="app-store-btn" href="#" onclick="baixarApp(); return false;">
               App Store
             </a>
           </div>
@@ -242,26 +203,15 @@ function renderizar(item) {
             </p>
 
             <div class="share-grid">
-              <a
-                class="share-btn share-whatsapp"
-                href="${whatsapp}"
-                target="_blank"
-              >
+              <a class="share-btn share-whatsapp" href="${whatsapp}" target="_blank">
                 WhatsApp
               </a>
 
-              <a
-                class="share-btn share-email"
-                href="${email}"
-              >
+              <a class="share-btn share-email" href="${email}">
                 Email
               </a>
 
-              <a
-                class="share-btn share-facebook"
-                href="${facebook}"
-                target="_blank"
-              >
+              <a class="share-btn share-facebook" href="${facebook}" target="_blank">
                 Facebook
               </a>
             </div>
@@ -269,39 +219,6 @@ function renderizar(item) {
         </div>
       </div>
     </section>
-
-    <div
-      class="lightbox"
-      id="lightbox"
-    >
-      <button
-        class="lightbox-fechar"
-        id="fecharLightbox"
-      >
-        ×
-      </button>
-
-      <button
-        class="lightbox-seta lightbox-seta-esquerda"
-        id="lightboxEsquerda"
-      >
-        ‹
-      </button>
-
-      <img
-        class="lightbox-img"
-        id="lightboxImg"
-        src="${fotoPrincipal}"
-        alt="${titulo}"
-      />
-
-      <button
-        class="lightbox-seta lightbox-seta-direita"
-        id="lightboxDireita"
-      >
-        ›
-      </button>
-    </div>
   `;
 
   iniciarGaleria();
@@ -310,141 +227,88 @@ function renderizar(item) {
 function atualizarFoto(index) {
   fotoAtual = index;
 
-  const fotoPrincipal =
-    document.getElementById("fotoPrincipal");
-
-  const lightboxImg =
-    document.getElementById("lightboxImg");
+  const fotoPrincipal = document.getElementById("fotoPrincipal");
 
   fotoPrincipal.src = fotosGaleria[fotoAtual];
 
-  if (lightboxImg) {
-    lightboxImg.src = fotosGaleria[fotoAtual];
-  }
-
-  document
-    .querySelectorAll(".miniatura")
-    .forEach((miniatura, i) => {
-      miniatura.classList.toggle(
-        "ativa",
-        i === fotoAtual
-      );
-    });
-}
-
-function abrirLightbox() {
-  const lightbox =
-    document.getElementById("lightbox");
-
-  lightbox.classList.add("ativo");
-}
-
-function fecharLightbox() {
-  const lightbox =
-    document.getElementById("lightbox");
-
-  lightbox.classList.remove("ativo");
+  document.querySelectorAll(".miniatura").forEach((miniatura, i) => {
+    miniatura.classList.toggle("ativa", i === fotoAtual);
+  });
 }
 
 function fotoAnterior() {
-  fotoAtual =
+  const novoIndex =
     fotoAtual === 0
       ? fotosGaleria.length - 1
       : fotoAtual - 1;
 
-  atualizarFoto(fotoAtual);
+  atualizarFoto(novoIndex);
 }
 
 function proximaFoto() {
-  fotoAtual =
+  const novoIndex =
     fotoAtual === fotosGaleria.length - 1
       ? 0
       : fotoAtual + 1;
 
-  atualizarFoto(fotoAtual);
+  atualizarFoto(novoIndex);
 }
 
 function iniciarGaleria() {
-  const fotoPrincipal =
-    document.getElementById("fotoPrincipal");
+  const fotoWrap = document.getElementById("fotoWrap");
+  const botaoAnterior = document.getElementById("fotoAnterior");
+  const botaoProxima = document.getElementById("fotoProxima");
+  const miniaturas = document.querySelectorAll(".miniatura");
 
-  const miniaturas =
-    document.querySelectorAll(".miniatura");
+  if (fotosGaleria.length <= 1) {
+    botaoAnterior.style.display = "none";
+    botaoProxima.style.display = "none";
+  }
 
-  const setaEsquerda =
-    document.getElementById("setaEsquerda");
-
-  const setaDireita =
-    document.getElementById("setaDireita");
-
-  const lightbox =
-    document.getElementById("lightbox");
-
-  const fecharBtn =
-    document.getElementById("fecharLightbox");
-
-  const lightboxEsquerda =
-    document.getElementById("lightboxEsquerda");
-
-  const lightboxDireita =
-    document.getElementById("lightboxDireita");
-
-  miniaturas.forEach((miniatura) => {
-    miniatura.addEventListener("click", () => {
-      atualizarFoto(
-        Number(miniatura.dataset.index)
-      );
-    });
+  botaoAnterior.addEventListener("click", (event) => {
+    event.stopPropagation();
+    fotoAnterior();
   });
 
-  setaEsquerda.addEventListener(
-    "click",
-    fotoAnterior
-  );
-
-  setaDireita.addEventListener(
-    "click",
-    proximaFoto
-  );
-
-  lightboxEsquerda.addEventListener(
-    "click",
-    fotoAnterior
-  );
-
-  lightboxDireita.addEventListener(
-    "click",
-    proximaFoto
-  );
-
-  fotoPrincipal.addEventListener(
-    "click",
-    abrirLightbox
-  );
-
-  fecharBtn.addEventListener(
-    "click",
-    fecharLightbox
-  );
-
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
-      fecharLightbox();
-    }
+  botaoProxima.addEventListener("click", (event) => {
+    event.stopPropagation();
+    proximaFoto();
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      fecharLightbox();
-    }
+  fotoWrap.addEventListener("click", (event) => {
+    const largura = fotoWrap.offsetWidth;
+    const posicaoX = event.offsetX;
 
-    if (event.key === "ArrowLeft") {
+    if (posicaoX > largura / 2) {
+      proximaFoto();
+    } else {
       fotoAnterior();
     }
+  });
 
-    if (event.key === "ArrowRight") {
+  fotoWrap.addEventListener("touchstart", (event) => {
+    inicioToqueX = event.touches[0].clientX;
+  });
+
+  fotoWrap.addEventListener("touchend", (event) => {
+    const fimToqueX = event.changedTouches[0].clientX;
+    const diferenca = inicioToqueX - fimToqueX;
+
+    if (Math.abs(diferenca) < 40) return;
+
+    if (diferenca > 0) {
       proximaFoto();
+    } else {
+      fotoAnterior();
     }
+  });
+
+  miniaturas.forEach((miniatura) => {
+    miniatura.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      atualizarFoto(Number(miniatura.dataset.index));
+    });
   });
 }
 
