@@ -89,9 +89,31 @@
     </div>
 
     <div
-      class="carousel-2linhas"
-      id="gridDestaques"
-    ></div>
+      class="carousel-wrap"
+    >
+      <button
+        class="carousel-arrow carousel-arrow-left"
+        data-scroll-target="gridDestaques"
+        data-scroll-direction="-1"
+        aria-label="Voltar destaques"
+      >
+        ‹
+      </button>
+
+      <div
+        class="carousel-2linhas"
+        id="gridDestaques"
+      ></div>
+
+      <button
+        class="carousel-arrow carousel-arrow-right"
+        data-scroll-target="gridDestaques"
+        data-scroll-direction="1"
+        aria-label="Avançar destaques"
+      >
+        ›
+      </button>
+    </div>
   </section>
 
   <section>
@@ -110,10 +132,30 @@
       ></span>
     </div>
 
-    <div
-      class="carousel-2linhas"
-      id="gridRecentes"
-    ></div>
+    <div class="carousel-wrap">
+      <button
+        class="carousel-arrow carousel-arrow-left"
+        data-scroll-target="gridRecentes"
+        data-scroll-direction="-1"
+        aria-label="Voltar recentes"
+      >
+        ‹
+      </button>
+
+      <div
+        class="carousel-2linhas"
+        id="gridRecentes"
+      ></div>
+
+      <button
+        class="carousel-arrow carousel-arrow-right"
+        data-scroll-target="gridRecentes"
+        data-scroll-direction="1"
+        aria-label="Avançar recentes"
+      >
+        ›
+      </button>
+    </div>
   </section>
 
   <section>
@@ -132,10 +174,30 @@
       ></span>
     </div>
 
-    <div
-      class="carousel-1linha"
-      id="gridEventos"
-    ></div>
+    <div class="carousel-wrap">
+      <button
+        class="carousel-arrow carousel-arrow-left"
+        data-scroll-target="gridEventos"
+        data-scroll-direction="-1"
+        aria-label="Voltar eventos"
+      >
+        ‹
+      </button>
+
+      <div
+        class="carousel-1linha"
+        id="gridEventos"
+      ></div>
+
+      <button
+        class="carousel-arrow carousel-arrow-right"
+        data-scroll-target="gridEventos"
+        data-scroll-direction="1"
+        aria-label="Avançar eventos"
+      >
+        ›
+      </button>
+    </div>
   </section>
 
   <section class="institutional">
@@ -184,11 +246,11 @@
       <div>
         <h4>Institucional</h4>
 
-        <a href="#">
+        <a href="./politica.html">
           Política de privacidade
         </a>
 
-        <a href="#">
+        <a href="./termos.html">
           Termos de uso
         </a>
       </div>
@@ -196,13 +258,17 @@
       <div>
         <h4>Contato</h4>
 
-        <p>
+        <a href="mailto:contato@volante.app.br">
           contato@volante.app.br
-        </p>
+        </a>
 
-        <p>
+        <a
+          href="https://volante.app.br"
+          target="_blank"
+          rel="noopener"
+        >
           volante.app.br
-        </p>
+        </a>
       </div>
 
       <div>
@@ -225,8 +291,7 @@
     </div>
 
     <div class="footer-bottom">
-      Volante App © 2026.
-      Todos os direitos reservados.
+      Volante App © 2026. Todos os direitos reservados.
     </div>
   </footer>
 </main>
