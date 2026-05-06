@@ -1,7 +1,5 @@
-import {
-  db,
-  baixarApp,
-} from "./firebase.js";
+import { db } from "./firebase.js";
+import { baixarApp } from "./shared.js";
 
 import {
   doc,
