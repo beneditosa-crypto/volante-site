@@ -1,189 +1,63 @@
-/* SETAS DA GALERIA */
-
-.seta {
+.seta-foto {
   position: absolute;
-
   top: 50%;
-
   transform: translateY(-50%);
 
   z-index: 5;
 
-  width: 54px;
-  height: 54px;
+  width: 46px;
+  height: 46px;
 
   border: none;
-
   border-radius: 999px;
 
-  background:
-    rgba(15, 23, 42, 0.62);
-
-  backdrop-filter: blur(10px);
-
+  background: rgba(15, 23, 42, 0.48);
   color: #fff;
+
+  font-size: 32px;
+  line-height: 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 34px;
-  line-height: 1;
-
   cursor: pointer;
+
+  backdrop-filter: blur(10px);
 
   transition: 0.2s;
 }
 
-.seta:hover {
-  background:
-    rgba(15, 23, 42, 0.82);
+.seta-foto:hover {
+  background: rgba(15, 23, 42, 0.72);
 }
 
-.seta-esquerda {
-  left: 18px;
+.seta-foto-esquerda {
+  left: 14px;
 }
 
-.seta-direita {
-  right: 18px;
+.seta-foto-direita {
+  right: 14px;
 }
 
-/* LIGHTBOX */
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-
-  z-index: 9999;
-
-  background:
-    rgba(0, 0, 0, 0.94);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: 0.25s;
-}
-
-.lightbox.ativo {
-  opacity: 1;
-  visibility: visible;
-}
-
-.lightbox-img {
-  max-width: 92vw;
-  max-height: 92vh;
-
-  object-fit: contain;
-
-  border-radius: 18px;
-}
-
-.lightbox-fechar {
-  position: absolute;
-
-  top: 26px;
-  right: 26px;
-
-  width: 54px;
-  height: 54px;
-
-  border: none;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255, 255, 255, 0.12);
-
-  color: #fff;
-
-  font-size: 34px;
-
+.foto-principal-wrap {
   cursor: pointer;
-
-  backdrop-filter: blur(10px);
-}
-
-.lightbox-seta {
-  position: absolute;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  width: 62px;
-  height: 62px;
-
-  border: none;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255, 255, 255, 0.12);
-
-  color: #fff;
-
-  font-size: 38px;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(10px);
-}
-
-.lightbox-seta-esquerda {
-  left: 24px;
-}
-
-.lightbox-seta-direita {
-  right: 24px;
-}
-
-.foto-principal {
-  cursor: zoom-in;
+  user-select: none;
 }
 
 @media (max-width: 620px) {
-  .seta {
-    width: 44px;
-    height: 44px;
+  .seta-foto {
+    width: 38px;
+    height: 38px;
 
-    font-size: 28px;
+    font-size: 26px;
   }
 
-  .seta-esquerda {
+  .seta-foto-esquerda {
     left: 10px;
   }
 
-  .seta-direita {
+  .seta-foto-direita {
     right: 10px;
-  }
-
-  .lightbox-seta {
-    width: 48px;
-    height: 48px;
-
-    font-size: 30px;
-  }
-
-  .lightbox-seta-esquerda {
-    left: 10px;
-  }
-
-  .lightbox-seta-direita {
-    right: 10px;
-  }
-
-  .lightbox-fechar {
-    width: 46px;
-    height: 46px;
-
-    font-size: 28px;
-
-    top: 12px;
-    right: 12px;
   }
 }
