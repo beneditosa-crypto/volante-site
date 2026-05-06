@@ -269,6 +269,8 @@
   right: 24px;
   bottom: 24px;
 
+  max-width: calc(100vw - 48px);
+
   z-index: 999;
 
   display: flex;
@@ -285,7 +287,8 @@
 
   border: 1px solid rgba(15, 23, 42, 0.06);
 
-  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.14);
+  box-shadow:
+    0 18px 44px rgba(15, 23, 42, 0.14);
 }
 
 .floating-download span {
@@ -293,6 +296,8 @@
 
   font-size: 14px;
   font-weight: 800;
+
+  white-space: nowrap;
 }
 
 .floating-download a {
