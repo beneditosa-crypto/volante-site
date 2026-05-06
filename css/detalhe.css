@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.detalhe-topo .marca {
+  justify-self: center;
+}
+
 .btn-voltar {
   width: 48px;
   height: 48px;
