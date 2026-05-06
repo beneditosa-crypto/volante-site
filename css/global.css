@@ -53,84 +53,66 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+
   backdrop-filter: blur(14px);
 
-  background: rgba(245, 247, 250, 0.92);
+  background:
+    rgba(245, 247, 250, 0.92);
 
-  border-bottom: 1px solid var(--linha);
+  border-bottom:
+    1px solid var(--linha);
 }
 
 .topo {
   max-width: 1240px;
+
   margin: 0 auto;
 
   padding:
-    14px
+    18px
     22px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .marca {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .logo {
-  width: 56px;
-  height: 56px;
+  width: 84px;
+  height: 84px;
+
   object-fit: contain;
 }
 
 .nome {
-  font-size: 28px;
+  font-size: 42px;
   font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1;
+
+  letter-spacing: -2px;
+
+  line-height: 0.95;
 }
 
 .slogan {
   margin-top: 4px;
 
-  font-size: 12px;
+  color: var(--cinza);
+
+  font-size: 15px;
   font-weight: 700;
 
-  color: var(--cinza);
-}
-
-.btn-topo {
-  border: none;
-
-  border-radius: 999px;
-
-  padding:
-    11px
-    18px;
-
-  background: var(--azul-principal);
-
-  color: #fff;
-
-  font-size: 13px;
-  font-weight: 900;
-
-  transition: 0.2s;
-
-  box-shadow:
-    0 10px 24px rgba(22, 59, 120, 0.18);
-}
-
-.btn-topo:hover {
-  background: var(--azul-hover);
-
-  transform: translateY(-1px);
+  letter-spacing: -0.2px;
 }
 
 main {
   max-width: 1240px;
+
   margin: 0 auto;
 
   padding:
@@ -150,7 +132,9 @@ main {
 .section-head h2 {
   font-size: 30px;
   font-weight: 900;
+
   letter-spacing: -1px;
+
   line-height: 1;
 }
 
@@ -201,7 +185,9 @@ main {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+
+  grid-template-columns:
+    1.4fr 1fr 1fr 1fr;
 
   gap: 22px;
 }
@@ -243,24 +229,25 @@ main {
 
 @media (max-width: 620px) {
   .topo {
-    padding: 12px 14px;
+    padding:
+      14px
+      14px;
+  }
+
+  .marca {
+    gap: 12px;
   }
 
   .logo {
-    width: 50px;
-    height: 50px;
+    width: 58px;
+    height: 58px;
   }
 
   .nome {
-    font-size: 23px;
+    font-size: 30px;
   }
 
   .slogan {
-    font-size: 11px;
-  }
-
-  .btn-topo {
-    padding: 10px 14px;
     font-size: 12px;
   }
 
@@ -282,6 +269,7 @@ main {
 
   .footer {
     border-radius: 24px;
+
     padding: 22px;
   }
 
