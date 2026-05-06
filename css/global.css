@@ -181,6 +181,8 @@ main {
   border: 1px solid var(--linha);
 
   box-shadow: var(--sombra);
+
+  text-align: center;
 }
 
 .footer-grid {
@@ -190,6 +192,8 @@ main {
     1.4fr 1fr 1fr 1fr;
 
   gap: 22px;
+
+  text-align: center;
 }
 
 .footer h3,
@@ -209,6 +213,10 @@ main {
   line-height: 1.6;
 }
 
+.footer a:hover {
+  color: var(--azul-principal);
+}
+
 .footer-bottom {
   margin-top: 18px;
 
@@ -219,6 +227,8 @@ main {
   color: #98a2b3;
 
   font-size: 12px;
+
+  text-align: center;
 }
 
 @media (max-width: 860px) {
