@@ -2,576 +2,111 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
+
 <title>Volante App</title>
-<meta name="description" content="Volante App - anúncios, eventos e paixão por veículos clássicos." />
-<link rel="icon" type="image/png" href="/favicon.png" />
 
-<style>
-:root {
-  --azul-principal: #1e3a8a;
-  --azul-hover: #172e6b;
-  --fundo: #f3f4f6;
-  --texto: #141414;
-  --cinza: #6b7280;
-  --dourado: #c9a24a;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--fundo);
-  color: var(--texto);
-}
-
-button,
-input {
-  font-family: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(243, 244, 246, 0.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.topo {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.marca {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-}
-
-.nome {
-  font-size: 25px;
-  font-weight: 900;
-  letter-spacing: -0.7px;
-  line-height: 1;
-}
-
-.slogan {
-  margin-top: 5px;
-  font-size: 12px;
-  color: var(--cinza);
-  font-weight: 700;
-}
-
-.btn-entrar {
-  border: none;
-  border-radius: 999px;
-  padding: 11px 18px;
-  background: var(--azul-principal);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 900;
-  box-shadow: 0 10px 24px rgba(30, 58, 138, 0.28);
-}
-
-.btn-entrar:hover {
-  background: var(--azul-hover);
-}
-
-main {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 18px;
-}
-
-.hero {
-  background: linear-gradient(135deg, #fffaf2, #efe6d8);
-  border-radius: 28px;
-  padding: 22px;
-  margin-bottom: 26px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-}
-
-.hero h1 {
-  font-size: 34px;
-  line-height: 1.05;
-  letter-spacing: -1px;
-  margin-bottom: 18px;
-  max-width: 760px;
-}
-
-.busca {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 18px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  max-width: 820px;
-}
-
-.busca:focus-within {
-  border-color: var(--azul-principal);
-  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
-}
-
-.busca span {
-  color: #7d746a;
-  font-size: 18px;
-}
-
-.busca input {
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 15px;
-  color: #151515;
-}
-
-.lojas-area {
-  margin-top: 16px;
-}
-
-.lojas-label {
-  font-size: 13px;
-  color: #6f665d;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.lojas {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.loja {
-  min-height: 44px;
-  padding: 10px 16px;
-  border-radius: 15px;
-  background: #ffffff;
-  color: #151515;
-  border: 1px solid rgba(0, 0, 0, 0.09);
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 14px;
-  font-weight: 900;
-  text-decoration: none;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
-  transition: 0.2s;
-}
-
-.loja:hover {
-  transform: translateY(-2px);
-}
-
-.loja svg {
-  width: 19px;
-  height: 19px;
-  fill: currentColor;
-}
-
-.section-head {
-  margin: 28px 0 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 12px;
-}
-
-.section-head h2 {
-  font-size: 25px;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-}
-
-.section-head p {
-  margin-top: 4px;
-  color: var(--cinza);
-  font-size: 13px;
-}
-
-.contador {
-  font-size: 12px;
-  color: #8d8277;
-  white-space: nowrap;
-  font-weight: 800;
-}
-
-.carousel-2linhas {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 230px;
-  grid-template-rows: repeat(2, auto);
-  gap: 18px;
-  overflow-x: auto;
-  padding: 2px 6px 14px;
-  scroll-snap-type: x proximity;
-}
-
-.carousel-1linha {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 210px;
-  gap: 18px;
-  overflow-x: auto;
-  padding: 2px 6px 14px;
-  scroll-snap-type: x proximity;
-}
-
-.carousel-2linhas::-webkit-scrollbar,
-.carousel-1linha::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel-2linhas::-webkit-scrollbar-thumb,
-.carousel-1linha::-webkit-scrollbar-thumb {
-  background: rgba(30, 58, 138, 0.25);
-  border-radius: 999px;
-}
-
-.card {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: 0.25s;
-  scroll-snap-align: start;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card:active {
-  transform: scale(0.97);
-}
-
-.foto-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 22px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.foto-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0.2),
-    transparent
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.foto {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 22px;
-  background: #e8dfd4;
-  display: block;
-}
-
-.overlay-text {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 16px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: -0.2px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
-  z-index: 2;
-}
-
-.ver-mais {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(4px);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 900;
-  padding: 5px 8px;
-  border-radius: 999px;
-  z-index: 3;
-}
-
-.card-body {
-  padding: 9px 3px 0;
-}
-
-.card-title {
-  display: none;
-}
-
-.meta {
-  font-size: 13px;
-  color: var(--cinza);
-  line-height: 1.3;
-}
-
-.price {
-  margin-top: 5px;
-  display: inline-flex;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: -0.3px;
-  color: var(--azul-principal);
-}
-
-.empty {
-  background: #fff;
-  border: 1px dashed rgba(0, 0, 0, 0.16);
-  border-radius: 18px;
-  padding: 18px;
-  color: #71685f;
-  font-size: 14px;
-}
-
-.institutional {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 16px;
-}
-
-.info-panel {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
-}
-
-.info-panel h2 {
-  font-size: 23px;
-  margin-bottom: 8px;
-  letter-spacing: -0.4px;
-}
-
-.info-panel p {
-  font-size: 14px;
-  color: var(--cinza);
-  line-height: 1.5;
-}
-
-.footer {
-  margin-top: 34px;
-  background: #ffffff;
-  color: #151515;
-  border-radius: 26px;
-  padding: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 20px;
-}
-
-.footer h3,
-.footer h4 {
-  margin-bottom: 9px;
-}
-
-.footer p,
-.footer a {
-  display: block;
-  color: var(--cinza);
-  text-decoration: none;
-  font-size: 13px;
-  line-height: 1.5;
-  margin-bottom: 6px;
-}
-
-.footer-bottom {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  color: #8a8177;
-  font-size: 12px;
-}
-
-@media (max-width: 980px) {
-  .institutional {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .carousel-2linhas {
-    grid-auto-columns: 210px;
-  }
-}
-
-@media (max-width: 620px) {
-  .topo {
-    padding: 12px 14px;
-  }
-
-  .logo {
-    width: 50px;
-    height: 50px;
-  }
-
-  .nome {
-    font-size: 21px;
-  }
-
-  .slogan {
-    font-size: 11px;
-  }
-
-  .btn-entrar {
-    padding: 9px 13px;
-    font-size: 12px;
-  }
-
-  main {
-    padding: 14px;
-  }
-
-  .hero {
-    border-radius: 24px;
-    padding: 16px;
-  }
-
-  .hero h1 {
-    font-size: 27px;
-  }
-
-  .loja {
-    flex: 1;
-    justify-content: center;
-    font-size: 12px;
-    padding: 10px 12px;
-  }
-
-  .section-head h2 {
-    font-size: 22px;
-  }
-
-  .section-head p {
-    font-size: 12px;
-  }
-
-  .contador {
-    display: none;
-  }
-
-  .carousel-2linhas {
-    grid-auto-columns: 165px;
-    gap: 14px;
-  }
-
-  .carousel-1linha {
-    grid-auto-columns: 165px;
-    gap: 14px;
-  }
-
-  .foto,
-  .foto-wrap,
-  .foto-wrap::after {
-    border-radius: 18px;
-  }
-
-  .meta,
-  .price {
-    font-size: 13px;
-  }
-
-  .overlay-text {
-    font-size: 12px;
-    bottom: 14px;
-  }
-
-  .footer {
-    border-radius: 22px;
-    padding: 20px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+<meta
+  name="description"
+  content="Anúncios, clássicos, antigos e eventos automotivos em todo o Brasil."
+/>
+
+<link
+  rel="icon"
+  type="image/png"
+  href="/assets/favicon.png"
+/>
+
+<link
+  rel="stylesheet"
+  href="/css/global.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="/css/home.css"
+/>
 </head>
 
 <body>
 <header>
   <div class="topo">
     <div class="marca">
-      <img src="/logo.png" alt="Volante App" class="logo" />
+      <img
+        src="/assets/logo.png"
+        alt="Volante App"
+        class="logo"
+      />
+
       <div>
-        <div class="nome">Volante</div>
-        <div class="slogan">Mais que carros, paixão</div>
+        <div class="nome">
+          Volante
+        </div>
+
+        <div class="slogan">
+          Mais que carros, paixão
+        </div>
       </div>
     </div>
 
-    <button class="btn-entrar" onclick="criarConta()">Entrar</button>
+    <button
+      class="btn-topo"
+      onclick="criarConta()"
+    >
+      Entrar
+    </button>
   </div>
 </header>
 
 <main>
   <section class="hero">
-    <h1>Encontre clássicos raros e eventos em todo o Brasil.</h1>
+    <h1>
+      Clássicos raros,
+      encontros automotivos
+      e paixão sobre rodas.
+    </h1>
 
     <div class="busca">
       <span>⌕</span>
-      <input id="busca" type="search" placeholder="Buscar por veículo, cidade, estado ou evento..." />
+
+      <input
+        id="busca"
+        type="search"
+        placeholder="Buscar por veículo, cidade, estado ou evento..."
+      />
     </div>
 
     <div class="lojas-area">
-      <div class="lojas-label">Disponível nas lojas:</div>
+      <div class="lojas-label">
+        Disponível em breve
+      </div>
 
       <div class="lojas">
-        <a class="loja" href="#" onclick="baixarApp(); return false;">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+        <a
+          class="loja"
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          <svg viewBox="0 0 24 24">
             <path d="M4 3.5v17l10.5-8.5L4 3.5Zm11.8 7.4 2.5-2.1L6.5 2.4l9.3 8.5Zm2.5 4.3-2.5-2.1-9.3 8.5 11.8-6.4Zm1.1-5.4-2.7 2.2 2.7 2.2 1.8-1c1-.6 1-2 0-2.6l-1.8-.8Z"/>
           </svg>
+
           Google Play
         </a>
 
-        <a class="loja" href="#" onclick="baixarApp(); return false;">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+        <a
+          class="loja"
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          <svg viewBox="0 0 24 24">
             <path d="M16.6 13.1c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.8-.8-1.4 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.5 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.8.7 1.2 0 1.9-1 2.6-2.1.8-1.2 1.1-2.3 1.2-2.4 0 0-2.6-1-2.6-3.4ZM14.5 6.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.7-1.1 1.7-.9 2.7 1 .1 2-.5 2.6-1.3Z"/>
           </svg>
+
           App Store
         </a>
       </div>
@@ -582,52 +117,92 @@ main {
     <div class="section-head">
       <div>
         <h2>Destaques</h2>
-        <p>Uma amostra dos veículos ativos no Volante.</p>
+
+        <p>
+          Uma seleção de veículos ativos no Volante.
+        </p>
       </div>
-      <span class="contador" id="contadorDestaques"></span>
+
+      <span
+        class="contador"
+        id="contadorDestaques"
+      ></span>
     </div>
 
-    <div class="carousel-2linhas" id="gridDestaques"></div>
+    <div
+      class="carousel-2linhas"
+      id="gridDestaques"
+    ></div>
   </section>
 
   <section>
     <div class="section-head">
       <div>
         <h2>Recentes</h2>
-        <p>Últimos anúncios publicados e aprovados.</p>
+
+        <p>
+          Últimos anúncios aprovados.
+        </p>
       </div>
-      <span class="contador" id="contadorRecentes"></span>
+
+      <span
+        class="contador"
+        id="contadorRecentes"
+      ></span>
     </div>
 
-    <div class="carousel-2linhas" id="gridRecentes"></div>
+    <div
+      class="carousel-2linhas"
+      id="gridRecentes"
+    ></div>
   </section>
 
   <section>
     <div class="section-head">
       <div>
         <h2>Eventos</h2>
-        <p>Encontros e experiências para apaixonados por antigos.</p>
+
+        <p>
+          Experiências e encontros automotivos.
+        </p>
       </div>
-      <span class="contador" id="contadorEventos"></span>
+
+      <span
+        class="contador"
+        id="contadorEventos"
+      ></span>
     </div>
 
-    <div class="carousel-1linha" id="gridEventos"></div>
+    <div
+      class="carousel-1linha"
+      id="gridEventos"
+    ></div>
   </section>
 
   <section class="institutional">
     <div class="info-panel">
-      <h2>Quem somos</h2>
+      <h2>
+        Uma comunidade automotiva
+      </h2>
+
       <p>
-        O Volante é uma plataforma criada para aproximar pessoas apaixonadas
-        por veículos clássicos, antigos, encontros automotivos e boas histórias sobre rodas.
+        O Volante conecta apaixonados por clássicos,
+        antigos, encontros automotivos e histórias
+        sobre rodas em todo o Brasil.
       </p>
     </div>
 
     <div class="info-panel">
-      <h2>Como funciona</h2>
+      <h2>
+        Visualize no site.
+        Viva no app.
+      </h2>
+
       <p>
-        No site você visualiza uma amostra dos anúncios e eventos. Para ver contato,
-        conversar com anunciantes, publicar ou usar recursos completos, baixe o app.
+        O site funciona como uma vitrine pública.
+        Para conversar com anunciantes, publicar,
+        salvar favoritos e acessar todos os recursos,
+        utilize o aplicativo Volante.
       </p>
     </div>
   </section>
@@ -636,258 +211,70 @@ main {
     <div class="footer-grid">
       <div>
         <h3>Volante</h3>
-        <p>Mais que carros, paixão.</p>
-        <p>Uma vitrine para clássicos, antigos, eventos e conexões automotivas.</p>
+
+        <p>
+          Mais que carros, paixão.
+        </p>
+
+        <p>
+          Uma vitrine premium para veículos,
+          encontros e experiências automotivas.
+        </p>
       </div>
 
       <div>
         <h4>Institucional</h4>
-        <a href="#top">Quem somos</a>
-        <a href="#top">Política de privacidade</a>
-        <a href="#top">Termos de uso</a>
+
+        <a href="#">
+          Política de privacidade
+        </a>
+
+        <a href="#">
+          Termos de uso
+        </a>
       </div>
 
       <div>
-        <h4>Fale conosco</h4>
-        <p>contato@volante.app.br</p>
-        <p>volante.app.br</p>
+        <h4>Contato</h4>
+
+        <p>
+          contato@volante.app.br
+        </p>
+
+        <p>
+          volante.app.br
+        </p>
       </div>
 
       <div>
-        <h4>App</h4>
-        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
-        <a href="#" onclick="baixarApp(); return false;">App Store</a>
+        <h4>Aplicativo</h4>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          Google Play
+        </a>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          App Store
+        </a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      Volante App © 2026. Todos os direitos reservados.
+      Volante App © 2026.
+      Todos os direitos reservados.
     </div>
   </footer>
 </main>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const buscaInput = document.getElementById("busca");
-const gridDestaques = document.getElementById("gridDestaques");
-const gridRecentes = document.getElementById("gridRecentes");
-const gridEventos = document.getElementById("gridEventos");
-
-const contadorDestaques = document.getElementById("contadorDestaques");
-const contadorRecentes = document.getElementById("contadorRecentes");
-const contadorEventos = document.getElementById("contadorEventos");
-
-let anuncios = [];
-let eventos = [];
-
-buscaInput.addEventListener("input", renderizarTudo);
-
-window.baixarApp = function () {
-  alert("Em breve, o Volante estará disponível nas lojas. Continue acompanhando pelo site volante.app.br.");
-};
-
-window.criarConta = function () {
-  alert("Para criar conta, falar com anunciantes e usar todos os recursos, baixe o app Volante.");
-};
-
-function escapeHtml(valor) {
-  return String(valor || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function normalizar(valor) {
-  return String(valor || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-}
-
-function getImagem(item) {
-  if (Array.isArray(item.fotos) && item.fotos.length > 0) return item.fotos[0];
-  if (Array.isArray(item.imagens) && item.imagens.length > 0) return item.imagens[0];
-  if (item.foto) return item.foto;
-  if (item.imagem) return item.imagem;
-  if (item.imageUrl) return item.imageUrl;
-  return "";
-}
-
-function getDataMs(item) {
-  if (item.data?.seconds) return item.data.seconds * 1000;
-  if (item.criadoEm?.seconds) return item.criadoEm.seconds * 1000;
-  if (item.createdAt?.seconds) return item.createdAt.seconds * 1000;
-  if (item.atualizadoEm?.seconds) return item.atualizadoEm.seconds * 1000;
-  return 0;
-}
-
-function textoLocal(item) {
-  const cidade = item.cidade || "";
-  const estado = item.estado || item.uf || "";
-  if (cidade && estado) return `${cidade} - ${estado}`;
-  return cidade || estado || "";
-}
-
-function formatarPreco(valor) {
-  if (!valor) return "";
-
-  const texto = String(valor);
-  if (texto.includes("R$")) return texto;
-
-  const numero = Number(texto.replace(/\D/g, ""));
-  if (!numero) return texto;
-
-  return numero.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-}
-
-function filtrar(lista) {
-  const termo = normalizar(buscaInput.value);
-  const somenteComImagem = lista.filter((item) => !!getImagem(item));
-
-  if (!termo) return somenteComImagem;
-
-  return somenteComImagem.filter((item) => {
-    const texto = normalizar([
-      item.titulo,
-      item.nome,
-      item.marca,
-      item.modelo,
-      item.descricao,
-      item.cidade,
-      item.estado,
-      item.uf,
-      item.preco
-    ].join(" "));
-
-    return texto.includes(termo);
-  });
-}
-
-function imagemHtml(item, titulo) {
-  const imagem = getImagem(item);
-
-  return `
-    <div class="foto-wrap">
-      <img class="foto" src="${imagem}" alt="${escapeHtml(titulo)}" />
-      <div class="overlay-text">${escapeHtml(titulo)}</div>
-      <span class="ver-mais">Ver no app</span>
-    </div>
-  `;
-}
-
-function cardAnuncio(item) {
-  const titulo = item.titulo || `${item.marca || ""} ${item.modelo || ""}`.trim() || "Anúncio";
-  const local = textoLocal(item);
-  const preco = formatarPreco(item.preco);
-
-  return `
-    <article class="card" onclick="window.location.href='/detalhe.html?id=${item.id}'">
-      ${imagemHtml(item, titulo)}
-      <div class="card-body">
-        <div class="meta">${escapeHtml(local)}</div>
-        ${preco ? `<div class="price">${escapeHtml(preco)}</div>` : ""}
-      </div>
-    </article>
-  `;
-}
-
-function cardEvento(item) {
-  const titulo = item.titulo || item.nome || "Evento";
-  const local = textoLocal(item);
-
-  return `
-    <article class="card" onclick="window.location.href='/detalhe.html?tipo=evento&id=${item.id}'">
-      ${imagemHtml(item, titulo)}
-      <div class="card-body">
-        <div class="meta">${escapeHtml(local)}</div>
-      </div>
-    </article>
-  `;
-}
-
-function renderizarGrid(elemento, lista, criador, vazioTexto) {
-  if (!lista.length) {
-    elemento.innerHTML = `<div class="empty">${vazioTexto}</div>`;
-    return;
-  }
-
-  elemento.innerHTML = lista.map(criador).join("");
-}
-
-function renderizarTudo() {
-  const anunciosFiltrados = filtrar(anuncios).sort((a, b) => getDataMs(b) - getDataMs(a));
-  const eventosFiltrados = filtrar(eventos).sort((a, b) => getDataMs(b) - getDataMs(a));
-
-  const destaques = anunciosFiltrados.slice(0, 8);
-  const recentes = anunciosFiltrados.slice(0, 12);
-  const eventosTela = eventosFiltrados.slice(0, 12);
-
-  contadorDestaques.textContent = `${destaques.length} exibidos`;
-  contadorRecentes.textContent = `${recentes.length} exibidos`;
-  contadorEventos.textContent = `${eventosTela.length} exibidos`;
-
-  renderizarGrid(gridDestaques, destaques, cardAnuncio, "Nenhum destaque ativo encontrado.");
-  renderizarGrid(gridRecentes, recentes, cardAnuncio, "Nenhum anúncio ativo encontrado.");
-  renderizarGrid(gridEventos, eventosTela, cardEvento, "Nenhum evento ativo encontrado.");
-}
-
-async function carregarDados() {
-  gridDestaques.innerHTML = `<div class="empty">Carregando destaques...</div>`;
-  gridRecentes.innerHTML = `<div class="empty">Carregando anúncios...</div>`;
-  gridEventos.innerHTML = `<div class="empty">Carregando eventos...</div>`;
-
-  const qAnuncios = query(collection(db, "anuncios"), where("status", "==", "ATIVO"));
-  const qEventos = query(collection(db, "eventos"), where("status", "==", "ATIVO"));
-
-  const [snapAnuncios, snapEventos] = await Promise.all([
-    getDocs(qAnuncios),
-    getDocs(qEventos)
-  ]);
-
-  anuncios = snapAnuncios.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  eventos = snapEventos.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  renderizarTudo();
-}
-
-carregarDados().catch((error) => {
-  console.error(error);
-  gridDestaques.innerHTML = `<div class="empty">Erro ao carregar destaques.</div>`;
-  gridRecentes.innerHTML = `<div class="empty">Erro ao carregar anúncios.</div>`;
-  gridEventos.innerHTML = `<div class="empty">Erro ao carregar eventos.</div>`;
-});
-</script>
+<script
+  type="module"
+  src="/js/home.js"
+></script>
 </body>
 </html>
