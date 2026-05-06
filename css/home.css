@@ -356,6 +356,11 @@
   flex: 0 0 18px;
 }
 
+/* RESPIRO PARA O CTA FLUTUANTE */
+main {
+  padding-bottom: 140px;
+}
+
 @media (max-width: 980px) {
   .hero h1 {
     font-size: 28px;
@@ -454,5 +459,9 @@
 
     max-width: 19px !important;
     max-height: 19px !important;
+  }
+
+  main {
+    padding-bottom: 120px;
   }
 }
