@@ -1,8 +1,6 @@
 import {
   collection,
-  getDocs,
-  query,
-  where
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import { db } from "./firebase.js";
@@ -42,12 +40,6 @@ const contadorEventos =
 
 let anuncios = [];
 let eventos = [];
-
-window.criarConta = function () {
-  alert(
-    "Para criar conta, falar com anunciantes e usar todos os recursos, baixe o app Volante."
-  );
-};
 
 buscaInput.addEventListener(
   "input",
@@ -155,15 +147,11 @@ async function carregarDados() {
   gridEventos.innerHTML =
     `<div class="loading">Carregando eventos...</div>`;
 
-  const qAnuncios = query(
-    collection(db, "anuncios"),
-    where("status", "==", "ATIVO")
-  );
+  const qAnuncios =
+    collection(db, "anuncios");
 
-  const qEventos = query(
-    collection(db, "eventos"),
-    where("status", "==", "ATIVO")
-  );
+  const qEventos =
+    collection(db, "eventos");
 
   const [
     snapAnuncios,
@@ -174,16 +162,26 @@ async function carregarDados() {
   ]);
 
   anuncios =
-    snapAnuncios.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    }));
+    snapAnuncios.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .filter(
+        (item) =>
+          item.status === "ATIVO"
+      );
 
   eventos =
-    snapEventos.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    }));
+    snapEventos.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .filter(
+        (item) =>
+          item.status === "ATIVO"
+      );
 
   renderizarTudo();
 }
