@@ -15,6 +15,7 @@ export function imagemHtml(item, titulo) {
         src="${imagem}"
         alt="${escapeHtml(titulo)}"
         loading="lazy"
+        decoding="async"
       />
 
       <div class="overlay"></div>
@@ -25,7 +26,7 @@ export function imagemHtml(item, titulo) {
         </div>
 
         <span class="ver-mais">
-          Ver no app
+          Ver detalhes
         </span>
       </div>
     </div>
@@ -45,7 +46,7 @@ export function cardAnuncio(item) {
   return `
     <article
       class="card"
-      onclick="window.location.href='/detalhe.html?id=${item.id}'"
+      onclick="window.location.href='./detalhe.html?id=${item.id}'"
     >
       ${imagemHtml(item, titulo)}
 
@@ -79,7 +80,7 @@ export function cardEvento(item) {
   return `
     <article
       class="card"
-      onclick="window.location.href='/detalhe.html?tipo=evento&id=${item.id}'"
+      onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
     >
       ${imagemHtml(item, titulo)}
 
