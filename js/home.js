@@ -46,6 +46,23 @@ buscaInput.addEventListener(
   renderizarTudo
 );
 
+document.addEventListener("click", (event) => {
+  const botao = event.target.closest("[data-scroll-target]");
+
+  if (!botao) return;
+
+  const alvoId = botao.dataset.scrollTarget;
+  const direcao = Number(botao.dataset.scrollDirection || 1);
+  const alvo = document.getElementById(alvoId);
+
+  if (!alvo) return;
+
+  alvo.scrollBy({
+    left: direcao * Math.round(alvo.clientWidth * 0.85),
+    behavior: "smooth",
+  });
+});
+
 function filtrar(lista) {
   const termo =
     normalizar(buscaInput.value);
