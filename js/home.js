@@ -93,14 +93,29 @@ function filtrar(lista) {
 }
 
 function obterUF(item) {
-  return (
+  const valor =
     item.uf ||
     item.estado ||
-    ""
-  )
-    .toString()
-    .trim()
-    .toUpperCase();
+    "";
+
+  const texto =
+    String(valor)
+      .trim()
+      .toUpperCase();
+
+  if (texto.includes("GOI")) return "GO";
+  if (texto.includes("DISTRITO")) return "DF";
+  if (texto.includes("BRASILIA")) return "DF";
+  if (texto.includes("SÃO PAULO")) return "SP";
+  if (texto.includes("SAO PAULO")) return "SP";
+  if (texto.includes("RIO DE JANEIRO")) return "RJ";
+  if (texto.includes("MINAS")) return "MG";
+  if (texto.includes("ESPIRITO")) return "ES";
+  if (texto.includes("PARANA")) return "PR";
+  if (texto.includes("SANTA CATARINA")) return "SC";
+  if (texto.includes("RIO GRANDE DO SUL")) return "RS";
+
+  return texto;
 }
 
 function filtrarRegiao(lista, estados) {
