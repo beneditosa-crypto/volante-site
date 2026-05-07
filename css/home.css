@@ -40,6 +40,7 @@
 
 .busca input {
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
@@ -138,7 +139,6 @@
   text-shadow: 0 2px 14px rgba(0,0,0,.22);
 }
 
-/* Botão “Ver detalhes” / compartilhamento visual do card mais refinado */
 .ver-mais {
   margin-top: 12px;
   display: inline-flex;
@@ -170,21 +170,7 @@
 }
 
 .price {
-  margin-top: 10px;
-  color: var(--preco);
-  font-size: 24px;
-  font-weight: 940;
-  letter-spacing: -0.9px;
-}
-
-.price::after {
-  content: "";
-  display: block;
-  width: 34px;
-  height: 2px;
-  margin-top: 9px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(176,138,60,.75), rgba(176,138,60,0));
+  display: none;
 }
 
 .btn-favorito {
@@ -228,39 +214,80 @@
 
 @media (max-width: 620px) {
   .hero {
-    padding: 28px 22px;
+    padding: 24px 22px;
     border-radius: 28px;
   }
 
   .hero h1 {
-    font-size: 33px;
-    letter-spacing: -1.6px;
+    font-size: 27px;
+    line-height: 1.08;
+    letter-spacing: -1.25px;
+    max-width: 96%;
   }
 
   .busca {
-    height: 56px;
+    margin-top: 20px;
+    height: 52px;
     border-radius: 20px;
+    padding: 0 16px;
+  }
+
+  .busca input {
+    font-size: 14px;
   }
 
   .card {
-    flex: 0 0 84vw;
-    border-radius: 28px;
+    flex: 0 0 78vw;
+    border-radius: 26px;
   }
 
   .foto-wrap {
-    height: 236px;
+    height: 205px;
+  }
+
+  .overlay-content {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
   }
 
   .overlay-text {
-    font-size: 18px;
+    font-size: 17px;
+    letter-spacing: -.55px;
   }
 
-  .price {
-    font-size: 23px;
+  .ver-mais {
+    min-height: 34px;
+    padding: 0 13px;
+    font-size: 11px;
+  }
+
+  .card-body {
+    padding: 14px 16px 16px;
+  }
+
+  .meta {
+    font-size: 12.5px;
   }
 
   .btn-favorito {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+    top: 13px;
+    right: 13px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero h1 {
+    font-size: 25px;
+  }
+
+  .card {
+    flex-basis: 76vw;
+  }
+
+  .foto-wrap {
+    height: 192px;
   }
 }
