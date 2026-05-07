@@ -9,7 +9,7 @@ import {
 
 window.toggleFavorito = toggleFavorito;
 
-export function imagemHtml(item, titulo, tipo = "anuncio") {
+export function imagemHtml(item, titulo) {
   const imagem = getImagem(item);
 
   const favorito =
@@ -104,7 +104,7 @@ export function cardEvento(item) {
       class="card"
       onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
     >
-      ${imagemHtml(item, titulo, "evento")}
+      ${imagemHtml(item, titulo)}
 
       <div class="card-body">
         <div class="meta">
