@@ -2,32 +2,79 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
 
 <title>Volante App | Detalhe</title>
-<meta name="description" content="Veja este anúncio no Volante App." />
 
-<link rel="icon" type="image/png" href="./assets/favicon.png" />
-<link rel="stylesheet" href="./css/global.css" />
-<link rel="stylesheet" href="./css/detalhe.css" />
+<meta
+  name="description"
+  content="Veja este anúncio ou evento no Volante App."
+/>
+
+<meta property="og:title" content="Volante App" />
+<meta property="og:description" content="Veja este anúncio ou evento no Volante App." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://volante.app.br/detalhe.html" />
+<meta property="og:image" content="https://volante.app.br/assets/logo.png" />
+
+<link
+  rel="icon"
+  type="image/png"
+  href="./assets/favicon.png"
+/>
+
+<link
+  rel="stylesheet"
+  href="./css/global.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="./css/detalhe.css"
+/>
 </head>
 
 <body>
 <header>
   <div class="topo detalhe-topo">
-    <a class="btn-voltar" href="./index.html" aria-label="Voltar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <a
+      class="btn-voltar"
+      href="./index.html"
+      aria-label="Voltar"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path d="M15 18l-6-6 6-6"/>
       </svg>
     </a>
 
-    <a class="marca" href="./index.html" aria-label="Volante App">
-      <img src="./assets/logo.png" alt="Volante" class="logo" />
+    <div class="marca">
+      <img
+        src="./assets/logo.png"
+        alt="Volante"
+        class="logo"
+      />
+
       <div>
-        <div class="nome">Volante</div>
-        <div class="slogan">Mais que carros, paixão</div>
+        <div class="nome">
+          Volante
+        </div>
+
+        <div class="slogan">
+          Mais que carros, paixão
+        </div>
       </div>
-    </a>
+    </div>
 
     <div class="topo-espaco"></div>
   </div>
@@ -35,40 +82,83 @@
 
 <main>
   <div id="conteudo">
-    <div class="loading">Carregando detalhe...</div>
+    <div class="loading loading-card">
+      Carregando detalhe...
+    </div>
   </div>
 
   <footer class="footer">
     <div class="footer-grid">
       <div>
         <h3>Volante</h3>
-        <p>Mais que carros, paixão.</p>
-        <p>Uma vitrine premium para veículos, encontros e experiências automotivas.</p>
+
+        <p>
+          Mais que carros, paixão.
+        </p>
+
+        <p>
+          Uma vitrine premium para veículos,
+          encontros e experiências automotivas.
+        </p>
       </div>
 
       <div>
         <h4>Institucional</h4>
-        <a href="./politica.html">Política de privacidade</a>
-        <a href="./termos.html">Termos de uso</a>
+
+        <a href="./politica.html">
+          Política de privacidade
+        </a>
+
+        <a href="./termos.html">
+          Termos de uso
+        </a>
       </div>
 
       <div>
         <h4>Contato</h4>
-        <a href="mailto:contato@volante.app.br">contato@volante.app.br</a>
-        <a href="https://www.instagram.com/appvolante" target="_blank" rel="noopener" class="instagram-link">@appvolante</a>
+
+        <a href="mailto:contato@volante.app.br">
+          contato@volante.app.br
+        </a>
+
+        <a
+          href="https://www.instagram.com/appvolante"
+          target="_blank"
+          class="instagram-link"
+        >
+          @appvolante
+        </a>
       </div>
 
       <div>
         <h4>Aplicativo</h4>
-        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
-        <a href="#" onclick="baixarApp(); return false;">App Store</a>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          Google Play
+        </a>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          App Store
+        </a>
       </div>
     </div>
 
-    <div class="footer-bottom">Volante App © 2026. Todos os direitos reservados.</div>
+    <div class="footer-bottom">
+      Volante App © 2026.
+      Todos os direitos reservados.
+    </div>
   </footer>
 </main>
 
-<script type="module" src="./js/detalhe.js"></script>
+<script
+  type="module"
+  src="./js/detalhe.js"
+></script>
 </body>
 </html>
