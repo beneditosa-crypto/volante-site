@@ -8,13 +8,13 @@
   );
   border: 1px solid rgba(15, 23, 42, 0.05);
   border-radius: 40px;
-  padding: 34px 32px;
+  padding: 36px 34px;
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
 }
 
 .hero h1 {
   max-width: 760px;
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 900;
   line-height: 1.02;
   letter-spacing: -2px;
@@ -190,60 +190,13 @@
   background: rgba(220, 38, 38, 0.92);
 }
 
-.floating-lojas {
-  position: fixed;
-  right: 50%;
-  bottom: 14px;
-  transform: translateX(50%);
-  z-index: 999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 46px;
-  padding: 8px 14px 8px 10px;
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(15, 23, 42, 0.96),
-      rgba(30, 41, 59, 0.94)
-    );
-  backdrop-filter: blur(22px);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    0 18px 42px rgba(15, 23, 42, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
 
-.floating-lojas:hover {
-  transform: translateX(50%) translateY(-3px);
-  box-shadow:
-    0 24px 54px rgba(15, 23, 42, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-}
 
-.floating-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.13);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 900;
-}
 
-.floating-lojas span {
-  font-size: 13px;
-  font-weight: 850;
-  letter-spacing: -0.1px;
-  white-space: nowrap;
-}
+
+
+
+
 
 @media (max-width: 620px) {
   .hero {
@@ -271,21 +224,4 @@
     font-size: 18px;
   }
 
-  .floating-lojas {
-    bottom: 16px;
-    min-height: 46px;
-    padding: 8px 14px 8px 9px;
-    gap: 8px;
-    max-width: calc(100vw - 32px);
-  }
-
-  .floating-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-  }
-
-  .floating-lojas span {
-    font-size: 12px;
-  }
-}
+  
