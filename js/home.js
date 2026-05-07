@@ -20,23 +20,15 @@ import {
 const buscaInput =
   document.getElementById("busca");
 
-const gridDestaques =
-  document.getElementById("gridDestaques");
-
-const gridRecentes =
-  document.getElementById("gridRecentes");
-
-const gridEventos =
-  document.getElementById("gridEventos");
-
-const contadorDestaques =
-  document.getElementById("contadorDestaques");
-
-const contadorRecentes =
-  document.getElementById("contadorRecentes");
-
-const contadorEventos =
-  document.getElementById("contadorEventos");
+const grids = {
+  destaques: document.getElementById("gridDestaques"),
+  recentes: document.getElementById("gridRecentes"),
+  favoritos: document.getElementById("gridFavoritos"),
+  goias: document.getElementById("gridGoias"),
+  df: document.getElementById("gridDF"),
+  eventos: document.getElementById("gridEventos"),
+  eventosFavoritos: document.getElementById("gridEventosFavoritos")
+};
 
 let anuncios = [];
 let eventos = [];
@@ -45,23 +37,6 @@ buscaInput.addEventListener(
   "input",
   renderizarTudo
 );
-
-document.addEventListener("click", (event) => {
-  const botao = event.target.closest("[data-scroll-target]");
-
-  if (!botao) return;
-
-  const alvoId = botao.dataset.scrollTarget;
-  const direcao = Number(botao.dataset.scrollDirection || 1);
-  const alvo = document.getElementById(alvoId);
-
-  if (!alvo) return;
-
-  alvo.scrollBy({
-    left: direcao * Math.round(alvo.clientWidth * 0.85),
-    behavior: "smooth",
-  });
-});
 
 function filtrar(lista) {
   const termo =
@@ -114,56 +89,63 @@ function renderizarTudo() {
           getDataMs(a)
       );
 
-  const destaques =
-    anunciosFiltrados.slice(0, 8);
-
-  const recentes =
-    anunciosFiltrados.slice(0, 12);
-
-  const eventosTela =
-    eventosFiltrados.slice(0, 12);
-
-  contadorDestaques.textContent =
-    `${destaques.length} exibidos`;
-
-  contadorRecentes.textContent =
-    `${recentes.length} exibidos`;
-
-  contadorEventos.textContent =
-    `${eventosTela.length} exibidos`;
-
   renderizarGrid(
-    gridDestaques,
-    destaques,
+    grids.destaques,
+    anunciosFiltrados.slice(0, 12),
     cardAnuncio,
-    "Nenhum destaque ativo encontrado."
+    "Nenhum destaque encontrado."
   );
 
   renderizarGrid(
-    gridRecentes,
-    recentes,
+    grids.recentes,
+    anunciosFiltrados.slice(0, 18),
     cardAnuncio,
-    "Nenhum anúncio ativo encontrado."
+    "Nenhum anúncio encontrado."
   );
 
   renderizarGrid(
-    gridEventos,
-    eventosTela,
+    grids.favoritos,
+    anunciosFiltrados.slice(3, 15),
+    cardAnuncio,
+    "Nenhum favorito encontrado."
+  );
+
+  renderizarGrid(
+    grids.goias,
+    anunciosFiltrados.filter(
+      (item) =>
+        item.estado === "GO"
+    ),
+    cardAnuncio,
+    "Nenhum anúncio encontrado."
+  );
+
+  renderizarGrid(
+    grids.df,
+    anunciosFiltrados.filter(
+      (item) =>
+        item.estado === "DF"
+    ),
+    cardAnuncio,
+    "Nenhum anúncio encontrado."
+  );
+
+  renderizarGrid(
+    grids.eventos,
+    eventosFiltrados,
     cardEvento,
-    "Nenhum evento ativo encontrado."
+    "Nenhum evento encontrado."
+  );
+
+  renderizarGrid(
+    grids.eventosFavoritos,
+    eventosFiltrados.slice(0, 8),
+    cardEvento,
+    "Nenhum evento encontrado."
   );
 }
 
 async function carregarDados() {
-  gridDestaques.innerHTML =
-    `<div class="loading">Carregando destaques...</div>`;
-
-  gridRecentes.innerHTML =
-    `<div class="loading">Carregando anúncios...</div>`;
-
-  gridEventos.innerHTML =
-    `<div class="loading">Carregando eventos...</div>`;
-
   const qAnuncios =
     collection(db, "anuncios");
 
@@ -203,15 +185,4 @@ async function carregarDados() {
   renderizarTudo();
 }
 
-carregarDados().catch((error) => {
-  console.error(error);
-
-  gridDestaques.innerHTML =
-    `<div class="erro">Erro ao carregar destaques.</div>`;
-
-  gridRecentes.innerHTML =
-    `<div class="erro">Erro ao carregar anúncios.</div>`;
-
-  gridEventos.innerHTML =
-    `<div class="erro">Erro ao carregar eventos.</div>`;
-});
+carregarDados();
