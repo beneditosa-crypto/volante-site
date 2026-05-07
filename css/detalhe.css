@@ -82,7 +82,7 @@
 .foto-principal {
   width: 100%;
   height: auto;
-  max-height: 560px;
+  max-height: 540px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   background: #e5e7eb;
@@ -214,8 +214,8 @@
 .descricao h3,
 .bloco h3,
 .cta-app h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 17px;
+  margin-bottom: 8px;
   letter-spacing: -.25px;
 }
 
@@ -223,83 +223,78 @@
 .bloco p,
 .cta-app p {
   color: var(--cinza);
-  font-size: 14px;
-  line-height: 1.62;
+  font-size: 13.5px;
+  line-height: 1.6;
 }
 
 .cta-app,
 .bloco {
-  margin-top: 20px;
-  border-radius: 25px;
-  padding: 21px;
-  border: 1px solid var(--linha);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.92));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+  margin-top: 18px;
+  border-radius: 22px;
+  padding: 18px;
+  border: 1px solid rgba(15,23,42,.06);
+  background: rgba(255,255,255,.72);
+  box-shadow: none;
 }
 
 .app-store-box {
-  margin-top: 17px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .app-store-btn {
-  height: 56px;
-  border-radius: 18px;
-  background:
-    linear-gradient(180deg, #111827, #020617);
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(15,23,42,.92);
   color: #fff;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 14px;
-  font-weight: 900;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 850;
   text-decoration: none;
-  box-shadow: 0 12px 26px rgba(15,23,42,.14);
+  box-shadow: 0 8px 18px rgba(15,23,42,.10);
 }
 
 .compartilhar {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .share-grid {
-  margin-top: 17px;
+  margin-top: 14px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .share-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
-  border: 1px solid rgba(15,23,42,.075);
-  background:
-    linear-gradient(180deg, #fff, #f8fafc);
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+  border: 1px solid rgba(15,23,42,.06);
+  background: rgba(255,255,255,.72);
   color: #111827;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  box-shadow:
-    0 10px 24px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 rgba(255,255,255,.85);
-  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: none;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
 }
 
 .share-btn:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 16px 34px rgba(15, 23, 42, 0.10),
-    inset 0 1px 0 rgba(255,255,255,.92);
+  transform: translateY(-1px);
+  background: #fff;
+  border-color: rgba(15,23,42,.10);
 }
 
 .share-btn svg {
-  width: 21px;
-  height: 21px;
+  width: 19px;
+  height: 19px;
   display: block;
   flex-shrink: 0;
 }
@@ -326,11 +321,11 @@
   }
 
   .detalhe-topo .logo {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
-    flex-basis: 40px;
+    width: 38px !important;
+    height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    flex-basis: 38px;
   }
 
   .galeria,
@@ -345,34 +340,42 @@
 
   .foto-principal {
     aspect-ratio: 4 / 3;
-    max-height: 340px;
+    max-height: 320px;
   }
 
   .titulo {
-    font-size: 26px;
+    font-size: 25px;
   }
 
   .preco {
-    font-size: 24px;
-  }
-
-  .app-store-box {
-    grid-template-columns: 1fr;
+    font-size: 23px;
   }
 
   .miniatura {
-    width: 76px;
-    height: 62px;
+    width: 74px;
+    height: 60px;
   }
 
   .seta-foto {
-    width: 36px;
-    height: 36px;
-    font-size: 24px;
+    width: 34px;
+    height: 34px;
+    font-size: 23px;
+  }
+
+  .cta-app,
+  .bloco {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .app-store-btn {
+    min-height: 40px;
+    font-size: 12px;
+    padding: 0 14px;
   }
 
   .share-btn {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
   }
 }
