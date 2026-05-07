@@ -72,7 +72,7 @@ main {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 22px 20px 112px;
+  padding: 22px 20px 104px;
 }
 
 header {
@@ -194,7 +194,7 @@ section + section {
 .footer {
   width: 100%;
   margin: 44px auto 0;
-  padding-bottom: 92px;
+  padding-bottom: 82px;
 }
 
 .footer-baloes {
@@ -265,26 +265,26 @@ section + section {
 .floating-lojas {
   position: fixed;
   left: 50%;
-  bottom: 18px;
+  bottom: 16px;
   transform: translateX(-50%);
   z-index: 999;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
-  min-height: 52px;
-  min-width: 238px;
+  gap: 8px;
+  min-height: 43px;
+  min-width: 178px;
   max-width: calc(100vw - 28px);
-  padding: 9px 18px 9px 11px;
+  padding: 7px 13px 7px 8px;
   border-radius: 999px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,252,.92));
+    linear-gradient(180deg, rgba(255,255,255,.93), rgba(248,250,252,.88));
   color: var(--texto);
-  border: 1px solid rgba(15, 23, 42, 0.09);
+  border: 1px solid rgba(15, 23, 42, 0.075);
   box-shadow:
-    0 20px 54px rgba(15, 23, 42, 0.18),
-    inset 0 1px 0 rgba(255,255,255,.9);
-  backdrop-filter: blur(24px);
+    0 14px 36px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255,255,255,.85);
+  backdrop-filter: blur(22px);
   cursor: pointer;
   transition:
     transform .22s ease,
@@ -294,15 +294,15 @@ section + section {
 
 .floating-lojas:hover {
   transform: translateX(-50%) translateY(-2px);
-  border-color: rgba(15, 23, 42, 0.13);
+  border-color: rgba(15, 23, 42, 0.11);
   box-shadow:
-    0 26px 68px rgba(15, 23, 42, 0.22),
-    inset 0 1px 0 rgba(255,255,255,.95);
+    0 20px 52px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255,255,255,.92);
 }
 
 .floating-icon {
-  width: 32px;
-  height: 32px;
+  width: 27px;
+  height: 27px;
   border-radius: 999px;
   background:
     linear-gradient(180deg, #111827, #020617);
@@ -310,16 +310,16 @@ section + section {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 900;
   line-height: 1;
   flex: 0 0 auto;
-  box-shadow: 0 8px 18px rgba(15,23,42,.16);
+  box-shadow: 0 7px 14px rgba(15,23,42,.14);
 }
 
 .floating-lojas span {
   color: var(--texto);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 850;
   letter-spacing: -0.15px;
   line-height: 1;
@@ -338,70 +338,72 @@ section + section {
 
 @media (max-width: 620px) {
   main {
-    padding: 14px 14px 106px;
+    padding: 12px 14px 86px;
   }
 
   .topo {
-    padding: 10px 14px;
+    padding: 9px 14px;
   }
 
   .logo {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
-    flex-basis: 40px;
+    width: 38px !important;
+    height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    flex-basis: 38px;
   }
 
   .nome {
-    font-size: 21px;
+    font-size: 20px;
+    letter-spacing: -0.7px;
   }
 
   .slogan {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   section + section {
-    margin-top: 22px;
+    margin-top: 20px;
   }
 
   .section-head {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .section-head h2 {
-    font-size: 22px;
+    font-size: 21px;
+    letter-spacing: -0.7px;
   }
 
   .section-head p {
-    font-size: 13px;
+    font-size: 12.5px;
   }
 
   .footer {
-    margin-top: 34px;
-    padding-bottom: 86px;
+    margin-top: 30px;
+    padding-bottom: 70px;
   }
 
   .footer-card {
-    padding: 18px;
+    padding: 17px;
     border-radius: 22px;
   }
 
   .floating-lojas {
-    bottom: 12px;
-    min-height: 46px;
-    min-width: min(286px, calc(100vw - 28px));
-    padding: 8px 14px 8px 9px;
-    gap: 8px;
+    bottom: 10px;
+    min-height: 40px;
+    min-width: 168px;
+    padding: 6px 12px 6px 7px;
+    gap: 7px;
   }
 
   .floating-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    font-size: 11px;
   }
 
   .floating-lojas span {
-    font-size: 12px;
+    font-size: 11.5px;
   }
 }
