@@ -49,8 +49,26 @@ const REGIOES = {
   centroOeste: ["GO", "DF", "MT", "MS"],
   sudeste: ["SP", "RJ", "MG", "ES"],
   sul: ["PR", "SC", "RS"],
-  nordeste: ["BA", "PE", "CE", "RN", "PB", "AL", "SE", "PI", "MA"],
-  norte: ["AM", "PA", "RO", "RR", "TO", "AC", "AP"]
+  nordeste: [
+    "BA",
+    "PE",
+    "CE",
+    "RN",
+    "PB",
+    "AL",
+    "SE",
+    "PI",
+    "MA"
+  ],
+  norte: [
+    "AM",
+    "PA",
+    "RO",
+    "RR",
+    "TO",
+    "AC",
+    "AP"
+  ]
 };
 
 buscaInput.addEventListener(
@@ -105,46 +123,50 @@ function obterUF(item) {
     .toUpperCase();
 
   const estados = {
-    AC: ["ACRE"],
-    AL: ["ALAGOAS"],
-    AP: ["AMAPÁ", "AMAPA"],
-    AM: ["AMAZONAS"],
-    BA: ["BAHIA"],
-    CE: ["CEARÁ", "CEARA"],
+    AC: ["AC", "ACRE"],
+    AL: ["AL", "ALAGOAS"],
+    AP: ["AP", "AMAPÁ", "AMAPA"],
+    AM: ["AM", "AMAZONAS"],
+    BA: ["BA", "BAHIA"],
+    CE: ["CE", "CEARÁ", "CEARA"],
     DF: [
+      "DF",
       "DISTRITO FEDERAL",
       "BRASÍLIA",
       "BRASILIA"
     ],
     ES: [
+      "ES",
       "ESPÍRITO SANTO",
       "ESPIRITO SANTO"
     ],
-    GO: ["GOIÁS", "GOIAS"],
-    MA: ["MARANHÃO", "MARANHAO"],
-    MT: ["MATO GROSSO"],
-    MS: ["MATO GROSSO DO SUL"],
+    GO: ["GO", "GOIÁS", "GOIAS"],
+    MA: ["MA", "MARANHÃO", "MARANHAO"],
+    MT: ["MT", "MATO GROSSO"],
+    MS: ["MS", "MATO GROSSO DO SUL"],
     MG: [
+      "MG",
       "MINAS GERAIS",
       "MINAS"
     ],
-    PA: ["PARÁ", "PARA"],
-    PB: ["PARAÍBA", "PARAIBA"],
-    PR: ["PARANÁ", "PARANA"],
-    PE: ["PERNAMBUCO"],
-    PI: ["PIAUÍ", "PIAUI"],
-    RJ: ["RIO DE JANEIRO"],
-    RN: ["RIO GRANDE DO NORTE"],
-    RS: ["RIO GRANDE DO SUL"],
-    RO: ["RONDÔNIA", "RONDONIA"],
-    RR: ["RORAIMA"],
-    SC: ["SANTA CATARINA"],
+    PA: ["PA", "PARÁ", "PARA"],
+    PB: ["PB", "PARAÍBA", "PARAIBA"],
+    PR: ["PR", "PARANÁ", "PARANA"],
+    PE: ["PE", "PERNAMBUCO"],
+    PI: ["PI", "PIAUÍ", "PIAUI"],
+    RJ: ["RJ", "RIO DE JANEIRO"],
+    RN: ["RN", "RIO GRANDE DO NORTE"],
+    RS: ["RS", "RIO GRANDE DO SUL"],
+    RO: ["RO", "RONDÔNIA", "RONDONIA"],
+    RR: ["RR", "RORAIMA"],
+    SC: ["SC", "SANTA CATARINA"],
     SP: [
+      "SP",
       "SÃO PAULO",
       "SAO PAULO"
     ],
-    SE: ["SERGIPE"],
-    TO: ["TOCANTINS"]
+    SE: ["SE", "SERGIPE"],
+    TO: ["TO", "TOCANTINS"]
   };
 
   for (const uf in estados) {
@@ -152,7 +174,8 @@ function obterUF(item) {
       return uf;
     }
 
-    const variacoes = estados[uf];
+    const variacoes =
+      estados[uf];
 
     const encontrou =
       variacoes.some((valor) =>
