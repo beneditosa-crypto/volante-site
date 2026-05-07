@@ -1,11 +1,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(228, 235, 247, 0.95)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(228, 235, 247, 0.95));
   border: 1px solid rgba(15, 23, 42, 0.05);
   border-radius: 40px;
   padding: 36px 34px;
@@ -22,7 +18,7 @@
 }
 
 .busca {
-  margin-top: 20px;
+  margin-top: 22px;
   height: 62px;
   display: flex;
   align-items: center;
@@ -105,12 +101,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.72),
-    rgba(0, 0, 0, 0.08),
-    transparent
-  );
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.08), transparent);
 }
 
 .overlay-content {
@@ -190,14 +181,6 @@
   background: rgba(220, 38, 38, 0.92);
 }
 
-
-
-
-
-
-
-
-
 @media (max-width: 620px) {
   .hero {
     padding: 28px 22px;
@@ -223,5 +206,4 @@
   .overlay-text {
     font-size: 18px;
   }
-
-  
+}
