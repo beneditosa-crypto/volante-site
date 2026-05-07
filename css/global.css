@@ -262,8 +262,6 @@ section + section {
   gap: 8px;
 }
 
-/* CTA FLUTUANTE PREMIUM */
-
 .floating-lojas {
   position: fixed;
   left: 50%;
@@ -340,19 +338,19 @@ section + section {
 
 @media (max-width: 620px) {
   main {
-    padding: 18px 14px 106px;
+    padding: 14px 14px 106px;
   }
 
   .topo {
-    padding: 12px 14px;
+    padding: 10px 14px;
   }
 
   .logo {
-    width: 42px !important;
-    height: 42px !important;
-    max-width: 42px !important;
-    max-height: 42px !important;
-    flex-basis: 42px;
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    flex-basis: 40px;
   }
 
   .nome {
@@ -364,7 +362,11 @@ section + section {
   }
 
   section + section {
-    margin-top: 24px;
+    margin-top: 22px;
+  }
+
+  .section-head {
+    margin-bottom: 12px;
   }
 
   .section-head h2 {
@@ -387,16 +389,16 @@ section + section {
 
   .floating-lojas {
     bottom: 12px;
-    min-height: 48px;
-    min-width: min(310px, calc(100vw - 28px));
-    padding: 8px 15px 8px 9px;
+    min-height: 46px;
+    min-width: min(286px, calc(100vw - 28px));
+    padding: 8px 14px 8px 9px;
     gap: 8px;
   }
 
   .floating-icon {
-    width: 29px;
-    height: 29px;
-    font-size: 13px;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
   }
 
   .floating-lojas span {
