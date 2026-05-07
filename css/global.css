@@ -181,8 +181,6 @@ main {
   border: 1px solid var(--linha);
 
   box-shadow: var(--sombra);
-
-  text-align: center;
 }
 
 .footer-grid {
@@ -192,8 +190,6 @@ main {
     1.4fr 1fr 1fr 1fr;
 
   gap: 22px;
-
-  text-align: center;
 }
 
 .footer h3,
@@ -213,10 +209,6 @@ main {
   line-height: 1.6;
 }
 
-.footer a:hover {
-  color: var(--azul-principal);
-}
-
 .footer-bottom {
   margin-top: 18px;
 
@@ -229,6 +221,22 @@ main {
   font-size: 12px;
 
   text-align: center;
+}
+
+.instagram-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.instagram-link svg {
+  width: 16px !important;
+  height: 16px !important;
+
+  min-width: 16px;
+  min-height: 16px;
+
+  flex-shrink: 0;
 }
 
 @media (max-width: 860px) {
