@@ -495,10 +495,13 @@ async function carregarDados() {
           id: doc.id,
           ...doc.data()
         }))
-        .filter(
-          (item) =>
-            item.status === "ATIVO"
-        );
+        .filter((item) => {
+  const status = String(item.status || "")
+    .trim()
+    .toUpperCase();
+
+  return status === "ATIVO";
+});
 
     renderizarTudo();
   } catch (error) {
