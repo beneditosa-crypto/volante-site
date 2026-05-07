@@ -1,211 +1,308 @@
-import { db } from "./firebase.js";
+.detalhe-topo {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  align-items: center;
+}
 
-import {
-  baixarApp,
-  escapeHtml,
-  formatarPreco,
-  getFotos,
-  textoLocal,
-  atualizarMetaDetalhe
-} from "./shared.js";
+.detalhe-topo .marca {
+  justify-self: center;
+}
 
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+.btn-voltar {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--linha);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra);
+  z-index: 20;
+}
 
-window.baixarApp = baixarApp;
+.btn-voltar svg {
+  width: 22px;
+  height: 22px;
+}
 
-const conteudo = document.getElementById("conteudo");
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-const tipoParam = (params.get("tipo") || "anuncio").toLowerCase();
+.topo-espaco {
+  width: 48px;
+  height: 48px;
+}
 
-let fotosGaleria = [];
-let fotoAtual = 0;
-let inicioToqueX = 0;
+#conteudo {
+  width: 100%;
+}
 
-async function carregarDetalhe() {
-  if (!id) {
-    conteudo.innerHTML = `<div class="empty">Item não encontrado.</div>`;
-    return;
+.detalhe {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.galeria {
+  width: 100%;
+  max-width: 720px;
+  background: #fff;
+  border-radius: 32px;
+  padding: 18px;
+  border: 1px solid var(--linha);
+  box-shadow: var(--sombra);
+}
+
+.foto-principal-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #eef2f7;
+  cursor: pointer;
+  user-select: none;
+}
+
+.foto-principal {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #e5e7eb;
+}
+
+.tipo-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.seta-foto {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.5);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.seta-foto-esquerda {
+  left: 14px;
+}
+
+.seta-foto-direita {
+  right: 14px;
+}
+
+.miniaturas {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.miniatura {
+  width: 86px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.72;
+  flex: 0 0 auto;
+}
+
+.miniatura.ativa {
+  border-color: var(--azul-principal);
+  opacity: 1;
+}
+
+.painel {
+  width: 100%;
+  background: #fff;
+  border-radius: 32px;
+  padding: 28px;
+  border: 1px solid var(--linha);
+  box-shadow: var(--sombra);
+}
+
+.titulo {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+
+.meta {
+  color: var(--cinza);
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.preco {
+  color: var(--azul-principal);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+  margin-bottom: 22px;
+}
+
+.descricao {
+  padding-top: 18px;
+  border-top: 1px solid var(--linha);
+}
+
+.descricao h3,
+.bloco h3,
+.cta-app h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.descricao p,
+.bloco p,
+.cta-app p {
+  color: var(--cinza);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cta-app,
+.bloco {
+  margin-top: 22px;
+  border-radius: 26px;
+  padding: 22px;
+  border: 1px solid var(--linha);
+  background: #fff;
+}
+
+.app-store-box {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.app-store-btn {
+  height: 58px;
+  border-radius: 18px;
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.app-store-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.compartilhar {
+  margin-top: 20px;
+}
+
+.share-grid {
+  margin-top: 18px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  border: 1px solid var(--linha);
+  background: #fff;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.share-btn svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .detalhe {
+    grid-template-columns: 1fr;
   }
 
-  try {
-    const colecaoPrincipal = tipoParam === "evento" ? "eventos" : "anuncios";
-    const colecaoFallback = tipoParam === "evento" ? "anuncios" : "eventos";
-
-    let itemSnap = await getDoc(doc(db, colecaoPrincipal, id));
-    let colecaoUsada = colecaoPrincipal;
-
-    if (!itemSnap.exists()) {
-      itemSnap = await getDoc(doc(db, colecaoFallback, id));
-      colecaoUsada = colecaoFallback;
-    }
-
-    if (!itemSnap.exists()) {
-      conteudo.innerHTML = `<div class="empty">Item não encontrado.</div>`;
-      return;
-    }
-
-    const item = {
-      id: itemSnap.id,
-      tipoColecao: colecaoUsada,
-      ...itemSnap.data()
-    };
-
-    renderizar(item);
-  } catch (error) {
-    console.error(error);
-    conteudo.innerHTML = `<div class="empty">Erro ao carregar detalhe.</div>`;
+  .galeria {
+    max-width: none;
   }
 }
 
-function renderizar(item) {
-  fotosGaleria = getFotos(item);
-  fotoAtual = 0;
-
-  const tituloOriginal = item.titulo || item.nome || "Item Volante";
-  const titulo = escapeHtml(tituloOriginal);
-  const preco = formatarPreco(item.preco);
-  const local = escapeHtml(textoLocal(item));
-  const descricaoOriginal = item.descricao || "Sem descrição.";
-  const descricao = escapeHtml(descricaoOriginal);
-  const ehEvento = item.tipoColecao === "eventos" || item.tipo === "EVENTO";
-  const tipo = ehEvento ? "Evento" : "Anúncio";
-  const urlAtual = window.location.href;
-  const imagemPrincipal = fotosGaleria[0];
-
-  atualizarMetaDetalhe({
-    titulo: tituloOriginal,
-    descricao: descricaoOriginal,
-    imagem: imagemPrincipal,
-    url: urlAtual
-  });
-
-  const textoCompartilhar = `${tituloOriginal} no Volante App`;
-  const whatsapp = `https://wa.me/?text=${encodeURIComponent(textoCompartilhar + " " + urlAtual)}`;
-  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlAtual)}`;
-  const email = `mailto:?subject=${encodeURIComponent(textoCompartilhar)}&body=${encodeURIComponent(urlAtual)}`;
-
-  conteudo.innerHTML = `
-    <section class="detalhe">
-      <div class="galeria">
-        <div class="foto-principal-wrap" id="fotoWrap">
-          <button class="seta-foto seta-foto-esquerda" id="fotoAnterior" aria-label="Foto anterior">‹</button>
-          <img id="fotoPrincipal" class="foto-principal" src="${imagemPrincipal}" alt="${titulo}" />
-          <button class="seta-foto seta-foto-direita" id="fotoProxima" aria-label="Próxima foto">›</button>
-          <div class="tipo-badge">${tipo}</div>
-        </div>
-
-        <div class="miniaturas">
-          ${fotosGaleria.map((foto, index) => `
-            <img class="miniatura ${index === 0 ? "ativa" : ""}" src="${foto}" alt="${titulo}" data-index="${index}" />
-          `).join("")}
-        </div>
-      </div>
-
-      <div class="painel">
-        <h1 class="titulo">${titulo}</h1>
-        <div class="meta">${local}</div>
-
-        ${preco && !ehEvento ? `<div class="preco">${escapeHtml(preco)}</div>` : ""}
-
-        <div class="descricao">
-          <h3>Descrição</h3>
-          <p>${descricao}</p>
-        </div>
-
-        <div class="cta-app">
-          <h3>Aplicativo disponível nas lojas</h3>
-          <p>Converse com anunciantes, publique veículos, favorite anúncios e acesse todos os recursos pelo aplicativo Volante.</p>
-
-          <div class="app-store-box">
-            <a class="app-store-btn" href="#" onclick="baixarApp(); return false;">Google Play</a>
-            <a class="app-store-btn" href="#" onclick="baixarApp(); return false;">App Store</a>
-          </div>
-        </div>
-
-        <div class="compartilhar">
-          <div class="bloco">
-            <h3>Compartilhar</h3>
-            <p>Envie este ${ehEvento ? "evento" : "anúncio"} para amigos e grupos.</p>
-
-            <div class="share-grid">
-              <a class="share-btn" href="${whatsapp}" target="_blank" aria-label="Compartilhar no WhatsApp">W</a>
-              <a class="share-btn" href="${email}" aria-label="Compartilhar por e-mail">@</a>
-              <a class="share-btn" href="${facebook}" target="_blank" aria-label="Compartilhar no Facebook">f</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  `;
-
-  iniciarGaleria();
-}
-
-function atualizarFoto(index) {
-  fotoAtual = index;
-  const fotoPrincipal = document.getElementById("fotoPrincipal");
-  if (!fotoPrincipal) return;
-
-  fotoPrincipal.src = fotosGaleria[fotoAtual];
-
-  document.querySelectorAll(".miniatura").forEach((miniatura, i) => {
-    miniatura.classList.toggle("ativa", i === fotoAtual);
-  });
-}
-
-function fotoAnterior() {
-  atualizarFoto(fotoAtual === 0 ? fotosGaleria.length - 1 : fotoAtual - 1);
-}
-
-function proximaFoto() {
-  atualizarFoto(fotoAtual === fotosGaleria.length - 1 ? 0 : fotoAtual + 1);
-}
-
-function iniciarGaleria() {
-  const fotoWrap = document.getElementById("fotoWrap");
-  const botaoAnterior = document.getElementById("fotoAnterior");
-  const botaoProxima = document.getElementById("fotoProxima");
-  const miniaturas = document.querySelectorAll(".miniatura");
-
-  if (!fotoWrap || !botaoAnterior || !botaoProxima) return;
-
-  if (fotosGaleria.length <= 1) {
-    botaoAnterior.style.display = "none";
-    botaoProxima.style.display = "none";
+@media (max-width: 620px) {
+  .detalhe-topo {
+    grid-template-columns: 56px 1fr 56px;
   }
 
-  botaoAnterior.addEventListener("click", (event) => {
-    event.stopPropagation();
-    fotoAnterior();
-  });
+  .btn-voltar,
+  .topo-espaco {
+    width: 42px;
+    height: 42px;
+  }
 
-  botaoProxima.addEventListener("click", (event) => {
-    event.stopPropagation();
-    proximaFoto();
-  });
+  .galeria,
+  .painel {
+    border-radius: 24px;
+    padding: 14px;
+  }
 
-  fotoWrap.addEventListener("touchstart", (event) => {
-    inicioToqueX = event.touches[0].clientX;
-  });
+  .foto-principal-wrap {
+    border-radius: 22px;
+  }
 
-  fotoWrap.addEventListener("touchend", (event) => {
-    const fimToqueX = event.changedTouches[0].clientX;
-    const diferenca = inicioToqueX - fimToqueX;
+  .foto-principal {
+    aspect-ratio: 4 / 3;
+    max-height: 360px;
+  }
 
-    if (Math.abs(diferenca) < 40) return;
-    diferenca > 0 ? proximaFoto() : fotoAnterior();
-  });
+  .titulo {
+    font-size: 26px;
+  }
 
-  miniaturas.forEach((miniatura) => {
-    miniatura.addEventListener("click", (event) => {
-      event.stopPropagation();
-      atualizarFoto(Number(miniatura.dataset.index));
-    });
-  });
+  .preco {
+    font-size: 24px;
+  }
+
+  .app-store-box {
+    grid-template-columns: 1fr;
+  }
 }
-
-carregarDetalhe();
