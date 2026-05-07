@@ -92,10 +92,21 @@ function filtrar(lista) {
   );
 }
 
+function obterUF(item) {
+  return (
+    item.uf ||
+    item.estado ||
+    ""
+  )
+    .toString()
+    .trim()
+    .toUpperCase();
+}
+
 function filtrarRegiao(lista, estados) {
   return lista.filter((item) => {
     const uf =
-      item.estado || item.uf;
+      obterUF(item);
 
     return estados.includes(uf);
   });
