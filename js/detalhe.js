@@ -1,249 +1,377 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { db } from "./firebase.js";
 
 import {
-getFirestore,
-doc,
-getDoc
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
-apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-projectId: "clube-da-caminhonete-be770",
-storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-messagingSenderId: "559157035885",
-appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
-};
+import {
+  baixarApp,
+  escapeHtml,
+  formatarPreco,
+  getFotos,
+  textoLocal
+} from "./shared.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+window.baixarApp = baixarApp;
 
-const params = new URLSearchParams(window.location.search);
+const conteudo =
+  document.getElementById("conteudo");
 
-const id = params.get("id");
-const tipo = (params.get("tipo") || "anuncio").toLowerCase();
+const params =
+  new URLSearchParams(window.location.search);
 
-const conteudo = document.getElementById("conteudo");
+const id =
+  params.get("id");
 
-function formatarPreco(valor){
-if(!valor) return "";
+const tipo =
+  (params.get("tipo") || "anuncio")
+    .toLowerCase();
 
-if(String(valor).includes("R$")) return valor;
+let fotos = [];
+let fotoAtual = 0;
 
-const numero = Number(String(valor).replace(/\D/g,""));
-
-if(!numero) return "";
-
-return numero.toLocaleString("pt-BR",{
-style:"currency",
-currency:"BRL"
-});
+function mostrarErro(texto) {
+  conteudo.innerHTML = `
+    <div class="empty">
+      ${texto}
+    </div>
+  `;
 }
 
-function textoLocal(item){
-const cidade = item.cidade || "";
-const estado = item.estado || item.uf || "";
+function atualizarFoto() {
+  const fotoPrincipal =
+    document.getElementById("fotoPrincipal");
 
-if(cidade && estado){
-return `${cidade} - ${estado}`;
+  if (!fotoPrincipal) return;
+
+  fotoPrincipal.src =
+    fotos[fotoAtual];
+
+  document
+    .querySelectorAll(".miniatura")
+    .forEach((item, index) => {
+      item.classList.toggle(
+        "ativa",
+        index === fotoAtual
+      );
+    });
 }
 
-return cidade || estado || "";
+function iniciarGaleria() {
+  const anterior =
+    document.getElementById(
+      "fotoAnterior"
+    );
+
+  const proxima =
+    document.getElementById(
+      "fotoProxima"
+    );
+
+  anterior?.addEventListener(
+    "click",
+    () => {
+      fotoAtual =
+        fotoAtual === 0
+          ? fotos.length - 1
+          : fotoAtual - 1;
+
+      atualizarFoto();
+    }
+  );
+
+  proxima?.addEventListener(
+    "click",
+    () => {
+      fotoAtual =
+        fotoAtual === fotos.length - 1
+          ? 0
+          : fotoAtual + 1;
+
+      atualizarFoto();
+    }
+  );
+
+  document
+    .querySelectorAll(".miniatura")
+    .forEach((item) => {
+      item.addEventListener(
+        "click",
+        () => {
+          fotoAtual =
+            Number(
+              item.dataset.index
+            );
+
+          atualizarFoto();
+        }
+      );
+    });
 }
 
-function getFotos(item){
-if(Array.isArray(item.fotos) && item.fotos.length){
-return item.fotos;
+function renderizar(item) {
+  fotos = getFotos(item);
+
+  const titulo =
+    item.titulo ||
+    item.nome ||
+    `${item.marca || ""} ${item.modelo || ""}`.trim() ||
+    "Volante";
+
+  const descricao =
+    item.descricao ||
+    "Sem descrição.";
+
+  const preco =
+    formatarPreco(item.preco);
+
+  const local =
+    textoLocal(item);
+
+  const ehEvento =
+    tipo === "evento";
+
+  const whatsapp =
+    `https://wa.me/?text=${encodeURIComponent(window.location.href)}`;
+
+  const facebook =
+    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+
+  const email =
+    `mailto:?subject=${encodeURIComponent(titulo)}&body=${encodeURIComponent(window.location.href)}`;
+
+  conteudo.innerHTML = `
+    <section class="detalhe">
+
+      <div class="galeria">
+
+        <div class="foto-principal-wrap">
+
+          ${
+            fotos.length > 1
+              ? `
+                <button
+                  class="seta-foto seta-foto-esquerda"
+                  id="fotoAnterior"
+                >
+                  ‹
+                </button>
+              `
+              : ""
+          }
+
+          <img
+            id="fotoPrincipal"
+            class="foto-principal"
+            src="${fotos[0]}"
+            alt="${escapeHtml(titulo)}"
+          />
+
+          ${
+            fotos.length > 1
+              ? `
+                <button
+                  class="seta-foto seta-foto-direita"
+                  id="fotoProxima"
+                >
+                  ›
+                </button>
+              `
+              : ""
+          }
+
+          <div class="tipo-badge">
+            ${
+              ehEvento
+                ? "EVENTO"
+                : "ANÚNCIO"
+            }
+          </div>
+
+        </div>
+
+        ${
+          fotos.length > 1
+            ? `
+              <div class="miniaturas">
+                ${fotos.map((foto, index) => `
+                  <img
+                    class="miniatura ${index === 0 ? "ativa" : ""}"
+                    src="${foto}"
+                    data-index="${index}"
+                  />
+                `).join("")}
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+
+      <div class="painel">
+
+        <h1 class="titulo">
+          ${escapeHtml(titulo)}
+        </h1>
+
+        <div class="meta">
+          ${escapeHtml(local)}
+        </div>
+
+        ${
+          preco && !ehEvento
+            ? `
+              <div class="preco">
+                ${escapeHtml(preco)}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="descricao">
+
+          <h3>
+            Descrição
+          </h3>
+
+          <p>
+            ${escapeHtml(descricao)}
+          </p>
+
+        </div>
+
+        <div class="cta-app">
+
+          <h3>
+            Aplicativo disponível nas lojas
+          </h3>
+
+          <p>
+            Converse com anunciantes,
+            publique veículos e favorite anúncios.
+          </p>
+
+          <div class="app-store-box">
+
+            <a
+              class="app-store-btn"
+              href="#"
+              onclick="baixarApp(); return false;"
+            >
+              Google Play
+            </a>
+
+            <a
+              class="app-store-btn"
+              href="#"
+              onclick="baixarApp(); return false;"
+            >
+              App Store
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="bloco">
+
+          <h3>
+            Compartilhar
+          </h3>
+
+          <p>
+            Compartilhe este conteúdo.
+          </p>
+
+          <div class="share-grid">
+
+            <a
+              class="share-btn"
+              target="_blank"
+              href="${whatsapp}"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 3.9A10 10 0 0 0 4.3 16.1L3 21l5-1.3A10 10 0 1 0 20 3.9Z"/>
+              </svg>
+            </a>
+
+            <a
+              class="share-btn"
+              href="${email}"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"/>
+                <path d="m22 6-10 7L2 6"/>
+              </svg>
+            </a>
+
+            <a
+              class="share-btn"
+              target="_blank"
+              href="${facebook}"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 22v-8h3l1-4h-4V8c0-1.2.3-2 2-2h2V2.5A26 26 0 0 0 14 2c-3 0-5 1.8-5 5.2V10H6v4h3v8z"/>
+              </svg>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  iniciarGaleria();
 }
 
-if(Array.isArray(item.imagens) && item.imagens.length){
-return item.imagens;
-}
+async function carregar() {
+  if (!id) {
+    mostrarErro("ID inválido.");
+    return;
+  }
 
-if(item.foto) return [item.foto];
-if(item.imagem) return [item.imagem];
+  try {
 
-return ["https://placehold.co/1200x900?text=Volante"];
-}
+    const colecao =
+      tipo === "evento"
+        ? "eventos"
+        : "anuncios";
 
-async function carregar(){
+    const referencia =
+      doc(db, colecao, id);
 
-try{
+    const snapshot =
+      await getDoc(referencia);
 
-const colecao =
-tipo === "evento"
-? "eventos"
-: "anuncios";
+    if (!snapshot.exists()) {
+      mostrarErro(
+        "Conteúdo não encontrado."
+      );
 
-const ref = doc(db, colecao, id);
+      return;
+    }
 
-const snap = await getDoc(ref);
+    renderizar({
+      id: snapshot.id,
+      ...snapshot.data()
+    });
 
-if(!snap.exists()){
+  } catch (erro) {
 
-conteudo.innerHTML = `
-<div class="empty">
-Conteúdo não encontrado.
-</div>
-`;
+    console.error(
+      "Erro detalhe:",
+      erro
+    );
 
-return;
-
-}
-
-const item = snap.data();
-
-const fotos = getFotos(item);
-
-const titulo =
-item.titulo ||
-item.nome ||
-"Volante";
-
-const local = textoLocal(item);
-
-const preco = formatarPreco(item.preco);
-
-conteudo.innerHTML = `
-<section class="detalhe">
-
-<div class="galeria">
-
-<div class="foto-principal-wrap">
-
-<img
-class="foto-principal"
-src="${fotos[0]}"
-alt="${titulo}"
-/>
-
-<div class="tipo-badge">
-${tipo === "evento" ? "EVENTO" : "ANÚNCIO"}
-</div>
-
-</div>
-
-<div class="miniaturas">
-${fotos.map((foto,index)=>`
-<img
-class="miniatura ${index===0 ? "ativa" : ""}"
-src="${foto}"
-/>
-`).join("")}
-</div>
-
-</div>
-
-<div class="painel">
-
-<h1 class="titulo">
-${titulo}
-</h1>
-
-<div class="meta">
-${local}
-</div>
-
-${preco ? `
-<div class="preco">
-${preco}
-</div>
-` : ""}
-
-<div class="descricao">
-<h3>Descrição</h3>
-
-<p>
-${item.descricao || "Sem descrição."}
-</p>
-</div>
-
-<div class="cta-app">
-
-<h3>
-Aplicativo disponível nas lojas
-</h3>
-
-<p>
-Converse com anunciantes e publique veículos pelo app.
-</p>
-
-<div class="app-store-box">
-
-<a class="app-store-btn" href="#">
-Google Play
-</a>
-
-<a class="app-store-btn" href="#">
-App Store
-</a>
-
-</div>
-
-</div>
-
-<div class="bloco">
-
-<h3>
-Compartilhar
-</h3>
-
-<p>
-Compartilhe este anúncio.
-</p>
-
-<div class="share-grid">
-
-<a class="share-btn" target="_blank"
-href="https://wa.me/?text=${encodeURIComponent(window.location.href)}">
-
-<svg viewBox="0 0 24 24" fill="currentColor">
-<path d="M20 3.9A10 10 0 0 0 4.3 16.1L3 21l5-1.3A10 10 0 1 0 20 3.9Z"/>
-</svg>
-
-</a>
-
-<a class="share-btn"
-href="mailto:?subject=${encodeURIComponent(titulo)}&body=${encodeURIComponent(window.location.href)}">
-
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M4 4h16v16H4z"/>
-<path d="m22 6-10 7L2 6"/>
-</svg>
-
-</a>
-
-<a class="share-btn" target="_blank"
-href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}">
-
-<svg viewBox="0 0 24 24" fill="currentColor">
-<path d="M13 22v-8h3l1-4h-4V8c0-1.2.3-2 2-2h2V2.5A26 26 0 0 0 14 2c-3 0-5 1.8-5 5.2V10H6v4h3v8z"/>
-</svg>
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-`;
-
-}catch(e){
-
-console.error(e);
-
-conteudo.innerHTML = `
-<div class="empty">
-Erro ao carregar detalhe.
-</div>
-`;
-
-}
-
+    mostrarErro(
+      "Erro ao carregar detalhe."
+    );
+  }
 }
 
 carregar();
