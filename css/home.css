@@ -104,6 +104,41 @@
   box-shadow: 0 22px 44px rgba(15, 23, 42, 0.16);
 }
 
+.btn-favorito {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  z-index: 5;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.18);
+
+  backdrop-filter: blur(12px);
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: .2s;
+}
+
+.btn-favorito svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-favorito.ativo {
+  background: rgba(220,38,38,.92);
+}
+
 .foto {
   width: 100%;
   aspect-ratio: 1 / 1;
