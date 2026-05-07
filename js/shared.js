@@ -41,22 +41,6 @@ export function getImagem(item) {
   return "";
 }
 
-export function getImagens(item) {
-  if (Array.isArray(item.fotos) && item.fotos.length > 0) {
-    return item.fotos;
-  }
-
-  if (Array.isArray(item.imagens) && item.imagens.length > 0) {
-    return item.imagens;
-  }
-
-  if (item.foto) return [item.foto];
-  if (item.imagem) return [item.imagem];
-  if (item.imageUrl) return [item.imageUrl];
-
-  return [];
-}
-
 export function getDataMs(item) {
   if (item.data?.seconds) {
     return item.data.seconds * 1000;
@@ -96,23 +80,6 @@ export function formatarPreco(valor) {
   });
 }
 
-export function formatarData(valor) {
-  if (!valor) return "";
-
-  if (valor.seconds) {
-    return new Date(valor.seconds * 1000)
-      .toLocaleDateString("pt-BR");
-  }
-
-  return String(valor);
-}
-
-export function baixarApp() {
-  alert(
-    "Em breve, o Volante estará disponível nas lojas. Continue acompanhando pelo site volante.app.br."
-  );
-}
-
 const FAVORITOS_KEY =
   "volante_favoritos";
 
@@ -144,6 +111,12 @@ export function toggleFavorito(id) {
   );
 
   window.location.reload();
+}
+
+export function baixarApp() {
+  alert(
+    "Em breve, o Volante estará disponível nas lojas."
+  );
 }
 
 window.baixarApp = baixarApp;
