@@ -18,9 +18,16 @@ export function imagemHtml(item, titulo) {
         class="btn-favorito ${favorito ? "ativo" : ""}"
         onclick="event.stopPropagation(); toggleFavorito('${item.id}')"
         aria-label="Favoritar"
+        title="Favoritar"
       >
-        <svg viewBox="0 0 24 24" fill="${favorito ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2">
-          <path d="M12 21s-6.7-4.35-9.33-8.06C.7 10.18 2.08 6.5 5.6 5.7c2.02-.46 3.73.32 4.4 1.43.67-1.11 2.38-1.89 4.4-1.43 3.52.8 4.9 4.48 2.93 7.24C18.7 16.65 12 21 12 21Z"/>
+        <svg
+          viewBox="0 0 24 24"
+          fill="${favorito ? "currentColor" : "none"}"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        >
+          <path d="M12 2.7l2.9 5.88 6.5.94-4.7 4.58 1.1 6.47L12 17.5l-5.8 3.07 1.1-6.47-4.7-4.58 6.5-.94L12 2.7Z"/>
         </svg>
       </button>
 
