@@ -8,7 +8,8 @@ import { db } from "./firebase.js";
 import {
   normalizar,
   getDataMs,
-  getImagem
+  getImagem,
+  obterFavoritos
 } from "./shared.js";
 
 import {
@@ -73,6 +74,9 @@ function filtrar(lista) {
 }
 
 function renderizarTudo() {
+  const favoritosIds =
+    obterFavoritos();
+
   const anunciosFiltrados =
     filtrar(anuncios)
       .sort(
@@ -88,6 +92,18 @@ function renderizarTudo() {
           getDataMs(b) -
           getDataMs(a)
       );
+
+  const favoritos =
+    anunciosFiltrados.filter(
+      (item) =>
+        favoritosIds.includes(item.id)
+    );
+
+  const eventosFavoritos =
+    eventosFiltrados.filter(
+      (item) =>
+        favoritosIds.includes(item.id)
+    );
 
   renderizarGrid(
     grids.destaques,
@@ -105,9 +121,9 @@ function renderizarTudo() {
 
   renderizarGrid(
     grids.favoritos,
-    anunciosFiltrados.slice(3, 15),
+    favoritos,
     cardAnuncio,
-    "Nenhum favorito encontrado."
+    "Nenhum favorito salvo."
   );
 
   renderizarGrid(
@@ -139,9 +155,9 @@ function renderizarTudo() {
 
   renderizarGrid(
     grids.eventosFavoritos,
-    eventosFiltrados.slice(0, 8),
+    eventosFavoritos,
     cardEvento,
-    "Nenhum evento encontrado."
+    "Nenhum evento favorito."
   );
 }
 
