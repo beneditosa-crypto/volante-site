@@ -113,4 +113,37 @@ export function baixarApp() {
   );
 }
 
+const FAVORITOS_KEY =
+  "volante_favoritos";
+
+export function obterFavoritos() {
+  return JSON.parse(
+    localStorage.getItem(FAVORITOS_KEY) || "[]"
+  );
+}
+
+export function ehFavorito(id) {
+  return obterFavoritos().includes(id);
+}
+
+export function toggleFavorito(id) {
+  const favoritos =
+    obterFavoritos();
+
+  const existe =
+    favoritos.includes(id);
+
+  const atualizados =
+    existe
+      ? favoritos.filter((item) => item !== id)
+      : [...favoritos, id];
+
+  localStorage.setItem(
+    FAVORITOS_KEY,
+    JSON.stringify(atualizados)
+  );
+
+  window.location.reload();
+}
+
 window.baixarApp = baixarApp;
