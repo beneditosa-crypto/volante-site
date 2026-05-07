@@ -40,7 +40,6 @@
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
   gap: 28px;
@@ -50,7 +49,6 @@
 .galeria {
   width: 100%;
   max-width: 720px;
-
   background: #fff;
   border-radius: 32px;
   padding: 18px;
@@ -72,6 +70,7 @@
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  display: block;
   background: #e5e7eb;
 }
 
@@ -94,23 +93,17 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 4;
-
   width: 44px;
   height: 44px;
-
   border: none;
   border-radius: 999px;
-
   background: rgba(15, 23, 42, 0.5);
   color: #fff;
-
   font-size: 30px;
   line-height: 1;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   backdrop-filter: blur(10px);
 }
@@ -252,13 +245,10 @@
   border: 1px solid var(--linha);
   background: #fff;
   color: #111827;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0;
-
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
@@ -290,6 +280,19 @@
     height: 42px;
   }
 
+  .detalhe-topo .logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .detalhe-topo .nome {
+    font-size: 18px;
+  }
+
+  .detalhe-topo .slogan {
+    font-size: 11px;
+  }
+
   .galeria,
   .painel {
     border-radius: 24px;
@@ -301,7 +304,7 @@
   }
 
   .foto-principal {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
 
   .titulo {
