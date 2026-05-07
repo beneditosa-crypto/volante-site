@@ -1,33 +1,36 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(228, 235, 247, 0.95));
-  border: 1px solid rgba(15, 23, 42, 0.05);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(229, 235, 246, 0.94));
+  border: 1px solid rgba(15, 23, 42, 0.045);
   border-radius: 40px;
-  padding: 36px 34px;
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+  padding: 38px 36px;
+  box-shadow: 0 22px 56px rgba(15, 23, 42, 0.065);
 }
 
 .hero h1 {
   max-width: 760px;
-  font-size: 44px;
-  font-weight: 900;
+  font-size: 43px;
+  font-weight: 920;
   line-height: 1.02;
-  letter-spacing: -2px;
+  letter-spacing: -2.1px;
   color: #0f172a;
 }
 
 .busca {
-  margin-top: 22px;
+  margin-top: 24px;
   height: 62px;
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 0 22px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  border-radius: 22px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.055);
+  border-radius: 23px;
+  box-shadow:
+    0 14px 36px rgba(15, 23, 42, 0.055),
+    inset 0 1px 0 rgba(255,255,255,.85);
 }
 
 .busca span {
@@ -48,7 +51,7 @@
   display: flex;
   gap: 18px;
   overflow-x: auto;
-  padding-bottom: 8px;
+  padding-bottom: 9px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
 }
@@ -64,25 +67,33 @@
 
 .card {
   position: relative;
-  flex: 0 0 320px;
-  background: #fff;
-  border-radius: 30px;
+  flex: 0 0 318px;
+  background: rgba(255,255,255,.96);
+  border-radius: 31px;
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(15, 23, 42, 0.058);
+  box-shadow:
+    0 14px 34px rgba(15, 23, 42, 0.055),
+    inset 0 1px 0 rgba(255,255,255,.85);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
   cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 44px rgba(15, 23, 42, 0.1);
+  border-color: rgba(15, 23, 42, 0.09);
+  box-shadow:
+    0 24px 54px rgba(15, 23, 42, 0.105),
+    inset 0 1px 0 rgba(255,255,255,.92);
 }
 
 .foto-wrap {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 248px;
   overflow: hidden;
   background: #e5e7eb;
 }
@@ -91,17 +102,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: transform .45s ease, opacity .3s ease;
 }
 
 .card:hover .foto {
-  transform: scale(1.04);
+  transform: scale(1.035);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.08), transparent);
+  background:
+    linear-gradient(
+      to top,
+      rgba(2, 6, 23, .72),
+      rgba(15, 23, 42, .18),
+      rgba(15, 23, 42, 0.02)
+    );
 }
 
 .overlay-content {
@@ -114,71 +131,99 @@
 
 .overlay-text {
   color: #fff;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.8px;
+  line-height: 1.06;
+  letter-spacing: -.8px;
+  text-shadow: 0 2px 14px rgba(0,0,0,.22);
 }
 
+/* Botão “Ver detalhes” / compartilhamento visual do card mais refinado */
 .ver-mais {
   margin-top: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
-  padding: 0 16px;
+  min-height: 38px;
+  padding: 0 15px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, .14);
+  backdrop-filter: blur(14px);
   color: #fff;
   font-size: 12px;
-  font-weight: 800;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-weight: 850;
+  border: 1px solid rgba(255, 255, 255, .22);
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.16);
 }
 
 .card-body {
-  padding: 18px;
+  padding: 17px 18px 19px;
 }
 
 .meta {
-  color: #6b7280;
+  color: #64748b;
   font-size: 13px;
   line-height: 1.5;
+  font-weight: 550;
 }
 
 .price {
   margin-top: 10px;
-  color: var(--azul-principal);
+  color: var(--preco);
   font-size: 24px;
-  font-weight: 900;
-  letter-spacing: -0.8px;
+  font-weight: 940;
+  letter-spacing: -0.9px;
+}
+
+.price::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin-top: 9px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(176,138,60,.75), rgba(176,138,60,0));
 }
 
 .btn-favorito {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 15px;
+  right: 15px;
   z-index: 5;
-  width: 44px;
-  height: 44px;
-  border: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.18);
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.42);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, .34);
+  backdrop-filter: blur(14px);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.25s;
+  transition:
+    transform .22s ease,
+    background .22s ease,
+    border-color .22s ease;
+  box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+.btn-favorito:hover {
+  transform: translateY(-1px) scale(1.02);
+  background: rgba(15, 23, 42, .48);
+  border-color: rgba(255,255,255,.28);
 }
 
 .btn-favorito svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 }
 
 .btn-favorito.ativo {
-  background: rgba(220, 38, 38, 0.92);
+  background:
+    linear-gradient(180deg, rgba(185,28,28,.95), rgba(127,29,29,.95));
+  border-color: rgba(255,255,255,.22);
 }
 
 @media (max-width: 620px) {
@@ -188,22 +233,34 @@
   }
 
   .hero h1 {
-    font-size: 34px;
+    font-size: 33px;
+    letter-spacing: -1.6px;
   }
 
   .busca {
     height: 56px;
+    border-radius: 20px;
   }
 
   .card {
     flex: 0 0 84vw;
+    border-radius: 28px;
   }
 
   .foto-wrap {
-    height: 240px;
+    height: 236px;
   }
 
   .overlay-text {
     font-size: 18px;
+  }
+
+  .price {
+    font-size: 23px;
+  }
+
+  .btn-favorito {
+    width: 40px;
+    height: 40px;
   }
 }
