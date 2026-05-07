@@ -2,7 +2,6 @@ import {
   escapeHtml,
   getImagem,
   textoLocal,
-  formatarPreco,
   ehFavorito,
   toggleFavorito
 } from "./shared.js";
@@ -44,7 +43,6 @@ export function cardAnuncio(item) {
     "Anúncio";
 
   const local = textoLocal(item);
-  const preco = formatarPreco(item.preco);
 
   return `
     <article class="card" onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'">
@@ -52,12 +50,6 @@ export function cardAnuncio(item) {
 
       <div class="card-body">
         <div class="meta">${escapeHtml(local)}</div>
-
-        ${
-          preco
-            ? `<div class="price">${escapeHtml(preco)}</div>`
-            : ""
-        }
       </div>
     </article>
   `;
