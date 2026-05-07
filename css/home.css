@@ -171,6 +171,28 @@
   font-weight: 900;
 }
 
+.ver-mais {
+  margin-top: 8px;
+
+  display: inline-flex;
+
+  padding:
+    8px
+    14px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.18);
+
+  backdrop-filter: blur(10px);
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .card-body {
   padding: 12px 6px 0;
 }
@@ -185,41 +207,6 @@
   font-size: 18px;
   font-weight: 900;
   color: var(--azul-principal);
-}
-
-.institutional {
-  margin-top: 44px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 24px;
-}
-
-.info-panel {
-  background: #fff;
-  border-radius: 32px;
-  padding: 30px;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
-}
-
-.info-panel h2 {
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.info-panel p {
-  margin-top: 14px;
-  color: var(--cinza);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-@media (max-width: 980px) {
-  .institutional {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 620px) {
