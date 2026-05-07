@@ -303,4 +303,30 @@
   .share-btn {
     width: 100%;
   }
+  .app-store-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  flex: 0 0 20px;
+}
+
+.share-btn svg {
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  flex: 0 0 22px;
+}
+
+.app-store-btn {
+  gap: 8px;
+}
+
+.share-btn {
+  width: 54px;
+  min-width: 54px;
+  height: 54px;
+  padding: 0;
+}
 }
