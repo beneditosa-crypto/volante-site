@@ -1,5 +1,6 @@
+```js
 function obterUF(item) {
-  const campos = [
+  const texto = [
     item.uf,
     item.estado,
     item.local,
@@ -10,83 +11,66 @@ function obterUF(item) {
     .join(" ")
     .toUpperCase();
 
-  if (
-    campos.includes("GO") ||
-    campos.includes("GOIÁS") ||
-    campos.includes("GOIAS")
-  ) return "GO";
+  const estados = {
+    AC: ["AC", "ACRE"],
+    AL: ["AL", "ALAGOAS"],
+    AP: ["AP", "AMAPÁ", "AMAPA"],
+    AM: ["AM", "AMAZONAS"],
+    BA: ["BA", "BAHIA"],
+    CE: ["CE", "CEARÁ", "CEARA"],
+    DF: [
+      "DF",
+      "DISTRITO FEDERAL",
+      "BRASÍLIA",
+      "BRASILIA"
+    ],
+    ES: [
+      "ES",
+      "ESPÍRITO SANTO",
+      "ESPIRITO SANTO"
+    ],
+    GO: ["GO", "GOIÁS", "GOIAS"],
+    MA: ["MA", "MARANHÃO", "MARANHAO"],
+    MT: ["MT", "MATO GROSSO"],
+    MS: ["MS", "MATO GROSSO DO SUL"],
+    MG: [
+      "MG",
+      "MINAS GERAIS",
+      "MINAS"
+    ],
+    PA: ["PA", "PARÁ", "PARA"],
+    PB: ["PB", "PARAÍBA", "PARAIBA"],
+    PR: ["PR", "PARANÁ", "PARANA"],
+    PE: ["PE", "PERNAMBUCO"],
+    PI: ["PI", "PIAUÍ", "PIAUI"],
+    RJ: ["RJ", "RIO DE JANEIRO"],
+    RN: ["RN", "RIO GRANDE DO NORTE"],
+    RS: ["RS", "RIO GRANDE DO SUL"],
+    RO: ["RO", "RONDÔNIA", "RONDONIA"],
+    RR: ["RR", "RORAIMA"],
+    SC: ["SC", "SANTA CATARINA"],
+    SP: [
+      "SP",
+      "SÃO PAULO",
+      "SAO PAULO"
+    ],
+    SE: ["SE", "SERGIPE"],
+    TO: ["TO", "TOCANTINS"]
+  };
 
-  if (
-    campos.includes("DF") ||
-    campos.includes("DISTRITO FEDERAL") ||
-    campos.includes("BRASÍLIA") ||
-    campos.includes("BRASILIA")
-  ) return "DF";
+  for (const uf in estados) {
+    const variacoes = estados[uf];
 
-  if (
-    campos.includes("SP") ||
-    campos.includes("SÃO PAULO") ||
-    campos.includes("SAO PAULO")
-  ) return "SP";
+    const encontrou =
+      variacoes.some((valor) =>
+        texto.includes(valor)
+      );
 
-  if (
-    campos.includes("RJ") ||
-    campos.includes("RIO DE JANEIRO")
-  ) return "RJ";
-
-  if (
-    campos.includes("MG") ||
-    campos.includes("MINAS")
-  ) return "MG";
-
-  if (
-    campos.includes("ES") ||
-    campos.includes("ESPÍRITO SANTO") ||
-    campos.includes("ESPIRITO SANTO")
-  ) return "ES";
-
-  if (
-    campos.includes("PR") ||
-    campos.includes("PARANÁ") ||
-    campos.includes("PARANA")
-  ) return "PR";
-
-  if (
-    campos.includes("SC") ||
-    campos.includes("SANTA CATARINA")
-  ) return "SC";
-
-  if (
-    campos.includes("RS") ||
-    campos.includes("RIO GRANDE DO SUL")
-  ) return "RS";
-
-  if (
-    campos.includes("BA") ||
-    campos.includes("BAHIA")
-  ) return "BA";
-
-  if (
-    campos.includes("PE") ||
-    campos.includes("PERNAMBUCO")
-  ) return "PE";
-
-  if (
-    campos.includes("CE") ||
-    campos.includes("CEARÁ") ||
-    campos.includes("CEARA")
-  ) return "CE";
-
-  if (
-    campos.includes("AM") ||
-    campos.includes("AMAZONAS")
-  ) return "AM";
-
-  if (
-    campos.includes("PA") ||
-    campos.includes("PARÁ") ||
-    campos.includes("PARA")
-  ) return "PA";
+    if (encontrou) {
+      return uf;
+    }
+  }
 
   return "";
 }
+```
