@@ -59,6 +59,63 @@ function mostrarErro(texto, erro = "") {
   `;
 }
 
+function atualizarMetaTag(property, content) {
+  if (!content) return;
+
+  let element =
+    document.querySelector(`meta[property="${property}"]`) ||
+    document.querySelector(`meta[name="${property}"]`);
+
+  if (!element) {
+    element = document.createElement("meta");
+
+    if (property.startsWith("og:")) {
+      element.setAttribute("property", property);
+    } else {
+      element.setAttribute("name", property);
+    }
+
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("content", content);
+}
+
+function atualizarOpenGraph({
+  titulo,
+  descricao,
+  imagem,
+  url
+}) {
+  document.title = `${titulo} | Volante App`;
+
+  atualizarMetaTag("description", descricao);
+
+  atualizarMetaTag("og:title", titulo);
+  atualizarMetaTag("og:description", descricao);
+  atualizarMetaTag("og:image", imagem);
+  atualizarMetaTag("og:url", url);
+  atualizarMetaTag("og:type", "website");
+
+  atualizarMetaTag("twitter:card", "summary_large_image");
+  atualizarMetaTag("twitter:title", titulo);
+  atualizarMetaTag("twitter:description", descricao);
+  atualizarMetaTag("twitter:image", imagem);
+
+  let canonical =
+    document.querySelector('link[rel="canonical"]');
+
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.setAttribute("rel", "canonical");
+    document.head.appendChild(canonical);
+  }
+
+  canonical.setAttribute("href", url);
+
+  registrarDebug("Open Graph atualizado");
+}
+
 function atualizarFoto() {
   const fotoPrincipal = document.getElementById("fotoPrincipal");
 
@@ -117,6 +174,23 @@ function renderizar(item, colecaoUsada) {
   const ehEvento =
     colecaoUsada === "eventos";
 
+  const urlAtual =
+    window.location.href;
+
+  const imagemPrincipal =
+    fotos?.[0] ||
+    "https://volante.app.br/assets/logo.png";
+
+  const descricaoSeo =
+    `${titulo}${preco ? " • " + preco : ""}${local ? " • " + local : ""}`;
+
+  atualizarOpenGraph({
+    titulo,
+    descricao: descricaoSeo,
+    imagem: imagemPrincipal,
+    url: urlAtual
+  });
+
   const whatsapp =
     `https://wa.me/?text=${encodeURIComponent(window.location.href)}`;
 
@@ -125,8 +199,6 @@ function renderizar(item, colecaoUsada) {
 
   const email =
     `mailto:?subject=${encodeURIComponent(titulo)}&body=${encodeURIComponent(window.location.href)}`;
-
-  document.title = `${titulo} | Volante App`;
 
   conteudo.innerHTML = `
     <section class="detalhe">
