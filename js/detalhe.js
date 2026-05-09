@@ -298,7 +298,7 @@ function renderizar(item, colecaoUsada) {
               onclick="baixarApp(); return false;"
             >
               <img
-                src="./assets/google-play.png"
+                src="/assets/google-play.png"
                 alt="Google Play"
                 class="store-logo"
               />
@@ -315,7 +315,7 @@ function renderizar(item, colecaoUsada) {
               onclick="baixarApp(); return false;"
             >
               <img
-                src="./assets/apple-store.png"
+                src="/assets/apple-store.png"
                 alt="App Store"
                 class="store-logo"
               />
