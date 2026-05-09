@@ -297,7 +297,16 @@ function renderizar(item, colecaoUsada) {
               href="#"
               onclick="baixarApp(); return false;"
             >
-              Google Play
+              <img
+                src="./assets/google-play.png"
+                alt="Google Play"
+                class="store-logo"
+              />
+
+              <div class="store-textos">
+                <small>Disponível no</small>
+                <strong>Google Play</strong>
+              </div>
             </a>
 
             <a
@@ -305,7 +314,16 @@ function renderizar(item, colecaoUsada) {
               href="#"
               onclick="baixarApp(); return false;"
             >
-              App Store
+              <img
+                src="./assets/apple-store.png"
+                alt="App Store"
+                class="store-logo"
+              />
+
+              <div class="store-textos">
+                <small>Disponível na</small>
+                <strong>App Store</strong>
+              </div>
             </a>
 
           </div>
