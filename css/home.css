@@ -1,318 +1,55 @@
-.hero {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.98),
-      rgba(234,239,247,.96)
-    );
-
-  border: 1px solid rgba(15,23,42,.05);
-  border-radius: 28px;
-
-  padding: 22px 24px;
-
-  box-shadow:
-    0 12px 30px rgba(15,23,42,.05);
-}
-
-.hero h1 {
-  max-width: 700px;
-
-  font-size: 30px;
-  font-weight: 900;
-
-  line-height: 1.02;
-  letter-spacing: -1.2px;
-
-  color: #0f172a;
-}
-
-.busca {
-  margin-top: 16px;
-
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 0 16px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(15,23,42,.06);
-
-  border-radius: 16px;
-
-  box-shadow:
-    0 6px 18px rgba(15,23,42,.04);
-}
-
-.busca span {
-  font-size: 16px;
-  color: #64748b;
-}
-
-.busca input {
-  flex: 1;
-  min-width: 0;
-
-  border: none;
-  outline: none;
-  background: transparent;
-
-  font-size: 14px;
-  color: #0f172a;
-}
-
-.carousel-1linha {
-  display: flex;
-  gap: 14px;
-
-  overflow-x: auto;
-
-  padding-bottom: 8px;
-
-  scroll-behavior: smooth;
-
-  scrollbar-width: thin;
-}
-
-.carousel-1linha::-webkit-scrollbar {
-  height: 7px;
-}
-
-.carousel-1linha::-webkit-scrollbar-thumb {
-  background: rgba(15,23,42,.12);
-  border-radius: 999px;
-}
-
-.card {
-  position: relative;
-
-  flex: 0 0 232px;
-
-  background: #ffffff;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  border: 1px solid rgba(15,23,42,.06);
-
-  box-shadow:
-    0 10px 22px rgba(15,23,42,.045);
-
-  transition:
-    transform .22s ease,
-    box-shadow .22s ease,
-    border-color .22s ease;
-
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-
-  border-color: rgba(15,23,42,.10);
-
-  box-shadow:
-    0 16px 34px rgba(15,23,42,.08);
-}
-
-.card.destaque {
-  border: 1px solid rgba(30,58,138,.22);
-
-  box-shadow:
-    0 14px 32px rgba(30,58,138,.10);
-}
-
-.estrela-destaque {
-  position: absolute;
-
-  top: 10px;
-  right: 10px;
-
-  z-index: 6;
-
-  width: 32px;
-  height: 32px;
-
-  border-radius: 999px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background:
-    rgba(15,23,42,.72);
-
-  backdrop-filter: blur(10px);
-
-  color: #ffffff;
-
-  font-size: 14px;
-
-  border: 1px solid rgba(255,255,255,.12);
-
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.12);
-}
-
-.foto-wrap {
-  position: relative;
-
-  width: 100%;
-  height: 172px;
-
-  overflow: hidden;
-
-  background: #e5e7eb;
-}
-
-.foto {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transition:
-    transform .35s ease;
-}
-
-.card:hover .foto {
-  transform: scale(1.03);
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(2,6,23,.68),
-      rgba(15,23,42,.12),
-      rgba(15,23,42,0)
-    );
-}
-
-.overlay-content {
-  position: absolute;
-
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-
-  z-index: 4;
-}
-
-.overlay-text {
-  color: #ffffff;
-
-  font-size: 15px;
-  font-weight: 900;
-
-  line-height: 1.05;
-  letter-spacing: -.35px;
-
-  text-shadow:
-    0 2px 10px rgba(0,0,0,.18);
-}
-
-.ver-mais {
-  margin-top: 7px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 26px;
-
-  padding: 0 10px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,.12);
-
-  backdrop-filter: blur(12px);
-
-  color: #ffffff;
-
-  font-size: 10px;
-  font-weight: 800;
-
-  border: 1px solid rgba(255,255,255,.16);
-}
-
-.card-body {
-  padding: 10px 12px 12px;
-}
-
-.meta {
-  color: #64748b;
-
-  font-size: 11px;
-  line-height: 1.35;
-
-  font-weight: 600;
-}
-
-.price {
-  display: none !important;
-}
-
 /* BOTÃO FLUTUANTE APP */
 
 .floating-lojas {
   position: fixed;
 
-  right: 18px;
-  bottom: 18px;
+  right: 16px;
+  bottom: 16px;
 
   z-index: 999;
 
-  height: 52px;
+  height: 62px;
 
-  padding: 0 16px;
+  padding: 0 22px;
 
   border-radius: 999px;
 
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 
   background:
     linear-gradient(
       135deg,
-      #0f172a,
-      #1e293b
+      #1E3A8A,
+      #1E40AF
     );
 
   color: #ffffff;
 
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.10);
 
   box-shadow:
-    0 16px 34px rgba(15,23,42,.24);
+    0 18px 42px rgba(30,58,138,.34);
 
   cursor: pointer;
 
   transition:
     transform .22s ease,
-    opacity .22s ease;
+    opacity .22s ease,
+    box-shadow .22s ease;
 }
 
 .floating-lojas:hover {
   transform: translateY(-2px);
+
+  box-shadow:
+    0 24px 52px rgba(30,58,138,.42);
 }
 
 .floating-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 
   border-radius: 999px;
 
@@ -321,107 +58,44 @@
   justify-content: center;
 
   background:
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.14);
 
-  font-size: 12px;
+  font-size: 13px;
+
+  flex-shrink: 0;
 }
 
 .floating-lojas span {
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 13px;
+  font-weight: 900;
 
   letter-spacing: .2px;
+
+  white-space: nowrap;
 }
 
 @media (max-width: 620px) {
-  .hero {
-    padding: 14px 15px;
-    border-radius: 22px;
-  }
-
-  .hero h1 {
-    font-size: 20px;
-
-    line-height: 1.10;
-
-    letter-spacing: -.7px;
-  }
-
-  .busca {
-    margin-top: 12px;
-
-    height: 42px;
-
-    border-radius: 14px;
-
-    padding: 0 12px;
-  }
-
-  .busca input {
-    font-size: 12.5px;
-  }
-
-  .carousel-1linha {
-    gap: 11px;
-  }
-
-  .card {
-    flex: 0 0 41vw;
-
-    border-radius: 18px;
-  }
-
-  .foto-wrap {
-    height: 128px;
-  }
-
-  .overlay-content {
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-  }
-
-  .overlay-text {
-    font-size: 12px;
-    line-height: 1.08;
-  }
-
-  .card-body {
-    padding: 8px 10px 10px;
-  }
-
-  .meta {
-    font-size: 10px;
-  }
-
   .floating-lojas {
     right: 12px;
     bottom: 12px;
 
-    height: 46px;
+    height: 56px;
 
-    padding: 0 14px;
+    padding: 0 18px;
 
-    gap: 8px;
-  }
+    gap: 10px;
 
-  .floating-lojas span {
-    font-size: 11px;
+    border-radius: 999px;
   }
 
   .floating-icon {
-    width: 20px;
-    height: 20px;
-    font-size: 10px;
-  }
-}
+    width: 24px;
+    height: 24px;
 
-@media (max-width: 390px) {
-  .card {
-    flex-basis: 42vw;
+    font-size: 11px;
   }
 
-  .foto-wrap {
-    height: 122px;
+  .floating-lojas span {
+    font-size: 12px;
   }
 }
