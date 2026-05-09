@@ -2,48 +2,67 @@
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(229, 235, 246, 0.94));
-  border: 1px solid rgba(15, 23, 42, 0.045);
-  border-radius: 30px;
-  padding: 24px 26px;
-  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.052);
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.98),
+      rgba(234,239,247,.96)
+    );
+
+  border: 1px solid rgba(15,23,42,.05);
+  border-radius: 28px;
+
+  padding: 22px 24px;
+
+  box-shadow:
+    0 12px 30px rgba(15,23,42,.05);
 }
 
 .hero h1 {
-  max-width: 720px;
-  font-size: 32px;
-  font-weight: 920;
-  line-height: 1.04;
-  letter-spacing: -1.35px;
+  max-width: 700px;
+
+  font-size: 30px;
+  font-weight: 900;
+
+  line-height: 1.02;
+  letter-spacing: -1.2px;
+
   color: #0f172a;
 }
 
 .busca {
-  margin-top: 17px;
-  height: 50px;
+  margin-top: 16px;
+
+  height: 48px;
+
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 0 17px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(15, 23, 42, 0.055);
-  border-radius: 18px;
+  gap: 10px;
+
+  padding: 0 16px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(15,23,42,.06);
+
+  border-radius: 16px;
+
   box-shadow:
-    0 10px 26px rgba(15, 23, 42, 0.045),
-    inset 0 1px 0 rgba(255,255,255,.85);
+    0 6px 18px rgba(15,23,42,.04);
 }
 
 .busca span {
-  font-size: 17px;
+  font-size: 16px;
   color: #64748b;
 }
 
 .busca input {
   flex: 1;
   min-width: 0;
+
   border: none;
   outline: none;
   background: transparent;
+
   font-size: 14px;
   color: #0f172a;
 }
@@ -51,9 +70,13 @@
 .carousel-1linha {
   display: flex;
   gap: 14px;
+
   overflow-x: auto;
+
   padding-bottom: 8px;
+
   scroll-behavior: smooth;
+
   scrollbar-width: thin;
 }
 
@@ -62,154 +85,252 @@
 }
 
 .carousel-1linha::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.12);
+  background: rgba(15,23,42,.12);
   border-radius: 999px;
 }
 
 .card {
   position: relative;
-  flex: 0 0 246px;
-  background: rgba(255,255,255,.96);
-  border-radius: 22px;
+
+  flex: 0 0 232px;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.058);
+
+  border: 1px solid rgba(15,23,42,.06);
+
   box-shadow:
-    0 10px 26px rgba(15, 23, 42, 0.045),
-    inset 0 1px 0 rgba(255,255,255,.85);
+    0 10px 22px rgba(15,23,42,.045);
+
   transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    border-color .25s ease;
+    transform .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease;
+
   cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(15, 23, 42, 0.09);
+  transform: translateY(-2px);
+
+  border-color: rgba(15,23,42,.10);
+
   box-shadow:
-    0 18px 42px rgba(15, 23, 42, 0.085),
-    inset 0 1px 0 rgba(255,255,255,.92);
+    0 16px 34px rgba(15,23,42,.08);
+}
+
+.card.destaque {
+  border: 1px solid rgba(30,58,138,.22);
+
+  box-shadow:
+    0 14px 32px rgba(30,58,138,.10);
+}
+
+.estrela-destaque {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  z-index: 6;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(15,23,42,.72);
+
+  backdrop-filter: blur(10px);
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.12);
 }
 
 .foto-wrap {
   position: relative;
+
   width: 100%;
-  height: 190px;
+  height: 172px;
+
   overflow: hidden;
+
   background: #e5e7eb;
 }
 
 .foto {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
-  transition: transform .45s ease, opacity .3s ease;
+
+  transition:
+    transform .35s ease;
 }
 
 .card:hover .foto {
-  transform: scale(1.035);
+  transform: scale(1.03);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
+
   background:
     linear-gradient(
       to top,
-      rgba(2, 6, 23, .66),
-      rgba(15, 23, 42, .15),
-      rgba(15, 23, 42, 0.02)
+      rgba(2,6,23,.68),
+      rgba(15,23,42,.12),
+      rgba(15,23,42,0)
     );
 }
 
 .overlay-content {
   position: absolute;
-  left: 13px;
-  right: 13px;
-  bottom: 13px;
+
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+
   z-index: 4;
 }
 
 .overlay-text {
-  color: #fff;
-  font-size: 16.5px;
+  color: #ffffff;
+
+  font-size: 15px;
   font-weight: 900;
-  line-height: 1.06;
-  letter-spacing: -.48px;
-  text-shadow: 0 2px 12px rgba(0,0,0,.20);
+
+  line-height: 1.05;
+  letter-spacing: -.35px;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.18);
 }
 
 .ver-mais {
-  margin-top: 8px;
+  margin-top: 7px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
+
+  min-height: 26px;
+
   padding: 0 10px;
+
   border-radius: 999px;
-  background: rgba(255, 255, 255, .12);
-  backdrop-filter: blur(14px);
-  color: #fff;
+
+  background:
+    rgba(255,255,255,.12);
+
+  backdrop-filter: blur(12px);
+
+  color: #ffffff;
+
   font-size: 10px;
-  font-weight: 850;
-  border: 1px solid rgba(255, 255, 255, .18);
-  box-shadow:
-    0 6px 16px rgba(0,0,0,.08),
-    inset 0 1px 0 rgba(255,255,255,.12);
+  font-weight: 800;
+
+  border: 1px solid rgba(255,255,255,.16);
 }
 
 .card-body {
-  padding: 10px 13px 12px;
+  padding: 10px 12px 12px;
 }
 
 .meta {
   color: #64748b;
-  font-size: 11.8px;
-  line-height: 1.38;
-  font-weight: 550;
+
+  font-size: 11px;
+  line-height: 1.35;
+
+  font-weight: 600;
 }
 
 .price {
   display: none !important;
 }
 
-.btn-favorito {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 5;
-  width: 33px;
-  height: 33px;
-  border: 1px solid rgba(255,255,255,.18);
+/* BOTÃO FLUTUANTE APP */
+
+.floating-lojas {
+  position: fixed;
+
+  right: 18px;
+  bottom: 18px;
+
+  z-index: 999;
+
+  height: 52px;
+
+  padding: 0 16px;
+
   border-radius: 999px;
-  background: rgba(15, 23, 42, .31);
-  backdrop-filter: blur(14px);
-  color: #fff;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1e293b
+    );
+
+  color: #ffffff;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 16px 34px rgba(15,23,42,.24);
+
+  cursor: pointer;
+
+  transition:
+    transform .22s ease,
+    opacity .22s ease;
+}
+
+.floating-lojas:hover {
+  transform: translateY(-2px);
+}
+
+.floating-icon {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 999px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    transform .22s ease,
-    background .22s ease,
-    border-color .22s ease;
-  box-shadow: 0 8px 18px rgba(0,0,0,.10);
-}
 
-.btn-favorito:hover {
-  transform: translateY(-1px) scale(1.02);
-  background: rgba(15, 23, 42, .46);
-  border-color: rgba(255,255,255,.26);
-}
-
-.btn-favorito svg {
-  width: 15px;
-  height: 15px;
-}
-
-.btn-favorito.ativo {
   background:
-    linear-gradient(180deg, rgba(185,28,28,.95), rgba(127,29,29,.95));
-  border-color: rgba(255,255,255,.22);
+    rgba(255,255,255,.08);
+
+  font-size: 12px;
+}
+
+.floating-lojas span {
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: .2px;
 }
 
 @media (max-width: 620px) {
@@ -220,21 +341,20 @@
 
   .hero h1 {
     font-size: 20px;
-    line-height: 1.12;
-    letter-spacing: -0.78px;
-    max-width: 98%;
+
+    line-height: 1.10;
+
+    letter-spacing: -.7px;
   }
 
   .busca {
     margin-top: 12px;
-    height: 42px;
-    border-radius: 15px;
-    padding: 0 12px;
-    gap: 8px;
-  }
 
-  .busca span {
-    font-size: 15px;
+    height: 42px;
+
+    border-radius: 14px;
+
+    padding: 0 12px;
   }
 
   .busca input {
@@ -246,12 +366,13 @@
   }
 
   .card {
-    flex: 0 0 40vw;
+    flex: 0 0 41vw;
+
     border-radius: 18px;
   }
 
   .foto-wrap {
-    height: 122px;
+    height: 128px;
   }
 
   .overlay-content {
@@ -261,16 +382,8 @@
   }
 
   .overlay-text {
-    font-size: 12.2px;
-    letter-spacing: -.25px;
+    font-size: 12px;
     line-height: 1.08;
-  }
-
-  .ver-mais {
-    min-height: 24px;
-    padding: 0 8px;
-    font-size: 9px;
-    margin-top: 6px;
   }
 
   .card-body {
@@ -278,33 +391,37 @@
   }
 
   .meta {
-    font-size: 10.8px;
-    line-height: 1.3;
+    font-size: 10px;
   }
 
-  .btn-favorito {
-    width: 28px;
-    height: 28px;
-    top: 8px;
-    right: 8px;
+  .floating-lojas {
+    right: 12px;
+    bottom: 12px;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    gap: 8px;
   }
 
-  .btn-favorito svg {
-    width: 13px;
-    height: 13px;
+  .floating-lojas span {
+    font-size: 11px;
+  }
+
+  .floating-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
   }
 }
 
 @media (max-width: 390px) {
-  .hero h1 {
-    font-size: 19px;
-  }
-
   .card {
-    flex-basis: 40.5vw;
+    flex-basis: 42vw;
   }
 
   .foto-wrap {
-    height: 116px;
+    height: 122px;
   }
 }
