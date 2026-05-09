@@ -25,14 +25,13 @@ export function imagemHtml(item, titulo, destaque = false) {
           : ""
       }
 
-      <img class="foto" src="${imagem}" alt="${escapeHtml(titulo)}" loading="lazy" decoding="async" />
-
-      <div class="overlay"></div>
-
-      <div class="overlay-content">
-        <div class="overlay-text">${escapeHtml(titulo)}</div>
-        <span class="ver-mais">Ver detalhes</span>
-      </div>
+      <img
+        class="foto"
+        src="${imagem}"
+        alt="${escapeHtml(titulo)}"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   `;
 }
@@ -54,6 +53,7 @@ export function cardAnuncio(item) {
       ${imagemHtml(item, titulo, destaque)}
 
       <div class="card-body">
+        <div class="card-title">${escapeHtml(titulo)}</div>
         <div class="meta">${escapeHtml(local)}</div>
       </div>
     </article>
@@ -76,6 +76,7 @@ export function cardEvento(item) {
       ${imagemHtml(item, titulo, false)}
 
       <div class="card-body">
+        <div class="card-title">${escapeHtml(titulo)}</div>
         <div class="meta">${escapeHtml(local)}</div>
       </div>
     </article>
