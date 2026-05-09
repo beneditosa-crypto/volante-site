@@ -11,17 +11,14 @@
 .detalhe-topo .logo {
   width: 72px !important;
   height: 72px !important;
-
   max-width: 72px !important;
   max-height: 72px !important;
-
   flex-basis: 72px;
 }
 
 .btn-voltar {
   width: 46px;
   height: 46px;
-
   border-radius: 15px;
 
   background:
@@ -69,7 +66,6 @@
 .detalhe {
   width: 100%;
   max-width: 1160px;
-
   margin: 0 auto;
 
   display: grid;
@@ -114,7 +110,6 @@
 
 .foto-principal {
   width: 100%;
-
   height: auto;
 
   max-height: 500px;
@@ -362,42 +357,40 @@
 
   display: flex;
 
-  gap: 8px;
+  gap: 10px;
 
   flex-wrap: wrap;
 }
 
 .app-store-btn {
-  min-height: 38px;
+  min-height: 58px;
+  min-width: 178px;
 
-  padding: 0 14px;
+  padding: 0 16px;
 
-  border-radius: 999px;
+  border-radius: 18px;
 
   background:
     linear-gradient(
       180deg,
       rgba(255,255,255,.98),
-      rgba(248,250,252,.94)
+      rgba(248,250,252,.95)
     );
 
   color: var(--texto);
 
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
-  gap: 7px;
-
-  font-size: 11.5px;
-  font-weight: 850;
+  gap: 12px;
 
   text-decoration: none;
 
-  border: 1px solid rgba(15,23,42,.08);
+  border: 1px solid rgba(15,23,42,.10);
 
   box-shadow:
-    0 8px 18px rgba(15,23,42,.08);
+    0 10px 22px rgba(15,23,42,.08);
 
   transition:
     transform .2s ease,
@@ -408,10 +401,10 @@
 .app-store-btn:hover {
   transform: translateY(-1px);
 
-  border-color: rgba(15,23,42,.12);
+  border-color: rgba(15,23,42,.18);
 
   box-shadow:
-    0 12px 22px rgba(15,23,42,.12);
+    0 14px 28px rgba(15,23,42,.12);
 }
 
 .compartilhar {
@@ -476,18 +469,6 @@
   height: 16px;
 
   flex-shrink: 0;
-}
-
-.share-btn.whatsapp {
-  color: #16a34a;
-}
-
-.share-btn.facebook {
-  color: #1877f2;
-}
-
-.share-btn.link {
-  color: #111827;
 }
 
 @media (max-width: 900px) {
@@ -566,11 +547,10 @@
   }
 
   .app-store-btn {
-    min-height: 36px;
-
-    font-size: 11px;
-
-    padding: 0 13px;
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    padding: 0 14px;
   }
 
   .share-btn {
