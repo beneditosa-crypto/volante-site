@@ -50,8 +50,6 @@
 
 .btn-voltar:hover {
   transform: translateY(-1px);
-
-  box-shadow: var(--sombra-premium);
 }
 
 .btn-voltar svg {
@@ -424,19 +422,24 @@
   margin-top: 12px;
 
   display: flex;
-
-  gap: 8px;
+  gap: 10px;
 
   flex-wrap: wrap;
 }
 
 .share-btn {
-  width: 40px;
-  height: 40px;
+  min-height: 42px;
 
-  border-radius: 14px;
+  padding: 0 14px;
 
-  border: 1px solid rgba(15,23,42,.06);
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid rgba(15,23,42,.08);
 
   background:
     linear-gradient(
@@ -445,21 +448,18 @@
       rgba(248,250,252,.94)
     );
 
-  color: #111827;
+  color: var(--texto);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0;
+  font-size: 12px;
+  font-weight: 850;
 
   box-shadow:
-    0 8px 18px rgba(15,23,42,.05);
+    0 8px 18px rgba(15,23,42,.06);
 
   transition:
     transform .2s ease,
-    background .2s ease,
-    border-color .2s ease;
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
 .share-btn:hover {
@@ -467,16 +467,27 @@
 
   border-color: rgba(15,23,42,.12);
 
-  background: #fff;
+  box-shadow:
+    0 12px 22px rgba(15,23,42,.10);
 }
 
 .share-btn svg {
-  width: 18px;
-  height: 18px;
-
-  display: block;
+  width: 16px;
+  height: 16px;
 
   flex-shrink: 0;
+}
+
+.share-btn.whatsapp {
+  color: #16a34a;
+}
+
+.share-btn.facebook {
+  color: #1877f2;
+}
+
+.share-btn.link {
+  color: #111827;
 }
 
 @media (max-width: 900px) {
@@ -563,7 +574,15 @@
   }
 
   .share-btn {
-    width: 38px;
-    height: 38px;
+    min-height: 38px;
+
+    font-size: 11px;
+
+    padding: 0 12px;
+  }
+
+  .share-btn svg {
+    width: 15px;
+    height: 15px;
   }
 }
