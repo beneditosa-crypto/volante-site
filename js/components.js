@@ -1,35 +1,29 @@
 import {
   escapeHtml,
   getImagem,
-  textoLocal,
-  ehFavorito,
-  toggleFavorito
+  textoLocal
 } from "./shared.js";
 
-window.toggleFavorito = toggleFavorito;
+export function destaqueAtivo(item) {
+  return (
+    item.destaque === true ||
+    item.destaque === "true" ||
+    item.destaque === "SIM" ||
+    item.destaque === "sim" ||
+    item.destaque === 1
+  );
+}
 
-export function imagemHtml(item, titulo) {
+export function imagemHtml(item, titulo, destaque = false) {
   const imagem = getImagem(item);
-  const favorito = ehFavorito(item.id);
 
   return `
     <div class="foto-wrap">
-      <button
-        class="btn-favorito ${favorito ? "ativo" : ""}"
-        onclick="event.stopPropagation(); toggleFavorito('${item.id}')"
-        aria-label="Favoritar"
-        title="Favoritar"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="${favorito ? "currentColor" : "none"}"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linejoin="round"
-        >
-          <path d="M12 2.7l2.9 5.88 6.5.94-4.7 4.58 1.1 6.47L12 17.5l-5.8 3.07 1.1-6.47-4.7-4.58 6.5-.94L12 2.7Z"/>
-        </svg>
-      </button>
+      ${
+        destaque
+          ? `<div class="estrela-destaque" title="Destaque">★</div>`
+          : ""
+      }
 
       <img class="foto" src="${imagem}" alt="${escapeHtml(titulo)}" loading="lazy" decoding="async" />
 
@@ -50,10 +44,14 @@ export function cardAnuncio(item) {
     "Anúncio";
 
   const local = textoLocal(item);
+  const destaque = destaqueAtivo(item);
 
   return `
-    <article class="card" onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'">
-      ${imagemHtml(item, titulo)}
+    <article
+      class="card ${destaque ? "destaque" : ""}"
+      onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'"
+    >
+      ${imagemHtml(item, titulo, destaque)}
 
       <div class="card-body">
         <div class="meta">${escapeHtml(local)}</div>
@@ -71,8 +69,11 @@ export function cardEvento(item) {
   const local = textoLocal(item);
 
   return `
-    <article class="card" onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'">
-      ${imagemHtml(item, titulo)}
+    <article
+      class="card"
+      onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
+    >
+      ${imagemHtml(item, titulo, false)}
 
       <div class="card-body">
         <div class="meta">${escapeHtml(local)}</div>
@@ -89,6 +90,5 @@ export function renderizarGrid(elemento, lista, criador, vazioTexto) {
     return;
   }
 
-  elemento.innerHTML =
-    lista.map(criador).join("");
+  elemento.innerHTML = lista.map(criador).join("");
 }
