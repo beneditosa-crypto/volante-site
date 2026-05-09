@@ -73,14 +73,18 @@ button {
 main {
   width: 100%;
   max-width: 1400px;
+
   margin: 0 auto;
-  padding: 18px 18px 90px;
+
+  padding: 18px 18px 36px;
 }
 
 header {
   width: 100%;
+
   position: sticky;
   top: 0;
+
   z-index: 100;
 
   background: rgba(245, 247, 251, 0.90);
@@ -208,12 +212,139 @@ section + section {
   text-align: center;
 }
 
+/* CTA APP */
+
+.cta-app {
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 14px 16px;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.98),
+      rgba(248,250,252,.95)
+    );
+
+  border: 1px solid rgba(15,23,42,.06);
+
+  box-shadow:
+    0 10px 26px rgba(15,23,42,.05);
+}
+
+.cta-app-texto h3 {
+  color: var(--texto);
+
+  font-size: 15px;
+  font-weight: 900;
+
+  letter-spacing: -.2px;
+}
+
+.cta-app-texto p {
+  margin-top: 4px;
+
+  color: var(--cinza);
+
+  font-size: 12px;
+  line-height: 1.35;
+
+  font-weight: 600;
+}
+
+.cta-app-botoes {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.cta-store {
+  height: 44px;
+
+  padding: 0 16px;
+
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.98),
+      rgba(248,250,252,.94)
+    );
+
+  color: var(--texto);
+
+  border: 1px solid rgba(15,23,42,.08);
+
+  font-size: 12px;
+  font-weight: 900;
+
+  box-shadow:
+    0 10px 22px rgba(15,23,42,.08);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+.cta-store:hover {
+  transform: translateY(-1px);
+
+  border-color: rgba(15,23,42,.12);
+
+  box-shadow:
+    0 14px 28px rgba(15,23,42,.12);
+}
+
+.cta-store-icon {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1e3a8a,
+      #172554
+    );
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  flex: 0 0 24px;
+}
+
+/* FOOTER */
+
 .footer {
   width: 100%;
 
-  margin: 32px auto 0;
+  margin: 24px auto 0;
 
-  padding-bottom: 72px;
+  padding-bottom: 12px;
 }
 
 .footer-baloes {
@@ -284,9 +415,9 @@ section + section {
 }
 
 .footer-bottom {
-  margin-top: 14px;
+  margin-top: 10px;
 
-  padding: 0 4px;
+  padding: 0 4px 0;
 
   color: #94a3b8;
 
@@ -302,96 +433,6 @@ section + section {
   gap: 8px;
 }
 
-/* CTA APP */
-
-.cta-app {
-  margin-top: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-
-  padding: 14px 16px;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.98),
-      rgba(248,250,252,.95)
-    );
-
-  border: 1px solid rgba(15,23,42,.06);
-
-  box-shadow:
-    0 10px 26px rgba(15,23,42,.05);
-}
-
-.cta-app-texto h3 {
-  color: var(--texto);
-
-  font-size: 15px;
-  font-weight: 900;
-
-  letter-spacing: -.2px;
-}
-
-.cta-app-texto p {
-  margin-top: 4px;
-
-  color: var(--cinza);
-
-  font-size: 12px;
-  line-height: 1.35;
-
-  font-weight: 600;
-}
-
-.cta-app-botoes {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  flex-shrink: 0;
-}
-
-.cta-store {
-  height: 42px;
-
-  padding: 0 14px;
-
-  border-radius: 999px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  background: #111827;
-
-  color: #ffffff;
-
-  font-size: 12px;
-  font-weight: 800;
-
-  box-shadow:
-    0 10px 24px rgba(15,23,42,.14);
-
-  transition:
-    transform .2s ease,
-    opacity .2s ease;
-}
-
-.cta-store:hover {
-  transform: translateY(-1px);
-}
-
-.cta-store-icon {
-  font-size: 13px;
-}
-
 @media (max-width: 900px) {
   .footer-baloes {
     grid-template-columns: 1fr;
@@ -404,7 +445,7 @@ section + section {
 
 @media (max-width: 620px) {
   main {
-    padding: 8px 14px 74px;
+    padding: 8px 14px 24px;
   }
 
   .topo {
@@ -458,12 +499,14 @@ section + section {
   }
 
   .footer {
-    margin-top: 26px;
-    padding-bottom: 62px;
+    margin-top: 18px;
+
+    padding-bottom: 8px;
   }
 
   .footer-card {
     padding: 15px;
+
     border-radius: 18px;
   }
 }
