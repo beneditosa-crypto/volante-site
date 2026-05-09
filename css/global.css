@@ -302,80 +302,94 @@ section + section {
   gap: 8px;
 }
 
-/* BOTÃO FLUTUANTE */
+/* CTA APP */
 
-.floating-lojas {
-  position: fixed;
+.cta-app {
+  margin-top: 16px;
 
-  left: 50%;
-  bottom: 14px;
-
-  transform: translateX(-50%);
-
-  z-index: 999;
-
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 14px;
 
-  gap: 9px;
+  padding: 14px 16px;
 
-  min-height: 52px;
-  min-width: 238px;
-
-  max-width: calc(100vw - 28px);
-
-  padding: 9px 18px;
-
-  border-radius: 999px;
+  border-radius: 20px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.97),
-      rgba(248,250,252,.94)
+      rgba(255,255,255,.98),
+      rgba(248,250,252,.95)
     );
 
-  color: var(--texto);
-
-  border: 1px solid rgba(15,23,42,.08);
+  border: 1px solid rgba(15,23,42,.06);
 
   box-shadow:
-    0 16px 38px rgba(15,23,42,.14),
-    inset 0 1px 0 rgba(255,255,255,.90);
-
-  backdrop-filter: blur(18px);
-
-  cursor: pointer;
+    0 10px 26px rgba(15,23,42,.05);
 }
 
-.floating-icon {
-  width: 30px;
-  height: 30px;
+.cta-app-texto h3 {
+  color: var(--texto);
+
+  font-size: 15px;
+  font-weight: 900;
+
+  letter-spacing: -.2px;
+}
+
+.cta-app-texto p {
+  margin-top: 4px;
+
+  color: var(--cinza);
+
+  font-size: 12px;
+  line-height: 1.35;
+
+  font-weight: 600;
+}
+
+.cta-app-botoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.cta-store {
+  height: 42px;
+
+  padding: 0 14px;
 
   border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
   background: #111827;
 
   color: #ffffff;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 800;
 
-  flex: 0 0 30px;
+  box-shadow:
+    0 10px 24px rgba(15,23,42,.14);
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
 }
 
-.floating-lojas span {
-  color: var(--texto);
+.cta-store:hover {
+  transform: translateY(-1px);
+}
 
+.cta-store-icon {
   font-size: 13px;
-  font-weight: 900;
-
-  white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -429,6 +443,20 @@ section + section {
     font-size: 12px;
   }
 
+  .cta-app {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-app-botoes {
+    width: 100%;
+  }
+
+  .cta-store {
+    flex: 1;
+    justify-content: center;
+  }
+
   .footer {
     margin-top: 26px;
     padding-bottom: 62px;
@@ -437,22 +465,5 @@ section + section {
   .footer-card {
     padding: 15px;
     border-radius: 18px;
-  }
-
-  .floating-lojas {
-    min-width: 220px;
-
-    min-height: 48px;
-
-    padding: 8px 16px;
-  }
-
-  .floating-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .floating-lojas span {
-    font-size: 12px;
   }
 }
