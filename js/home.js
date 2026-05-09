@@ -8,8 +8,7 @@ import { db } from "./firebase.js";
 import {
   normalizar,
   getDataMs,
-  getImagem,
-  obterFavoritos
+  getImagem
 } from "./shared.js";
 
 import {
@@ -18,13 +17,10 @@ import {
   renderizarGrid
 } from "./components.js";
 
-const buscaInput =
-  document.getElementById("busca");
+const buscaInput = document.getElementById("busca");
 
 const grids = {
-  destaques: document.getElementById("gridDestaques"),
   recentes: document.getElementById("gridRecentes"),
-  favoritos: document.getElementById("gridFavoritos"),
 
   centroOeste: document.getElementById("gridCentroOeste"),
   sudeste: document.getElementById("gridSudeste"),
@@ -33,7 +29,6 @@ const grids = {
   norte: document.getElementById("gridNorte"),
 
   eventos: document.getElementById("gridEventos"),
-  eventosFavoritos: document.getElementById("gridEventosFavoritos"),
 
   eventosCentroOeste: document.getElementById("gridEventosCentroOeste"),
   eventosSudeste: document.getElementById("gridEventosSudeste"),
@@ -49,72 +44,40 @@ const REGIOES = {
   centroOeste: ["GO", "DF", "MT", "MS"],
   sudeste: ["SP", "RJ", "MG", "ES"],
   sul: ["PR", "SC", "RS"],
-  nordeste: [
-    "BA",
-    "PE",
-    "CE",
-    "RN",
-    "PB",
-    "AL",
-    "SE",
-    "PI",
-    "MA"
-  ],
-  norte: [
-    "AM",
-    "PA",
-    "RO",
-    "RR",
-    "TO",
-    "AC",
-    "AP"
-  ]
+  nordeste: ["BA", "PE", "CE", "RN", "PB", "AL", "SE", "PI", "MA"],
+  norte: ["AM", "PA", "RO", "RR", "TO", "AC", "AP"]
 };
 
 if (buscaInput) {
-  buscaInput.addEventListener(
-    "input",
-    renderizarTudo
-  );
+  buscaInput.addEventListener("input", renderizarTudo);
 }
 
-window.addEventListener(
-  "favoritosAtualizados",
-  renderizarTudo
-);
-
 function filtrar(lista) {
-  const termo =
-    normalizar(buscaInput?.value || "");
+  const termo = normalizar(buscaInput?.value || "");
 
-  const somenteComImagem =
-    lista.filter(
-      (item) => !!getImagem(item)
-    );
+  const somenteComImagem = lista.filter((item) => !!getImagem(item));
 
   if (!termo) {
     return somenteComImagem;
   }
 
-  return somenteComImagem.filter(
-    (item) => {
-      const texto = normalizar(
-        [
-          item.titulo,
-          item.nome,
-          item.marca,
-          item.modelo,
-          item.descricao,
-          item.cidade,
-          item.estado,
-          item.uf,
-          item.preco
-        ].join(" ")
-      );
+  return somenteComImagem.filter((item) => {
+    const texto = normalizar(
+      [
+        item.titulo,
+        item.nome,
+        item.marca,
+        item.modelo,
+        item.descricao,
+        item.cidade,
+        item.estado,
+        item.uf,
+        item.preco
+      ].join(" ")
+    );
 
-      return texto.includes(termo);
-    }
-  );
+    return texto.includes(termo);
+  });
 }
 
 function obterUF(item) {
@@ -161,14 +124,10 @@ function obterUF(item) {
   };
 
   for (const uf in estados) {
-    const variacoes =
-      estados[uf];
-
-    const encontrou =
-      variacoes.some((valor) => {
-        const regex = new RegExp(`(^|\\s|,|-)${valor}(\\s|,|-|$)`, "i");
-        return regex.test(texto);
-      });
+    const encontrou = estados[uf].some((valor) => {
+      const regex = new RegExp(`(^|\\s|,|-)${valor}(\\s|,|-|$)`, "i");
+      return regex.test(texto);
+    });
 
     if (encontrou) {
       return uf;
@@ -180,201 +139,99 @@ function obterUF(item) {
 
 function filtrarRegiao(lista, estados) {
   return lista.filter((item) => {
-    const uf =
-      obterUF(item);
-
+    const uf = obterUF(item);
     return estados.includes(uf);
   });
 }
 
 function controlarSecao(idGrid, lista) {
-  const grid =
-    document.getElementById(idGrid);
+  const grid = document.getElementById(idGrid);
 
   if (!grid) return;
 
-  const secao =
-    grid.closest("section");
+  const secao = grid.closest("section");
 
   if (!secao) return;
 
-  secao.style.display =
-    lista.length
-      ? "block"
-      : "none";
+  secao.style.display = lista.length ? "block" : "none";
 }
 
 function renderizarTudo() {
-  const favoritosIds =
-    obterFavoritos();
-
-  const anunciosFiltrados =
-    filtrar(anuncios)
-      .sort(
-        (a, b) =>
-          getDataMs(b) -
-          getDataMs(a)
-      );
-
-  const eventosFiltrados =
-    filtrar(eventos)
-      .sort(
-        (a, b) =>
-          getDataMs(b) -
-          getDataMs(a)
-      );
-
-  const favoritos =
-    anunciosFiltrados.filter(
-      (item) =>
-        favoritosIds.includes(item.id)
-    );
-
-  const eventosFavoritos =
-    eventosFiltrados.filter(
-      (item) =>
-        favoritosIds.includes(item.id)
-    );
-
-  const anunciosCentroOeste =
-    filtrarRegiao(
-      anunciosFiltrados,
-      REGIOES.centroOeste
-    );
-
-  const anunciosSudeste =
-    filtrarRegiao(
-      anunciosFiltrados,
-      REGIOES.sudeste
-    );
-
-  const anunciosSul =
-    filtrarRegiao(
-      anunciosFiltrados,
-      REGIOES.sul
-    );
-
-  const anunciosNordeste =
-    filtrarRegiao(
-      anunciosFiltrados,
-      REGIOES.nordeste
-    );
-
-  const anunciosNorte =
-    filtrarRegiao(
-      anunciosFiltrados,
-      REGIOES.norte
-    );
-
-  const eventosCentroOeste =
-    filtrarRegiao(
-      eventosFiltrados,
-      REGIOES.centroOeste
-    );
-
-  const eventosSudeste =
-    filtrarRegiao(
-      eventosFiltrados,
-      REGIOES.sudeste
-    );
-
-  const eventosSul =
-    filtrarRegiao(
-      eventosFiltrados,
-      REGIOES.sul
-    );
-
-  const eventosNordeste =
-    filtrarRegiao(
-      eventosFiltrados,
-      REGIOES.nordeste
-    );
-
-  const eventosNorte =
-    filtrarRegiao(
-      eventosFiltrados,
-      REGIOES.norte
-    );
-
-  controlarSecao(
-    "gridFavoritos",
-    favoritos
+  const anunciosFiltrados = filtrar(anuncios).sort(
+    (a, b) => getDataMs(b) - getDataMs(a)
   );
 
-  controlarSecao(
-    "gridCentroOeste",
-    anunciosCentroOeste
+  const eventosFiltrados = filtrar(eventos).sort(
+    (a, b) => getDataMs(b) - getDataMs(a)
   );
 
-  controlarSecao(
-    "gridSudeste",
-    anunciosSudeste
+  const anunciosCentroOeste = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.centroOeste
   );
 
-  controlarSecao(
-    "gridSul",
-    anunciosSul
+  const anunciosSudeste = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.sudeste
   );
 
-  controlarSecao(
-    "gridNordeste",
-    anunciosNordeste
+  const anunciosSul = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.sul
   );
 
-  controlarSecao(
-    "gridNorte",
-    anunciosNorte
+  const anunciosNordeste = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.nordeste
   );
 
-  controlarSecao(
-    "gridEventosFavoritos",
-    eventosFavoritos
+  const anunciosNorte = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.norte
   );
 
-  controlarSecao(
-    "gridEventosCentroOeste",
-    eventosCentroOeste
+  const eventosCentroOeste = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.centroOeste
   );
 
-  controlarSecao(
-    "gridEventosSudeste",
-    eventosSudeste
+  const eventosSudeste = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.sudeste
   );
 
-  controlarSecao(
-    "gridEventosSul",
-    eventosSul
+  const eventosSul = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.sul
   );
 
-  controlarSecao(
-    "gridEventosNordeste",
-    eventosNordeste
+  const eventosNordeste = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.nordeste
   );
 
-  controlarSecao(
-    "gridEventosNorte",
-    eventosNorte
+  const eventosNorte = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.norte
   );
 
-  renderizarGrid(
-    grids.destaques,
-    anunciosFiltrados.slice(0, 12),
-    cardAnuncio,
-    "Nenhum destaque encontrado."
-  );
+  controlarSecao("gridCentroOeste", anunciosCentroOeste);
+  controlarSecao("gridSudeste", anunciosSudeste);
+  controlarSecao("gridSul", anunciosSul);
+  controlarSecao("gridNordeste", anunciosNordeste);
+  controlarSecao("gridNorte", anunciosNorte);
+
+  controlarSecao("gridEventosCentroOeste", eventosCentroOeste);
+  controlarSecao("gridEventosSudeste", eventosSudeste);
+  controlarSecao("gridEventosSul", eventosSul);
+  controlarSecao("gridEventosNordeste", eventosNordeste);
+  controlarSecao("gridEventosNorte", eventosNorte);
 
   renderizarGrid(
     grids.recentes,
     anunciosFiltrados.slice(0, 18),
     cardAnuncio,
     "Nenhum anúncio encontrado."
-  );
-
-  renderizarGrid(
-    grids.favoritos,
-    favoritos,
-    cardAnuncio,
-    "Nenhum favorito salvo."
   );
 
   renderizarGrid(
@@ -420,13 +277,6 @@ function renderizarTudo() {
   );
 
   renderizarGrid(
-    grids.eventosFavoritos,
-    eventosFavoritos,
-    cardEvento,
-    "Nenhum evento favorito."
-  );
-
-  renderizarGrid(
     grids.eventosCentroOeste,
     eventosCentroOeste,
     cardEvento,
@@ -464,44 +314,33 @@ function renderizarTudo() {
 
 async function carregarDados() {
   try {
-    const qAnuncios =
-      collection(db, "anuncios");
+    const qAnuncios = collection(db, "anuncios");
+    const qEventos = collection(db, "eventos");
 
-    const qEventos =
-      collection(db, "eventos");
-
-    const [
-      snapAnuncios,
-      snapEventos
-    ] = await Promise.all([
+    const [snapAnuncios, snapEventos] = await Promise.all([
       getDocs(qAnuncios),
       getDocs(qEventos)
     ]);
 
-    anuncios =
-      snapAnuncios.docs
-        .map((doc) => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        .filter(
-          (item) =>
-            item.status === "ATIVO"
-        );
+    anuncios = snapAnuncios.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .filter((item) => {
+        const status = String(item.status || "").trim().toUpperCase();
+        return status === "ATIVO";
+      });
 
-    eventos =
-      snapEventos.docs
-        .map((doc) => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        .filter((item) => {
-  const status = String(item.status || "")
-    .trim()
-    .toUpperCase();
-
-  return status === "ATIVO";
-});
+    eventos = snapEventos.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .filter((item) => {
+        const status = String(item.status || "").trim().toUpperCase();
+        return status === "ATIVO";
+      });
 
     renderizarTudo();
   } catch (error) {
