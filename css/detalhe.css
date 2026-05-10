@@ -392,11 +392,31 @@
     border-radius: 17px;
   }
 
+  .app-store-box {
+    gap: 8px;
+  }
+
   .app-store-btn {
     width: 100%;
     min-width: 0;
-    min-height: 54px;
-    padding: 0 14px;
+    min-height: 48px;
+    padding: 0 12px;
+    border-radius: 15px;
+    gap: 10px;
+  }
+
+  .app-store-btn .store-logo {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+
+  .app-store-btn .store-textos small {
+    font-size: 8px;
+  }
+
+  .app-store-btn .store-textos strong {
+    font-size: 11px;
   }
 
   .share-grid {
@@ -407,13 +427,14 @@
 
   .share-btn {
     width: 100%;
-    min-height: 46px;
-    font-size: 13px;
-    padding: 0 14px;
+    min-height: 42px;
+    font-size: 12px;
+    padding: 0 12px;
+    border-radius: 14px;
   }
 
   .share-btn svg {
-    width: 17px;
-    height: 17px;
+    width: 15px;
+    height: 15px;
   }
 }
