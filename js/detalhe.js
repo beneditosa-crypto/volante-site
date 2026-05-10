@@ -331,11 +331,11 @@ function renderizar(item, colecaoUsada) {
 
         <div class="bloco compartilhar">
 
-          <p>
-            Envie para quem também vive essa paixão.
-          </p>
-
           <div class="share-grid">
+
+            <p>
+              Envie para quem também vive essa paixão.
+            </p>
 
             <button
               class="share-btn link"
