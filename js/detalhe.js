@@ -331,10 +331,8 @@ function renderizar(item, colecaoUsada) {
 
         <div class="bloco compartilhar">
 
-          <h3>Compartilhar</h3>
-
           <p>
-            Compartilhe este conteúdo.
+            Envie para quem também vive essa paixão.
           </p>
 
           <div class="share-grid">
@@ -357,7 +355,9 @@ function renderizar(item, colecaoUsada) {
                 <path d="M15 9l3 3-3 3"/>
               </svg>
 
-              <span>Compartilhar</span>
+              <span>
+                ${ehEvento ? "Enviar evento" : "Enviar anúncio"}
+              </span>
             </button>
 
           </div>
