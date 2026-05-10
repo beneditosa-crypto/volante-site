@@ -20,29 +20,15 @@
   width: 46px;
   height: 46px;
   border-radius: 15px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.98),
-      rgba(248,250,252,.94)
-    );
-
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.94));
   border: 1px solid var(--linha);
-
   color: #111827;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   box-shadow: var(--sombra);
-
   z-index: 20;
-
-  transition:
-    transform .22s ease,
-    box-shadow .22s ease;
+  transition: transform .22s ease, box-shadow .22s ease;
 }
 
 .btn-voltar:hover {
@@ -67,120 +53,75 @@
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
-
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.12fr)
-    minmax(330px, 0.88fr);
-
+  grid-template-columns: minmax(0, 1.12fr) minmax(330px, 0.88fr);
   gap: 20px;
-
   align-items: start;
 }
 
 .galeria {
   width: 100%;
   max-width: 700px;
-
   background: rgba(255,255,255,.96);
-
   border-radius: 28px;
-
   padding: 16px;
-
   border: 1px solid var(--linha);
-
   box-shadow: var(--sombra);
 }
 
 .foto-principal-wrap {
   position: relative;
-
   overflow: hidden;
-
   border-radius: 24px;
-
   background: #eef2f7;
-
   cursor: pointer;
-
   user-select: none;
 }
 
 .foto-principal {
   width: 100%;
   height: auto;
-
   max-height: 500px;
-
   aspect-ratio: 4 / 3;
-
   object-fit: cover;
-
   background: #e5e7eb;
 }
 
 .tipo-badge {
   position: absolute;
-
   left: 14px;
   bottom: 14px;
-
   z-index: 3;
-
   background: rgba(15, 23, 42, 0.50);
-
   backdrop-filter: blur(12px);
-
   color: #fff;
-
   padding: 7px 12px;
-
   border-radius: 999px;
-
   font-size: 10.5px;
-
   letter-spacing: .55px;
-
   font-weight: 900;
-
   border: 1px solid rgba(255,255,255,.14);
 }
 
 .seta-foto {
   position: absolute;
-
   top: 50%;
-
   transform: translateY(-50%);
-
   z-index: 4;
-
   width: 40px;
   height: 40px;
-
   border: 1px solid rgba(255,255,255,.18);
-
   border-radius: 999px;
-
   background: rgba(15, 23, 42, 0.42);
-
   color: #fff;
-
   font-size: 26px;
   line-height: 1;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-
   backdrop-filter: blur(12px);
-
-  box-shadow:
-    0 9px 20px rgba(0,0,0,.11);
+  box-shadow: 0 9px 20px rgba(0,0,0,.11);
 }
 
 .seta-foto-esquerda {
@@ -193,121 +134,79 @@
 
 .miniaturas {
   margin-top: 12px;
-
   display: flex;
-
   gap: 10px;
-
   overflow-x: auto;
-
   padding-bottom: 5px;
 }
 
 .miniatura {
   width: 86px;
   height: 68px;
-
   object-fit: cover;
-
   border-radius: 14px;
-
   border: 2px solid transparent;
-
   cursor: pointer;
-
   opacity: 0.72;
-
   flex: 0 0 auto;
-
-  transition:
-    opacity .2s ease,
-    transform .2s ease,
-    border-color .2s ease;
+  transition: opacity .2s ease, transform .2s ease, border-color .2s ease;
 }
 
 .miniatura:hover {
   opacity: .9;
-
   transform: translateY(-1px);
 }
 
 .miniatura.ativa {
   border-color: var(--azul-principal);
-
   opacity: 1;
 }
 
 .painel {
   width: 100%;
-
   background: rgba(255,255,255,.96);
-
   border-radius: 28px;
-
   padding: 21px;
-
   border: 1px solid var(--linha);
-
   box-shadow: var(--sombra);
 }
 
 .titulo {
   font-size: 30px;
   font-weight: 940;
-
   letter-spacing: -0.95px;
-
   line-height: 1.05;
-
   margin-bottom: 8px;
-
   color: var(--texto);
 }
 
 .meta {
   color: var(--cinza);
-
   font-size: 13.8px;
-
   margin-bottom: 14px;
-
   font-weight: 550;
 }
 
 .preco {
   color: var(--preco);
-
   font-size: 27px;
   font-weight: 950;
-
   letter-spacing: -0.8px;
-
   margin-bottom: 18px;
 }
 
 .preco::after {
   content: "";
-
   display: block;
-
   width: 36px;
   height: 2px;
-
   margin-top: 8px;
-
   border-radius: 999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(30,58,138,.78),
-      rgba(30,58,138,0)
-    );
+  background: linear-gradient(90deg, rgba(30,58,138,.78), rgba(30,58,138,0));
 }
 
 .descricao {
   padding-top: 15px;
-
   border-top: 1px solid var(--linha);
 }
 
@@ -315,9 +214,7 @@
 .bloco h3,
 .cta-app h3 {
   font-size: 16px;
-
   margin-bottom: 7px;
-
   letter-spacing: -.22px;
 }
 
@@ -325,115 +222,61 @@
 .bloco p,
 .cta-app p {
   color: var(--cinza);
-
   font-size: 13px;
-
   line-height: 1.55;
 }
 
 .cta-app,
 .bloco {
   margin-top: 14px;
-
   border-radius: 20px;
-
   padding: 14px;
-
   border: 1px solid rgba(15,23,42,.055);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.98),
-      rgba(248,250,252,.94)
-    );
-
-  box-shadow:
-    0 8px 18px rgba(15,23,42,.04);
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.94));
+  box-shadow: 0 8px 18px rgba(15,23,42,.04);
 }
 
 .app-store-box {
   margin-top: 12px;
-
   display: flex;
-
   gap: 10px;
-
   flex-wrap: wrap;
 }
 
 .app-store-btn {
   min-height: 58px;
   min-width: 178px;
-
   padding: 0 16px;
-
   border-radius: 18px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.98),
-      rgba(248,250,252,.95)
-    );
-
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.95));
   color: var(--texto);
-
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-
   gap: 12px;
-
   text-decoration: none;
-
   border: 1px solid rgba(15,23,42,.10);
-
-  box-shadow:
-    0 10px 22px rgba(15,23,42,.08);
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
+  box-shadow: 0 10px 22px rgba(15,23,42,.08);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
 .app-store-btn:hover {
   transform: translateY(-1px);
-
   border-color: rgba(15,23,42,.18);
-
-  box-shadow:
-    0 14px 28px rgba(15,23,42,.12);
+  box-shadow: 0 14px 28px rgba(15,23,42,.12);
 }
 
 .compartilhar {
-  margin-top: 16px;
-  padding: 16px;
-  border-radius: 22px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.98),
-      rgba(248,250,252,.94)
-    );
-
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.96);
   border: 1px solid rgba(15,23,42,.07);
-
-  box-shadow:
-    0 10px 24px rgba(15,23,42,.06);
-}
-
-.compartilhar h3 {
-  color: var(--texto);
-  font-size: 17px;
-  font-weight: 950;
-  letter-spacing: -.3px;
-  margin-bottom: 5px;
+  box-shadow: 0 8px 20px rgba(15,23,42,.05);
 }
 
 .compartilhar p {
+  margin-bottom: 12px;
   color: var(--cinza);
   font-size: 13px;
   line-height: 1.45;
@@ -441,59 +284,38 @@
 }
 
 .share-grid {
-  margin-top: 14px;
   display: flex;
   width: 100%;
 }
 
 .share-btn {
   width: 100%;
-  min-height: 56px;
-  padding: 0 18px;
-
-  border-radius: 18px;
-
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-
-  border: none;
-
-  background:
-    linear-gradient(
-      135deg,
-      #1e3a8a,
-      #172554
-    );
-
-  color: #ffffff;
-
-  font-size: 15px;
-  font-weight: 950;
-  letter-spacing: -.25px;
-
-  box-shadow:
-    0 14px 28px rgba(30,58,138,.24);
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    filter .2s ease;
+  gap: 9px;
+  border: 1px solid rgba(30,58,138,.16);
+  background: rgba(30,58,138,.08);
+  color: var(--azul-principal);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: -.2px;
+  box-shadow: none;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
 }
 
 .share-btn:hover {
   transform: translateY(-1px);
-
-  box-shadow:
-    0 18px 34px rgba(30,58,138,.30);
-
-  filter: brightness(1.03);
+  background: rgba(30,58,138,.12);
+  border-color: rgba(30,58,138,.24);
 }
 
 .share-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
@@ -521,17 +343,14 @@
   .detalhe-topo .logo {
     width: 58px !important;
     height: 58px !important;
-
     max-width: 58px !important;
     max-height: 58px !important;
-
     flex-basis: 58px;
   }
 
   .galeria,
   .painel {
     border-radius: 20px;
-
     padding: 12px;
   }
 
@@ -541,7 +360,6 @@
 
   .foto-principal {
     aspect-ratio: 4 / 3;
-
     max-height: 290px;
   }
 
@@ -561,7 +379,6 @@
   .seta-foto {
     width: 32px;
     height: 32px;
-
     font-size: 22px;
   }
 
@@ -569,7 +386,6 @@
   .bloco,
   .compartilhar {
     padding: 13px;
-
     border-radius: 17px;
   }
 
@@ -581,10 +397,8 @@
   }
 
   .share-btn {
-    min-height: 50px;
-
+    min-height: 46px;
     font-size: 13px;
-
     padding: 0 14px;
   }
 
