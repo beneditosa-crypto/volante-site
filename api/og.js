@@ -133,6 +133,9 @@ export default async function handler(req, res) {
   const detalheUrl =
     `https://volante.app.br/detalhe.html?tipo=${ehEvento ? "evento" : "anuncio"}&id=${id}`;
 
+  const ogUrl =
+    `https://volante.app.br/api/og?tipo=${ehEvento ? "evento" : "anuncio"}&id=${id}`;
+
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=86400");
 
@@ -148,9 +151,11 @@ export default async function handler(req, res) {
 <meta property="og:title" content="${escapeHtml(titulo)}" />
 <meta property="og:description" content="${escapeHtml(descricao)}" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="${escapeHtml(detalheUrl)}" />
+<meta property="og:url" content="${escapeHtml(ogUrl)}" />
 <meta property="og:image" content="${escapeHtml(imagem)}" />
 <meta property="og:image:secure_url" content="${escapeHtml(imagem)}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="Volante App" />
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -159,15 +164,16 @@ export default async function handler(req, res) {
 <meta name="twitter:image" content="${escapeHtml(imagem)}" />
 
 <link rel="canonical" href="${escapeHtml(detalheUrl)}" />
-
-<meta http-equiv="refresh" content="0;url=${escapeHtml(detalheUrl)}" />
 </head>
 
-<body>
-  <p>Redirecionando para o Volante...</p>
-  <script>
-    window.location.href = ${JSON.stringify(detalheUrl)};
-  </script>
+<body style="font-family: Arial, sans-serif; padding: 24px; color: #111827;">
+  <h1>${escapeHtml(titulo)}</h1>
+  <p>${escapeHtml(descricao)}</p>
+  <p>
+    <a href="${escapeHtml(detalheUrl)}" style="color: #1E3A8A; font-weight: bold;">
+      Abrir no Volante
+    </a>
+  </p>
 </body>
 </html>`);
 }
