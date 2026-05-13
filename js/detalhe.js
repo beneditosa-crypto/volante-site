@@ -28,7 +28,7 @@ const tipo =
     .toLowerCase();
 
 const shareUrl =
-  `https://volante.app.br/api/gerar-share?tipo=${tipo}&id=${id}`;
+  `https://volante.app.br/api/gerar-share?tipo=${tipo}&id=${id}&v=${Date.now()}`;
 
 let fotos = [];
 let fotoAtual = 0;
