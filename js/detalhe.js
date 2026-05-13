@@ -30,11 +30,6 @@ const tipo =
 const shareUrl =
   `https://volante.app.br/api/gerar-share?tipo=${tipo}&id=${id}`;
 
-const isMobile =
-  /Android|iPhone|iPad|iPod/i.test(
-    navigator.userAgent
-  );
-
 let fotos = [];
 let fotoAtual = 0;
 
@@ -42,21 +37,21 @@ async function compartilharConteudo() {
 
   try {
 
-    const whatsappUrl =
-      `https://wa.me/?text=${encodeURIComponent(
-        shareUrl
-      )}`;
+    if (
+      navigator.share
+    ) {
 
-    if (isMobile) {
-
-      window.location.href =
-        whatsappUrl;
+      await navigator.share({
+        text: shareUrl
+      });
 
       return;
     }
 
     window.open(
-      whatsappUrl,
+      `https://wa.me/?text=${encodeURIComponent(
+        shareUrl
+      )}`,
       "_blank"
     );
 
