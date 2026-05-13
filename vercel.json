@@ -8,6 +8,10 @@
       "handle": "filesystem"
     },
     {
+      "src": "/detalhe.html",
+      "dest": "/detalhe.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
