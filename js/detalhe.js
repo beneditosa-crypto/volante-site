@@ -28,7 +28,7 @@ const tipo =
     .toLowerCase();
 
 const shareUrl =
-  `https://volante.app.br/api/og?tipo=${tipo}&id=${id}`;
+  `https://volante.app.br/api/gerar-share?tipo=${tipo}&id=${id}`;
 
 const isMobile =
   /Android|iPhone|iPad|iPod/i.test(
