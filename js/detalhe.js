@@ -414,17 +414,29 @@ function renderizar(
 
         <div class="cta-app">
 
-          <h3>
-            O Volante fica melhor no app
-          </h3>
+          <div class="cta-app-header">
 
-          <p>
-            Publique anúncios,
-            favorite veículos,
-            converse com anunciantes
-            e compartilhe diretamente
-            pelo aplicativo.
-          </p>
+            <div class="cta-app-icon">
+              ⦿
+            </div>
+
+            <div>
+
+              <h3>
+                Continue no aplicativo
+              </h3>
+
+              <p>
+                Publique anúncios,
+                favorite veículos,
+                converse com anunciantes
+                e compartilhe diretamente
+                pelo app.
+              </p>
+
+            </div>
+
+          </div>
 
           <div class="app-store-box">
 
