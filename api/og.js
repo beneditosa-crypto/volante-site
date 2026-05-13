@@ -181,8 +181,13 @@ export default async function handler(
     }&id=${id}`;
 
   res.setHeader(
+    "Content-Type",
+    "text/html; charset=utf-8"
+  );
+
+  res.setHeader(
     "Cache-Control",
-    "s-maxage=300, stale-while-revalidate=86400"
+    "no-store, max-age=0"
   );
 
   res.status(200).send(`<!DOCTYPE html>
@@ -215,7 +220,7 @@ export default async function handler(
 
 <meta
   property="og:url"
-  content="${escapeHtml(detalheUrl)}"
+  content="https://volante.app.br/api/og?tipo=${ehEvento ? "evento" : "anuncio"}&id=${id}"
 />
 
 <meta
@@ -263,21 +268,38 @@ export default async function handler(
   content="${escapeHtml(imagem)}"
 />
 
-<meta
-  http-equiv="refresh"
-  content="0; url=${escapeHtml(detalheUrl)}"
-/>
-
-<link
-  rel="canonical"
-  href="${escapeHtml(detalheUrl)}"
-/>
+<style>
+body{
+  font-family:Arial,sans-serif;
+  padding:40px;
+  background:#ffffff;
+  color:#111827;
+}
+a{
+  color:#1E3A8A;
+  text-decoration:none;
+  font-weight:bold;
+}
+</style>
 
 </head>
 
 <body>
-Redirecionando...
-</body>
 
+<h1>
+  ${escapeHtml(titulo)}
+</h1>
+
+<p>
+  ${escapeHtml(descricao)}
+</p>
+
+<p>
+  <a href="${escapeHtml(detalheUrl)}">
+    Abrir no Volante
+  </a>
+</p>
+
+</body>
 </html>`);
 }
