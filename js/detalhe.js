@@ -33,42 +33,6 @@ const shareUrl =
 let fotos = [];
 let fotoAtual = 0;
 
-async function compartilharConteudo() {
-
-  try {
-
-    const whatsappUrl =
-      `https://wa.me/?text=${encodeURIComponent(
-        shareUrl
-      )}`;
-
-    window.location.href =
-      whatsappUrl;
-
-  } catch (erro) {
-
-    console.error(
-      "Erro compartilhar:",
-      erro
-    );
-
-    try {
-
-      await navigator.clipboard.writeText(
-        shareUrl
-      );
-
-      alert("Link copiado.");
-
-    } catch {}
-
-  }
-
-}
-
-window.compartilharConteudo =
-  compartilharConteudo;
-
 function atualizarMetaTag(
   property,
   content
@@ -451,13 +415,15 @@ function renderizar(
         <div class="cta-app">
 
           <h3>
-            Aplicativo disponível nas lojas
+            O Volante fica melhor no app
           </h3>
 
           <p>
-            Converse com anunciantes,
-            publique veículos
-            e favorite anúncios.
+            Publique anúncios,
+            favorite veículos,
+            converse com anunciantes
+            e compartilhe diretamente
+            pelo aplicativo.
           </p>
 
           <div class="app-store-box">
@@ -505,48 +471,6 @@ function renderizar(
                 </strong>
               </div>
             </a>
-
-          </div>
-
-        </div>
-
-        <div class="bloco compartilhar">
-
-          <div class="share-grid">
-
-            <p>
-              Envie para quem também vive essa paixão.
-            </p>
-
-            <button
-              class="share-btn link"
-              onclick="compartilharConteudo()"
-            >
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="18" cy="5" r="3"/>
-                <circle cx="6" cy="12" r="3"/>
-                <circle cx="18" cy="19" r="3"/>
-                <path d="M8.7 13.5l6.6 3.9"/>
-                <path d="M15.3 6.6L8.7 10.5"/>
-              </svg>
-
-              <span>
-                ${
-                  ehEvento
-                    ? "Compartilhar evento"
-                    : "Compartilhar anúncio"
-                }
-              </span>
-
-            </button>
 
           </div>
 
