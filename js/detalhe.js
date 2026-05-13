@@ -37,23 +37,13 @@ async function compartilharConteudo() {
 
   try {
 
-    if (
-      navigator.share
-    ) {
-
-      await navigator.share({
-        text: shareUrl
-      });
-
-      return;
-    }
-
-    window.open(
+    const whatsappUrl =
       `https://wa.me/?text=${encodeURIComponent(
         shareUrl
-      )}`,
-      "_blank"
-    );
+      )}`;
+
+    window.location.href =
+      whatsappUrl;
 
   } catch (erro) {
 
@@ -204,6 +194,7 @@ function atualizarOpenGraph({
 }
 
 function atualizarFoto() {
+
   const fotoPrincipal =
     document.getElementById(
       "fotoPrincipal"
@@ -219,14 +210,18 @@ function atualizarFoto() {
       ".miniatura"
     )
     .forEach((item, index) => {
+
       item.classList.toggle(
         "ativa",
         index === fotoAtual
       );
+
     });
+
 }
 
 function iniciarGaleria() {
+
   const anterior =
     document.getElementById(
       "fotoAnterior"
@@ -240,18 +235,21 @@ function iniciarGaleria() {
   anterior?.addEventListener(
     "click",
     () => {
+
       fotoAtual =
         fotoAtual === 0
           ? fotos.length - 1
           : fotoAtual - 1;
 
       atualizarFoto();
+
     }
   );
 
   proxima?.addEventListener(
     "click",
     () => {
+
       fotoAtual =
         fotoAtual ===
         fotos.length - 1
@@ -259,6 +257,7 @@ function iniciarGaleria() {
           : fotoAtual + 1;
 
       atualizarFoto();
+
     }
   );
 
@@ -267,24 +266,30 @@ function iniciarGaleria() {
       ".miniatura"
     )
     .forEach((item) => {
+
       item.addEventListener(
         "click",
         () => {
+
           fotoAtual =
             Number(
               item.dataset.index
             );
 
           atualizarFoto();
+
         }
       );
+
     });
+
 }
 
 function renderizar(
   item,
   colecaoUsada
 ) {
+
   fotos = getFotos(item);
 
   const titulo =
@@ -527,13 +532,9 @@ function renderizar(
                 stroke-linejoin="round"
               >
                 <circle cx="18" cy="5" r="3"/>
-
                 <circle cx="6" cy="12" r="3"/>
-
                 <circle cx="18" cy="19" r="3"/>
-
                 <path d="M8.7 13.5l6.6 3.9"/>
-
                 <path d="M15.3 6.6L8.7 10.5"/>
               </svg>
 
@@ -557,12 +558,15 @@ function renderizar(
   `;
 
   iniciarGaleria();
+
 }
 
 async function carregar() {
+
   if (!conteudo) return;
 
   if (!id) {
+
     conteudo.innerHTML = `
       <div class="empty">
         ID inválido.
@@ -573,6 +577,7 @@ async function carregar() {
   }
 
   try {
+
     const colecoes =
       tipo === "evento"
         ? [
@@ -590,6 +595,7 @@ async function carregar() {
     let colecaoUsada = "";
 
     for (const colecao of colecoes) {
+
       const referencia =
         doc(
           db,
@@ -605,6 +611,7 @@ async function carregar() {
       if (
         snapshot.exists()
       ) {
+
         snapshotEncontrado =
           snapshot;
 
@@ -612,12 +619,15 @@ async function carregar() {
           colecao;
 
         break;
+
       }
+
     }
 
     if (
       !snapshotEncontrado
     ) {
+
       conteudo.innerHTML = `
         <div class="empty">
           Conteúdo não encontrado.
@@ -637,6 +647,7 @@ async function carregar() {
     );
 
   } catch (erro) {
+
     console.error(
       "Erro detalhe:",
       erro
@@ -648,6 +659,7 @@ async function carregar() {
       </div>
     `;
   }
+
 }
 
 carregar();
