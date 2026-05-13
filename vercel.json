@@ -1,14 +1,6 @@
 {
   "routes": [
     {
-      "src": "/anuncio/(.*)",
-      "dest": "/anuncio/[id].js"
-    },
-    {
-      "src": "/evento/(.*)",
-      "dest": "/evento/[id].js"
-    },
-    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
