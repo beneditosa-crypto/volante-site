@@ -1,20 +1,6 @@
 {
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/detalhe.html",
-      "dest": "/detalhe.html"
-    },
-    {
-      "src": "/(.*)",{
-  "routes": [
-    {
       "src": "/s/([a-zA-Z0-9_-]+)",
       "dest": "/api/s/$1"
     },
@@ -31,10 +17,6 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
-}
       "dest": "/index.html"
     }
   ]
