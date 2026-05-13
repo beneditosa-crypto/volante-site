@@ -95,10 +95,9 @@ export default async function handler(
   req,
   res
 ) {
-  const {
-    id,
-    tipo = "anuncio",
-  } = req.query;
+  const { id } = req.query;
+
+  const tipo = "anuncio";
 
   if (!id) {
     res.status(400).send(
@@ -108,10 +107,10 @@ export default async function handler(
     return;
   }
 
-  const colecoes =
-    tipo === "evento"
-      ? ["eventos", "anuncios"]
-      : ["anuncios", "eventos"];
+  const colecoes = [
+    "anuncios",
+    "eventos"
+  ];
 
   let item = null;
 
@@ -174,11 +173,7 @@ export default async function handler(
     getPrimeiraFoto(item);
 
   const detalheUrl =
-    `https://volante.app.br/detalhe.html?tipo=${
-      ehEvento
-        ? "evento"
-        : "anuncio"
-    }&id=${id}`;
+    `https://volante.app.br/detalhe.html?tipo=anuncio&id=${id}`;
 
   res.setHeader(
     "Content-Type",
@@ -220,12 +215,7 @@ export default async function handler(
 
 <meta
   property="og:url"
-  content="${escapeHtml(detalheUrl)}"
-/>
-
-<link
-  rel="alternate"
-  href="${escapeHtml(detalheUrl)}"
+  content="https://volante.app.br/anuncio/${id}"
 />
 
 <meta
