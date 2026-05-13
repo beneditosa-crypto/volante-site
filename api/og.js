@@ -220,7 +220,12 @@ export default async function handler(
 
 <meta
   property="og:url"
-  content="https://volante.app.br/api/og?tipo=${ehEvento ? "evento" : "anuncio"}&id=${id}"
+  content="${escapeHtml(detalheUrl)}"
+/>
+
+<link
+  rel="alternate"
+  href="${escapeHtml(detalheUrl)}"
 />
 
 <meta
