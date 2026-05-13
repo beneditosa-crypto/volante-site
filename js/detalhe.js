@@ -36,12 +36,10 @@ let fotoAtual = 0;
 async function compartilharConteudo() {
   try {
 
-    window.open(
-      `https://wa.me/?text=${encodeURIComponent(
-        shareUrl
-      )}`,
-      "_blank"
-    );
+window.location.href =
+  `https://api.whatsapp.com/send?text=${encodeURIComponent(
+    shareUrl
+  )}`;
 
   } catch (erro) {
     console.error(
