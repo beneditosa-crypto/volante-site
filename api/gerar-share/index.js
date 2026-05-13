@@ -1,3 +1,9 @@
+const fs =
+  require("fs");
+
+const path =
+  require("path");
+
 const PROJECT_ID =
   "clube-da-caminhonete-be770";
 
@@ -112,10 +118,12 @@ async function buscarDocumento(
 
   Object.keys(fields).forEach(
     (chave) => {
+
       item[chave] =
         getValor(
           fields[chave]
         );
+
     }
   );
 
@@ -136,11 +144,6 @@ module.exports =
     if (!id) {
 
       res.statusCode = 400;
-
-      res.setHeader(
-        "Content-Type",
-        "text/plain"
-      );
 
       res.end(
         "ID inválido."
@@ -163,11 +166,6 @@ module.exports =
     if (!item) {
 
       res.statusCode = 404;
-
-      res.setHeader(
-        "Content-Type",
-        "text/plain"
-      );
 
       res.end(
         "Conteúdo não encontrado."
@@ -207,205 +205,81 @@ module.exports =
         item
       );
 
+    const shareUrl =
+      `https://volante.app.br/share/${id}.html`;
+
     const detalheUrl =
       `https://volante.app.br/detalhe.html?tipo=${tipo}&id=${id}`;
 
-    const shareUrl =
-      `https://volante.app.br/api/gerar-share?tipo=${tipo}&id=${id}`;
+    const modeloPath =
+      path.join(
+        process.cwd(),
+        "share",
+        "modelo.html"
+      );
 
-    const html = `
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+    let html =
+      fs.readFileSync(
+        modeloPath,
+        "utf8"
+      );
 
-<meta charset="UTF-8" />
+    html =
+      html.replaceAll(
+        "{{TITULO}}",
+        titulo
+      );
 
-<title>${titulo}</title>
+    html =
+      html.replaceAll(
+        "{{DESCRICAO}}",
+        descricao
+      );
 
-<meta
-  name="description"
-  content="${descricao}"
-/>
+    html =
+      html.replaceAll(
+        "{{IMAGEM}}",
+        imagem
+      );
 
-<meta
-  property="og:title"
-  content="${titulo}"
-/>
+    html =
+      html.replaceAll(
+        "{{URL}}",
+        shareUrl
+      );
 
-<meta
-  property="og:description"
-  content="${descricao}"
-/>
+    html =
+      html.replaceAll(
+        "{{DETALHE_URL}}",
+        detalheUrl
+      );
 
-<meta
-  property="og:type"
-  content="website"
-/>
+    const outputPath =
+      path.join(
+        process.cwd(),
+        "share",
+        `${id}.html`
+      );
 
-<meta
-  property="og:url"
-  content="${shareUrl}"
-/>
-
-<meta
-  property="og:image"
-  content="${imagem}"
-/>
-
-<meta
-  property="og:image:secure_url"
-  content="${imagem}"
-/>
-
-<meta
-  property="og:image:width"
-  content="1200"
-/>
-
-<meta
-  property="og:image:height"
-  content="630"
-/>
-
-<meta
-  property="og:site_name"
-  content="Volante App"
-/>
-
-<meta
-  name="twitter:card"
-  content="summary_large_image"
-/>
-
-<meta
-  name="twitter:title"
-  content="${titulo}"
-/>
-
-<meta
-  name="twitter:description"
-  content="${descricao}"
-/>
-
-<meta
-  name="twitter:image"
-  content="${imagem}"
-/>
-
-<meta
-  http-equiv="refresh"
-  content="1; url=${detalheUrl}"
-/>
-
-<link
-  rel="canonical"
-  href="${shareUrl}"
-/>
-
-<style>
-
-body{
-  margin:0;
-  padding:40px;
-  background:#ffffff;
-  color:#111827;
-  font-family:Arial,sans-serif;
-}
-
-.container{
-  max-width:720px;
-  margin:0 auto;
-}
-
-.logo{
-  width:84px;
-  margin-bottom:24px;
-}
-
-h1{
-  font-size:34px;
-  line-height:1.2;
-  margin-bottom:16px;
-}
-
-p{
-  font-size:18px;
-  line-height:1.6;
-  color:#374151;
-}
-
-.imagem{
-  width:100%;
-  border-radius:24px;
-  margin-top:28px;
-}
-
-.botao{
-  display:inline-block;
-  margin-top:28px;
-  padding:16px 28px;
-  background:#111827;
-  color:#ffffff;
-  border-radius:14px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-  <img
-    src="https://volante.app.br/assets/logo.png"
-    class="logo"
-    alt="Volante"
-  />
-
-  <h1>
-    ${titulo}
-  </h1>
-
-  <p>
-    ${descricao}
-  </p>
-
-  <img
-    src="${imagem}"
-    class="imagem"
-    alt="${titulo}"
-  />
-
-  <br />
-
-  <a
-    href="${detalheUrl}"
-    class="botao"
-  >
-    Abrir no Volante
-  </a>
-
-</div>
-
-</body>
-</html>
-`;
+    fs.writeFileSync(
+      outputPath,
+      html,
+      "utf8"
+    );
 
     res.statusCode = 200;
 
     res.setHeader(
       "Content-Type",
-      "text/html; charset=utf-8"
+      "application/json"
     );
 
-    res.setHeader(
-      "Cache-Control",
-      "public, max-age=300"
+    res.end(
+      JSON.stringify({
+        sucesso: true,
+        arquivo:
+          `/share/${id}.html`,
+      })
     );
-
-    res.end(html);
 
   };
