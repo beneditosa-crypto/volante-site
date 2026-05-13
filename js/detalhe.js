@@ -15,8 +15,11 @@ import {
 
 window.baixarApp = baixarApp;
 
-const conteudo = document.getElementById("conteudo");
-const params = new URLSearchParams(window.location.search);
+const conteudo =
+  document.getElementById("conteudo");
+
+const params =
+  new URLSearchParams(window.location.search);
 
 const id = params.get("id");
 
@@ -28,10 +31,13 @@ let fotos = [];
 let fotoAtual = 0;
 
 async function compartilharConteudo(titulo) {
+  const shareUrl =
+    window.location.href;
+
   const shareData = {
     title: titulo,
     text: "Veja este conteúdo no Volante App",
-    url: window.location.href
+    url: shareUrl
   };
 
   try {
@@ -40,36 +46,63 @@ async function compartilharConteudo(titulo) {
       return;
     }
 
-    await navigator.clipboard.writeText(window.location.href);
+    await navigator.clipboard.writeText(
+      shareUrl
+    );
 
     alert("Link copiado.");
   } catch (erro) {
-    console.error("Erro compartilhar:", erro);
+    console.error(
+      "Erro compartilhar:",
+      erro
+    );
   }
 }
 
-window.compartilharConteudo = compartilharConteudo;
+window.compartilharConteudo =
+  compartilharConteudo;
 
-function atualizarMetaTag(property, content) {
+function atualizarMetaTag(
+  property,
+  content
+) {
   if (!content) return;
 
   let element =
-    document.querySelector(`meta[property="${property}"]`) ||
-    document.querySelector(`meta[name="${property}"]`);
+    document.querySelector(
+      `meta[property="${property}"]`
+    ) ||
+    document.querySelector(
+      `meta[name="${property}"]`
+    );
 
   if (!element) {
-    element = document.createElement("meta");
+    element =
+      document.createElement("meta");
 
-    if (property.startsWith("og:")) {
-      element.setAttribute("property", property);
+    if (
+      property.startsWith("og:")
+    ) {
+      element.setAttribute(
+        "property",
+        property
+      );
     } else {
-      element.setAttribute("name", property);
+      element.setAttribute(
+        "name",
+        property
+      );
     }
 
-    document.head.appendChild(element);
+    document.head.appendChild(
+      element
+    );
   }
 
-  element.setAttribute("content", content);
+  element.setAttribute(
+    "content",
+    content
+  );
 }
 
 function atualizarOpenGraph({
@@ -78,41 +111,96 @@ function atualizarOpenGraph({
   imagem,
   url
 }) {
-  document.title = `${titulo} | Volante App`;
+  document.title =
+    `${titulo} | Volante App`;
 
-  atualizarMetaTag("description", descricao);
-  atualizarMetaTag("og:title", titulo);
-  atualizarMetaTag("og:description", descricao);
-  atualizarMetaTag("og:image", imagem);
-  atualizarMetaTag("og:url", url);
+  atualizarMetaTag(
+    "description",
+    descricao
+  );
 
-  atualizarMetaTag("twitter:card", "summary_large_image");
-  atualizarMetaTag("twitter:title", titulo);
-  atualizarMetaTag("twitter:description", descricao);
-  atualizarMetaTag("twitter:image", imagem);
+  atualizarMetaTag(
+    "og:title",
+    titulo
+  );
+
+  atualizarMetaTag(
+    "og:description",
+    descricao
+  );
+
+  atualizarMetaTag(
+    "og:image",
+    imagem
+  );
+
+  atualizarMetaTag(
+    "og:url",
+    url
+  );
+
+  atualizarMetaTag(
+    "twitter:card",
+    "summary_large_image"
+  );
+
+  atualizarMetaTag(
+    "twitter:title",
+    titulo
+  );
+
+  atualizarMetaTag(
+    "twitter:description",
+    descricao
+  );
+
+  atualizarMetaTag(
+    "twitter:image",
+    imagem
+  );
 
   let canonical =
-    document.querySelector('link[rel="canonical"]');
+    document.querySelector(
+      'link[rel="canonical"]'
+    );
 
   if (!canonical) {
-    canonical = document.createElement("link");
-    canonical.setAttribute("rel", "canonical");
-    document.head.appendChild(canonical);
+    canonical =
+      document.createElement(
+        "link"
+      );
+
+    canonical.setAttribute(
+      "rel",
+      "canonical"
+    );
+
+    document.head.appendChild(
+      canonical
+    );
   }
 
-  canonical.setAttribute("href", url);
+  canonical.setAttribute(
+    "href",
+    url
+  );
 }
 
 function atualizarFoto() {
   const fotoPrincipal =
-    document.getElementById("fotoPrincipal");
+    document.getElementById(
+      "fotoPrincipal"
+    );
 
   if (!fotoPrincipal) return;
 
-  fotoPrincipal.src = fotos[fotoAtual];
+  fotoPrincipal.src =
+    fotos[fotoAtual];
 
   document
-    .querySelectorAll(".miniatura")
+    .querySelectorAll(
+      ".miniatura"
+    )
     .forEach((item, index) => {
       item.classList.toggle(
         "ativa",
@@ -123,42 +211,63 @@ function atualizarFoto() {
 
 function iniciarGaleria() {
   const anterior =
-    document.getElementById("fotoAnterior");
+    document.getElementById(
+      "fotoAnterior"
+    );
 
   const proxima =
-    document.getElementById("fotoProxima");
+    document.getElementById(
+      "fotoProxima"
+    );
 
-  anterior?.addEventListener("click", () => {
-    fotoAtual =
-      fotoAtual === 0
-        ? fotos.length - 1
-        : fotoAtual - 1;
+  anterior?.addEventListener(
+    "click",
+    () => {
+      fotoAtual =
+        fotoAtual === 0
+          ? fotos.length - 1
+          : fotoAtual - 1;
 
-    atualizarFoto();
-  });
+      atualizarFoto();
+    }
+  );
 
-  proxima?.addEventListener("click", () => {
-    fotoAtual =
-      fotoAtual === fotos.length - 1
-        ? 0
-        : fotoAtual + 1;
+  proxima?.addEventListener(
+    "click",
+    () => {
+      fotoAtual =
+        fotoAtual ===
+        fotos.length - 1
+          ? 0
+          : fotoAtual + 1;
 
-    atualizarFoto();
-  });
+      atualizarFoto();
+    }
+  );
 
   document
-    .querySelectorAll(".miniatura")
+    .querySelectorAll(
+      ".miniatura"
+    )
     .forEach((item) => {
-      item.addEventListener("click", () => {
-        fotoAtual =
-          Number(item.dataset.index);
+      item.addEventListener(
+        "click",
+        () => {
+          fotoAtual =
+            Number(
+              item.dataset.index
+            );
 
-        atualizarFoto();
-      });
+          atualizarFoto();
+        }
+      );
     });
 }
 
-function renderizar(item, colecaoUsada) {
+function renderizar(
+  item,
+  colecaoUsada
+) {
   fotos = getFotos(item);
 
   const titulo =
@@ -172,13 +281,16 @@ function renderizar(item, colecaoUsada) {
     "Sem descrição.";
 
   const preco =
-    formatarPreco(item.preco);
+    formatarPreco(
+      item.preco
+    );
 
   const local =
     textoLocal(item);
 
   const ehEvento =
-    colecaoUsada === "eventos";
+    colecaoUsada ===
+    "eventos";
 
   const imagemPrincipal =
     fotos?.[0] ||
@@ -187,14 +299,17 @@ function renderizar(item, colecaoUsada) {
   atualizarOpenGraph({
     titulo,
     descricao,
-    imagem: imagemPrincipal,
-    url: window.location.href
+    imagem:
+      imagemPrincipal,
+    url:
+      window.location.href
   });
 
   conteudo.innerHTML = `
     <section class="detalhe">
 
       <div class="galeria">
+
         <div class="foto-principal-wrap">
 
           ${
@@ -214,7 +329,9 @@ function renderizar(item, colecaoUsada) {
             id="fotoPrincipal"
             class="foto-principal"
             src="${fotos[0]}"
-            alt="${escapeHtml(titulo)}"
+            alt="${escapeHtml(
+              titulo
+            )}"
           />
 
           ${
@@ -231,63 +348,95 @@ function renderizar(item, colecaoUsada) {
           }
 
           <div class="tipo-badge">
-            ${ehEvento ? "EVENTO" : "ANÚNCIO"}
+            ${
+              ehEvento
+                ? "EVENTO"
+                : "ANÚNCIO"
+            }
           </div>
+
         </div>
 
         ${
           fotos.length > 1
             ? `
               <div class="miniaturas">
-                ${fotos.map((foto, index) => `
-                  <img
-                    class="miniatura ${index === 0 ? "ativa" : ""}"
-                    src="${foto}"
-                    data-index="${index}"
-                  />
-                `).join("")}
+                ${fotos
+                  .map(
+                    (
+                      foto,
+                      index
+                    ) => `
+                    <img
+                      class="miniatura ${
+                        index === 0
+                          ? "ativa"
+                          : ""
+                      }"
+                      src="${foto}"
+                      data-index="${index}"
+                    />
+                  `
+                  )
+                  .join("")}
               </div>
             `
             : ""
         }
+
       </div>
 
       <div class="painel">
 
         <h1 class="titulo">
-          ${escapeHtml(titulo)}
+          ${escapeHtml(
+            titulo
+          )}
         </h1>
 
         <div class="meta">
-          ${escapeHtml(local)}
+          ${escapeHtml(
+            local
+          )}
         </div>
 
         ${
-          preco && !ehEvento
+          preco &&
+          !ehEvento
             ? `
               <div class="preco">
-                ${escapeHtml(preco)}
+                ${escapeHtml(
+                  preco
+                )}
               </div>
             `
             : ""
         }
 
         <div class="descricao">
-          <h3>Descrição</h3>
+
+          <h3>
+            Descrição
+          </h3>
 
           <p>
-            ${escapeHtml(descricao)}
+            ${escapeHtml(
+              descricao
+            )}
           </p>
+
         </div>
 
         <div class="cta-app">
+
           <h3>
             Aplicativo disponível nas lojas
           </h3>
 
           <p>
             Converse com anunciantes,
-            publique veículos e favorite anúncios.
+            publique veículos
+            e favorite anúncios.
           </p>
 
           <div class="app-store-box">
@@ -304,8 +453,13 @@ function renderizar(item, colecaoUsada) {
               />
 
               <div class="store-textos">
-                <small>Disponível no</small>
-                <strong>Google Play</strong>
+                <small>
+                  Disponível no
+                </small>
+
+                <strong>
+                  Google Play
+                </strong>
               </div>
             </a>
 
@@ -321,12 +475,18 @@ function renderizar(item, colecaoUsada) {
               />
 
               <div class="store-textos">
-                <small>Disponível na</small>
-                <strong>App Store</strong>
+                <small>
+                  Disponível na
+                </small>
+
+                <strong>
+                  App Store
+                </strong>
               </div>
             </a>
 
           </div>
+
         </div>
 
         <div class="bloco compartilhar">
@@ -339,8 +499,11 @@ function renderizar(item, colecaoUsada) {
 
             <button
               class="share-btn link"
-              onclick="compartilharConteudo('${escapeHtml(titulo)}')"
+              onclick="compartilharConteudo('${escapeHtml(
+                titulo
+              )}')"
             >
+
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -356,8 +519,13 @@ function renderizar(item, colecaoUsada) {
               </svg>
 
               <span>
-                ${ehEvento ? "Enviar evento" : "Enviar anúncio"}
+                ${
+                  ehEvento
+                    ? "Enviar evento"
+                    : "Enviar anúncio"
+                }
               </span>
+
             </button>
 
           </div>
@@ -381,48 +549,79 @@ async function carregar() {
         ID inválido.
       </div>
     `;
+
     return;
   }
 
   try {
     const colecoes =
       tipo === "evento"
-        ? ["eventos", "anuncios"]
-        : ["anuncios", "eventos"];
+        ? [
+            "eventos",
+            "anuncios",
+          ]
+        : [
+            "anuncios",
+            "eventos",
+          ];
 
-    let snapshotEncontrado = null;
+    let snapshotEncontrado =
+      null;
+
     let colecaoUsada = "";
 
     for (const colecao of colecoes) {
       const referencia =
-        doc(db, colecao, id);
+        doc(
+          db,
+          colecao,
+          id
+        );
 
       const snapshot =
-        await getDoc(referencia);
+        await getDoc(
+          referencia
+        );
 
-      if (snapshot.exists()) {
-        snapshotEncontrado = snapshot;
-        colecaoUsada = colecao;
+      if (
+        snapshot.exists()
+      ) {
+        snapshotEncontrado =
+          snapshot;
+
+        colecaoUsada =
+          colecao;
+
         break;
       }
     }
 
-    if (!snapshotEncontrado) {
+    if (
+      !snapshotEncontrado
+    ) {
       conteudo.innerHTML = `
         <div class="empty">
           Conteúdo não encontrado.
         </div>
       `;
+
       return;
     }
 
-    renderizar({
-      id: snapshotEncontrado.id,
-      ...snapshotEncontrado.data()
-    }, colecaoUsada);
+    renderizar(
+      {
+        id:
+          snapshotEncontrado.id,
+        ...snapshotEncontrado.data(),
+      },
+      colecaoUsada
+    );
 
   } catch (erro) {
-    console.error("Erro detalhe:", erro);
+    console.error(
+      "Erro detalhe:",
+      erro
+    );
 
     conteudo.innerHTML = `
       <div class="empty">
