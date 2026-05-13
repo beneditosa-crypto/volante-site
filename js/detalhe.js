@@ -30,18 +30,38 @@ const tipo =
 const shareUrl =
   `https://volante.app.br/api/og?tipo=${tipo}&id=${id}`;
 
+const isMobile =
+  /Android|iPhone|iPad|iPod/i.test(
+    navigator.userAgent
+  );
+
 let fotos = [];
 let fotoAtual = 0;
 
 async function compartilharConteudo(titulo) {
-  const shareData = {
-    title: titulo,
-    url: shareUrl
-  };
-
   try {
+
+    if (!isMobile) {
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(
+          shareUrl
+        )}`,
+        "_blank"
+      );
+
+      return;
+    }
+
+    const shareData = {
+      title: titulo,
+      url: shareUrl
+    };
+
     if (navigator.share) {
-      await navigator.share(shareData);
+      await navigator.share(
+        shareData
+      );
+
       return;
     }
 
@@ -50,6 +70,7 @@ async function compartilharConteudo(titulo) {
     );
 
     alert("Link copiado.");
+
   } catch (erro) {
     console.error(
       "Erro compartilhar:",
