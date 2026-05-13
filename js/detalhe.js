@@ -39,28 +39,29 @@ let fotos = [];
 let fotoAtual = 0;
 
 async function compartilharConteudo() {
+
   try {
 
-    if (
-      isMobile &&
-      navigator.share
-    ) {
+    const whatsappUrl =
+      `https://wa.me/?text=${encodeURIComponent(
+        shareUrl
+      )}`;
 
-      await navigator.share({
-        url: shareUrl
-      });
+    if (isMobile) {
+
+      window.location.href =
+        whatsappUrl;
 
       return;
     }
 
     window.open(
-      `https://api.whatsapp.com/send?text=${encodeURIComponent(
-        shareUrl
-      )}`,
+      whatsappUrl,
       "_blank"
     );
 
   } catch (erro) {
+
     console.error(
       "Erro compartilhar:",
       erro
@@ -75,7 +76,9 @@ async function compartilharConteudo() {
       alert("Link copiado.");
 
     } catch {}
+
   }
+
 }
 
 window.compartilharConteudo =
