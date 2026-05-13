@@ -41,7 +41,10 @@ let fotoAtual = 0;
 async function compartilharConteudo() {
   try {
 
-    if (isMobile && navigator.share) {
+    if (
+      isMobile &&
+      navigator.share
+    ) {
 
       await navigator.share({
         url: shareUrl
@@ -521,21 +524,26 @@ function renderizar(
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2.2"
+                stroke-width="2.4"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M8 12a4 4 0 0 1 4-4h4"/>
-                <path d="M16 12a4 4 0 0 1-4 4H8"/>
-                <path d="M9 15l-3-3 3-3"/>
-                <path d="M15 9l3 3-3 3"/>
+                <circle cx="18" cy="5" r="3"/>
+
+                <circle cx="6" cy="12" r="3"/>
+
+                <circle cx="18" cy="19" r="3"/>
+
+                <path d="M8.7 13.5l6.6 3.9"/>
+
+                <path d="M15.3 6.6L8.7 10.5"/>
               </svg>
 
               <span>
                 ${
                   ehEvento
-                    ? "Enviar evento"
-                    : "Enviar anúncio"
+                    ? "Compartilhar evento"
+                    : "Compartilhar anúncio"
                 }
               </span>
 
