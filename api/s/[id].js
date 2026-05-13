@@ -112,10 +112,12 @@ async function buscarDocumento(
 
   Object.keys(fields).forEach(
     (chave) => {
+
       item[chave] =
         getValor(
           fields[chave]
         );
+
     }
   );
 
@@ -207,18 +209,24 @@ module.exports =
         item
       );
 
-    const detalheUrl =
-      `https://volante.app.br/detalhe.html?tipo=${tipo}&id=${id}`;
-
     const shareUrl =
       `https://volante.app.br/s/${id}`;
+
+    const detalheUrl =
+      `https://volante.app.br/detalhe.html?tipo=${tipo}&id=${id}`;
 
     const html = `
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
 
 <title>${titulo}</title>
 
@@ -292,11 +300,6 @@ module.exports =
   content="${imagem}"
 />
 
-<meta
-  http-equiv="refresh"
-  content="2; url=${detalheUrl}"
-/>
-
 <link
   rel="canonical"
   href="${shareUrl}"
@@ -362,7 +365,7 @@ p{
   <img
     src="https://volante.app.br/assets/logo.png"
     class="logo"
-    alt="Volante"
+    alt="Volante App"
   />
 
   <h1>
@@ -399,6 +402,11 @@ p{
     res.setHeader(
       "Content-Type",
       "text/html; charset=utf-8"
+    );
+
+    res.setHeader(
+      "Cache-Control",
+      "public, max-age=300"
     );
 
     res.end(html);
