@@ -27,7 +27,9 @@ function getValor(campo) {
 function formatarPreco(valor) {
   if (!valor) return "";
 
-  if (String(valor).includes("R$")) return String(valor);
+  if (String(valor).includes("R$")) {
+    return String(valor);
+  }
 
   const numero = Number(valor);
 
@@ -40,11 +42,17 @@ function formatarPreco(valor) {
 }
 
 function getPrimeiraFoto(item) {
-  if (Array.isArray(item.fotos) && item.fotos.length > 0) {
+  if (
+    Array.isArray(item.fotos) &&
+    item.fotos.length > 0
+  ) {
     return item.fotos[0];
   }
 
-  if (Array.isArray(item.imagens) && item.imagens.length > 0) {
+  if (
+    Array.isArray(item.imagens) &&
+    item.imagens.length > 0
+  ) {
     return item.imagens[0];
   }
 
@@ -56,7 +64,10 @@ function getPrimeiraFoto(item) {
   );
 }
 
-async function buscarDocumento(colecao, id) {
+async function buscarDocumento(
+  colecao,
+  id
+) {
   const url =
     `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}` +
     `/databases/(default)/documents/${colecao}/${id}`;
@@ -66,21 +77,34 @@ async function buscarDocumento(colecao, id) {
   if (!resposta.ok) return null;
 
   const json = await resposta.json();
+
   const fields = json.fields || {};
+
   const item = {};
 
   Object.keys(fields).forEach((chave) => {
-    item[chave] = getValor(fields[chave]);
+    item[chave] = getValor(
+      fields[chave]
+    );
   });
 
   return item;
 }
 
-export default async function handler(req, res) {
-  const { id, tipo = "anuncio" } = req.query;
+export default async function handler(
+  req,
+  res
+) {
+  const {
+    id,
+    tipo = "anuncio",
+  } = req.query;
 
   if (!id) {
-    res.status(400).send("ID inválido.");
+    res.status(400).send(
+      "ID inválido."
+    );
+
     return;
   }
 
@@ -90,10 +114,14 @@ export default async function handler(req, res) {
       : ["anuncios", "eventos"];
 
   let item = null;
+
   let colecaoUsada = "";
 
   for (const colecao of colecoes) {
-    item = await buscarDocumento(colecao, id);
+    item = await buscarDocumento(
+      colecao,
+      id
+    );
 
     if (item) {
       colecaoUsada = colecao;
@@ -102,11 +130,15 @@ export default async function handler(req, res) {
   }
 
   if (!item) {
-    res.status(404).send("Conteúdo não encontrado.");
+    res.status(404).send(
+      "Conteúdo não encontrado."
+    );
+
     return;
   }
 
-  const ehEvento = colecaoUsada === "eventos";
+  const ehEvento =
+    colecaoUsada === "eventos";
 
   const titulo =
     item.titulo ||
@@ -114,66 +146,138 @@ export default async function handler(req, res) {
     `${item.marca || ""} ${item.modelo || ""}`.trim() ||
     "Volante App";
 
-  const preco = !ehEvento ? formatarPreco(item.preco) : "";
-  const cidade = item.cidade || "";
-  const estado = item.estado || item.uf || "";
+  const preco = !ehEvento
+    ? formatarPreco(item.preco)
+    : "";
+
+  const cidade =
+    item.cidade || "";
+
+  const estado =
+    item.estado ||
+    item.uf ||
+    "";
 
   const local =
     cidade && estado
       ? `${cidade} - ${estado}`
-      : cidade || estado || "";
+      : cidade ||
+        estado ||
+        "";
 
   const descricao =
     `${ehEvento ? "Evento" : "Anúncio"} no Volante` +
     `${preco ? " • " + preco : ""}` +
     `${local ? " • " + local : ""}`;
 
-  const imagem = getPrimeiraFoto(item);
+  const imagem =
+    getPrimeiraFoto(item);
 
   const detalheUrl =
-    `https://volante.app.br/detalhe.html?tipo=${ehEvento ? "evento" : "anuncio"}&id=${id}`;
+    `https://volante.app.br/detalhe.html?tipo=${
+      ehEvento
+        ? "evento"
+        : "anuncio"
+    }&id=${id}`;
 
-  const ogUrl =
-    `https://volante.app.br/api/og?tipo=${ehEvento ? "evento" : "anuncio"}&id=${id}`;
-
-  res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=86400");
+  res.setHeader(
+    "Cache-Control",
+    "s-maxage=300, stale-while-revalidate=86400"
+  );
 
   res.status(200).send(`<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>${escapeHtml(titulo)} | Volante App</title>
-<meta name="description" content="${escapeHtml(descricao)}" />
 
-<meta property="og:title" content="${escapeHtml(titulo)}" />
-<meta property="og:description" content="${escapeHtml(descricao)}" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="${escapeHtml(ogUrl)}" />
-<meta property="og:image" content="${escapeHtml(imagem)}" />
-<meta property="og:image:secure_url" content="${escapeHtml(imagem)}" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:site_name" content="Volante App" />
+<meta
+  name="description"
+  content="${escapeHtml(descricao)}"
+/>
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="${escapeHtml(titulo)}" />
-<meta name="twitter:description" content="${escapeHtml(descricao)}" />
-<meta name="twitter:image" content="${escapeHtml(imagem)}" />
+<meta
+  property="og:title"
+  content="${escapeHtml(titulo)}"
+/>
 
-<link rel="canonical" href="${escapeHtml(detalheUrl)}" />
+<meta
+  property="og:description"
+  content="${escapeHtml(descricao)}"
+/>
+
+<meta
+  property="og:type"
+  content="website"
+/>
+
+<meta
+  property="og:url"
+  content="${escapeHtml(detalheUrl)}"
+/>
+
+<meta
+  property="og:image"
+  content="${escapeHtml(imagem)}"
+/>
+
+<meta
+  property="og:image:secure_url"
+  content="${escapeHtml(imagem)}"
+/>
+
+<meta
+  property="og:image:width"
+  content="1200"
+/>
+
+<meta
+  property="og:image:height"
+  content="630"
+/>
+
+<meta
+  property="og:site_name"
+  content="Volante App"
+/>
+
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+/>
+
+<meta
+  name="twitter:title"
+  content="${escapeHtml(titulo)}"
+/>
+
+<meta
+  name="twitter:description"
+  content="${escapeHtml(descricao)}"
+/>
+
+<meta
+  name="twitter:image"
+  content="${escapeHtml(imagem)}"
+/>
+
+<meta
+  http-equiv="refresh"
+  content="0; url=${escapeHtml(detalheUrl)}"
+/>
+
+<link
+  rel="canonical"
+  href="${escapeHtml(detalheUrl)}"
+/>
+
 </head>
 
-<body style="font-family: Arial, sans-serif; padding: 24px; color: #111827;">
-  <h1>${escapeHtml(titulo)}</h1>
-  <p>${escapeHtml(descricao)}</p>
-  <p>
-    <a href="${escapeHtml(detalheUrl)}" style="color: #1E3A8A; font-weight: bold;">
-      Abrir no Volante
-    </a>
-  </p>
+<body>
+Redirecionando...
 </body>
+
 </html>`);
 }
