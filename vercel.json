@@ -1,26 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/s/:id",
-      "destination": "/api/s/:id"
-    }
-  ],
-
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/detalhe.html",
-      "dest": "/detalhe.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "cleanUrls": true
 }
