@@ -30,22 +30,48 @@ const tipo =
 const shareUrl =
   `https://volante.app.br/api/og?tipo=${tipo}&id=${id}`;
 
+const isMobile =
+  /Android|iPhone|iPad|iPod/i.test(
+    navigator.userAgent
+  );
+
 let fotos = [];
 let fotoAtual = 0;
 
 async function compartilharConteudo() {
   try {
 
-window.location.href =
-  `https://api.whatsapp.com/send?text=${encodeURIComponent(
-    shareUrl
-  )}`;
+    if (isMobile && navigator.share) {
+
+      await navigator.share({
+        url: shareUrl
+      });
+
+      return;
+    }
+
+    window.open(
+      `https://api.whatsapp.com/send?text=${encodeURIComponent(
+        shareUrl
+      )}`,
+      "_blank"
+    );
 
   } catch (erro) {
     console.error(
       "Erro compartilhar:",
       erro
     );
+
+    try {
+
+      await navigator.clipboard.writeText(
+        shareUrl
+      );
+
+      alert("Link copiado.");
+
+    } catch {}
   }
 }
 
