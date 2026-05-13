@@ -141,14 +141,14 @@ function atualizarOpenGraph({
         "link"
       );
 
-    canonical.setAttribute(
-      "rel",
-      "canonical"
-    );
+      canonical.setAttribute(
+        "rel",
+        "canonical"
+      );
 
-    document.head.appendChild(
-      canonical
-    );
+      document.head.appendChild(
+        canonical
+      );
   }
 
   canonical.setAttribute(
@@ -416,10 +416,6 @@ function renderizar(
 
           <div class="cta-app-header">
 
-            <div class="cta-app-icon">
-              ⦿
-            </div>
-
             <div>
 
               <h3>
@@ -428,7 +424,6 @@ function renderizar(
 
               <p>
                 Publique anúncios,
-                favorite veículos,
                 converse com anunciantes
                 e compartilhe diretamente
                 pelo app.
