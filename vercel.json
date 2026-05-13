@@ -1,9 +1,12 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/s/([a-zA-Z0-9_-]+)",
-      "dest": "/api/s/$1"
-    },
+      "source": "/s/:id",
+      "destination": "/api/s/:id"
+    }
+  ],
+
+  "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
