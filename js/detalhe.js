@@ -27,16 +27,15 @@ const tipo =
   (params.get("tipo") || "anuncio")
     .toLowerCase();
 
+const shareUrl =
+  `https://volante.app.br/api/og?tipo=${tipo}&id=${id}`;
+
 let fotos = [];
 let fotoAtual = 0;
 
 async function compartilharConteudo(titulo) {
-  const shareUrl =
-    window.location.href;
-
   const shareData = {
     title: titulo,
-    text: "Veja este conteúdo no Volante App",
     url: shareUrl
   };
 
@@ -301,8 +300,7 @@ function renderizar(
     descricao,
     imagem:
       imagemPrincipal,
-    url:
-      window.location.href
+    url: shareUrl
   });
 
   conteudo.innerHTML = `
