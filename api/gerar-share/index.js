@@ -137,8 +137,7 @@ module.exports =
   ) {
 
     const {
-      id,
-      tipo = "anuncio",
+      id
     } = req.query;
 
     if (!id) {
@@ -152,16 +151,28 @@ module.exports =
       return;
     }
 
-    const colecao =
-      tipo === "evento"
-        ? "eventos"
-        : "anuncios";
+    let item = null;
 
-    const item =
+    let tipo =
+      "anuncio";
+
+    item =
       await buscarDocumento(
-        colecao,
+        "anuncios",
         id
       );
+
+    if (!item) {
+
+      item =
+        await buscarDocumento(
+          "eventos",
+          id
+        );
+
+      tipo =
+        "evento";
+    }
 
     if (!item) {
 
