@@ -481,6 +481,41 @@ function renderizar(
 
           </div>
 
+          <button
+            class="btn-share-premium"
+            onclick="compartilharDetalhe()"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+
+              <path d="M8.59 13.51l6.83 3.98"></path>
+              <path d="M15.41 6.51L8.59 10.49"></path>
+            </svg>
+
+            <div>
+
+              <small>
+                Compartilhe no WhatsApp
+              </small>
+
+              <strong>
+                Enviar anúncio
+              </strong>
+
+            </div>
+
+          </button>
+
         </div>
 
       </div>
@@ -592,5 +627,32 @@ async function carregar() {
   }
 
 }
+
+window.compartilharDetalhe =
+  async function () {
+
+    const texto =
+      `Veja este anúncio no Volante App:\n${shareUrl}`;
+
+    if (navigator.share) {
+
+      try {
+
+        await navigator.share({
+          title: "Volante App",
+          text: texto,
+          url: shareUrl
+        });
+
+      } catch {}
+
+      return;
+    }
+
+    window.open(
+      `https://wa.me/?text=${encodeURIComponent(texto)}`,
+      "_blank"
+    );
+  };
 
 carregar();
