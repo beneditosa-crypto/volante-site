@@ -102,7 +102,7 @@ export default async function handler(
       }`;
 
 const url =
-  `https://volante.app.br/detalhe?tipo=${tipo || "anuncio"}&id=${id}`;
+  `https://volante.app.br/detalhe.html?tipo=${tipo || "anuncio"}&id=${id}`;
 
     response.setHeader(
       "Content-Type",
