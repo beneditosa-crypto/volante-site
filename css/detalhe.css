@@ -1,16 +1,17 @@
 .btn-share-premium {
   margin-top: 14px;
+
   width: 100%;
-  min-height: 58px;
+  height: 54px;
 
   border: 0;
-  border-radius: 18px;
+  border-radius: 16px;
 
   background:
     linear-gradient(
       135deg,
-      #1e3a8a,
-      #2563eb
+      #16307a,
+      #1e3a8a
     );
 
   color: #fff;
@@ -18,48 +19,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
 
   padding: 0 18px;
 
   cursor: pointer;
 
   box-shadow:
-    0 12px 28px rgba(37,99,235,.28);
+    0 10px 24px rgba(30,58,138,.18);
 
   transition:
     transform .22s ease,
     box-shadow .22s ease;
+
+  font-size: 15px;
+  font-weight: 800;
 }
 
 .btn-share-premium:hover {
   transform: translateY(-1px);
 
   box-shadow:
-    0 16px 34px rgba(37,99,235,.34);
+    0 14px 28px rgba(30,58,138,.24);
 }
 
 .btn-share-premium svg {
-  width: 22px;
-  height: 22px;
-  flex: 0 0 22px;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
 
 .btn-share-premium div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.btn-share-premium small {
-  font-size: 11px;
-  opacity: .82;
-  line-height: 1;
-}
-
-.btn-share-premium strong {
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.15;
-  margin-top: 3px;
+  display: none;
 }
