@@ -28,7 +28,7 @@ const tipo =
     .toLowerCase();
 
 const shareUrl =
-  `https://volante.app.br/s/${id}`;
+  `https://volante.app.br/api/og?id=${id}`;
 
 let fotos = [];
 let fotoAtual = 0;
