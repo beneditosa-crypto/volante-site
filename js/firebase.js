@@ -1,22 +1,193 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+export default async function handler(
+  request,
+  response
+) {
+  const {
+    id,
+    tipo,
+  } = request.query;
 
-import {
-  getFirestore
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  if (!id) {
+    return response
+      .status(404)
+      .send("Anúncio não encontrado");
+  }
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA9-eYhr2Bdadd4OWD17zIRszsz3LrxeBc",
-  authDomain: "clube-da-caminhonete-be770.firebaseapp.com",
-  projectId: "clube-da-caminhonete-be770",
-  storageBucket: "clube-da-caminhonete-be770.firebasestorage.app",
-  messagingSenderId: "559157035885",
-  appId: "1:559157035885:web:8d3c4c8d7c7c5f7b3b2a91"
-};
+  try {
+    const firebaseUrl =
+      `https://firestore.googleapis.com/v1/projects/clube-da-caminhonete-be770/databases/(default)/documents/anuncios/${id}`;
 
-const app =
-  initializeApp(firebaseConfig);
+    const firebaseResponse =
+      await fetch(firebaseUrl);
 
-const db =
-  getFirestore(app);
+    if (
+      !firebaseResponse.ok
+    ) {
+      return response
+        .status(404)
+        .send(
+          "Anúncio não encontrado"
+        );
+    }
 
-export { db };
+    const json =
+      await firebaseResponse.json();
+
+    const fields =
+      json.fields || {};
+
+    function texto(
+      campo
+    ) {
+      return (
+        fields?.[
+          campo
+        ]?.stringValue || ""
+      );
+    }
+
+    function numero(
+      campo
+    ) {
+      return (
+        fields?.[
+          campo
+        ]?.integerValue ||
+        ""
+      );
+    }
+
+    function arrayPrimeiro(
+      campo
+    ) {
+      return (
+        fields?.[
+          campo
+        ]?.arrayValue?.values?.[0]
+          ?.stringValue || ""
+      );
+    }
+
+    const titulo =
+      texto("titulo") ||
+      "Veículo antigo";
+
+    const preco =
+      texto("preco") ||
+      numero("preco");
+
+    const cidade =
+      texto("cidade");
+
+    const estado =
+      texto("estado");
+
+    const foto =
+      arrayPrimeiro(
+        "fotos"
+      ) ||
+      "https://volante.app.br/assets/logo.png";
+
+    const descricao =
+      `${preco ? `R$ ${preco}` : ""}${
+        cidade
+          ? ` • ${cidade}`
+          : ""
+      }${
+        estado
+          ? ` - ${estado}`
+          : ""
+      }`;
+
+    const url =
+      `https://volante.app.br/detalhe.html?tipo=${tipo || "anuncio"}&id=${id}`;
+
+    response.setHeader(
+      "Content-Type",
+      "text/html; charset=utf-8"
+    );
+
+    response.status(200).send(`
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8" />
+
+<title>${titulo}</title>
+
+<meta
+  name="description"
+  content="${descricao}"
+/>
+
+<meta
+  property="og:type"
+  content="website"
+/>
+
+<meta
+  property="og:title"
+  content="${titulo}"
+/>
+
+<meta
+  property="og:description"
+  content="${descricao}"
+/>
+
+<meta
+  property="og:image"
+  content="${foto}"
+/>
+
+<meta
+  property="og:url"
+  content="${url}"
+/>
+
+<meta
+  property="og:site_name"
+  content="Volante App"
+/>
+
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+/>
+
+<meta
+  name="twitter:title"
+  content="${titulo}"
+/>
+
+<meta
+  name="twitter:description"
+  content="${descricao}"
+/>
+
+<meta
+  name="twitter:image"
+  content="${foto}"
+/>
+
+<meta
+  http-equiv="refresh"
+  content="0; url=${url}"
+/>
+
+</head>
+
+<body>
+Redirecionando...
+</body>
+</html>
+    `);
+  } catch {
+    response
+      .status(500)
+      .send(
+        "Erro ao gerar Open Graph"
+      );
+  }
+}
