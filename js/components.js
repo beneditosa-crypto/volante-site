@@ -1,5 +1,6 @@
 .grid,
-.grid-horizontal {
+.grid-horizontal,
+.carousel-1linha {
   width: 100%;
 
   display: grid;
@@ -17,12 +18,14 @@
 }
 
 .grid::-webkit-scrollbar,
-.grid-horizontal::-webkit-scrollbar {
+.grid-horizontal::-webkit-scrollbar,
+.carousel-1linha::-webkit-scrollbar {
   height: 8px;
 }
 
 .grid::-webkit-scrollbar-thumb,
-.grid-horizontal::-webkit-scrollbar-thumb {
+.grid-horizontal::-webkit-scrollbar-thumb,
+.carousel-1linha::-webkit-scrollbar-thumb {
   background: rgba(15,23,42,.12);
   border-radius: 999px;
 }
@@ -145,7 +148,8 @@
 @media (max-width: 620px) {
 
   .grid,
-  .grid-horizontal {
+  .grid-horizontal,
+  .carousel-1linha {
     grid-auto-columns: minmax(220px, 72vw);
 
     gap: 12px;
