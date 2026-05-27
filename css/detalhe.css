@@ -270,14 +270,43 @@
     0 18px 40px rgba(15,23,42,.06);
 }
 
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 26px;
+
+  padding: 0 12px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30,58,138,.12),
+      rgba(22,48,122,.08)
+    );
+
+  color: #16307a;
+
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .5px;
+
+  margin-bottom: 12px;
+
+  border: 1px solid rgba(30,58,138,.10);
+}
+
 .detalhe-lojas-info h3 {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 
   color: #0f172a;
 
-  font-size: 24px;
-  font-weight: 920;
-  letter-spacing: -.7px;
+  font-size: 28px;
+  font-weight: 950;
+  line-height: 1.02;
+  letter-spacing: -1px;
 }
 
 .detalhe-lojas-info p {
@@ -286,7 +315,7 @@
   color: #475569;
 
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .app-store-box {
@@ -294,7 +323,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
 .app-store-btn {
@@ -473,7 +502,8 @@
   }
 
   .detalhe-lojas-info h3 {
-    font-size: 20px;
+    font-size: 22px;
+    letter-spacing: -.8px;
   }
 
   .app-store-box {
