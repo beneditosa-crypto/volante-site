@@ -1,296 +1,253 @@
 .hero {
   position: relative;
+
   overflow: hidden;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255,255,255,.98),
-      rgba(234,239,247,.96)
+      rgba(255,255,255,.96),
+      rgba(228,235,247,.95)
     );
 
-  border: 1px solid rgba(15,23,42,.05);
-  border-radius: 28px;
+  border:
+    1px solid rgba(15,23,42,.05);
 
-  padding: 22px 24px;
+  border-radius: 38px;
 
-  box-shadow:
-    0 12px 30px rgba(15,23,42,.05);
+  padding: 26px 28px 18px;
+
+  margin-bottom: 22px;
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(30,58,138,.06),
+      transparent 36%
+    );
+
+  pointer-events: none;
 }
 
 .hero h1 {
-  max-width: 700px;
+  position: relative;
 
-  font-size: 30px;
-  font-weight: 900;
+  z-index: 2;
 
-  line-height: 1.05;
-  letter-spacing: -1.1px;
+  font-size: clamp(28px, 2.3vw, 42px);
+
+  line-height: 1;
+
+  letter-spacing: -1.8px;
+
+  font-weight: 950;
 
   color: #0f172a;
+
+  margin-bottom: 18px;
+
+  white-space: nowrap;
 }
 
-.busca {
-  margin-top: 16px;
+.hero-busca {
+  position: relative;
 
-  height: 48px;
+  z-index: 2;
+
+  width: 100%;
+
+  height: 58px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.96);
+
+  border:
+    1px solid rgba(15,23,42,.06);
 
   display: flex;
   align-items: center;
-  gap: 10px;
 
-  padding: 0 16px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(15,23,42,.07);
-  border-radius: 16px;
+  padding: 0 18px;
 
   box-shadow:
-    0 6px 18px rgba(15,23,42,.04);
+    0 8px 20px rgba(15,23,42,.04);
+
+  margin-bottom: 16px;
 }
 
-.busca span {
-  font-size: 16px;
-  color: #64748b;
-}
+.hero-busca input {
+  width: 100%;
 
-.busca input {
-  flex: 1;
-  min-width: 0;
+  border: 0;
 
-  border: none;
-  outline: none;
   background: transparent;
 
-  font-size: 14px;
+  outline: none;
+
+  font-size: 15px;
+
   color: #0f172a;
 }
 
-.cta-app {
-  margin-top: 14px;
-}
+.hero-app {
+  position: relative;
 
-.carousel-1linha {
+  z-index: 2;
+
   display: flex;
-  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
 
-  overflow-x: auto;
+  gap: 18px;
 
-  padding-bottom: 8px;
+  background:
+    rgba(255,255,255,.94);
 
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-}
+  border:
+    1px solid rgba(15,23,42,.05);
 
-.carousel-1linha::-webkit-scrollbar {
-  height: 7px;
-}
+  border-radius: 26px;
 
-.carousel-1linha::-webkit-scrollbar-thumb {
-  background: rgba(15,23,42,.12);
-  border-radius: 999px;
-}
-
-.card {
-  position: relative;
-
-  flex: 0 0 232px;
-
-  background: #ffffff;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  border: 1px solid rgba(15,23,42,.07);
+  padding: 18px 20px;
 
   box-shadow:
-    0 10px 22px rgba(15,23,42,.045);
-
-  cursor: pointer;
-
-  transition:
-    transform .22s ease,
-    box-shadow .22s ease,
-    border-color .22s ease;
+    0 10px 24px rgba(15,23,42,.04);
 }
 
-.card:hover {
-  transform: translateY(-2px);
+.hero-app-info h2 {
+  font-size: 18px;
 
-  box-shadow:
-    0 16px 34px rgba(15,23,42,.08);
+  font-weight: 900;
+
+  color: #0f172a;
+
+  margin-bottom: 4px;
 }
 
-.card.destaque {
-  border: 2px solid rgba(15,23,42,.38);
+.hero-app-info p {
+  color: #64748b;
 
-  box-shadow:
-    0 14px 34px rgba(15,23,42,.11);
+  font-size: 14px;
+
+  line-height: 1.5;
 }
 
-.foto-wrap {
-  position: relative;
+.hero-lojas {
+  display: flex;
+  align-items: center;
 
-  width: 100%;
-  height: 156px;
+  gap: 12px;
 
-  overflow: hidden;
-
-  background: #e5e7eb;
+  flex-wrap: wrap;
 }
 
-.foto {
-  width: 100%;
-  height: 100%;
+.hero-loja-btn {
+  min-width: 170px;
+  height: 60px;
 
-  object-fit: cover;
+  border-radius: 18px;
 
-  display: block;
-}
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.98),
+      rgba(248,250,252,.95)
+    );
 
-.overlay,
-.overlay-content,
-.overlay-text,
-.ver-mais {
-  display: none !important;
-}
-
-.estrela-destaque {
-  position: absolute;
-
-  top: 9px;
-  right: 9px;
-
-  z-index: 6;
-
-  width: 28px;
-  height: 28px;
-
-  border-radius: 999px;
+  border:
+    1px solid rgba(15,23,42,.08);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(255,255,255,.96);
+  gap: 12px;
 
-  color: #111827;
+  text-decoration: none;
 
-  font-size: 14px;
-  font-weight: 900;
-
-  border: 1px solid rgba(15,23,42,.18);
+  color: #0f172a;
 
   box-shadow:
-    0 8px 18px rgba(15,23,42,.18);
+    0 10px 24px rgba(15,23,42,.05);
+
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease;
 }
 
-.card-body {
-  padding: 10px 12px 12px;
+.hero-loja-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 14px 28px rgba(15,23,42,.08);
 }
 
-.card-title {
-  font-size: 13px;
-  font-weight: 900;
+.hero-loja-btn img {
+  width: 28px;
+  height: 28px;
 
-  line-height: 1.2;
-
-  color: #111827;
-
-  margin-bottom: 4px;
-
-  letter-spacing: -0.2px;
+  object-fit: contain;
 }
 
-.meta {
+.hero-loja-texto {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.05;
+}
+
+.hero-loja-texto span {
+  font-size: 11px;
+
   color: #64748b;
 
-  font-size: 11px;
-  line-height: 1.35;
-
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.price,
-.btn-favorito {
-  display: none !important;
+.hero-loja-texto strong {
+  font-size: 15px;
+
+  font-weight: 900;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 768px) {
+
   .hero {
-    padding: 14px 15px;
-    border-radius: 22px;
+    padding: 22px 18px 16px;
   }
 
   .hero h1 {
-    font-size: 20px;
+    white-space: normal;
 
-    line-height: 1.1;
+    font-size: 30px;
 
-    letter-spacing: -0.7px;
+    line-height: 1.04;
   }
 
-  .busca {
-    margin-top: 12px;
-
-    height: 42px;
-
-    border-radius: 14px;
-
-    padding: 0 12px;
+  .hero-app {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .busca input {
-    font-size: 12.5px;
+  .hero-lojas {
+    width: 100%;
   }
 
-  .carousel-1linha {
-    gap: 11px;
+  .hero-loja-btn {
+    flex: 1;
+
+    min-width: 0;
+
+    width: 100%;
   }
 
-  .card {
-    flex: 0 0 41vw;
-
-    border-radius: 18px;
-  }
-
-  .foto-wrap {
-    height: 118px;
-  }
-
-  .estrela-destaque {
-    width: 24px;
-    height: 24px;
-
-    font-size: 11px;
-
-    top: 7px;
-    right: 7px;
-  }
-
-  .card-body {
-    padding: 8px 9px 10px;
-  }
-
-  .card-title {
-    font-size: 11.5px;
-
-    line-height: 1.15;
-  }
-
-  .meta {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 390px) {
-  .card {
-    flex-basis: 42vw;
-  }
-
-  .foto-wrap {
-    height: 112px;
-  }
 }
