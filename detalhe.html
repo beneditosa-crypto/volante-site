@@ -16,9 +16,6 @@
   <meta property="og:site_name" content="Volante App" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Volante App" />
-  <meta name="twitter:description" content="Veja este anúncio ou evento no Volante App." />
-  <meta name="twitter:image" content="https://volante.app.br/assets/logo.png" />
 
   <link rel="canonical" href="https://volante.app.br/detalhe.html" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
@@ -28,24 +25,24 @@
 </head>
 
 <body>
-<header class="detalhe-topo">
-  <a href="./index.html" class="btn-voltar" aria-label="Voltar">
-    ←
-  </a>
+  <header class="detalhe-topo">
+    <a href="./index.html" class="btn-voltar" aria-label="Voltar">
+      ←
+    </a>
 
-  <a href="./index.html" class="marca" aria-label="Volante App">
-    <img src="./assets/logo.png" alt="Volante App" class="logo" />
-  </a>
+    <a href="./index.html" class="marca detalhe-marca" aria-label="Volante App">
+      <img src="./assets/logo.png" alt="Volante App" class="logo" />
+      <div class="detalhe-marca-texto">
+        <strong>Volante App</strong>
+        <span>Mais que carros, paixão</span>
+      </div>
+    </a>
 
-  <div class="topo-acoes"></div>
-</header>
+    <div class="topo-acoes"></div>
+  </header>
 
   <main class="pagina-detalhe">
-    <section id="conteudo" class="detalhe-container">
-      <div class="detalhe-loading">
-        Carregando...
-      </div>
-    </section>
+    <section id="conteudo"></section>
   </main>
 
   <script type="module" src="./js/firebase.js"></script>
