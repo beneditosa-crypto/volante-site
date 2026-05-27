@@ -19,6 +19,52 @@ function normalizarPreco(valor) {
   return `R$ ${texto}`;
 }
 
+function campoTexto(fields, campo) {
+  return fields?.[campo]?.stringValue || "";
+}
+
+function campoNumero(fields, campo) {
+  return (
+    fields?.[campo]?.integerValue ||
+    fields?.[campo]?.doubleValue ||
+    ""
+  );
+}
+
+function primeiroArray(fields, campo) {
+  return (
+    fields?.[campo]?.arrayValue?.values?.[0]?.stringValue ||
+    ""
+  );
+}
+
+function obterFoto(fields) {
+  const opcoes = [
+    primeiroArray(fields, "fotos"),
+    primeiroArray(fields, "imagens"),
+    primeiroArray(fields, "photos"),
+    campoTexto(fields, "foto"),
+    campoTexto(fields, "imagem"),
+    campoTexto(fields, "imagemPrincipal"),
+    campoTexto(fields, "capa"),
+  ];
+
+  const fotoValida = opcoes.find((url) => {
+    const texto = String(url || "").trim();
+
+    return (
+      texto.startsWith("https://") &&
+      (
+        texto.includes("firebasestorage.googleapis.com") ||
+        texto.includes("googleusercontent.com") ||
+        texto.includes("volante.app.br")
+      )
+    );
+  });
+
+  return fotoValida || "https://volante.app.br/assets/logo.png";
+}
+
 export default async function handler(request, response) {
   const { id, tipo } = request.query;
 
@@ -36,31 +82,20 @@ export default async function handler(request, response) {
     }
 
     const json = await firebaseResponse.json();
-
     const fields = json.fields || {};
 
-    function texto(campo) {
-      return fields?.[campo]?.stringValue || "";
-    }
+    const tituloOriginal =
+      campoTexto(fields, "titulo") ||
+      "Veículo anunciado no Volante App";
 
-    function numero(campo) {
-      return fields?.[campo]?.integerValue || fields?.[campo]?.doubleValue || "";
-    }
+    const precoOriginal =
+      campoTexto(fields, "preco") ||
+      campoNumero(fields, "preco");
 
-    function arrayPrimeiro(campo) {
-      return fields?.[campo]?.arrayValue?.values?.[0]?.stringValue || "";
-    }
+    const cidadeOriginal = campoTexto(fields, "cidade");
+    const estadoOriginal = campoTexto(fields, "estado");
 
-    const tituloOriginal = texto("titulo") || "Veículo anunciado no Volante App";
-
-    const precoOriginal = texto("preco") || numero("preco");
-
-    const cidadeOriginal = texto("cidade");
-
-    const estadoOriginal = texto("estado");
-
-    const fotoOriginal =
-      arrayPrimeiro("fotos") || "https://volante.app.br/assets/logo.png";
+    const foto = obterFoto(fields);
 
     const preco = normalizarPreco(precoOriginal);
 
@@ -79,10 +114,7 @@ export default async function handler(request, response) {
       descricaoOriginal || "Veja este anúncio no Volante App."
     );
 
-    const foto = fotoOriginal;
-
     const tipoTratado = escapeHtml(tipo || "anuncio");
-
     const idTratado = escapeHtml(id);
 
     const url = `https://volante.app.br/api/og?tipo=${tipoTratado}&id=${idTratado}`;
