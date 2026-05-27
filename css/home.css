@@ -5,44 +5,44 @@
     linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(229, 235, 246, 0.94));
   border: 1px solid rgba(15, 23, 42, 0.045);
   border-radius: 30px;
-  padding: 24px 26px;
+  padding: 22px 26px 24px;
   box-shadow: 0 16px 42px rgba(15, 23, 42, 0.052);
 }
 
 .hero h1 {
   max-width: 1180px;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 920;
   line-height: 1.05;
-  letter-spacing: -1.1px;
+  letter-spacing: -1px;
   color: #0f172a;
   white-space: nowrap;
 }
 
 .hero-acoes {
-  margin-top: 17px;
+  margin-top: 16px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 420px;
+  grid-template-columns: minmax(0, 1fr) 380px;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .busca {
-  height: 56px;
+  height: 50px;
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 0 18px;
+  gap: 10px;
+  padding: 0 16px;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(15, 23, 42, 0.055);
-  border-radius: 18px;
+  border-radius: 17px;
   box-shadow:
     0 10px 26px rgba(15, 23, 42, 0.045),
     inset 0 1px 0 rgba(255,255,255,.85);
 }
 
 .busca span {
-  font-size: 17px;
+  font-size: 16px;
   color: #64748b;
 }
 
@@ -59,14 +59,14 @@
 .hero-lojas {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
 .hero-loja-btn {
-  height: 56px;
-  padding: 0 16px;
-  border-radius: 18px;
+  height: 50px;
+  padding: 0 12px;
+  border-radius: 16px;
   background:
     linear-gradient(
       180deg,
@@ -77,7 +77,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: #0f172a;
   box-shadow:
@@ -94,10 +94,10 @@
 }
 
 .hero-loja-btn img {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  flex: 0 0 28px;
+  flex: 0 0 24px;
 }
 
 .hero-loja-texto {
@@ -107,13 +107,13 @@
 }
 
 .hero-loja-texto span {
-  font-size: 10px;
+  font-size: 9.5px;
   color: #64748b;
   font-weight: 700;
 }
 
 .hero-loja-texto strong {
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 900;
 }
 
