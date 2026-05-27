@@ -42,11 +42,11 @@
 
   z-index: 2;
 
-  font-size: 56px;
+  font-size: 42px;
 
-  line-height: .96;
+  line-height: 1.05;
 
-  letter-spacing: -2.4px;
+  letter-spacing: -1.4px;
 
   font-weight: 950;
 
@@ -54,7 +54,7 @@
 
   margin-bottom: 18px;
 
-  max-width: 1180px;
+  white-space: nowrap;
 }
 
 .hero-busca {
@@ -226,11 +226,13 @@
   }
 
   .hero h1 {
-    font-size: 34px;
+    white-space: normal;
 
-    line-height: 1.02;
+    font-size: 30px;
 
-    letter-spacing: -1.4px;
+    line-height: 1.04;
+
+    letter-spacing: -1.1px;
   }
 
   .hero-app {
