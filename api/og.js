@@ -79,7 +79,7 @@ export default async function handler(request, response) {
       descricaoOriginal || "Veja este anúncio no Volante App."
     );
 
-    const foto = escapeHtml(fotoOriginal);
+    const foto = fotoOriginal;
 
     const tipoTratado = escapeHtml(tipo || "anuncio");
 
