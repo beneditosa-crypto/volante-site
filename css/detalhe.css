@@ -46,9 +46,11 @@
 
 .detalhe-marca-texto {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
 
-  line-height: 1.05;
+  gap: 10px;
+
+  line-height: 1;
 }
 
 .detalhe-marca-texto strong {
@@ -56,15 +58,17 @@
   font-weight: 950;
 
   letter-spacing: -.4px;
+
+  white-space: nowrap;
 }
 
 .detalhe-marca-texto span {
-  margin-top: 4px;
-
   font-size: 11px;
   font-weight: 700;
 
   color: var(--cinza);
+
+  white-space: nowrap;
 }
 
 .btn-voltar {
@@ -517,12 +521,16 @@
     max-height: 42px !important;
   }
 
+  .detalhe-marca-texto {
+    gap: 6px;
+  }
+
   .detalhe-marca-texto strong {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .detalhe-marca-texto span {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .pagina-detalhe {
