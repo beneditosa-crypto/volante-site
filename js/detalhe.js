@@ -169,9 +169,8 @@ function renderizar(item, colecaoUsada) {
             </h3>
 
             <p>
-              Mensagens privadas, compartilhamento de fotos,
-              eventos automotivos e notificações em tempo real
-              disponíveis exclusivamente no Volante App.
+              Para anunciar veículos, publicar eventos e entrar em contato,
+              baixe o app do Volante.
             </p>
 
           </div>
