@@ -20,14 +20,14 @@ import {
 const buscaInput = document.getElementById("busca");
 
 const grids = {
-  destaques: document.getElementById("gridDestaques"),
   recentes: document.getElementById("gridRecentes"),
+
   centroOeste: document.getElementById("gridCentroOeste"),
   sudeste: document.getElementById("gridSudeste"),
   sul: document.getElementById("gridSul"),
   nordeste: document.getElementById("gridNordeste"),
   norte: document.getElementById("gridNorte"),
-  eventos: document.getElementById("gridEventos"),
+
   eventosCentroOeste: document.getElementById("gridEventosCentroOeste"),
   eventosSudeste: document.getElementById("gridEventosSudeste"),
   eventosSul: document.getElementById("gridEventosSul"),
@@ -54,16 +54,6 @@ function statusAtivo(item) {
   return String(item.status || "")
     .trim()
     .toUpperCase() === "ATIVO";
-}
-
-function destaqueAtivo(item) {
-  return (
-    item.destaque === true ||
-    item.destaque === "true" ||
-    item.destaque === "SIM" ||
-    item.destaque === "sim" ||
-    item.destaque === 1
-  );
 }
 
 function filtrar(lista) {
@@ -153,8 +143,6 @@ function renderizarTudo() {
   const anunciosFiltrados = filtrar(anuncios).sort((a, b) => getDataMs(b) - getDataMs(a));
   const eventosFiltrados = filtrar(eventos).sort((a, b) => getDataMs(b) - getDataMs(a));
 
-  const anunciosDestaque = anunciosFiltrados.filter(destaqueAtivo);
-
   const anunciosCentroOeste = filtrarRegiao(anunciosFiltrados, REGIOES.centroOeste);
   const anunciosSudeste = filtrarRegiao(anunciosFiltrados, REGIOES.sudeste);
   const anunciosSul = filtrarRegiao(anunciosFiltrados, REGIOES.sul);
@@ -167,28 +155,28 @@ function renderizarTudo() {
   const eventosNordeste = filtrarRegiao(eventosFiltrados, REGIOES.nordeste);
   const eventosNorte = filtrarRegiao(eventosFiltrados, REGIOES.norte);
 
-  controlarSecao("gridDestaques", anunciosDestaque);
   controlarSecao("gridRecentes", anunciosFiltrados);
+
   controlarSecao("gridCentroOeste", anunciosCentroOeste);
   controlarSecao("gridSudeste", anunciosSudeste);
   controlarSecao("gridSul", anunciosSul);
   controlarSecao("gridNordeste", anunciosNordeste);
   controlarSecao("gridNorte", anunciosNorte);
-  controlarSecao("gridEventos", eventosFiltrados);
+
   controlarSecao("gridEventosCentroOeste", eventosCentroOeste);
   controlarSecao("gridEventosSudeste", eventosSudeste);
   controlarSecao("gridEventosSul", eventosSul);
   controlarSecao("gridEventosNordeste", eventosNordeste);
   controlarSecao("gridEventosNorte", eventosNorte);
 
-  renderizarGrid(grids.destaques, anunciosDestaque.slice(0, 12), cardAnuncio, "Nenhum destaque encontrado.");
   renderizarGrid(grids.recentes, anunciosFiltrados.slice(0, 18), cardAnuncio, "Nenhum anúncio encontrado.");
+
   renderizarGrid(grids.centroOeste, anunciosCentroOeste, cardAnuncio, "Nenhum anúncio encontrado.");
   renderizarGrid(grids.sudeste, anunciosSudeste, cardAnuncio, "Nenhum anúncio encontrado.");
   renderizarGrid(grids.sul, anunciosSul, cardAnuncio, "Nenhum anúncio encontrado.");
   renderizarGrid(grids.nordeste, anunciosNordeste, cardAnuncio, "Nenhum anúncio encontrado.");
   renderizarGrid(grids.norte, anunciosNorte, cardAnuncio, "Nenhum anúncio encontrado.");
-  renderizarGrid(grids.eventos, eventosFiltrados.slice(0, 18), cardEvento, "Nenhum evento encontrado.");
+
   renderizarGrid(grids.eventosCentroOeste, eventosCentroOeste, cardEvento, "Nenhum evento encontrado.");
   renderizarGrid(grids.eventosSudeste, eventosSudeste, cardEvento, "Nenhum evento encontrado.");
   renderizarGrid(grids.eventosSul, eventosSul, cardEvento, "Nenhum evento encontrado.");
