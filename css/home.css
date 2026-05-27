@@ -19,13 +19,20 @@
   white-space: nowrap;
 }
 
-.busca {
+.hero-acoes {
   margin-top: 17px;
-  height: 50px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.busca {
+  height: 56px;
   display: flex;
   align-items: center;
   gap: 11px;
-  padding: 0 17px;
+  padding: 0 18px;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(15, 23, 42, 0.055);
   border-radius: 18px;
@@ -50,16 +57,15 @@
 }
 
 .hero-lojas {
-  margin-top: 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .hero-loja-btn {
-  min-width: 180px;
-  height: 58px;
+  min-width: 178px;
+  height: 56px;
   padding: 0 16px;
   border-radius: 18px;
   background:
@@ -242,6 +248,21 @@
   display: none !important;
 }
 
+@media (max-width: 900px) {
+  .hero-acoes {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-lojas {
+    width: 100%;
+  }
+
+  .hero-loja-btn {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 @media (max-width: 620px) {
   .hero {
     padding: 14px 15px;
@@ -256,8 +277,12 @@
     white-space: normal;
   }
 
-  .busca {
+  .hero-acoes {
     margin-top: 12px;
+    gap: 10px;
+  }
+
+  .busca {
     height: 42px;
     border-radius: 15px;
     padding: 0 12px;
@@ -277,9 +302,6 @@
   }
 
   .hero-loja-btn {
-    flex: 1;
-    min-width: 0;
-    width: 100%;
     height: 54px;
     border-radius: 16px;
     padding: 0 12px;
