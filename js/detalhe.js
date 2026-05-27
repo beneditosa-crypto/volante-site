@@ -150,17 +150,30 @@ function renderizar(item, colecaoUsada) {
 
         <div class="descricao">
           <h3>Descrição</h3>
-          <p>${escapeHtml(descricao)}</p>
+
+          <p>
+            ${escapeHtml(descricao)}
+          </p>
         </div>
 
         <div class="cta-app detalhe-lojas">
 
           <div class="detalhe-lojas-info">
-            <h3>Aplicativo disponível nas lojas</h3>
+
+            <span class="app-badge">
+              CONTATO PELO APP
+            </span>
+
+            <h3>
+              Converse com o anunciante pelo aplicativo
+            </h3>
 
             <p>
-              Veja detalhes, publique veículos e acompanhe eventos automotivos pelo aplicativo.
+              Mensagens privadas, compartilhamento de fotos,
+              eventos automotivos e notificações em tempo real
+              disponíveis exclusivamente no Volante App.
             </p>
+
           </div>
 
           <div class="app-store-box">
