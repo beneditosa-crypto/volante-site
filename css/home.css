@@ -22,7 +22,7 @@
 .hero-acoes {
   margin-top: 17px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) 420px;
   align-items: center;
   gap: 14px;
 }
@@ -57,14 +57,13 @@
 }
 
 .hero-lojas {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
-  flex-wrap: nowrap;
+  align-items: center;
 }
 
 .hero-loja-btn {
-  min-width: 178px;
   height: 56px;
   padding: 0 16px;
   border-radius: 18px;
@@ -77,7 +76,7 @@
   border: 1px solid rgba(15,23,42,.08);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 12px;
   text-decoration: none;
   color: #0f172a;
@@ -98,6 +97,7 @@
   width: 28px;
   height: 28px;
   object-fit: contain;
+  flex: 0 0 28px;
 }
 
 .hero-loja-texto {
@@ -107,7 +107,7 @@
 }
 
 .hero-loja-texto span {
-  font-size: 11px;
+  font-size: 10px;
   color: #64748b;
   font-weight: 700;
 }
@@ -255,11 +255,6 @@
 
   .hero-lojas {
     width: 100%;
-  }
-
-  .hero-loja-btn {
-    flex: 1;
-    min-width: 0;
   }
 }
 
