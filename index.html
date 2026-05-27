@@ -14,18 +14,30 @@
 <meta property="og:image" content="https://volante.app.br/assets/logo.png" />
 
 <link rel="icon" type="image/png" href="./assets/favicon.png" />
-<link rel="stylesheet" href="./css/global.css?v=00233" />
-<link rel="stylesheet" href="./css/home.css?v=00233" />
+
+<link rel="stylesheet" href="./css/global.css?v=00234" />
+<link rel="stylesheet" href="./css/home.css?v=00234" />
 </head>
 
 <body>
+
 <header>
   <div class="topo">
     <div class="marca">
-      <img src="./assets/logo.png" alt="Volante App" class="logo" />
+      <img
+        src="./assets/logo.png"
+        alt="Volante App"
+        class="logo"
+      />
+
       <div>
-        <div class="nome">Volante</div>
-        <div class="slogan">Mais que carros, paixão</div>
+        <div class="nome">
+          Volante
+        </div>
+
+        <div class="slogan">
+          Mais que carros, paixão
+        </div>
       </div>
     </div>
   </div>
@@ -34,32 +46,89 @@
 <main>
 
   <section class="hero">
-    <h1>Clássicos, encontros e paixão sobre rodas.</h1>
 
-    <div class="hero-acoes">
-      <div class="busca">
-        <span>⌕</span>
-        <input id="busca" type="search" placeholder="Buscar por modelo, região, descrição" />
+    <h1>
+      Clássicos, encontros e paixão sobre rodas.
+    </h1>
+
+    <div class="hero-grid">
+
+      <div class="hero-busca-card">
+
+        <div class="hero-card-head">
+          Buscar anúncios e eventos
+        </div>
+
+        <div class="busca">
+          <span>⌕</span>
+
+          <input
+            id="busca"
+            type="search"
+            placeholder="Buscar por modelo, região, descrição"
+          />
+        </div>
+
       </div>
 
-      <div class="hero-lojas">
-        <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-          <img src="./assets/apple-store.png" alt="App Store" />
-          <div class="hero-loja-texto">
-            <span>Disponível na</span>
-            <strong>App Store</strong>
-          </div>
-        </a>
+      <div class="hero-app-card">
 
-        <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-          <img src="./assets/google-play.png" alt="Google Play" />
-          <div class="hero-loja-texto">
-            <span>Disponível no</span>
-            <strong>Google Play</strong>
-          </div>
-        </a>
+        <div class="hero-app-texto">
+
+          <span class="hero-app-badge">
+            Aplicativo oficial
+          </span>
+
+          <h3>
+            O Volante fica melhor no app.
+          </h3>
+
+          <p>
+            Publique veículos, acompanhe eventos e compartilhe anúncios automotivos.
+          </p>
+
+        </div>
+
+        <div class="hero-lojas">
+
+          <a
+            href="#"
+            onclick="baixarApp(); return false;"
+            class="hero-loja-btn"
+          >
+            <img
+              src="./assets/apple-store.png"
+              alt="App Store"
+            />
+
+            <div class="hero-loja-texto">
+              <span>Disponível na</span>
+              <strong>App Store</strong>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            onclick="baixarApp(); return false;"
+            class="hero-loja-btn"
+          >
+            <img
+              src="./assets/google-play.png"
+              alt="Google Play"
+            />
+
+            <div class="hero-loja-texto">
+              <span>Disponível no</span>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+
+        </div>
+
       </div>
+
     </div>
+
   </section>
 
   <section>
@@ -69,6 +138,7 @@
         <p>Últimos anúncios aprovados.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridRecentes"></div>
   </section>
 
@@ -79,6 +149,7 @@
         <p>Veículos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridCentroOeste"></div>
   </section>
 
@@ -89,6 +160,7 @@
         <p>Veículos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridSudeste"></div>
   </section>
 
@@ -99,6 +171,7 @@
         <p>Veículos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridSul"></div>
   </section>
 
@@ -109,6 +182,7 @@
         <p>Veículos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridNordeste"></div>
   </section>
 
@@ -119,6 +193,7 @@
         <p>Veículos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridNorte"></div>
   </section>
 
@@ -129,6 +204,7 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosCentroOeste"></div>
   </section>
 
@@ -139,6 +215,7 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosSudeste"></div>
   </section>
 
@@ -149,6 +226,7 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosSul"></div>
   </section>
 
@@ -159,6 +237,7 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosNordeste"></div>
   </section>
 
@@ -169,37 +248,85 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosNorte"></div>
   </section>
 
   <footer class="footer">
+
     <div class="footer-baloes">
+
       <div class="footer-card">
         <h3>Volante</h3>
-        <p>Mais que carros, paixão.</p>
-        <p>Uma vitrine premium para veículos clássicos, antigos e experiências automotivas.</p>
+
+        <p>
+          Mais que carros, paixão.
+        </p>
+
+        <p>
+          Uma vitrine premium para veículos clássicos,
+          antigos e experiências automotivas.
+        </p>
       </div>
 
       <div class="footer-card">
         <h4>Institucional</h4>
-        <a href="./politica.html">Política de privacidade</a>
-        <a href="./termos.html">Termos de uso</a>
+
+        <a href="./politica.html">
+          Política de privacidade
+        </a>
+
+        <a href="./termos.html">
+          Termos de uso
+        </a>
       </div>
 
       <div class="footer-card">
         <h4>Aplicativo e contato</h4>
-        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
-        <a href="#" onclick="baixarApp(); return false;">App Store</a>
-        <a href="https://www.instagram.com/appvolante" target="_blank" class="instagram-link">@appvolante</a>
-        <a href="mailto:contato@volante.app.br">contato@volante.app.br</a>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          Google Play
+        </a>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+        >
+          App Store
+        </a>
+
+        <a
+          href="https://www.instagram.com/appvolante"
+          target="_blank"
+          class="instagram-link"
+        >
+          @appvolante
+        </a>
+
+        <a href="mailto:contato@volante.app.br">
+          contato@volante.app.br
+        </a>
+
       </div>
+
     </div>
 
-    <div class="footer-bottom">Volante App © 2026. Todos os direitos reservados.</div>
+    <div class="footer-bottom">
+      Volante App © 2026.
+      Todos os direitos reservados.
+    </div>
+
   </footer>
 
 </main>
 
-<script type="module" src="./js/home.js?v=00233"></script>
+<script
+  type="module"
+  src="./js/home.js?v=00234"
+></script>
+
 </body>
 </html>
