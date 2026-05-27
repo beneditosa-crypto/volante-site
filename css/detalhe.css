@@ -1,27 +1,67 @@
 .detalhe-topo {
+  width: 100%;
+  height: 68px;
+
   display: grid;
   grid-template-columns: 80px 1fr 80px;
   align-items: center;
+
+  padding: 0 28px;
+
+  background: rgba(255,255,255,.96);
+
+  border-bottom: 1px solid var(--linha);
+
+  box-shadow:
+    0 8px 24px rgba(15,23,42,.04);
 }
 
 .detalhe-topo .marca {
   justify-self: center;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+  color: var(--texto);
 }
 
 .detalhe-topo .logo {
-  width: 72px !important;
-  height: 72px !important;
-  max-width: 72px !important;
-  max-height: 72px !important;
-  flex-basis: 72px;
+  width: 46px !important;
+  height: 46px !important;
+  max-width: 46px !important;
+  max-height: 46px !important;
+
+  object-fit: contain;
 }
 
-.btn-voltar,
-.btn-compartilhar {
-  width: 46px;
-  height: 46px;
+.detalhe-marca-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
 
-  border-radius: 15px;
+.detalhe-marca-texto strong {
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -.3px;
+}
+
+.detalhe-marca-texto span {
+  margin-top: 3px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  color: var(--cinza);
+}
+
+.btn-voltar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 14px;
 
   background:
     linear-gradient(
@@ -42,29 +82,28 @@
 
   cursor: pointer;
 
+  text-decoration: none;
+
   transition:
     transform .22s ease,
     box-shadow .22s ease;
 }
 
-.btn-voltar:hover,
-.btn-compartilhar:hover {
+.btn-voltar:hover {
   transform: translateY(-1px);
 }
 
-.btn-voltar svg,
-.btn-compartilhar svg {
-  width: 20px;
-  height: 20px;
-}
-
 .topo-acoes {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
 
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.pagina-detalhe {
+  padding: 18px 24px 36px;
 }
 
 #conteudo {
@@ -336,13 +375,13 @@
 }
 
 .app-store-btn {
-  min-height: 56px;
+  min-height: 50px;
 
-  min-width: 170px;
+  min-width: 154px;
 
   padding: 0 16px;
 
-  border-radius: 18px;
+  border-radius: 16px;
 
   background:
     linear-gradient(
@@ -369,14 +408,15 @@
 }
 
 .btn-share-premium {
-  margin-top: 14px;
+  margin: 14px auto 0;
 
-  width: 100%;
-  height: 54px;
+  width: auto;
+  min-width: 210px;
+  height: 44px;
 
   border: 0;
 
-  border-radius: 16px;
+  border-radius: 14px;
 
   background:
     linear-gradient(
@@ -387,24 +427,24 @@
 
   color: #fff;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  gap: 10px;
+  gap: 9px;
 
   padding: 0 18px;
 
   cursor: pointer;
 
   box-shadow:
-    0 10px 24px rgba(30,58,138,.18);
+    0 8px 18px rgba(30,58,138,.16);
 
   transition:
     transform .22s ease,
     box-shadow .22s ease;
 
-  font-size: 15px;
+  font-size: 13.5px;
 
   font-weight: 800;
 }
@@ -413,12 +453,12 @@
   transform: translateY(-1px);
 
   box-shadow:
-    0 14px 28px rgba(30,58,138,.24);
+    0 12px 24px rgba(30,58,138,.22);
 }
 
 .btn-share-premium svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 @media (max-width: 900px) {
@@ -436,14 +476,30 @@
 @media (max-width: 620px) {
 
   .detalhe-topo {
+    height: 64px;
+
     grid-template-columns: 54px 1fr 54px;
+
+    padding: 0 14px;
   }
 
   .detalhe-topo .logo {
-    width: 58px !important;
-    height: 58px !important;
-    max-width: 58px !important;
-    max-height: 58px !important;
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .detalhe-marca-texto strong {
+    font-size: 15px;
+  }
+
+  .detalhe-marca-texto span {
+    font-size: 10px;
+  }
+
+  .pagina-detalhe {
+    padding: 14px 12px 28px;
   }
 
   .foto-principal {
@@ -473,6 +529,11 @@
     width: 100%;
     min-width: 0;
     min-height: 44px;
+  }
+
+  .btn-share-premium {
+    width: 100%;
+    min-width: 0;
   }
 
 }
