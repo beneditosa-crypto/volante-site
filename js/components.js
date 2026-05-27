@@ -9,7 +9,6 @@ export function imagemHtml(item, titulo) {
 
   return `
     <div class="foto-wrap">
-
       <img
         class="foto"
         src="${imagem}"
@@ -21,17 +20,9 @@ export function imagemHtml(item, titulo) {
       <div class="overlay"></div>
 
       <div class="overlay-content">
-
-        <div class="overlay-text">
-          ${escapeHtml(titulo)}
-        </div>
-
-        <span class="ver-mais">
-          Ver detalhes
-        </span>
-
+        <div class="overlay-text">${escapeHtml(titulo)}</div>
+        <span class="ver-mais">Ver detalhes</span>
       </div>
-
     </div>
   `;
 }
@@ -45,21 +36,12 @@ export function cardAnuncio(item) {
   const local = textoLocal(item);
 
   return `
-    <article
-      class="card"
-      onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'"
-    >
-
+    <article class="card" onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'">
       ${imagemHtml(item, titulo)}
 
       <div class="card-body">
-
-        <div class="meta">
-          ${escapeHtml(local)}
-        </div>
-
+        <div class="meta">${escapeHtml(local)}</div>
       </div>
-
     </article>
   `;
 }
@@ -73,40 +55,23 @@ export function cardEvento(item) {
   const local = textoLocal(item);
 
   return `
-    <article
-      class="card"
-      onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
-    >
-
+    <article class="card" onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'">
       ${imagemHtml(item, titulo)}
 
       <div class="card-body">
-
-        <div class="meta">
-          ${escapeHtml(local)}
-        </div>
-
+        <div class="meta">${escapeHtml(local)}</div>
       </div>
-
     </article>
   `;
 }
 
-export function renderizarGrid(
-  elemento,
-  lista,
-  criador,
-  vazioTexto
-) {
+export function renderizarGrid(elemento, lista, criador, vazioTexto) {
   if (!elemento) return;
 
   if (!lista.length) {
-    elemento.innerHTML =
-      `<div class="empty">${vazioTexto}</div>`;
-
+    elemento.innerHTML = `<div class="empty">${vazioTexto}</div>`;
     return;
   }
 
-  elemento.innerHTML =
-    lista.map(criador).join("");
+  elemento.innerHTML = lista.map(criador).join("");
 }
