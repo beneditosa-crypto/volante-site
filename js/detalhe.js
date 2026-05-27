@@ -48,9 +48,7 @@ function atualizarFoto() {
     fotos[fotoAtual];
 
   document
-    .querySelectorAll(
-      ".miniatura"
-    )
+    .querySelectorAll(".miniatura")
     .forEach(
       (
         item,
@@ -108,9 +106,7 @@ function iniciarGaleria() {
   );
 
   document
-    .querySelectorAll(
-      ".miniatura"
-    )
+    .querySelectorAll(".miniatura")
     .forEach(
       (item) => {
 
@@ -188,9 +184,7 @@ function renderizar(
             id="fotoPrincipal"
             class="foto-principal"
             src="${fotos[0]}"
-            alt="${escapeHtml(
-              titulo
-            )}"
+            alt="${escapeHtml(titulo)}"
           />
 
           ${
@@ -250,15 +244,11 @@ function renderizar(
       <div class="painel">
 
         <h1 class="titulo">
-          ${escapeHtml(
-            titulo
-          )}
+          ${escapeHtml(titulo)}
         </h1>
 
         <div class="meta">
-          ${escapeHtml(
-            local
-          )}
+          ${escapeHtml(local)}
         </div>
 
         ${
@@ -266,9 +256,7 @@ function renderizar(
           !ehEvento
             ? `
               <div class="preco">
-                ${escapeHtml(
-                  preco
-                )}
+                ${escapeHtml(preco)}
               </div>
             `
             : ""
@@ -281,9 +269,7 @@ function renderizar(
           </h3>
 
           <p>
-            ${escapeHtml(
-              descricao
-            )}
+            ${escapeHtml(descricao)}
           </p>
 
         </div>
@@ -319,36 +305,63 @@ function renderizar(
 
           </div>
 
-          <button
-            class="btn-share-premium"
-            onclick="compartilharDetalhe()"
+        </div>
+
+        <button
+          class="btn-share-premium"
+          onclick="compartilharDetalhe()"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
+            <circle cx="18" cy="5" r="3"></circle>
 
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
 
-              <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
 
-              <circle cx="18" cy="19" r="3"></circle>
+            <path d="M8.59 13.51l6.83 3.98"></path>
 
-              <path d="M8.59 13.51l6.83 3.98"></path>
+            <path d="M15.41 6.51L8.59 10.49"></path>
 
-              <path d="M15.41 6.51L8.59 10.49"></path>
+          </svg>
 
-            </svg>
+          Compartilhe
 
-            Compartilhe
+        </button>
 
-          </button>
+        <div class="bloco bloco-seguranca">
+
+          <h3>
+            Dicas de segurança
+          </h3>
+
+          <p>
+            • Desconfie de preços muito abaixo do mercado.<br>
+            • Nunca faça pagamento antecipado.<br>
+            • Prefira encontros em locais públicos.
+          </p>
 
         </div>
+
+        <footer class="rodape-detalhe">
+
+          <img
+            src="./assets/logo.png"
+            alt="Volante App"
+          />
+
+          <div>
+            © 2026 Volante App. Todos os direitos reservados.
+          </div>
+
+        </footer>
 
       </div>
 
