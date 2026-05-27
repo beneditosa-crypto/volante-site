@@ -15,124 +15,49 @@ import {
 
 window.baixarApp = baixarApp;
 
-const conteudo =
-  document.getElementById("conteudo");
-
-const params =
-  new URLSearchParams(window.location.search);
-
-const id =
-  params.get("id");
-
-const tipo =
-  (params.get("tipo") || "anuncio")
-    .toLowerCase();
-
-const shareUrl =
-  `https://volante.app.br/api/og?id=${id}`;
+const conteudo = document.getElementById("conteudo");
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const tipo = (params.get("tipo") || "anuncio").toLowerCase();
 
 let fotos = [];
 let fotoAtual = 0;
 
 function atualizarFoto() {
+  const fotoPrincipal = document.getElementById("fotoPrincipal");
 
-  const fotoPrincipal =
-    document.getElementById(
-      "fotoPrincipal"
-    );
+  if (!fotoPrincipal) return;
 
-  if (!fotoPrincipal)
-    return;
+  fotoPrincipal.src = fotos[fotoAtual];
 
-  fotoPrincipal.src =
-    fotos[fotoAtual];
-
-  document
-    .querySelectorAll(".miniatura")
-    .forEach(
-      (
-        item,
-        index
-      ) => {
-
-        item.classList.toggle(
-          "ativa",
-          index === fotoAtual
-        );
-
-      }
-    );
+  document.querySelectorAll(".miniatura").forEach((item, index) => {
+    item.classList.toggle("ativa", index === fotoAtual);
+  });
 }
 
 function iniciarGaleria() {
+  const anterior = document.getElementById("fotoAnterior");
+  const proxima = document.getElementById("fotoProxima");
 
-  const anterior =
-    document.getElementById(
-      "fotoAnterior"
-    );
+  anterior?.addEventListener("click", () => {
+    fotoAtual = fotoAtual === 0 ? fotos.length - 1 : fotoAtual - 1;
+    atualizarFoto();
+  });
 
-  const proxima =
-    document.getElementById(
-      "fotoProxima"
-    );
+  proxima?.addEventListener("click", () => {
+    fotoAtual = fotoAtual === fotos.length - 1 ? 0 : fotoAtual + 1;
+    atualizarFoto();
+  });
 
-  anterior?.addEventListener(
-    "click",
-    () => {
-
-      fotoAtual =
-        fotoAtual === 0
-          ? fotos.length - 1
-          : fotoAtual - 1;
-
+  document.querySelectorAll(".miniatura").forEach((item) => {
+    item.addEventListener("click", () => {
+      fotoAtual = Number(item.dataset.index);
       atualizarFoto();
-
-    }
-  );
-
-  proxima?.addEventListener(
-    "click",
-    () => {
-
-      fotoAtual =
-        fotoAtual ===
-        fotos.length - 1
-          ? 0
-          : fotoAtual + 1;
-
-      atualizarFoto();
-
-    }
-  );
-
-  document
-    .querySelectorAll(".miniatura")
-    .forEach(
-      (item) => {
-
-        item.addEventListener(
-          "click",
-          () => {
-
-            fotoAtual =
-              Number(
-                item.dataset.index
-              );
-
-            atualizarFoto();
-
-          }
-        );
-
-      }
-    );
+    });
+  });
 }
 
-function renderizar(
-  item,
-  colecaoUsada
-) {
-
+function renderizar(item, colecaoUsada) {
   fotos = getFotos(item);
 
   const titulo =
@@ -146,19 +71,15 @@ function renderizar(
     "Sem descrição.";
 
   const preco =
-    formatarPreco(
-      item.preco
-    );
+    formatarPreco(item.preco);
 
   const local =
     textoLocal(item);
 
   const ehEvento =
-    colecaoUsada ===
-    "eventos";
+    colecaoUsada === "eventos";
 
-  document.title =
-    `${titulo} | Volante App`;
+  document.title = `${titulo} | Volante App`;
 
   conteudo.innerHTML = `
     <section class="detalhe">
@@ -169,14 +90,7 @@ function renderizar(
 
           ${
             fotos.length > 1
-              ? `
-                <button
-                  class="seta-foto seta-foto-esquerda"
-                  id="fotoAnterior"
-                >
-                  ‹
-                </button>
-              `
+              ? `<button class="seta-foto seta-foto-esquerda" id="fotoAnterior">‹</button>`
               : ""
           }
 
@@ -189,23 +103,12 @@ function renderizar(
 
           ${
             fotos.length > 1
-              ? `
-                <button
-                  class="seta-foto seta-foto-direita"
-                  id="fotoProxima"
-                >
-                  ›
-                </button>
-              `
+              ? `<button class="seta-foto seta-foto-direita" id="fotoProxima">›</button>`
               : ""
           }
 
           <div class="tipo-badge">
-            ${
-              ehEvento
-                ? "EVENTO"
-                : "ANÚNCIO"
-            }
+            ${ehEvento ? "EVENTO" : "ANÚNCIO"}
           </div>
 
         </div>
@@ -214,26 +117,14 @@ function renderizar(
           fotos.length > 1
             ? `
               <div class="miniaturas">
-
-                ${fotos
-                  .map(
-                    (
-                      foto,
-                      index
-                    ) => `
-                    <img
-                      class="miniatura ${
-                        index === 0
-                          ? "ativa"
-                          : ""
-                      }"
-                      src="${foto}"
-                      data-index="${index}"
-                    />
-                  `
-                  )
-                  .join("")}
-
+                ${fotos.map((foto, index) => `
+                  <img
+                    class="miniatura ${index === 0 ? "ativa" : ""}"
+                    src="${foto}"
+                    data-index="${index}"
+                    alt=""
+                  />
+                `).join("")}
               </div>
             `
             : ""
@@ -252,38 +143,25 @@ function renderizar(
         </div>
 
         ${
-          preco &&
-          !ehEvento
-            ? `
-              <div class="preco">
-                ${escapeHtml(preco)}
-              </div>
-            `
+          preco && !ehEvento
+            ? `<div class="preco">${escapeHtml(preco)}</div>`
             : ""
         }
 
         <div class="descricao">
-
-          <h3>
-            Descrição
-          </h3>
-
-          <p>
-            ${escapeHtml(descricao)}
-          </p>
-
+          <h3>Descrição</h3>
+          <p>${escapeHtml(descricao)}</p>
         </div>
 
-        <div class="cta-app">
+        <div class="cta-app detalhe-lojas">
 
-          <h3>
-            Aplicativo disponível nas lojas
-          </h3>
+          <div class="detalhe-lojas-info">
+            <h3>Aplicativo disponível nas lojas</h3>
 
-          <p>
-            Converse com anunciantes,
-            publique veículos e favorite anúncios.
-          </p>
+            <p>
+              Veja detalhes, publique veículos e acompanhe eventos automotivos pelo aplicativo.
+            </p>
+          </div>
 
           <div class="app-store-box">
 
@@ -292,24 +170,16 @@ function renderizar(
               href="#"
               onclick="baixarApp(); return false;"
             >
-
               <img
-                src="./assets/apple.png"
+                src="./assets/apple-store.png"
                 alt="App Store"
+                class="store-logo"
               />
 
-              <div class="hero-loja-texto">
-
-                <span>
-                  Disponível na
-                </span>
-
-                <strong>
-                  App Store
-                </strong>
-
+              <div class="store-textos">
+                <small>Disponível na</small>
+                <strong>App Store</strong>
               </div>
-
             </a>
 
             <a
@@ -317,24 +187,16 @@ function renderizar(
               href="#"
               onclick="baixarApp(); return false;"
             >
-
               <img
                 src="./assets/google-play.png"
                 alt="Google Play"
+                class="store-logo"
               />
 
-              <div class="hero-loja-texto">
-
-                <span>
-                  Disponível no
-                </span>
-
-                <strong>
-                  Google Play
-                </strong>
-
+              <div class="store-textos">
+                <small>Disponível no</small>
+                <strong>Google Play</strong>
               </div>
-
             </a>
 
           </div>
@@ -345,7 +207,6 @@ function renderizar(
           class="btn-share-premium"
           onclick="compartilharDetalhe()"
         >
-
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -355,47 +216,14 @@ function renderizar(
             stroke-linejoin="round"
           >
             <circle cx="18" cy="5" r="3"></circle>
-
             <circle cx="6" cy="12" r="3"></circle>
-
             <circle cx="18" cy="19" r="3"></circle>
-
             <path d="M8.59 13.51l6.83 3.98"></path>
-
             <path d="M15.41 6.51L8.59 10.49"></path>
-
           </svg>
 
           Compartilhe
-
         </button>
-
-        <div class="bloco bloco-seguranca">
-
-          <h3>
-            Dicas de segurança
-          </h3>
-
-          <p>
-            • Desconfie de preços muito abaixo do mercado.<br>
-            • Nunca faça pagamento antecipado.<br>
-            • Prefira encontros em locais públicos.
-          </p>
-
-        </div>
-
-        <footer class="rodape-detalhe">
-
-          <img
-            src="./assets/logo.png"
-            alt="Volante App"
-          />
-
-          <div>
-            © 2026 Volante App. Todos os direitos reservados.
-          </div>
-
-        </footer>
 
       </div>
 
@@ -405,36 +233,31 @@ function renderizar(
   iniciarGaleria();
 }
 
-window.compartilharDetalhe =
-  async function () {
+window.compartilharDetalhe = async function () {
+  const shareUrl =
+    `https://volante.app.br/api/og?tipo=${tipo}&id=${id}&t=${Date.now()}`;
 
-    if (navigator.share) {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Volante App",
+        url: shareUrl
+      });
+    } catch {}
 
-      try {
+    return;
+  }
 
-        await navigator.share({
-          title: "Volante App",
-          url: shareUrl
-        });
-
-      } catch {}
-
-      return;
-    }
-
-    window.open(
-      `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
-      "_blank"
-    );
-  };
+  window.open(
+    `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
+    "_blank"
+  );
+};
 
 async function carregar() {
-
-  if (!conteudo)
-    return;
+  if (!conteudo) return;
 
   if (!id) {
-
     conteudo.innerHTML = `
       <div class="empty">
         ID inválido.
@@ -445,56 +268,26 @@ async function carregar() {
   }
 
   try {
-
     const colecoes =
       tipo === "evento"
-        ? [
-            "eventos",
-            "anuncios",
-          ]
-        : [
-            "anuncios",
-            "eventos",
-          ];
+        ? ["eventos", "anuncios"]
+        : ["anuncios", "eventos"];
 
-    let snapshotEncontrado =
-      null;
-
-    let colecaoUsada =
-      "";
+    let snapshotEncontrado = null;
+    let colecaoUsada = "";
 
     for (const colecao of colecoes) {
+      const referencia = doc(db, colecao, id);
+      const snapshot = await getDoc(referencia);
 
-      const referencia =
-        doc(
-          db,
-          colecao,
-          id
-        );
-
-      const snapshot =
-        await getDoc(
-          referencia
-        );
-
-      if (
-        snapshot.exists()
-      ) {
-
-        snapshotEncontrado =
-          snapshot;
-
-        colecaoUsada =
-          colecao;
-
+      if (snapshot.exists()) {
+        snapshotEncontrado = snapshot;
+        colecaoUsada = colecao;
         break;
       }
     }
 
-    if (
-      !snapshotEncontrado
-    ) {
-
+    if (!snapshotEncontrado) {
       conteudo.innerHTML = `
         <div class="empty">
           Conteúdo não encontrado.
@@ -506,19 +299,13 @@ async function carregar() {
 
     renderizar(
       {
-        id:
-          snapshotEncontrado.id,
-        ...snapshotEncontrado.data(),
+        id: snapshotEncontrado.id,
+        ...snapshotEncontrado.data()
       },
       colecaoUsada
     );
-
   } catch (erro) {
-
-    console.error(
-      "Erro detalhe:",
-      erro
-    );
+    console.error("Erro detalhe:", erro);
 
     conteudo.innerHTML = `
       <div class="empty">
