@@ -292,7 +292,24 @@ function renderizar(
               href="#"
               onclick="baixarApp(); return false;"
             >
-              Google Play
+
+              <img
+                src="./assets/apple.png"
+                alt="App Store"
+              />
+
+              <div class="hero-loja-texto">
+
+                <span>
+                  Disponível na
+                </span>
+
+                <strong>
+                  App Store
+                </strong>
+
+              </div>
+
             </a>
 
             <a
@@ -300,7 +317,24 @@ function renderizar(
               href="#"
               onclick="baixarApp(); return false;"
             >
-              App Store
+
+              <img
+                src="./assets/google-play.png"
+                alt="Google Play"
+              />
+
+              <div class="hero-loja-texto">
+
+                <span>
+                  Disponível no
+                </span>
+
+                <strong>
+                  Google Play
+                </strong>
+
+              </div>
+
             </a>
 
           </div>
