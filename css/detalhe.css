@@ -26,184 +26,54 @@
   width: fit-content;
   min-width: 104px;
   height: 38px;
-
   margin: 0 0 14px;
-
   padding: 0 14px;
-
   border-radius: 999px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.96),
-      rgba(248,250,252,.92)
-    );
-
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,252,.92));
   border: 1px solid rgba(15,23,42,.08);
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-
   color: #0f172a;
   text-decoration: none;
-
   font-size: 12px;
   font-weight: 850;
-  letter-spacing: -.15px;
-
-  box-shadow:
-    0 8px 20px rgba(15,23,42,.06),
-    inset 0 1px 0 rgba(255,255,255,.9);
-
-  transition:
-    transform .22s ease,
-    box-shadow .22s ease,
-    border-color .22s ease;
-}
-
-.btn-voltar:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15,23,42,.12);
-  box-shadow:
-    0 12px 26px rgba(15,23,42,.09),
-    inset 0 1px 0 rgba(255,255,255,.95);
+  box-shadow: 0 8px 20px rgba(15,23,42,.06), inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 #conteudo {
   width: 100%;
 }
 
-.detalhe-card,
-.detalhe-box,
-.anuncio-detalhe,
-.evento-detalhe {
-  overflow: hidden;
-
-  background: rgba(255,255,255,.96);
-
-  border: 1px solid rgba(15,23,42,.06);
-  border-radius: 28px;
-
-  box-shadow:
-    0 18px 46px rgba(15,23,42,.07),
-    inset 0 1px 0 rgba(255,255,255,.9);
-}
-
+#conteudo > img:first-of-type,
 .detalhe-imagem,
 .detalhe-foto,
 .foto-principal,
 #fotoPrincipal {
-  width: 100%;
-  max-height: 520px;
-
-  display: block;
-
-  object-fit: cover;
-  object-position: center;
-
-  border-radius: 24px;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 520px !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 24px !important;
 }
 
-.galeria,
-.galeria-fotos,
-.thumbs {
-  display: flex;
-  gap: 10px;
-
-  overflow-x: auto;
-
-  margin-top: 12px;
-  padding-bottom: 8px;
-}
-
-.galeria img,
-.galeria-fotos img,
-.thumbs img {
-  width: 78px;
-  height: 58px;
-
-  object-fit: cover;
-
-  border-radius: 12px;
-  border: 1px solid rgba(15,23,42,.08);
-
-  cursor: pointer;
-}
-
-.detalhe-info,
-.conteudo-info,
-.info-detalhe {
-  padding: 18px 2px 0;
-}
-
-.tipo,
-.categoria,
-.badge-tipo {
-  display: inline-flex;
-  align-items: center;
-
-  min-height: 22px;
-
-  padding: 0 8px;
-
-  border-radius: 999px;
-
-  background: rgba(30,58,138,.08);
-  color: #1e3a8a;
-
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .35px;
-}
-
-h1,
-.titulo,
-.detalhe-titulo {
-  margin: 8px 0 8px;
-
-  color: #0f172a;
-
-  font-size: 26px;
-  font-weight: 920;
-  line-height: 1.08;
-  letter-spacing: -.8px;
-}
-
-.meta,
-.localizacao,
-.detalhe-meta {
-  color: #64748b;
-
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-}
-
-.valor,
-.preco,
-.price {
-  margin-top: 10px;
-
-  color: #0f172a;
-
-  font-size: 20px;
-  font-weight: 920;
-  letter-spacing: -.5px;
-}
-
-.descricao,
-.detalhe-descricao {
-  margin-top: 16px;
-
-  color: #334155;
-
-  font-size: 14px;
-  line-height: 1.65;
-  font-weight: 500;
+#conteudo img[src*="apple"],
+#conteudo img[src*="Apple"],
+#conteudo img[src*="app-store"],
+#conteudo img[src*="apple-store"],
+#conteudo img[src*="google"],
+#conteudo img[src*="Google"],
+#conteudo img[src*="google-play"] {
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  object-fit: contain !important;
+  display: inline-block !important;
 }
 
 .app-box,
@@ -211,22 +81,11 @@ h1,
 .lojas-box,
 .cta-app {
   margin-top: 24px;
-
   padding: 20px;
-
   border-radius: 24px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(248,250,252,.98),
-      rgba(229,235,246,.92)
-    );
-
+  background: linear-gradient(135deg, rgba(248,250,252,.98), rgba(229,235,246,.92));
   border: 1px solid rgba(15,23,42,.07);
-
-  box-shadow:
-    0 14px 34px rgba(15,23,42,.06);
+  box-shadow: 0 14px 34px rgba(15,23,42,.06);
 }
 
 .app-box h2,
@@ -234,12 +93,9 @@ h1,
 .lojas-box h2,
 .cta-app h2 {
   margin: 0 0 6px;
-
   color: #0f172a;
-
   font-size: 19px;
   font-weight: 920;
-  letter-spacing: -.55px;
 }
 
 .app-box p,
@@ -247,9 +103,7 @@ h1,
 .lojas-box p,
 .cta-app p {
   margin: 0;
-
   color: #475569;
-
   font-size: 13px;
   line-height: 1.45;
   font-weight: 550;
@@ -261,7 +115,6 @@ h1,
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-
   margin-top: 14px;
 }
 
@@ -271,80 +124,81 @@ h1,
 .store-btn,
 .loja-btn {
   min-height: 48px;
-
   border-radius: 16px;
-
   background: #fff;
-
   border: 1px solid rgba(15,23,42,.08);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   gap: 10px;
-
   text-decoration: none;
   color: #0f172a;
-
   font-size: 13px;
   font-weight: 900;
-
-  box-shadow:
-    0 8px 20px rgba(15,23,42,.05);
+  box-shadow: 0 8px 20px rgba(15,23,42,.05);
 }
 
-.lojas img,
-.store-buttons img,
-.botoes-lojas img,
-.store-btn img,
-.loja-btn img {
-  width: 22px !important;
-  height: 22px !important;
-  max-width: 22px !important;
-  max-height: 22px !important;
-
-  object-fit: contain !important;
+.detalhe-card,
+.detalhe-box,
+.anuncio-detalhe,
+.evento-detalhe {
+  overflow: hidden;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(15,23,42,.06);
+  border-radius: 28px;
+  box-shadow: 0 18px 46px rgba(15,23,42,.07), inset 0 1px 0 rgba(255,255,255,.9);
 }
 
-.share-box,
-.compartilhar-box {
-  margin-top: 14px;
-}
-
-.btn-share-premium,
-.share-btn,
-.compartilhar-btn {
-  width: 100%;
-  min-height: 50px;
-
-  border: 0;
-  border-radius: 16px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #16307a,
-      #1e3a8a
-    );
-
-  color: #fff;
-
-  display: flex;
+.tipo,
+.categoria,
+.badge-tipo {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
+  min-height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(30,58,138,.08);
+  color: #1e3a8a;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
 
-  padding: 0 16px;
+h1,
+.titulo,
+.detalhe-titulo {
+  margin: 8px 0;
+  color: #0f172a;
+  font-size: 26px;
+  font-weight: 920;
+  line-height: 1.08;
+}
 
-  cursor: pointer;
+.meta,
+.localizacao,
+.detalhe-meta {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
 
-  box-shadow:
-    0 10px 24px rgba(30,58,138,.18);
+.valor,
+.preco,
+.price {
+  margin-top: 10px;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 920;
+}
 
+.descricao,
+.detalhe-descricao {
+  margin-top: 16px;
+  color: #334155;
   font-size: 14px;
-  font-weight: 850;
-
-  text-decoration: none;
+  line-height: 1.65;
+  font-weight: 500;
 }
 
 .footer {
@@ -368,31 +222,23 @@ h1,
   .btn-voltar {
     height: 36px;
     min-width: 96px;
-
     margin-bottom: 10px;
-
     font-size: 11.5px;
   }
 
+  #conteudo > img:first-of-type,
   .detalhe-imagem,
   .detalhe-foto,
   .foto-principal,
   #fotoPrincipal {
-    max-height: 330px;
-    border-radius: 20px;
+    max-height: 330px !important;
+    border-radius: 20px !important;
   }
 
   h1,
   .titulo,
   .detalhe-titulo {
     font-size: 21px;
-    letter-spacing: -.55px;
-  }
-
-  .valor,
-  .preco,
-  .price {
-    font-size: 18px;
   }
 
   .lojas,
@@ -409,16 +255,5 @@ h1,
   .loja-btn {
     min-height: 46px;
     font-size: 12px;
-  }
-
-  .lojas img,
-  .store-buttons img,
-  .botoes-lojas img,
-  .store-btn img,
-  .loja-btn img {
-    width: 20px !important;
-    height: 20px !important;
-    max-width: 20px !important;
-    max-height: 20px !important;
   }
 }
