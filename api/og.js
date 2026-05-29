@@ -51,26 +51,51 @@ function obterFoto(fields) {
 
   const fotoValida = opcoes.find((url) => {
     const texto = String(url || "").trim();
+
     return texto.startsWith("https://");
   });
 
   return fotoValida || "https://volante.app.br/assets/logo.png";
 }
 
-export default async function handler(request, response) {
-  const { id, tipo } = request.query;
+function obterIdPorSlug(slug) {
+  const texto = String(slug || "").trim();
 
-  if (!id) {
+  if (!texto) return "";
+
+  const partes = texto.split("-");
+
+  return partes[partes.length - 1] || texto;
+}
+
+export default async function handler(request, response) {
+  const {
+    id,
+    slug,
+    tipo,
+  } = request.query;
+
+  const idFinal =
+    id || obterIdPorSlug(slug);
+
+  if (!idFinal) {
     return response.status(404).send("Anúncio não encontrado");
   }
 
   try {
     const tipoTratado = String(tipo || "anuncio");
-    const idTratado = String(id);
+    const idTratado = String(idFinal);
 
-    const firebaseUrl = `https://firestore.googleapis.com/v1/projects/clube-da-caminhonete-be770/databases/(default)/documents/anuncios/${idTratado}`;
+    const colecao =
+      tipoTratado === "evento"
+        ? "eventos"
+        : "anuncios";
 
-    const firebaseResponse = await fetch(firebaseUrl);
+    const firebaseUrl =
+      `https://firestore.googleapis.com/v1/projects/clube-da-caminhonete-be770/databases/(default)/documents/${colecao}/${idTratado}`;
+
+    const firebaseResponse =
+      await fetch(firebaseUrl);
 
     if (!firebaseResponse.ok) {
       return response.status(404).send("Anúncio não encontrado");
@@ -81,7 +106,8 @@ export default async function handler(request, response) {
 
     const tituloOriginal =
       campoTexto(fields, "titulo") ||
-      "Veículo anunciado no Volante App";
+      campoTexto(fields, "nome") ||
+      "Volante App";
 
     const precoOriginal =
       campoTexto(fields, "preco") ||
@@ -100,23 +126,32 @@ export default async function handler(request, response) {
           }${estadoOriginal || ""}`
         : "";
 
-    const descricaoOriginal = [preco, local].filter(Boolean).join(" • ");
+    const descricaoOriginal =
+      tipoTratado === "evento"
+        ? [local].filter(Boolean).join(" • ")
+        : [preco, local].filter(Boolean).join(" • ");
 
     const titulo = escapeHtml(tituloOriginal);
 
     const descricao = escapeHtml(
-      descricaoOriginal || "Veja este anúncio no Volante App."
+      descricaoOriginal || "Veja este conteúdo no Volante App."
     );
 
-    const url = `https://volante.app.br/api/og?tipo=${encodeURIComponent(
-      tipoTratado
-    )}&id=${encodeURIComponent(idTratado)}`;
+    const slugOuId =
+      slug || idTratado;
 
-    const destino = `https://volante.app.br/detalhe.html?tipo=${encodeURIComponent(
-      tipoTratado
-    )}&id=${encodeURIComponent(idTratado)}`;
+    const urlPublica =
+      tipoTratado === "evento"
+        ? `https://volante.app.br/evento/${encodeURIComponent(slugOuId)}`
+        : `https://volante.app.br/anuncio/${encodeURIComponent(slugOuId)}`;
+
+    const destino =
+      `https://volante.app.br/detalhe.html?tipo=${encodeURIComponent(
+        tipoTratado
+      )}&id=${encodeURIComponent(idTratado)}`;
 
     response.setHeader("Content-Type", "text/html; charset=utf-8");
+
     response.setHeader(
       "Cache-Control",
       "public, max-age=300, s-maxage=300, stale-while-revalidate=600"
@@ -136,7 +171,7 @@ export default async function handler(request, response) {
 <meta property="og:site_name" content="Volante App" />
 <meta property="og:title" content="${titulo}" />
 <meta property="og:description" content="${descricao}" />
-<meta property="og:url" content="${url}" />
+<meta property="og:url" content="${urlPublica}" />
 <meta property="og:image" content="${foto}" />
 <meta property="og:image:secure_url" content="${foto}" />
 <meta property="og:image:width" content="1200" />
@@ -148,7 +183,7 @@ export default async function handler(request, response) {
 <meta name="twitter:description" content="${descricao}" />
 <meta name="twitter:image" content="${foto}" />
 
-<link rel="canonical" href="${url}" />
+<link rel="canonical" href="${urlPublica}" />
 
 <meta http-equiv="refresh" content="2; url=${destino}" />
 
@@ -165,7 +200,7 @@ export default async function handler(request, response) {
     <p>${descricao}</p>
     <p>
       <a href="${destino}">
-        Abrir anúncio no Volante App
+        Abrir no Volante App
       </a>
     </p>
   </main>
