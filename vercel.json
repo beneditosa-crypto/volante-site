@@ -3,6 +3,14 @@
 
   "rewrites": [
     {
+      "source": "/share/anuncio/:id",
+      "destination": "/api/og?tipo=anuncio&id=:id"
+    },
+    {
+      "source": "/share/evento/:id",
+      "destination": "/api/og?tipo=evento&id=:id"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     }
