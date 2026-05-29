@@ -266,12 +266,6 @@ window.compartilharDetalhe = async function () {
   );
 };
 
-  window.open(
-    `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
-    "_blank"
-  );
-};
-
 async function carregar() {
   if (!conteudo) return;
 
