@@ -246,13 +246,26 @@ function renderizar(item, colecaoUsada) {
 }
 
 window.compartilharDetalhe = async function () {
+  const tituloPagina =
+    document.querySelector(".titulo")?.textContent?.trim() || "Volante";
+
+  const slug =
+    tituloPagina
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
   const shareUrl =
-    `https://volante.app.br/api/og?tipo=${tipo}&id=${id}`;
+    tipo === "evento"
+      ? `https://volante.app.br/evento/${slug}-${id}`
+      : `https://volante.app.br/anuncio/${slug}-${id}`;
 
   if (navigator.share) {
     try {
       await navigator.share({
-        title: "Volante App",
+        title: tituloPagina,
         url: shareUrl
       });
     } catch {}
