@@ -247,7 +247,7 @@ function renderizar(item, colecaoUsada) {
 
 window.compartilharDetalhe = async function () {
   const shareUrl =
-    `https://volante.app.br/api/og?tipo=${tipo}&id=${id}&t=${Date.now()}`;
+    `https://volante.app.br/api/og?tipo=${tipo}&id=${id}`;
 
   if (navigator.share) {
     try {
@@ -259,6 +259,12 @@ window.compartilharDetalhe = async function () {
 
     return;
   }
+
+  window.open(
+    `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
+    "_blank"
+  );
+};
 
   window.open(
     `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
