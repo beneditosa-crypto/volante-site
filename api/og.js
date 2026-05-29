@@ -52,17 +52,25 @@ function obterFoto(fields) {
   const fotoValida = opcoes.find((url) => {
     const texto = String(url || "").trim();
 
-    return (
-      texto.startsWith("https://") &&
-      (
-        texto.includes("firebasestorage.googleapis.com") ||
-        texto.includes("googleusercontent.com") ||
-        texto.includes("volante.app.br")
-      )
-    );
+    return texto.startsWith("https://");
   });
 
   return fotoValida || "https://volante.app.br/assets/logo.png";
+}
+
+function isCrawler(userAgent) {
+  const ua = String(userAgent || "").toLowerCase();
+
+  return (
+    ua.includes("whatsapp") ||
+    ua.includes("facebookexternalhit") ||
+    ua.includes("facebot") ||
+    ua.includes("twitterbot") ||
+    ua.includes("telegrambot") ||
+    ua.includes("linkedinbot") ||
+    ua.includes("slackbot") ||
+    ua.includes("discordbot")
+  );
 }
 
 export default async function handler(request, response) {
@@ -72,8 +80,21 @@ export default async function handler(request, response) {
     return response.status(404).send("Anúncio não encontrado");
   }
 
+  const tipoTratado = String(tipo || "anuncio");
+  const idTratado = String(id);
+
+  const destino = `https://volante.app.br/detalhe.html?tipo=${encodeURIComponent(
+    tipoTratado
+  )}&id=${encodeURIComponent(idTratado)}`;
+
+  const userAgent = request.headers["user-agent"];
+
+  if (!isCrawler(userAgent)) {
+    return response.redirect(302, destino);
+  }
+
   try {
-    const firebaseUrl = `https://firestore.googleapis.com/v1/projects/clube-da-caminhonete-be770/databases/(default)/documents/anuncios/${id}`;
+    const firebaseUrl = `https://firestore.googleapis.com/v1/projects/clube-da-caminhonete-be770/databases/(default)/documents/anuncios/${idTratado}`;
 
     const firebaseResponse = await fetch(firebaseUrl);
 
@@ -114,15 +135,11 @@ export default async function handler(request, response) {
       descricaoOriginal || "Veja este anúncio no Volante App."
     );
 
-    const tipoTratado = escapeHtml(tipo || "anuncio");
-    const idTratado = escapeHtml(id);
-
-    const url = `https://volante.app.br/api/og?tipo=${tipoTratado}&id=${idTratado}`;
-
-    const destino = `https://volante.app.br/detalhe.html?tipo=${tipoTratado}&id=${idTratado}`;
+    const url = `https://volante.app.br/api/og?tipo=${encodeURIComponent(
+      tipoTratado
+    )}&id=${encodeURIComponent(idTratado)}`;
 
     response.setHeader("Content-Type", "text/html; charset=utf-8");
-
     response.setHeader(
       "Cache-Control",
       "public, max-age=300, s-maxage=300, stale-while-revalidate=600"
@@ -135,7 +152,6 @@ export default async function handler(request, response) {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>${titulo}</title>
-
 <meta name="description" content="${descricao}" />
 
 <meta property="og:locale" content="pt_BR" />
