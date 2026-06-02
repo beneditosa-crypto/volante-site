@@ -264,10 +264,10 @@ window.compartilharDetalhe = async function () {
 
   if (navigator.share) {
     try {
-        await navigator.share({
-          title: tituloPagina,
-          text: shareUrl
-        });
+    await navigator.share({
+        title: tituloPagina,
+        url: shareUrl
+      });
     } catch {}
 
     return;
