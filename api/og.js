@@ -371,6 +371,7 @@ export default async function handler(request, response) {
     }
   }
 </style>
+<meta http-equiv="refresh" content="2; url=${destino}" />
 </head>
 
 <body>
@@ -415,6 +416,11 @@ export default async function handler(request, response) {
     Volante App © 2026. Todos os direitos reservados.
   </footer>
 </main>
+<script>
+setTimeout(function () {
+  window.location.replace("${destino}");
+}, 1200);
+</script>
 </body>
 </html>`);
   } catch {
