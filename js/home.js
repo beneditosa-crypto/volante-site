@@ -46,6 +46,43 @@ const REGIOES = {
   norte: ["AM", "PA", "RO", "RR", "TO", "AC", "AP"]
 };
 
+const UFS_VALIDAS = [
+  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO",
+  "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI",
+  "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+];
+
+const ESTADO_POR_NOME = {
+  ACRE: "AC",
+  ALAGOAS: "AL",
+  AMAPA: "AP",
+  AMAZONAS: "AM",
+  BAHIA: "BA",
+  CEARA: "CE",
+  DISTRITO_FEDERAL: "DF",
+  BRASILIA: "DF",
+  ESPIRITO_SANTO: "ES",
+  GOIAS: "GO",
+  MARANHAO: "MA",
+  MATO_GROSSO: "MT",
+  MATO_GROSSO_DO_SUL: "MS",
+  MINAS_GERAIS: "MG",
+  PARA: "PA",
+  PARAIBA: "PB",
+  PARANA: "PR",
+  PERNAMBUCO: "PE",
+  PIAUI: "PI",
+  RIO_DE_JANEIRO: "RJ",
+  RIO_GRANDE_DO_NORTE: "RN",
+  RIO_GRANDE_DO_SUL: "RS",
+  RONDONIA: "RO",
+  RORAIMA: "RR",
+  SANTA_CATARINA: "SC",
+  SAO_PAULO: "SP",
+  SERGIPE: "SE",
+  TOCANTINS: "TO"
+};
+
 if (buscaInput) {
   buscaInput.addEventListener("input", renderizarTudo);
 }
@@ -79,47 +116,40 @@ function filtrar(lista) {
   });
 }
 
+function limparEstado(valor) {
+  return normalizar(String(valor || ""))
+    .trim()
+    .toUpperCase()
+    .replaceAll("-", " ")
+    .replaceAll("/", " ")
+    .replaceAll(".", " ")
+    .replace(/\s+/g, " ");
+}
+
 function obterUF(item) {
-  const texto = normalizar([
+  const candidatos = [
     item.uf,
-    item.estado,
-    item.local,
-    item.endereco,
-    item.cidade
-  ].filter(Boolean).join(" ")).toUpperCase();
+    item.estado
+  ];
 
-  const estados = {
-    AC: ["AC", "ACRE"],
-    AL: ["AL", "ALAGOAS"],
-    AP: ["AP", "AMAPA"],
-    AM: ["AM", "AMAZONAS"],
-    BA: ["BA", "BAHIA"],
-    CE: ["CE", "CEARA"],
-    DF: ["DF", "DISTRITO FEDERAL", "BRASILIA"],
-    ES: ["ES", "ESPIRITO SANTO"],
-    GO: ["GO", "GOIAS"],
-    MA: ["MA", "MARANHAO"],
-    MT: ["MT", "MATO GROSSO"],
-    MS: ["MS", "MATO GROSSO DO SUL"],
-    MG: ["MG", "MINAS GERAIS", "MINAS"],
-    PA: ["PA", "PARA"],
-    PB: ["PB", "PARAIBA"],
-    PR: ["PR", "PARANA"],
-    PE: ["PE", "PERNAMBUCO"],
-    PI: ["PI", "PIAUI"],
-    RJ: ["RJ", "RIO DE JANEIRO"],
-    RN: ["RN", "RIO GRANDE DO NORTE"],
-    RS: ["RS", "RIO GRANDE DO SUL"],
-    RO: ["RO", "RONDONIA"],
-    RR: ["RR", "RORAIMA"],
-    SC: ["SC", "SANTA CATARINA"],
-    SP: ["SP", "SAO PAULO"],
-    SE: ["SE", "SERGIPE"],
-    TO: ["TO", "TOCANTINS"]
-  };
+  for (const candidato of candidatos) {
+    const texto = limparEstado(candidato);
 
-  for (const uf in estados) {
-    if (estados[uf].some((valor) => texto.includes(valor))) return uf;
+    if (!texto) continue;
+
+    const partes = texto.split(" ");
+
+    for (const parte of partes) {
+      if (UFS_VALIDAS.includes(parte)) {
+        return parte;
+      }
+    }
+
+    const chaveEstado = texto.replaceAll(" ", "_");
+
+    if (ESTADO_POR_NOME[chaveEstado]) {
+      return ESTADO_POR_NOME[chaveEstado];
+    }
   }
 
   return "";
