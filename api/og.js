@@ -185,12 +185,12 @@ export default async function handler(request, response) {
 
 <link rel="canonical" href="${urlPublica}" />
 
-<meta http-equiv="refresh" content="2; url=${destino}" />
+<meta http-equiv="refresh" content="10; url=${destino}" />
 
 <script>
-  setTimeout(function () {
-    window.location.replace("${destino}");
-  }, 1200);
+setTimeout(function () {
+  window.location.replace("${destino}");
+}, 8000);
 </script>
 </head>
 
