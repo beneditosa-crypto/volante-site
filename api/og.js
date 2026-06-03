@@ -145,9 +145,12 @@ export default async function handler(request, response) {
     const cidadeOriginal = campoTexto(fields, "cidade");
     const estadoOriginal = campoTexto(fields, "estado");
 
-    const foto = obterFoto(fields);
+    const fotoOriginal = obterFoto(fields);
+    const foto = `https://volante.app.br/api/imagem-og?url=${encodeURIComponent(
+    fotoOriginal
+    )}`;
     const preco = formatarPreco(precoOriginal);
-
+  
     const local =
       cidadeOriginal || estadoOriginal
         ? `${cidadeOriginal || ""}${
