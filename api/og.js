@@ -7,14 +7,45 @@ function escapeHtml(valor) {
     .replaceAll("'", "&#039;");
 }
 
-function normalizarPreco(valor) {
-  if (!valor) return "";
+function formatarPreco(valor) {
+  if (valor === undefined || valor === null || valor === "") return "";
 
   const texto = String(valor).trim();
 
-  if (texto.startsWith("R$")) return texto;
+  if (!texto) return "";
 
-  return `R$ ${texto}`;
+  if (texto.startsWith("R$")) {
+    const somenteNumero = texto.replace("R$", "").trim();
+    return normalizarNumeroPreco(somenteNumero);
+  }
+
+  return normalizarNumeroPreco(texto);
+}
+
+function normalizarNumeroPreco(valor) {
+  const texto = String(valor || "").trim();
+
+  if (!texto) return "";
+
+  let numero = 0;
+
+  if (texto.includes(",") || texto.includes(".")) {
+    const limpo = texto
+      .replace(/\s/g, "")
+      .replace(/\./g, "")
+      .replace(",", ".");
+
+    numero = Number(limpo);
+  } else {
+    numero = Number(texto.replace(/\D/g, ""));
+  }
+
+  if (!numero || Number.isNaN(numero)) return "";
+
+  return numero.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 }
 
 function campoTexto(fields, campo) {
@@ -102,8 +133,8 @@ export default async function handler(request, response) {
     const cidadeOriginal = campoTexto(fields, "cidade");
     const estadoOriginal = campoTexto(fields, "estado");
 
-    const foto = obterFoto(fields);
-    const preco = normalizarPreco(precoOriginal);
+    const fotoOriginal = obterFoto(fields);
+    const preco = formatarPreco(precoOriginal);
 
     const local =
       cidadeOriginal || estadoOriginal
@@ -112,16 +143,23 @@ export default async function handler(request, response) {
           }${estadoOriginal || ""}`
         : "";
 
+    const tituloSeo =
+      tipoTratado === "evento"
+        ? tituloOriginal
+        : [tituloOriginal, preco].filter(Boolean).join(" | ");
+
     const descricaoSeo =
       tipoTratado === "evento"
         ? [local, descricaoCompleta].filter(Boolean).join(" • ")
-        : [preco, local].filter(Boolean).join(" • ");
+        : [preco, local, "Veja este anúncio no Volante"].filter(Boolean).join(" • ");
 
-    const titulo = escapeHtml(tituloOriginal);
+    const titulo = escapeHtml(tituloSeo);
+    const tituloVisual = escapeHtml(tituloOriginal);
     const descricao = escapeHtml(
       descricaoSeo || "Veja este conteúdo no Volante App."
     );
     const descricaoTexto = escapeHtml(descricaoCompleta);
+    const foto = escapeHtml(fotoOriginal);
 
     const slugOuId = slug || idTratado;
 
@@ -146,7 +184,7 @@ export default async function handler(request, response) {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>${titulo} | Volante</title>
+<title>${titulo}</title>
 <meta name="description" content="${descricao}" />
 
 <meta property="og:locale" content="pt_BR" />
@@ -157,6 +195,7 @@ export default async function handler(request, response) {
 <meta property="og:url" content="${urlPublica}" />
 <meta property="og:image" content="${foto}" />
 <meta property="og:image:secure_url" content="${foto}" />
+<meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="${titulo}" />
@@ -165,262 +204,30 @@ export default async function handler(request, response) {
 <meta name="twitter:title" content="${titulo}" />
 <meta name="twitter:description" content="${descricao}" />
 <meta name="twitter:image" content="${foto}" />
+<meta name="twitter:url" content="${urlPublica}" />
 
 <link rel="canonical" href="${urlPublica}" />
 <link rel="icon" type="image/png" href="https://volante.app.br/assets/favicon.png" />
 
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f6f8fb;
-    color: #0f172a;
-  }
-
-  header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .topo {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .marca {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #0f172a;
-  }
-
-  .logo {
-    width: 54px;
-    height: 54px;
-    object-fit: contain;
-  }
-
-  .nome {
-    font-size: 24px;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .slogan {
-    margin-top: 3px;
-    font-size: 14px;
-    color: #64748b;
-    font-weight: 700;
-  }
-
-  main {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 28px 20px 44px;
-  }
-
-  .btn-voltar {
-    display: inline-block;
-    margin-bottom: 22px;
-    color: #1e3a8a;
-    font-weight: 900;
-    text-decoration: none;
-  }
-
-  .card {
-    overflow: hidden;
-    border-radius: 28px;
-    background: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
-  }
-
-  .foto {
-    width: 100%;
-    max-height: 620px;
-    object-fit: cover;
-    display: block;
-    background: #e5e7eb;
-  }
-
-  .conteudo {
-    padding: 28px;
-  }
-
-  h1 {
-    margin: 0 0 12px;
-    font-size: clamp(32px, 4vw, 54px);
-    line-height: 1.03;
-    letter-spacing: -1.2px;
-    color: #0f172a;
-  }
-
-  .meta {
-    margin: 0 0 22px;
-    font-size: 22px;
-    font-weight: 800;
-    color: #1f2937;
-  }
-
-  .descricao {
-    margin: 0 0 26px;
-    color: #334155;
-    font-size: 17px;
-    line-height: 1.55;
-  }
-
-  .cta {
-    margin-top: 24px;
-    padding: 24px;
-    border-radius: 22px;
-    background: linear-gradient(135deg, #eef5ff, #ffffff);
-    border: 1px solid rgba(30, 58, 138, 0.12);
-    text-align: center;
-  }
-
-  .cta h2 {
-    margin: 0 0 8px;
-    font-size: 24px;
-    color: #0f172a;
-  }
-
-  .cta p {
-    margin: 0 0 18px;
-    color: #334155;
-    font-size: 16px;
-    line-height: 1.45;
-  }
-
-  .botao {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 24px;
-    border-radius: 16px;
-    background: #1e3a8a;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 900;
-    text-decoration: none;
-    box-shadow: 0 12px 26px rgba(30, 58, 138, 0.20);
-  }
-
-  footer {
-    margin-top: 34px;
-    text-align: center;
-    color: #64748b;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  @media (max-width: 768px) {
-    .topo {
-      padding: 14px 16px;
-    }
-
-    .logo {
-      width: 46px;
-      height: 46px;
-    }
-
-    .nome {
-      font-size: 21px;
-    }
-
-    main {
-      padding: 18px 14px 34px;
-    }
-
-    .card {
-      border-radius: 22px;
-    }
-
-    .conteudo {
-      padding: 20px;
-    }
-
-    .meta {
-      font-size: 18px;
-      line-height: 1.35;
-    }
-
-    .descricao {
-      font-size: 15px;
-    }
-
-    .cta {
-      padding: 20px;
-    }
-
-    .cta h2 {
-      font-size: 21px;
-    }
-
-    .botao {
-      width: 100%;
-    }
-  }
-</style>
 <meta http-equiv="refresh" content="2; url=${destino}" />
 </head>
 
 <body>
-<header>
-  <div class="topo">
-    <a href="https://volante.app.br/" class="marca">
-      <img src="https://volante.app.br/assets/logo.png" alt="Volante App" class="logo" />
-      <div>
-        <div class="nome">Volante</div>
-        <div class="slogan">Mais que carros, paixão</div>
-      </div>
-    </a>
-  </div>
-</header>
+<script>
+  window.location.replace("${destino}");
+</script>
 
 <main>
-  <a href="https://volante.app.br/" class="btn-voltar">← Voltar para o início</a>
-
-  <article class="card">
-    <img src="${foto}" alt="${titulo}" class="foto" />
-
-    <div class="conteudo">
-      <h1>${titulo}</h1>
-
-      <p class="meta">${descricao}</p>
-
-      ${
-        descricaoTexto
-          ? `<p class="descricao">${descricaoTexto}</p>`
-          : ""
-      }
-
-      <div class="cta">
-        <h2>O Volante fica melhor no app.</h2>
-        <p>Para anunciar, publicar eventos ou conversar com anunciantes, baixe o app do Volante.</p>
-        <a href="${destino}" class="botao">Ver detalhes</a>
-      </div>
-    </div>
-  </article>
-
-  <footer>
-    Volante App © 2026. Todos os direitos reservados.
-  </footer>
+  <h1>${tituloVisual}</h1>
+  <p>${descricao}</p>
+  ${
+    foto
+      ? `<img src="${foto}" alt="${titulo}" style="max-width:100%;height:auto;" />`
+      : ""
+  }
+  ${descricaoTexto ? `<p>${descricaoTexto}</p>` : ""}
+  <p><a href="${destino}">Ver detalhes no Volante</a></p>
 </main>
-<script>
-setTimeout(function () {
-  window.location.replace("${destino}");
-}, 1200);
-</script>
 </body>
 </html>`);
   } catch {
