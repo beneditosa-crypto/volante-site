@@ -45,7 +45,7 @@ function iniciarGaleria() {
   });
 
   proxima?.addEventListener("click", () => {
-    fotoAtual = fotoAtual === fotos.length - 1 ? 0 : fotoAtual + 1;
+    fotoAtual = fotos.length - 1 ? 0 : fotoAtual + 1;
     atualizarFoto();
   });
 
@@ -68,14 +68,12 @@ function gerarSlug(texto) {
 
 function gerarShareUrl(tituloPagina) {
   const slug = gerarSlug(tituloPagina);
-  const cacheKey = Date.now();
 
-  const base =
-    tipo === "evento"
-      ? `https://volante.app.br/evento/${slug}-${id}`
-      : `https://volante.app.br/anuncio/${slug}-${id}`;
+  if (tipo === "evento") {
+    return `https://volante.app.br/evento/${slug}-${id}`;
+  }
 
-  return `${base}?s=${cacheKey}`;
+  return `https://volante.app.br/anuncio/${slug}-${id}`;
 }
 
 function renderizar(item, colecaoUsada) {
