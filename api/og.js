@@ -79,21 +79,25 @@ function obterFoto(fields) {
   return fotoValida || "https://volante.app.br/assets/logo.png";
 }
 
-function corrigirUrlFoto(url) {
-  return String(url || "")
-    .trim()
-    .replace(
-      "clube-da-caminhonete-be770.firebasestorage.app",
-      "clube-da-caminhonete-be770.appspot.com"
-    );
-}
-
 function obterIdPorSlug(slug) {
   const texto = String(slug || "").trim();
   if (!texto) return "";
 
   const partes = texto.split("-");
   return partes[partes.length - 1] || texto;
+}
+
+function ehCrawler(userAgent) {
+  const agente = String(userAgent || "").toLowerCase();
+
+  return (
+    agente.includes("whatsapp") ||
+    agente.includes("facebookexternalhit") ||
+    agente.includes("facebot") ||
+    agente.includes("twitterbot") ||
+    agente.includes("telegrambot") ||
+    agente.includes("linkedinbot")
+  );
 }
 
 export default async function handler(request, response) {
@@ -142,9 +146,7 @@ export default async function handler(request, response) {
     const cidadeOriginal = campoTexto(fields, "cidade");
     const estadoOriginal = campoTexto(fields, "estado");
 
-    const fotoOriginal = obterFoto(fields);
-    const foto = corrigirUrlFoto(fotoOriginal);
-
+    const foto = obterFoto(fields);
     const preco = formatarPreco(precoOriginal);
 
     const local =
@@ -154,10 +156,7 @@ export default async function handler(request, response) {
           }${estadoOriginal || ""}`
         : "";
 
-    const tituloSeo =
-      tipoTratado === "evento"
-        ? tituloOriginal
-        : tituloOriginal;
+    const tituloSeo = tituloOriginal;
 
     const descricaoSeo =
       tipoTratado === "evento"
@@ -181,6 +180,8 @@ export default async function handler(request, response) {
     const destino = `https://volante.app.br/detalhe.html?tipo=${encodeURIComponent(
       tipoTratado
     )}&id=${encodeURIComponent(idTratado)}`;
+
+    const crawler = ehCrawler(request.headers["user-agent"]);
 
     response.setHeader("Content-Type", "text/html; charset=utf-8");
     response.setHeader(
@@ -219,18 +220,20 @@ export default async function handler(request, response) {
 <link rel="canonical" href="${urlPublica}" />
 <link rel="icon" type="image/png" href="https://volante.app.br/assets/favicon.png" />
 
-<meta http-equiv="refresh" content="5; url=${destino}" />
+${crawler ? "" : `<meta http-equiv="refresh" content="0; url=${destino}" />`}
 </head>
 
 <body>
+${
+  crawler
+    ? ""
+    : `<script>window.location.replace("${destino}");</script>`
+}
+
 <main>
   <h1>${tituloVisual}</h1>
   <p>${descricao}</p>
-  ${
-    foto
-      ? `<img src="${foto}" alt="${titulo}" style="max-width:100%;height:auto;" />`
-      : ""
-  }
+  <img src="${foto}" alt="${titulo}" style="max-width:100%;height:auto;" />
   ${descricaoTexto ? `<p>${descricaoTexto}</p>` : ""}
   <p><a href="${destino}">Ver detalhes no Volante</a></p>
 </main>
