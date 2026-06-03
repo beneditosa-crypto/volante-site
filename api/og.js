@@ -79,6 +79,15 @@ function obterFoto(fields) {
   return fotoValida || "https://volante.app.br/assets/logo.png";
 }
 
+function corrigirUrlFoto(url) {
+  return String(url || "")
+    .trim()
+    .replace(
+      "clube-da-caminhonete-be770.firebasestorage.app",
+      "clube-da-caminhonete-be770.appspot.com"
+    );
+}
+
 function obterIdPorSlug(slug) {
   const texto = String(slug || "").trim();
   if (!texto) return "";
@@ -134,6 +143,8 @@ export default async function handler(request, response) {
     const estadoOriginal = campoTexto(fields, "estado");
 
     const fotoOriginal = obterFoto(fields);
+    const foto = corrigirUrlFoto(fotoOriginal);
+
     const preco = formatarPreco(precoOriginal);
 
     const local =
@@ -146,12 +157,12 @@ export default async function handler(request, response) {
     const tituloSeo =
       tipoTratado === "evento"
         ? tituloOriginal
-        : [tituloOriginal, preco].filter(Boolean).join(" | ");
+        : tituloOriginal;
 
     const descricaoSeo =
       tipoTratado === "evento"
         ? [local, descricaoCompleta].filter(Boolean).join(" • ")
-        : [preco, local, "Veja este anúncio no Volante"].filter(Boolean).join(" • ");
+        : [preco, local].filter(Boolean).join(" • ");
 
     const titulo = escapeHtml(tituloSeo);
     const tituloVisual = escapeHtml(tituloOriginal);
@@ -159,7 +170,6 @@ export default async function handler(request, response) {
       descricaoSeo || "Veja este conteúdo no Volante App."
     );
     const descricaoTexto = escapeHtml(descricaoCompleta);
-    const foto = fotoOriginal;
 
     const slugOuId = slug || idTratado;
 
@@ -184,7 +194,7 @@ export default async function handler(request, response) {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>${titulo}</title>
+<title>${titulo} | Volante</title>
 <meta name="description" content="${descricao}" />
 
 <meta property="og:locale" content="pt_BR" />
@@ -209,14 +219,10 @@ export default async function handler(request, response) {
 <link rel="canonical" href="${urlPublica}" />
 <link rel="icon" type="image/png" href="https://volante.app.br/assets/favicon.png" />
 
-<meta http-equiv="refresh" content="2; url=${destino}" />
+<meta http-equiv="refresh" content="5; url=${destino}" />
 </head>
 
 <body>
-<script>
-  window.location.replace("${destino}");
-</script>
-
 <main>
   <h1>${tituloVisual}</h1>
   <p>${descricao}</p>
