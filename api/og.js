@@ -87,18 +87,6 @@ function obterIdPorSlug(slug) {
   return partes[partes.length - 1] || texto;
 }
 
-function ehCrawler(userAgent) {
-  const agente = String(userAgent || "").toLowerCase();
-
-  return (
-    agente.includes("facebookexternalhit") ||
-    agente.includes("facebot") ||
-    agente.includes("twitterbot") ||
-    agente.includes("telegrambot") ||
-    agente.includes("linkedinbot")
-  );
-}
-
 export default async function handler(request, response) {
   const { id, slug, tipo } = request.query;
 
@@ -144,9 +132,14 @@ export default async function handler(request, response) {
 
     const cidadeOriginal = campoTexto(fields, "cidade");
     const estadoOriginal = campoTexto(fields, "estado");
+
+    // TESTE CONTROLADO:
+    // Mantém imagem fixa pública para validar WhatsApp Mobile.
+    // Depois de validar, voltamos para obterFoto(fields) ou proxy de imagem.
     const foto = "https://volante.app.br/assets/logo.png";
+
     const preco = formatarPreco(precoOriginal);
-  
+
     const local =
       cidadeOriginal || estadoOriginal
         ? `${cidadeOriginal || ""}${
@@ -179,8 +172,6 @@ export default async function handler(request, response) {
       tipoTratado
     )}&id=${encodeURIComponent(idTratado)}`;
 
-    const crawler = ehCrawler(request.headers["user-agent"]);
-
     response.setHeader("Content-Type", "text/html; charset=utf-8");
     response.setHeader(
       "Cache-Control",
@@ -204,7 +195,7 @@ export default async function handler(request, response) {
 <meta property="og:url" content="${urlPublica}" />
 <meta property="og:image" content="${foto}" />
 <meta property="og:image:secure_url" content="${foto}" />
-<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="${titulo}" />
@@ -217,17 +208,9 @@ export default async function handler(request, response) {
 
 <link rel="canonical" href="${urlPublica}" />
 <link rel="icon" type="image/png" href="https://volante.app.br/assets/favicon.png" />
-
-${crawler ? "" : `<meta http-equiv="refresh" content="0; url=${destino}" />`}
 </head>
 
 <body>
-${
-  crawler
-    ? ""
-    : `<script>window.location.replace("${destino}");</script>`
-}
-
 <main>
   <h1>${tituloVisual}</h1>
   <p>${descricao}</p>
