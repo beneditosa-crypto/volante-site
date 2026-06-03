@@ -57,6 +57,27 @@ function iniciarGaleria() {
   });
 }
 
+function gerarSlug(texto) {
+  return String(texto || "volante")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function gerarShareUrl(tituloPagina) {
+  const slug = gerarSlug(tituloPagina);
+  const cacheKey = Date.now();
+
+  const base =
+    tipo === "evento"
+      ? `https://volante.app.br/evento/${slug}-${id}`
+      : `https://volante.app.br/anuncio/${slug}-${id}`;
+
+  return `${base}?s=${cacheKey}`;
+}
+
 function renderizar(item, colecaoUsada) {
   fotos = getFotos(item);
 
@@ -249,22 +270,11 @@ window.compartilharDetalhe = async function () {
   const tituloPagina =
     document.querySelector(".titulo")?.textContent?.trim() || "Volante";
 
-  const slug =
-    tituloPagina
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-
-  const shareUrl =
-    tipo === "evento"
-      ? `https://volante.app.br/evento/${slug}-${id}`
-      : `https://volante.app.br/anuncio/${slug}-${id}`;
+  const shareUrl = gerarShareUrl(tituloPagina);
 
   if (navigator.share) {
     try {
-    await navigator.share({
+      await navigator.share({
         title: tituloPagina,
         url: shareUrl
       });
