@@ -159,7 +159,7 @@ export default async function handler(request, response) {
       descricaoSeo || "Veja este conteúdo no Volante App."
     );
     const descricaoTexto = escapeHtml(descricaoCompleta);
-    const foto = escapeHtml(fotoOriginal);
+    const foto = fotoOriginal;
 
     const slugOuId = slug || idTratado;
 
