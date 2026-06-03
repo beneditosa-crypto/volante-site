@@ -45,7 +45,7 @@ function iniciarGaleria() {
   });
 
   proxima?.addEventListener("click", () => {
-    fotoAtual = fotos.length - 1 ? 0 : fotoAtual + 1;
+    fotoAtual = fotoAtual === fotos.length - 1 ? 0 : fotoAtual + 1;
     atualizarFoto();
   });
 
@@ -74,6 +74,11 @@ function gerarShareUrl(tituloPagina) {
   }
 
   return `https://volante.app.br/anuncio/${slug}-${id}`;
+}
+
+function abrirCompartilhamentoWhatsApp(url) {
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
+  window.location.href = whatsappUrl;
 }
 
 function renderizar(item, colecaoUsada) {
@@ -253,7 +258,7 @@ function renderizar(item, colecaoUsada) {
             <path d="M15.41 6.51L8.59 10.49"></path>
           </svg>
 
-          Compartilhe
+          Compartilhe no WhatsApp
         </button>
 
       </div>
@@ -264,27 +269,13 @@ function renderizar(item, colecaoUsada) {
   iniciarGaleria();
 }
 
-window.compartilharDetalhe = async function () {
+window.compartilharDetalhe = function () {
   const tituloPagina =
     document.querySelector(".titulo")?.textContent?.trim() || "Volante";
 
   const shareUrl = gerarShareUrl(tituloPagina);
 
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title: tituloPagina,
-        url: shareUrl
-      });
-    } catch {}
-
-    return;
-  }
-
-  window.open(
-    `https://wa.me/?text=${encodeURIComponent(shareUrl)}`,
-    "_blank"
-  );
+  abrirCompartilhamentoWhatsApp(shareUrl);
 };
 
 async function carregar() {
