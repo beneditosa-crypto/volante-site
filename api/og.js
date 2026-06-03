@@ -204,9 +204,15 @@ export default async function handler(request, response) {
 
 <link rel="canonical" href="${urlPublica}" />
 <link rel="icon" type="image/png" href="https://volante.app.br/assets/favicon.png" />
+
+<meta http-equiv="refresh" content="0; url=${destino}" />
 </head>
 
 <body>
+<script>
+  window.location.replace("${destino}");
+</script>
+
 <main>
   <h1>${tituloVisual}</h1>
   <p>${descricao}</p>
