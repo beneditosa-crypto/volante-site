@@ -133,11 +133,7 @@ export default async function handler(request, response) {
     const cidadeOriginal = campoTexto(fields, "cidade");
     const estadoOriginal = campoTexto(fields, "estado");
 
-    // TESTE CONTROLADO:
-    // Mantém imagem fixa pública para validar WhatsApp Mobile.
-    // Depois de validar, voltamos para obterFoto(fields) ou proxy de imagem.
-    const foto = "https://volante.app.br/assets/logo.png";
-
+    const foto = obterFoto(fields);
     const preco = formatarPreco(precoOriginal);
 
     const local =
@@ -195,7 +191,7 @@ export default async function handler(request, response) {
 <meta property="og:url" content="${urlPublica}" />
 <meta property="og:image" content="${foto}" />
 <meta property="og:image:secure_url" content="${foto}" />
-<meta property="og:image:type" content="image/png" />
+<meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="${titulo}" />
