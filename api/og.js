@@ -91,7 +91,6 @@ function ehCrawler(userAgent) {
   const agente = String(userAgent || "").toLowerCase();
 
   return (
-    agente.includes("whatsapp") ||
     agente.includes("facebookexternalhit") ||
     agente.includes("facebot") ||
     agente.includes("twitterbot") ||
