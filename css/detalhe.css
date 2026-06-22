@@ -101,6 +101,22 @@
   object-fit: cover;
 }
 
+.marca-agua-detalhe {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+
+  width: 54px;
+  height: auto;
+
+  opacity: .88;
+
+  z-index: 8;
+
+  pointer-events: none;
+  user-select: none;
+}
+
 .tipo-badge {
   position: absolute;
   top: 16px;
@@ -481,6 +497,12 @@
 
   .foto-principal {
     height: 320px;
+  }
+
+  .marca-agua-detalhe {
+    left: 10px;
+    bottom: 10px;
+    width: 42px;
   }
 
   .titulo {
