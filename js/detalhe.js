@@ -83,6 +83,7 @@ function abrirCompartilhamentoWhatsApp(url) {
 
 function renderizar(item, colecaoUsada) {
   fotos = getFotos(item);
+  fotoAtual = 0;
 
   const titulo =
     item.titulo ||
@@ -124,6 +125,18 @@ function renderizar(item, colecaoUsada) {
             src="${fotos[0]}"
             alt="${escapeHtml(titulo)}"
           />
+
+          ${
+            !ehEvento
+              ? `
+                <img
+                  class="marca-agua-detalhe"
+                  src="./images/logo.png"
+                  alt="Volante"
+                />
+              `
+              : ""
+          }
 
           ${
             fotos.length > 1
