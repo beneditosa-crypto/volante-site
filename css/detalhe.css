@@ -84,12 +84,12 @@
 
 .marca-agua-detalhe {
   position: absolute;
-  left: 14px;
-  bottom: 14px;
-  width: 180px;
+  left: 10px;
+  bottom: 4px;
+  width: 175px;
   height: auto;
   opacity: .95;
-  z-index: 8;
+  z-index: 9;
   pointer-events: none;
   user-select: none;
 }
@@ -393,11 +393,10 @@
   }
 
   .marca-agua-detalhe {
-    left: 18px;
-    bottom: 20px;
-    width: 150px;
-    opacity: .98;
-    z-index: 9;
+    left: 8px;
+    bottom: 4px;
+    width: 165px;
+    opacity: .95;
   }
 
   .contador-fotos {
