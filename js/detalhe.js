@@ -25,10 +25,15 @@ let fotoAtual = 0;
 
 function atualizarFoto() {
   const fotoPrincipal = document.getElementById("fotoPrincipal");
+  const contadorFotos = document.getElementById("contadorFotos");
 
   if (!fotoPrincipal) return;
 
   fotoPrincipal.src = fotos[fotoAtual];
+
+  if (contadorFotos) {
+    contadorFotos.textContent = `${fotoAtual + 1}/${fotos.length}`;
+  }
 
   document.querySelectorAll(".miniatura").forEach((item, index) => {
     item.classList.toggle("ativa", index === fotoAtual);
@@ -132,8 +137,12 @@ function renderizar(item, colecaoUsada) {
                 <img
                   class="marca-agua-detalhe"
                   src="./assets/marca-dagua.png"
-                  alt="Volante"
+                  alt=""
                 />
+
+                <div class="contador-fotos" id="contadorFotos">
+                  ${fotoAtual + 1}/${fotos.length}
+                </div>
               `
               : ""
           }
