@@ -30,6 +30,12 @@ export function imagemHtml(item, titulo) {
         decoding="async"
       />
 
+      <img
+        class="marca-agua"
+        src="./images/logo.png"
+        alt="Volante"
+      />
+
       <div class="overlay"></div>
 
       <div class="overlay-content">
