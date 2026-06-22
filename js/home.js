@@ -93,6 +93,42 @@ function statusAtivo(item) {
     .toUpperCase() === "ATIVO";
 }
 
+function anuncioEmDestaque(item) {
+  return (
+    item.destaque === true ||
+    item.destacado === true ||
+    item.emDestaque === true ||
+    item.destaqueAtivo === true ||
+    String(item.destaque || "").toLowerCase() === "true" ||
+    String(item.destacado || "").toLowerCase() === "true" ||
+    String(item.emDestaque || "").toLowerCase() === "true" ||
+    String(item.destaqueAtivo || "").toLowerCase() === "true"
+  );
+}
+
+function normalizarAnuncio(item) {
+  const destaque = anuncioEmDestaque(item);
+
+  return {
+    ...item,
+    destaque,
+    destacado: destaque,
+    emDestaque: destaque,
+    destaqueAtivo: destaque
+  };
+}
+
+function ordenarAnuncios(a, b) {
+  const destaqueA = anuncioEmDestaque(a) ? 1 : 0;
+  const destaqueB = anuncioEmDestaque(b) ? 1 : 0;
+
+  if (destaqueA !== destaqueB) {
+    return destaqueB - destaqueA;
+  }
+
+  return getDataMs(b) - getDataMs(a);
+}
+
 function filtrar(lista) {
   const termo = normalizar(buscaInput?.value || "");
   const somenteComImagem = lista.filter((item) => !!getImagem(item));
@@ -170,7 +206,7 @@ function controlarSecao(idGrid, lista) {
 }
 
 function renderizarTudo() {
-  const anunciosFiltrados = filtrar(anuncios).sort((a, b) => getDataMs(b) - getDataMs(a));
+  const anunciosFiltrados = filtrar(anuncios).sort(ordenarAnuncios);
   const eventosFiltrados = filtrar(eventos).sort((a, b) => getDataMs(b) - getDataMs(a));
 
   const anunciosCentroOeste = filtrarRegiao(anunciosFiltrados, REGIOES.centroOeste);
@@ -222,7 +258,7 @@ async function carregarDados() {
     ]);
 
     anuncios = snapAnuncios.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
+      .map((doc) => normalizarAnuncio({ id: doc.id, ...doc.data() }))
       .filter(statusAtivo);
 
     eventos = snapEventos.docs
