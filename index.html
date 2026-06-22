@@ -4,12 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>O melhor app de carros antigos do Brasil</title<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <title>O melhor app de carros antigos do Brasil</title>
 
 <meta
@@ -53,8 +47,8 @@
 
 <link rel="icon" type="image/png" href="./assets/favicon.png" />
 
-<link rel="stylesheet" href="./css/global.css?v=00239" />
-<link rel="stylesheet" href="./css/home.css?v=00239" />
+<link rel="stylesheet" href="./css/global.css?v=00240" />
+<link rel="stylesheet" href="./css/home.css?v=00240" />
 
 <style>
 .hero {
@@ -114,20 +108,27 @@
 }
 
 .hero-app-card {
-  max-width: 1120px;
+  max-width: 980px;
   margin: 34px auto 28px;
   padding: 24px 22px 26px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   text-align: center;
 }
 
 .hero-app-texto {
-  max-width: 920px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
 }
 
 .hero-app-texto p {
-  margin: 0 auto 18px;
-  max-width: 860px;
+  margin: 0;
+  text-align: center;
+
   color: #334155;
   font-size: 15px;
   line-height: 1.45;
@@ -136,8 +137,11 @@
 .hero-lojas {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 14px;
   flex-wrap: wrap;
+
+  margin-top: 18px;
 }
 
 .hero-loja-btn {
@@ -222,7 +226,6 @@
   }
 
   .hero-app-texto p {
-    margin-bottom: 16px;
     font-size: 14px;
     line-height: 1.45;
   }
@@ -231,6 +234,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+
+    width: 100%;
+    margin-top: 16px;
   }
 
   .hero-loja-btn {
@@ -526,608 +532,7 @@
 
 <script
   type="module"
-  src="./js/home.js?v=00239"
-></script>
-
-</body>
-</html>
-
-<meta
-  name="description"
-  content="O Volante é o melhor app de carros antigos do Brasil. Anuncie veículos clássicos, encontre eventos automotivos e conecte-se com apaixonados por carros."
-/>
-
-<meta
-  name="keywords"
-  content="carros antigos, carros clássicos, veículos antigos, encontros automotivos, eventos automotivos, app de carros antigos, Volante"
-/>
-
-<meta
-  property="og:title"
-  content="Mais que carros, paixão - Melhor app de carros antigos do Brasil"
-/>
-
-<meta
-  property="og:description"
-  content="O melhor app de carros antigos do Brasil. Anúncios, eventos automotivos e uma comunidade apaixonada por veículos clássicos."
-/>
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://volante.app.br" />
-<meta property="og:image" content="https://volante.app.br/assets/logo.png" />
-
-<meta
-  name="twitter:title"
-  content="Mais que carros, paixão - Melhor app de carros antigos do Brasil"
-/>
-
-<meta
-  name="twitter:description"
-  content="O melhor app de carros antigos do Brasil."
-/>
-
-<meta
-  name="twitter:card"
-  content="summary_large_image"
-/>
-
-<link rel="icon" type="image/png" href="./assets/favicon.png" />
-
-<link rel="stylesheet" href="./css/global.css?v=00236" />
-<link rel="stylesheet" href="./css/home.css?v=00236" />
-
-<style>
-.hero {
-  max-width: 1440px;
-  margin: 8px auto 18px;
-  padding: 24px 24px 20px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
-  border: 1px solid rgba(30,58,138,.12);
-  box-shadow: 0 18px 42px rgba(15,23,42,.07);
-}
-
-.hero h1 {
-  max-width: 780px;
-  margin: 0 auto 14px;
-  text-align: center;
-  font-size: clamp(24px, 2.2vw, 38px);
-  line-height: 1.04;
-  letter-spacing: -1.2px;
-  color: #0f172a;
-}
-
-.hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.hero-busca-card,
-.hero-app-card {
-  width: 100%;
-  border-radius: 24px;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(15,23,42,.08);
-  box-shadow: 0 14px 36px rgba(15,23,42,.06);
-}
-
-.hero-busca-card {
-  padding: 14px 20px 16px;
-}
-
-.hero-card-head {
-  text-align: center;
-  font-size: 15px;
-  font-weight: 900;
-  color: #0f172a;
-  margin-bottom: 10px;
-}
-
-.busca {
-  height: 56px;
-  border-radius: 18px;
-  background: #fff;
-  border: 1px solid rgba(15,23,42,.12);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 18px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
-}
-
-.busca span {
-  font-size: 24px;
-  line-height: 1;
-  color: #1e3a8a;
-}
-
-.busca input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font-size: 16px;
-  color: #0f172a;
-}
-
-.hero-app-card {
-  padding: 16px 20px 18px;
-  text-align: center;
-}
-
-.hero-app-texto {
-  max-width: 920px;
-  margin: 0 auto;
-}
-
-.hero-app-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(30,58,138,.10);
-  color: #1e3a8a;
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .4px;
-}
-
-.hero-app-texto h3 {
-  margin: 0 0 6px;
-  font-size: clamp(20px, 2vw, 28px);
-  line-height: 1.1;
-  color: #0f172a;
-}
-
-.hero-app-texto p {
-  margin: 0 auto 14px;
-  max-width: 860px;
-  color: #334155;
-  font-size: 15px;
-  line-height: 1.35;
-}
-
-.hero-lojas {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.hero-loja-btn {
-  min-width: 220px;
-  height: 58px;
-  border-radius: 16px;
-  background: #fff;
-  border: 1px solid rgba(15,23,42,.12);
-  box-shadow: 0 10px 24px rgba(15,23,42,.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  text-decoration: none;
-  color: #0f172a;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.hero-loja-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(15,23,42,.10);
-}
-
-.hero-loja-btn img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-}
-
-.hero-loja-texto {
-  text-align: left;
-  line-height: 1.05;
-}
-
-.hero-loja-texto span {
-  display: block;
-  font-size: 11px;
-  color: #334155;
-}
-
-.hero-loja-texto strong {
-  display: block;
-  font-size: 18px;
-  font-weight: 900;
-  color: #0f172a;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    margin: 10px 12px 22px;
-    padding: 22px 14px 18px;
-    border-radius: 22px;
-  }
-
-  .hero h1 {
-    max-width: 340px;
-    margin: 0 auto 18px;
-    font-size: 25px;
-    line-height: 1.08;
-    letter-spacing: -.7px;
-  }
-
-  .hero-grid {
-    gap: 16px;
-  }
-
-  .hero-busca-card,
-  .hero-app-card {
-    border-radius: 18px;
-  }
-
-  .hero-busca-card {
-    padding: 16px 14px 16px;
-  }
-
-  .hero-card-head {
-    font-size: 15px;
-    margin-bottom: 10px;
-  }
-
-  .busca {
-    height: 52px;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 0 14px;
-  }
-
-  .busca span {
-    font-size: 23px;
-  }
-
-  .busca input {
-    font-size: 14px;
-  }
-
-  .hero-app-card {
-    padding: 18px 14px 20px;
-  }
-
-  .hero-app-badge {
-    margin-bottom: 10px;
-    padding: 6px 13px;
-    font-size: 12px;
-  }
-
-  .hero-app-texto h3 {
-    margin-bottom: 8px;
-    font-size: 21px;
-    line-height: 1.12;
-  }
-
-  .hero-app-texto p {
-    margin-bottom: 16px;
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-.hero-lojas {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.hero-loja-btn {
-  width: 100%;
-  min-width: 0;
-  height: 58px;
-  border-radius: 15px;
-  gap: 8px;
-}
-
-.hero-loja-texto span {
-  font-size: 10px;
-}
-
-.hero-loja-texto strong {
-  font-size: 15px;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="topo">
-    <div class="marca">
-      <img
-        src="./assets/logo.png"
-        alt="Volante App"
-        class="logo"
-      />
-
-      <div>
-        <div class="nome">
-          Volante
-        </div>
-
-        <div class="slogan">
-          Mais que carros, paixão
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="hero">
-
-    <div class="hero-grid">
-
-      <div class="hero-busca-card">
-
-        <div class="busca">
-          <span>⌕</span>
-
-          <input
-            id="busca"
-            type="search"
-            placeholder="Buscar por modelo, região, descrição"
-          />
-        </div>
-
-      </div>
-
-      <div class="hero-app-card">
-
-        <div class="hero-app-texto">
-
-          <p>
-            Para anunciar veículos, publicar eventos e conversar com anunciantes, baixe o app do Volante.
-          </p>
-
-        </div>
-
-        <div class="hero-lojas">
-
-          <a
-            href="#"
-            onclick="baixarApp(); return false;"
-            class="hero-loja-btn"
-          >
-            <img
-              src="./assets/apple-store.png"
-              alt="App Store"
-            />
-
-            <div class="hero-loja-texto">
-              <span>Disponível na</span>
-              <strong>App Store</strong>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            onclick="baixarApp(); return false;"
-            class="hero-loja-btn"
-          >
-            <img
-              src="./assets/google-play.png"
-              alt="Google Play"
-            />
-
-            <div class="hero-loja-texto">
-              <span>Disponível no</span>
-              <strong>Google Play</strong>
-            </div>
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Recentes</h2>
-        <p>Últimos anúncios aprovados.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridRecentes"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Centro-Oeste</h2>
-        <p>Veículos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridCentroOeste"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Sudeste</h2>
-        <p>Veículos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridSudeste"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Sul</h2>
-        <p>Veículos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridSul"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Nordeste</h2>
-        <p>Veículos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridNordeste"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Norte</h2>
-        <p>Veículos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridNorte"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Eventos Centro-Oeste</h2>
-        <p>Encontros automotivos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridEventosCentroOeste"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Eventos Sudeste</h2>
-        <p>Encontros automotivos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridEventosSudeste"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Eventos Sul</h2>
-        <p>Encontros automotivos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridEventosSul"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Eventos Nordeste</h2>
-        <p>Encontros automotivos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridEventosNordeste"></div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div>
-        <h2>Eventos Norte</h2>
-        <p>Encontros automotivos da região.</p>
-      </div>
-    </div>
-
-    <div class="carousel-1linha" id="gridEventosNorte"></div>
-  </section>
-
-  <footer class="footer">
-
-    <div class="footer-baloes">
-
-      <div class="footer-card">
-        <h3>Volante</h3>
-
-        <p>
-          Mais que carros, paixão.
-        </p>
-
-        <p>
-          Uma vitrine premium para veículos clássicos,
-          antigos e experiências automotivas.
-        </p>
-      </div>
-
-      <div class="footer-card">
-        <h4>Institucional</h4>
-
-        <a href="./privacidade.html">
-          Política de privacidade
-        </a>
-
-        <a href="./termos.html">
-          Termos de uso
-        </a>
-      </div>
-
-      <div class="footer-card">
-        <h4>Aplicativo e contato</h4>
-
-        <a
-          href="#"
-          onclick="baixarApp(); return false;"
-        >
-          Google Play
-        </a>
-
-        <a
-          href="#"
-          onclick="baixarApp(); return false;"
-        >
-          App Store
-        </a>
-
-        <a
-          href="https://www.instagram.com/appvolante"
-          target="_blank"
-          class="instagram-link"
-        >
-          @appvolante
-        </a>
-
-        <a href="mailto:contato@volante.app.br">
-          contato@volante.app.br
-        </a>
-
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      Volante App © 2026.
-      Todos os direitos reservados.
-    </div>
-
-  </footer>
-
-</main>
-
-<script
-  type="module"
-  src="./js/home.js?v=00236"
+  src="./js/home.js?v=00240"
 ></script>
 
 </body>
