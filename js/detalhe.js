@@ -131,7 +131,7 @@ function renderizar(item, colecaoUsada) {
               ? `
                 <img
                   class="marca-agua-detalhe"
-                  src="./images/logo.png"
+                  src="./assets/logo.png"
                   alt="Volante"
                 />
               `
