@@ -84,12 +84,17 @@
 
 .marca-agua-detalhe {
   position: absolute;
-  left: 10px;
-  bottom: 4px;
-  width: 175px;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 260px;
   height: auto;
+
   opacity: .95;
+
   z-index: 9;
+
   pointer-events: none;
   user-select: none;
 }
