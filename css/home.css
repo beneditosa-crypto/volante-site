@@ -260,6 +260,57 @@
     inset 0 1px 0 rgba(255,255,255,.92);
 }
 
+/* DESTAQUE */
+.card.destaque {
+  border: 1px solid rgba(245, 158, 11, .55);
+
+  box-shadow:
+    0 14px 34px rgba(245, 158, 11, .16),
+    0 10px 26px rgba(15,23,42,.045),
+    inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+.card.destaque::before {
+  content: "Destaque";
+
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  z-index: 8;
+
+  min-height: 24px;
+
+  padding: 0 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: rgba(245, 158, 11, .96);
+
+  color: #fff;
+
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .35px;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.18);
+}
+
+.card.destaque:hover {
+  border-color: rgba(245, 158, 11, .75);
+
+  box-shadow:
+    0 18px 42px rgba(245, 158, 11, .20),
+    0 18px 42px rgba(15,23,42,.085),
+    inset 0 1px 0 rgba(255,255,255,.92);
+}
+
 .foto-wrap {
   position: relative;
 
@@ -451,5 +502,16 @@
   .meta {
     font-size: 10.5px;
     line-height: 1.3;
+  }
+
+  .card.destaque::before {
+    top: 8px;
+    left: 8px;
+
+    min-height: 21px;
+
+    padding: 0 8px;
+
+    font-size: 8.5px;
   }
 }
