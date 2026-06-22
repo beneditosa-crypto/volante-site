@@ -4,6 +4,19 @@ import {
   textoLocal
 } from "./shared.js";
 
+function ehDestaque(item) {
+  return (
+    item.destaque === true ||
+    item.destacado === true ||
+    item.emDestaque === true ||
+    item.destaqueAtivo === true ||
+    String(item.destaque || "").toLowerCase() === "true" ||
+    String(item.destacado || "").toLowerCase() === "true" ||
+    String(item.emDestaque || "").toLowerCase() === "true" ||
+    String(item.destaqueAtivo || "").toLowerCase() === "true"
+  );
+}
+
 export function imagemHtml(item, titulo) {
   const imagem = getImagem(item);
 
@@ -34,9 +47,10 @@ export function cardAnuncio(item) {
     "Anúncio";
 
   const local = textoLocal(item);
+  const destaque = ehDestaque(item);
 
   return `
-    <article class="card" onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'">
+    <article class="card ${destaque ? "destaque" : ""}" onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'">
       ${imagemHtml(item, titulo)}
 
       <div class="card-body">
