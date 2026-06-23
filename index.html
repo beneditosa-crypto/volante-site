@@ -40,10 +40,7 @@
   content="O melhor app de carros antigos do Brasil."
 />
 
-<meta
-  name="twitter:card"
-  content="summary_large_image"
-/>
+<meta name="twitter:card" content="summary_large_image" />
 
 <link rel="icon" type="image/png" href="./assets/favicon.png" />
 
@@ -54,46 +51,27 @@
 .hero {
   max-width: 1440px;
   margin: 8px auto 18px;
-  padding: 24px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
-  border: 1px solid rgba(30,58,138,.12);
-  box-shadow: 0 18px 42px rgba(15,23,42,.07);
-}
-
-.hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.hero-busca-card,
-.hero-app-card {
-  width: 100%;
-  border-radius: 24px;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(15,23,42,.08);
-  box-shadow: 0 14px 36px rgba(15,23,42,.06);
-}
-
-.hero-busca-card {
-  padding: 14px 20px 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .busca {
-  height: 56px;
+  height: 58px;
   border-radius: 18px;
   background: #fff;
-  border: 1px solid rgba(15,23,42,.12);
+  border: 1px solid rgba(15,23,42,.10);
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 0 18px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+  box-shadow: 0 8px 22px rgba(15,23,42,.045);
 }
 
 .busca span {
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   color: #1e3a8a;
 }
@@ -104,6 +82,7 @@
   outline: 0;
   background: transparent;
   font-size: 16px;
+  font-weight: 700;
   color: #0f172a;
 }
 
@@ -112,6 +91,11 @@
   width: calc(100% - 24px);
   margin: 34px auto 28px;
   padding: 24px 22px 26px;
+
+  border-radius: 24px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.08);
+  box-shadow: 0 14px 36px rgba(15,23,42,.06);
 
   display: flex;
   flex-direction: column;
@@ -128,9 +112,9 @@
 .hero-app-texto p {
   margin: 0;
   text-align: center;
-
   color: #334155;
   font-size: 15px;
+  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -140,7 +124,6 @@
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-
   margin-top: 18px;
 }
 
@@ -192,17 +175,6 @@
 @media (max-width: 768px) {
   .hero {
     margin: 10px 12px 22px;
-    padding: 18px 14px;
-    border-radius: 22px;
-  }
-
-  .hero-busca-card,
-  .hero-app-card {
-    border-radius: 18px;
-  }
-
-  .hero-busca-card {
-    padding: 16px 14px;
   }
 
   .busca {
@@ -213,7 +185,7 @@
   }
 
   .busca span {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   .busca input {
@@ -221,8 +193,10 @@
   }
 
   .hero-app-card {
-    margin: 28px 12px 24px;
+    width: calc(100% - 24px);
+    margin: 28px auto 24px;
     padding: 20px 14px;
+    border-radius: 18px;
   }
 
   .hero-app-texto p {
@@ -234,7 +208,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-
     width: 100%;
     margin-top: 16px;
   }
@@ -263,20 +236,11 @@
 <header>
   <div class="topo">
     <div class="marca">
-      <img
-        src="./assets/logo.png"
-        alt="Volante App"
-        class="logo"
-      />
+      <img src="./assets/logo.png" alt="Volante App" class="logo" />
 
       <div>
-        <div class="nome">
-          Volante
-        </div>
-
-        <div class="slogan">
-          Mais que carros, paixão
-        </div>
+        <div class="nome">Volante</div>
+        <div class="slogan">Mais que carros, paixão</div>
       </div>
     </div>
   </div>
@@ -285,18 +249,14 @@
 <main>
 
   <section class="hero">
-    <div class="hero-grid">
-      <div class="hero-busca-card">
-        <div class="busca">
-          <span>⌕</span>
+    <div class="busca">
+      <span>⌕</span>
 
-          <input
-            id="busca"
-            type="search"
-            placeholder="Buscar por modelo, região, descrição"
-          />
-        </div>
-      </div>
+      <input
+        id="busca"
+        type="search"
+        placeholder="Buscar por modelo, região, descrição"
+      />
     </div>
   </section>
 
@@ -307,7 +267,6 @@
         <p>Últimos anúncios aprovados.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridRecentes"></div>
   </section>
 
@@ -318,7 +277,6 @@
         <p>Veículos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridCentroOeste"></div>
   </section>
 
@@ -329,7 +287,6 @@
         <p>Veículos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridSudeste"></div>
   </section>
 
@@ -340,7 +297,6 @@
         <p>Veículos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridSul"></div>
   </section>
 
@@ -351,7 +307,6 @@
         <p>Veículos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridNordeste"></div>
   </section>
 
@@ -362,7 +317,6 @@
         <p>Veículos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridNorte"></div>
   </section>
 
@@ -373,7 +327,6 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridEventosCentroOeste"></div>
   </section>
 
@@ -384,7 +337,6 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridEventosSudeste"></div>
   </section>
 
@@ -395,7 +347,6 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridEventosSul"></div>
   </section>
 
@@ -406,7 +357,6 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridEventosNordeste"></div>
   </section>
 
@@ -417,27 +367,17 @@
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
-
     <div class="carousel-1linha" id="gridEventosNorte"></div>
   </section>
 
   <section class="hero-app-card home-download">
     <div class="hero-app-texto">
-      <p>
-        Baixe agora mesmo o app do Volante.
-      </p>
+      <p>Baixe agora mesmo o app do Volante.</p>
     </div>
 
     <div class="hero-lojas">
-      <a
-        href="#"
-        onclick="baixarApp(); return false;"
-        class="hero-loja-btn"
-      >
-        <img
-          src="./assets/apple-store.png"
-          alt="App Store"
-        />
+      <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
+        <img src="./assets/apple-store.png" alt="App Store" />
 
         <div class="hero-loja-texto">
           <span>Disponível na</span>
@@ -445,15 +385,8 @@
         </div>
       </a>
 
-      <a
-        href="#"
-        onclick="baixarApp(); return false;"
-        class="hero-loja-btn"
-      >
-        <img
-          src="./assets/google-play.png"
-          alt="Google Play"
-        />
+      <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
+        <img src="./assets/google-play.png" alt="Google Play" />
 
         <div class="hero-loja-texto">
           <span>Disponível no</span>
@@ -467,11 +400,7 @@
     <div class="footer-baloes">
       <div class="footer-card">
         <h3>Volante</h3>
-
-        <p>
-          Mais que carros, paixão.
-        </p>
-
+        <p>Mais que carros, paixão.</p>
         <p>
           Uma vitrine premium para veículos clássicos,
           antigos e experiências automotivas.
@@ -480,32 +409,15 @@
 
       <div class="footer-card">
         <h4>Institucional</h4>
-
-        <a href="./privacidade.html">
-          Política de privacidade
-        </a>
-
-        <a href="./termos.html">
-          Termos de uso
-        </a>
+        <a href="./privacidade.html">Política de privacidade</a>
+        <a href="./termos.html">Termos de uso</a>
       </div>
 
       <div class="footer-card">
         <h4>Aplicativo e contato</h4>
 
-        <a
-          href="#"
-          onclick="baixarApp(); return false;"
-        >
-          Google Play
-        </a>
-
-        <a
-          href="#"
-          onclick="baixarApp(); return false;"
-        >
-          App Store
-        </a>
+        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
+        <a href="#" onclick="baixarApp(); return false;">App Store</a>
 
         <a
           href="https://www.instagram.com/appvolante"
@@ -522,17 +434,13 @@
     </div>
 
     <div class="footer-bottom">
-      Volante App © 2026.
-      Todos os direitos reservados.
+      Volante App © 2026. Todos os direitos reservados.
     </div>
   </footer>
 
 </main>
 
-<script
-  type="module"
-  src="./js/home.js?v=00240"
-></script>
+<script type="module" src="./js/home.js?v=00240"></script>
 
 </body>
 </html>
