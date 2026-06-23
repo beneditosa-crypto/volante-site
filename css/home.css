@@ -12,7 +12,7 @@
   border: 1px solid rgba(15,23,42,.045);
   border-radius: 34px;
 
-  padding: 24px;
+  padding: 14px 18px;
 
   box-shadow:
     0 18px 42px rgba(15,23,42,.05);
@@ -95,13 +95,18 @@
   color: #0f172a;
 
   font-size: 14px;
-  font-weight: 550;
+  font-weight: 700;
 }
 
 .hero-app-card {
+  max-width: 980px;
+  margin: 34px auto 28px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
 }
 
 .hero-app-badge {
@@ -136,10 +141,10 @@
 }
 
 .hero-app-texto p {
-  color: #475569;
-
-  font-size: 14px;
-  line-height: 1.5;
+  color: #334155;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.45;
 }
 
 .hero-lojas {
