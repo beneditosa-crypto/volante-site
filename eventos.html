@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<title>Eventos | Volante App</title>
+
+<meta
+  name="description"
+  content="Veja eventos automotivos, encontros de carros antigos e experiências para apaixonados por veículos clássicos no Volante App."
+/>
+
+<meta property="og:title" content="Eventos | Volante App" />
+<meta
+  property="og:description"
+  content="Encontre eventos automotivos, encontros de carros antigos e experiências para apaixonados por veículos clássicos."
+/>
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://volante.app.br/eventos.html" />
+<meta property="og:image" content="https://volante.app.br/assets/logo.png" />
+<meta property="og:site_name" content="Volante App" />
+
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="canonical" href="https://volante.app.br/eventos.html" />
+<link rel="icon" type="image/png" href="./assets/favicon.png" />
+
+<link rel="stylesheet" href="./css/global.css?v=00243" />
+<link rel="stylesheet" href="./css/eventos.css?v=00243" />
+</head>
+
+<body>
+
+<header>
+  <div class="topo detalhe-topo">
+    <div></div>
+
+    <a href="./index.html" class="marca">
+      <img src="./assets/logo.png" alt="Volante App" class="logo" />
+
+      <div>
+        <div class="nome">Volante</div>
+        <div class="slogan">Mais que carros, paixão</div>
+      </div>
+    </a>
+
+    <div></div>
+  </div>
+</header>
+
+<main class="eventos-container">
+
+  <a href="./index.html" class="btn-voltar" aria-label="Voltar para a página inicial">
+    ← Voltar
+  </a>
+
+  <section class="eventos-hero">
+    <div>
+      <h1 id="tituloPagina">Eventos</h1>
+      <p id="subtituloPagina">
+        Explore encontros automotivos, eventos clássicos e experiências do universo Volante.
+      </p>
+    </div>
+  </section>
+
+  <section class="eventos-filtros">
+    <div class="busca">
+      <span>⌕</span>
+
+      <input
+        id="busca"
+        type="search"
+        placeholder="Buscar por evento, cidade ou região..."
+      />
+    </div>
+
+    <div class="filtros-regiao" aria-label="Filtros por região">
+      <button class="filtro-regiao ativo" data-regiao="">
+        Todas
+      </button>
+
+      <button class="filtro-regiao" data-regiao="centroOeste">
+        Centro-Oeste
+      </button>
+
+      <button class="filtro-regiao" data-regiao="sudeste">
+        Sudeste
+      </button>
+
+      <button class="filtro-regiao" data-regiao="sul">
+        Sul
+      </button>
+
+      <button class="filtro-regiao" data-regiao="nordeste">
+        Nordeste
+      </button>
+
+      <button class="filtro-regiao" data-regiao="norte">
+        Norte
+      </button>
+    </div>
+  </section>
+
+  <section class="eventos-listagem">
+    <div id="gridEventos" class="grid-eventos"></div>
+
+    <div class="acoes-listagem">
+      <button id="btnCarregarMais" class="btn-carregar-mais" type="button">
+        Carregar mais
+      </button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-baloes">
+      <div class="footer-card">
+        <h3>Volante</h3>
+        <p>Mais que carros, paixão.</p>
+        <p>
+          Uma vitrine premium para veículos clássicos,
+          antigos e experiências automotivas.
+        </p>
+      </div>
+
+      <div class="footer-card">
+        <h4>Institucional</h4>
+        <a href="./privacidade.html">Política de privacidade</a>
+        <a href="./termos.html">Termos de uso</a>
+      </div>
+
+      <div class="footer-card">
+        <h4>Aplicativo e contato</h4>
+        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
+        <a href="#" onclick="baixarApp(); return false;">App Store</a>
+        <a href="https://www.instagram.com/appvolante" target="_blank">
+          @appvolante
+        </a>
+        <a href="mailto:contato@volante.app.br">
+          contato@volante.app.br
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      Volante App © 2026. Todos os direitos reservados.
+    </div>
+  </footer>
+
+</main>
+
+<script type="module" src="./js/eventos.js?v=00243"></script>
+</body>
+</html>
