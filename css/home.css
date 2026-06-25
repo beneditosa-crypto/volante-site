@@ -184,12 +184,36 @@
   font-weight: 900;
 }
 
+/* NOVO MODELO: ATÉ 3 LINHAS HORIZONTAIS */
 .carousel-1linha {
   display: flex;
+  flex-direction: column;
   gap: 14px;
-  overflow-x: hidden;
+  overflow: visible;
+  padding-bottom: 8px;
+}
+
+.home-linha-horizontal {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 8px;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+.home-linha-horizontal::-webkit-scrollbar {
+  height: 7px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-thumb {
+  background: rgba(15,23,42,.12);
+  border-radius: 999px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .card {
@@ -342,54 +366,7 @@
   display: none !important;
 }
 
-.home-carrossel-controles {
-  margin: 12px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-
-.home-carrossel-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid rgba(30, 58, 138, 0.20);
-  background: #ffffff;
-  color: #1e3a8a;
-  font-size: 26px;
-  font-weight: 900;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-}
-
-.home-carrossel-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.09);
-}
-
-.home-carrossel-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-}
-
-.home-carrossel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 0;
-  background: rgba(30, 58, 138, 0.25);
-  cursor: pointer;
-}
-
-.home-carrossel-dot.ativo {
-  width: 22px;
-  background: #1e3a8a;
-}
-
+/* BOTÃO VER TODOS */
 .home-ver-todos {
   display: inline-flex;
   align-items: center;
@@ -404,11 +381,20 @@
   font-weight: 900;
   text-decoration: none;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  white-space: nowrap;
 }
 
 .home-ver-todos:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* REMOVE RESÍDUOS DO MODELO ANTERIOR */
+.home-carrossel-controles,
+.home-carrossel-btn,
+.home-carrossel-dots,
+.home-carrossel-dot {
+  display: none !important;
 }
 
 @media (max-width: 980px) {
@@ -456,7 +442,11 @@
 
   .carousel-1linha {
     gap: 11px;
-    overflow-x: hidden;
+  }
+
+  .home-linha-horizontal {
+    gap: 11px;
+    padding-bottom: 7px;
   }
 
   .card {
@@ -502,17 +492,6 @@
   .meta {
     font-size: 10.5px;
     line-height: 1.3;
-  }
-
-  .home-carrossel-controles {
-    margin-top: 10px;
-    gap: 12px;
-  }
-
-  .home-carrossel-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 24px;
   }
 
   .home-ver-todos {
