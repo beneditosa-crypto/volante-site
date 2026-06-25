@@ -18,6 +18,17 @@
     0 18px 42px rgba(15,23,42,.05);
 }
 
+section {
+  max-width: 1440px;
+  margin: 0 auto 54px;
+  padding: 0 24px;
+}
+
+section.hero,
+section.hero-app-card {
+  padding: 0;
+}
+
 .hero h1 {
   margin-bottom: 18px;
   color: #0f172a;
@@ -184,13 +195,12 @@
   font-weight: 900;
 }
 
-/* NOVO MODELO: ATÉ 3 LINHAS HORIZONTAIS */
 .carousel-1linha {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 42px;
   overflow: visible;
-  padding-bottom: 12px;
+  padding-bottom: 14px;
 }
 
 .home-linha-horizontal {
@@ -198,7 +208,7 @@
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 18px;
+  padding-bottom: 22px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
 }
@@ -366,7 +376,6 @@
   display: none !important;
 }
 
-/* BOTÃO VER TODOS */
 .home-ver-todos {
   display: inline-flex;
   align-items: center;
@@ -389,7 +398,6 @@
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
 }
 
-/* REMOVE RESÍDUOS DO MODELO ANTERIOR */
 .home-carrossel-controles,
 .home-carrossel-btn,
 .home-carrossel-dots,
@@ -404,6 +412,16 @@
 }
 
 @media (max-width: 620px) {
+  section {
+    margin-bottom: 44px;
+    padding: 0 12px;
+  }
+
+  section.hero,
+  section.hero-app-card {
+    padding: 0;
+  }
+
   .home-download {
     width: calc(100% - 24px);
   }
@@ -441,12 +459,12 @@
   }
 
   .carousel-1linha {
-    gap: 26px;
+    gap: 34px;
   }
 
   .home-linha-horizontal {
     gap: 14px;
-    padding-bottom: 14px;
+    padding-bottom: 18px;
   }
 
   .card {
