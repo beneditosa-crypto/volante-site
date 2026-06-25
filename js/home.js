@@ -19,6 +19,9 @@ import {
 
 const buscaInput = document.getElementById("busca");
 
+const LIMITE_HOME = 18;
+const ITENS_POR_LINHA = 6;
+
 const grids = {
   recentes: document.getElementById("gridRecentes"),
 
@@ -205,6 +208,90 @@ function controlarSecao(idGrid, lista) {
   secao.style.display = lista.length ? "block" : "none";
 }
 
+function obterUrlVerTodos(tipo, regiao) {
+  const params = new URLSearchParams();
+
+  if (regiao) {
+    params.set("regiao", regiao);
+  }
+
+  const query = params.toString();
+
+  if (tipo === "evento") {
+    return query ? `./eventos.html?${query}` : "./eventos.html";
+  }
+
+  return query ? `./anuncios.html?${query}` : "./anuncios.html";
+}
+
+function aplicarBotaoVerTodos(idGrid, lista, tipo, regiao) {
+  const grid = document.getElementById(idGrid);
+  if (!grid) return;
+
+  const secao = grid.closest("section");
+  if (!secao) return;
+
+  const cabecalho = secao.querySelector(".section-head");
+  if (!cabecalho) return;
+
+  let botao = cabecalho.querySelector(".home-ver-todos");
+
+  if (lista.length <= LIMITE_HOME) {
+    if (botao) {
+      botao.remove();
+    }
+
+    return;
+  }
+
+  if (!botao) {
+    botao = document.createElement("a");
+    botao.className = "home-ver-todos";
+    botao.textContent = tipo === "evento" ? "Ver eventos" : "Ver todos";
+    cabecalho.appendChild(botao);
+  }
+
+  botao.href = obterUrlVerTodos(tipo, regiao);
+}
+
+function dividirEmLinhas(lista) {
+  const limitada = lista.slice(0, LIMITE_HOME);
+  const linhas = [];
+
+  for (let i = 0; i < limitada.length; i += ITENS_POR_LINHA) {
+    linhas.push(limitada.slice(i, i + ITENS_POR_LINHA));
+  }
+
+  return linhas;
+}
+
+function renderizarGridPaginado(grid, lista, renderCard, mensagemVazia) {
+  if (!grid) return;
+
+  if (!lista.length) {
+    renderizarGrid(grid, lista, renderCard, mensagemVazia);
+    return;
+  }
+
+  const linhas = dividirEmLinhas(lista);
+
+  grid.innerHTML = linhas
+    .map((linha) => {
+      return `
+        <div class="home-linha-cards">
+          ${linha.map((item) => renderCard(item)).join("")}
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function renderizarSecao(idGrid, grid, lista, renderCard, mensagemVazia, tipo, regiao) {
+  controlarSecao(idGrid, lista);
+  aplicarBotaoVerTodos(idGrid, lista, tipo, regiao);
+  renderizarGridPaginado(grid, lista, renderCard, mensagemVazia);
+}
+
 function renderizarTudo() {
   const anunciosFiltrados = filtrar(anuncios).sort(ordenarAnuncios);
   const eventosFiltrados = filtrar(eventos).sort((a, b) => getDataMs(b) - getDataMs(a));
@@ -221,33 +308,115 @@ function renderizarTudo() {
   const eventosNordeste = filtrarRegiao(eventosFiltrados, REGIOES.nordeste);
   const eventosNorte = filtrarRegiao(eventosFiltrados, REGIOES.norte);
 
-  controlarSecao("gridRecentes", anunciosFiltrados);
+  renderizarSecao(
+    "gridRecentes",
+    grids.recentes,
+    anunciosFiltrados,
+    cardAnuncio,
+    "Nenhum anúncio encontrado.",
+    "anuncio",
+    ""
+  );
 
-  controlarSecao("gridCentroOeste", anunciosCentroOeste);
-  controlarSecao("gridSudeste", anunciosSudeste);
-  controlarSecao("gridSul", anunciosSul);
-  controlarSecao("gridNordeste", anunciosNordeste);
-  controlarSecao("gridNorte", anunciosNorte);
+  renderizarSecao(
+    "gridCentroOeste",
+    grids.centroOeste,
+    anunciosCentroOeste,
+    cardAnuncio,
+    "Nenhum anúncio encontrado.",
+    "anuncio",
+    "centroOeste"
+  );
 
-  controlarSecao("gridEventosCentroOeste", eventosCentroOeste);
-  controlarSecao("gridEventosSudeste", eventosSudeste);
-  controlarSecao("gridEventosSul", eventosSul);
-  controlarSecao("gridEventosNordeste", eventosNordeste);
-  controlarSecao("gridEventosNorte", eventosNorte);
+  renderizarSecao(
+    "gridSudeste",
+    grids.sudeste,
+    anunciosSudeste,
+    cardAnuncio,
+    "Nenhum anúncio encontrado.",
+    "anuncio",
+    "sudeste"
+  );
 
-  renderizarGrid(grids.recentes, anunciosFiltrados.slice(0, 18), cardAnuncio, "Nenhum anúncio encontrado.");
+  renderizarSecao(
+    "gridSul",
+    grids.sul,
+    anunciosSul,
+    cardAnuncio,
+    "Nenhum anúncio encontrado.",
+    "anuncio",
+    "sul"
+  );
 
-  renderizarGrid(grids.centroOeste, anunciosCentroOeste, cardAnuncio, "Nenhum anúncio encontrado.");
-  renderizarGrid(grids.sudeste, anunciosSudeste, cardAnuncio, "Nenhum anúncio encontrado.");
-  renderizarGrid(grids.sul, anunciosSul, cardAnuncio, "Nenhum anúncio encontrado.");
-  renderizarGrid(grids.nordeste, anunciosNordeste, cardAnuncio, "Nenhum anúncio encontrado.");
-  renderizarGrid(grids.norte, anunciosNorte, cardAnuncio, "Nenhum anúncio encontrado.");
+  renderizarSecao(
+    "gridNordeste",
+    grids.nordeste,
+    anunciosNordeste,
+    cardAnuncio,
+    "Nenhum anúncio encontrado.",
+    "anuncio",
+    "nordeste"
+  );
 
-  renderizarGrid(grids.eventosCentroOeste, eventosCentroOeste, cardEvento, "Nenhum evento encontrado.");
-  renderizarGrid(grids.eventosSudeste, eventosSudeste, cardEvento, "Nenhum evento encontrado.");
-  renderizarGrid(grids.eventosSul, eventosSul, cardEvento, "Nenhum evento encontrado.");
-  renderizarGrid(grids.eventosNordeste, eventosNordeste, cardEvento, "Nenhum evento encontrado.");
-  renderizarGrid(grids.eventosNorte, eventosNorte, cardEvento, "Nenhum evento encontrado.");
+  renderizarSecao(
+    "gridNorte",
+    grids.norte,
+    anunciosNorte,
+    cardAnuncio,
+    "Nenhum anúncio encontrado.",
+    "anuncio",
+    "norte"
+  );
+
+  renderizarSecao(
+    "gridEventosCentroOeste",
+    grids.eventosCentroOeste,
+    eventosCentroOeste,
+    cardEvento,
+    "Nenhum evento encontrado.",
+    "evento",
+    "centroOeste"
+  );
+
+  renderizarSecao(
+    "gridEventosSudeste",
+    grids.eventosSudeste,
+    eventosSudeste,
+    cardEvento,
+    "Nenhum evento encontrado.",
+    "evento",
+    "sudeste"
+  );
+
+  renderizarSecao(
+    "gridEventosSul",
+    grids.eventosSul,
+    eventosSul,
+    cardEvento,
+    "Nenhum evento encontrado.",
+    "evento",
+    "sul"
+  );
+
+  renderizarSecao(
+    "gridEventosNordeste",
+    grids.eventosNordeste,
+    eventosNordeste,
+    cardEvento,
+    "Nenhum evento encontrado.",
+    "evento",
+    "nordeste"
+  );
+
+  renderizarSecao(
+    "gridEventosNorte",
+    grids.eventosNorte,
+    eventosNorte,
+    cardEvento,
+    "Nenhum evento encontrado.",
+    "evento",
+    "norte"
+  );
 }
 
 async function carregarDados() {
