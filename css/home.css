@@ -188,17 +188,17 @@
 .carousel-1linha {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 32px;
   overflow: visible;
-  padding-bottom: 8px;
+  padding-bottom: 12px;
 }
 
 .home-linha-horizontal {
   display: flex;
-  gap: 14px;
+  gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 8px;
+  padding-bottom: 18px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
 }
@@ -441,12 +441,12 @@
   }
 
   .carousel-1linha {
-    gap: 11px;
+    gap: 26px;
   }
 
   .home-linha-horizontal {
-    gap: 11px;
-    padding-bottom: 7px;
+    gap: 14px;
+    padding-bottom: 14px;
   }
 
   .card {
