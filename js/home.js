@@ -19,10 +19,9 @@ import {
 
 const buscaInput = document.getElementById("busca");
 
-const LIMITE_HOME = 18;
-const ITENS_POR_PAGINA = 6;
-
-const paginas = {};
+const ITENS_POR_LINHA = 6;
+const LIMITE_LINHAS = 3;
+const LIMITE_HOME = ITENS_POR_LINHA * LIMITE_LINHAS;
 
 const grids = {
   recentes: document.getElementById("gridRecentes"),
@@ -89,13 +88,7 @@ const ESTADO_POR_NOME = {
 };
 
 if (buscaInput) {
-  buscaInput.addEventListener("input", () => {
-    Object.keys(paginas).forEach((chave) => {
-      paginas[chave] = 0;
-    });
-
-    renderizarTudo();
-  });
+  buscaInput.addEventListener("input", renderizarTudo);
 }
 
 function statusAtivo(item) {
@@ -244,147 +237,135 @@ function aplicarBotaoVerTodos(idGrid, lista, tipo, regiao) {
 
   let botao = cabecalho.querySelector(".home-ver-todos");
 
-  if (lista.length <= LIMITE_HOME) {
-    if (botao) {
-      botao.remove();
-    }
-
-    return;
-  }
-
   if (!botao) {
     botao = document.createElement("a");
     botao.className = "home-ver-todos";
-    botao.textContent = tipo === "evento" ? "Ver eventos" : "Ver todos";
     cabecalho.appendChild(botao);
   }
 
+  botao.textContent = tipo === "evento" ? "Ver eventos →" : "Ver todos →";
   botao.href = obterUrlVerTodos(tipo, regiao);
+
+  botao.style.display = lista.length ? "inline-flex" : "none";
 }
 
-function obterContainerControles(grid) {
-  if (!grid) return null;
+function dividirEmLinhas(lista) {
+  const limitada = lista.slice(0, LIMITE_HOME);
+  const linhas = [];
 
-  let controles = grid.nextElementSibling;
-
-  if (!controles || !controles.classList.contains("home-carrossel-controles")) {
-    controles = document.createElement("div");
-    controles.className = "home-carrossel-controles";
-    grid.insertAdjacentElement("afterend", controles);
+  for (let i = 0; i < limitada.length; i += ITENS_POR_LINHA) {
+    linhas.push(limitada.slice(i, i + ITENS_POR_LINHA));
   }
 
-  return controles;
+  return linhas.slice(0, LIMITE_LINHAS);
 }
 
-function renderizarControles(idGrid, grid, totalPaginas) {
-  const controles = obterContainerControles(grid);
-  if (!controles) return;
-
-  if (totalPaginas <= 1) {
-    controles.innerHTML = "";
-    controles.style.display = "none";
-    return;
-  }
-
-  controles.style.display = "flex";
-
-  const paginaAtual = paginas[idGrid] || 0;
-
-  controles.innerHTML = `
-    <button class="home-carrossel-btn" data-acao="anterior" aria-label="Página anterior">
-      ‹
-    </button>
-
-    <div class="home-carrossel-dots">
-      ${Array.from({ length: totalPaginas })
-        .map((_, index) => `
-          <button
-            class="home-carrossel-dot ${index === paginaAtual ? "ativo" : ""}"
-            data-pagina="${index}"
-            aria-label="Ir para página ${index + 1}"
-          ></button>
-        `)
-        .join("")}
-    </div>
-
-    <button class="home-carrossel-btn" data-acao="proxima" aria-label="Próxima página">
-      ›
-    </button>
-  `;
-
-  controles
-    .querySelector('[data-acao="anterior"]')
-    ?.addEventListener("click", () => {
-      paginas[idGrid] = Math.max(0, paginaAtual - 1);
-      renderizarTudo();
-    });
-
-  controles
-    .querySelector('[data-acao="proxima"]')
-    ?.addEventListener("click", () => {
-      paginas[idGrid] = Math.min(totalPaginas - 1, paginaAtual + 1);
-      renderizarTudo();
-    });
-
-  controles
-    .querySelectorAll("[data-pagina]")
-    .forEach((botao) => {
-      botao.addEventListener("click", () => {
-        paginas[idGrid] = Number(botao.dataset.pagina || 0);
-        renderizarTudo();
-      });
-    });
-}
-
-function renderizarGridPaginado(idGrid, grid, lista, renderCard, mensagemVazia) {
+function removerControlesAntigos(grid) {
   if (!grid) return;
+
+  const proximo = grid.nextElementSibling;
+
+  if (
+    proximo &&
+    proximo.classList.contains("home-carrossel-controles")
+  ) {
+    proximo.remove();
+  }
+}
+
+function renderizarGridEmLinhas(grid, lista, renderCard, mensagemVazia) {
+  if (!grid) return;
+
+  removerControlesAntigos(grid);
 
   if (!lista.length) {
     renderizarGrid(grid, lista, renderCard, mensagemVazia);
-    renderizarControles(idGrid, grid, 0);
     return;
   }
 
-  const limitada = lista.slice(0, LIMITE_HOME);
-  const totalPaginas = Math.ceil(limitada.length / ITENS_POR_PAGINA);
+  const linhas = dividirEmLinhas(lista);
 
-  const paginaAtual = Math.min(
-    paginas[idGrid] || 0,
-    Math.max(totalPaginas - 1, 0)
-  );
-
-  paginas[idGrid] = paginaAtual;
-
-  const inicio = paginaAtual * ITENS_POR_PAGINA;
-  const fim = inicio + ITENS_POR_PAGINA;
-
-  const pagina = limitada.slice(inicio, fim);
-
-  renderizarGrid(grid, pagina, renderCard, mensagemVazia);
-  renderizarControles(idGrid, grid, totalPaginas);
+  grid.innerHTML = linhas
+    .map((linha) => {
+      return `
+        <div class="home-linha-horizontal">
+          ${linha.map((item) => renderCard(item)).join("")}
+        </div>
+      `;
+    })
+    .join("");
 }
 
-function renderizarSecao(idGrid, grid, lista, renderCard, mensagemVazia, tipo, regiao) {
+function renderizarSecao(
+  idGrid,
+  grid,
+  lista,
+  renderCard,
+  mensagemVazia,
+  tipo,
+  regiao
+) {
   controlarSecao(idGrid, lista);
   aplicarBotaoVerTodos(idGrid, lista, tipo, regiao);
-  renderizarGridPaginado(idGrid, grid, lista, renderCard, mensagemVazia);
+  renderizarGridEmLinhas(grid, lista, renderCard, mensagemVazia);
 }
 
 function renderizarTudo() {
   const anunciosFiltrados = filtrar(anuncios).sort(ordenarAnuncios);
-  const eventosFiltrados = filtrar(eventos).sort((a, b) => getDataMs(b) - getDataMs(a));
 
-  const anunciosCentroOeste = filtrarRegiao(anunciosFiltrados, REGIOES.centroOeste);
-  const anunciosSudeste = filtrarRegiao(anunciosFiltrados, REGIOES.sudeste);
-  const anunciosSul = filtrarRegiao(anunciosFiltrados, REGIOES.sul);
-  const anunciosNordeste = filtrarRegiao(anunciosFiltrados, REGIOES.nordeste);
-  const anunciosNorte = filtrarRegiao(anunciosFiltrados, REGIOES.norte);
+  const eventosFiltrados = filtrar(eventos).sort(
+    (a, b) => getDataMs(b) - getDataMs(a)
+  );
 
-  const eventosCentroOeste = filtrarRegiao(eventosFiltrados, REGIOES.centroOeste);
-  const eventosSudeste = filtrarRegiao(eventosFiltrados, REGIOES.sudeste);
-  const eventosSul = filtrarRegiao(eventosFiltrados, REGIOES.sul);
-  const eventosNordeste = filtrarRegiao(eventosFiltrados, REGIOES.nordeste);
-  const eventosNorte = filtrarRegiao(eventosFiltrados, REGIOES.norte);
+  const anunciosCentroOeste = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.centroOeste
+  );
+
+  const anunciosSudeste = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.sudeste
+  );
+
+  const anunciosSul = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.sul
+  );
+
+  const anunciosNordeste = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.nordeste
+  );
+
+  const anunciosNorte = filtrarRegiao(
+    anunciosFiltrados,
+    REGIOES.norte
+  );
+
+  const eventosCentroOeste = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.centroOeste
+  );
+
+  const eventosSudeste = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.sudeste
+  );
+
+  const eventosSul = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.sul
+  );
+
+  const eventosNordeste = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.nordeste
+  );
+
+  const eventosNorte = filtrarRegiao(
+    eventosFiltrados,
+    REGIOES.norte
+  );
 
   renderizarSecao(
     "gridRecentes",
