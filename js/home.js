@@ -20,7 +20,9 @@ import {
 const buscaInput = document.getElementById("busca");
 
 const LIMITE_HOME = 18;
-const ITENS_POR_LINHA = 6;
+const ITENS_POR_PAGINA = 6;
+
+const paginas = {};
 
 const grids = {
   recentes: document.getElementById("gridRecentes"),
@@ -87,7 +89,13 @@ const ESTADO_POR_NOME = {
 };
 
 if (buscaInput) {
-  buscaInput.addEventListener("input", renderizarTudo);
+  buscaInput.addEventListener("input", () => {
+    Object.keys(paginas).forEach((chave) => {
+      paginas[chave] = 0;
+    });
+
+    renderizarTudo();
+  });
 }
 
 function statusAtivo(item) {
@@ -254,42 +262,112 @@ function aplicarBotaoVerTodos(idGrid, lista, tipo, regiao) {
   botao.href = obterUrlVerTodos(tipo, regiao);
 }
 
-function dividirEmLinhas(lista) {
-  const limitada = lista.slice(0, LIMITE_HOME);
-  const linhas = [];
+function obterContainerControles(grid) {
+  if (!grid) return null;
 
-  for (let i = 0; i < limitada.length; i += ITENS_POR_LINHA) {
-    linhas.push(limitada.slice(i, i + ITENS_POR_LINHA));
+  let controles = grid.nextElementSibling;
+
+  if (!controles || !controles.classList.contains("home-carrossel-controles")) {
+    controles = document.createElement("div");
+    controles.className = "home-carrossel-controles";
+    grid.insertAdjacentElement("afterend", controles);
   }
 
-  return linhas;
+  return controles;
 }
 
-function renderizarGridPaginado(grid, lista, renderCard, mensagemVazia) {
+function renderizarControles(idGrid, grid, totalPaginas) {
+  const controles = obterContainerControles(grid);
+  if (!controles) return;
+
+  if (totalPaginas <= 1) {
+    controles.innerHTML = "";
+    controles.style.display = "none";
+    return;
+  }
+
+  controles.style.display = "flex";
+
+  const paginaAtual = paginas[idGrid] || 0;
+
+  controles.innerHTML = `
+    <button class="home-carrossel-btn" data-acao="anterior" aria-label="Página anterior">
+      ‹
+    </button>
+
+    <div class="home-carrossel-dots">
+      ${Array.from({ length: totalPaginas })
+        .map((_, index) => `
+          <button
+            class="home-carrossel-dot ${index === paginaAtual ? "ativo" : ""}"
+            data-pagina="${index}"
+            aria-label="Ir para página ${index + 1}"
+          ></button>
+        `)
+        .join("")}
+    </div>
+
+    <button class="home-carrossel-btn" data-acao="proxima" aria-label="Próxima página">
+      ›
+    </button>
+  `;
+
+  controles
+    .querySelector('[data-acao="anterior"]')
+    ?.addEventListener("click", () => {
+      paginas[idGrid] = Math.max(0, paginaAtual - 1);
+      renderizarTudo();
+    });
+
+  controles
+    .querySelector('[data-acao="proxima"]')
+    ?.addEventListener("click", () => {
+      paginas[idGrid] = Math.min(totalPaginas - 1, paginaAtual + 1);
+      renderizarTudo();
+    });
+
+  controles
+    .querySelectorAll("[data-pagina]")
+    .forEach((botao) => {
+      botao.addEventListener("click", () => {
+        paginas[idGrid] = Number(botao.dataset.pagina || 0);
+        renderizarTudo();
+      });
+    });
+}
+
+function renderizarGridPaginado(idGrid, grid, lista, renderCard, mensagemVazia) {
   if (!grid) return;
 
   if (!lista.length) {
     renderizarGrid(grid, lista, renderCard, mensagemVazia);
+    renderizarControles(idGrid, grid, 0);
     return;
   }
 
-  const linhas = dividirEmLinhas(lista);
+  const limitada = lista.slice(0, LIMITE_HOME);
+  const totalPaginas = Math.ceil(limitada.length / ITENS_POR_PAGINA);
 
-  grid.innerHTML = linhas
-    .map((linha) => {
-      return `
-        <div class="home-linha-cards">
-          ${linha.map((item) => renderCard(item)).join("")}
-        </div>
-      `;
-    })
-    .join("");
+  const paginaAtual = Math.min(
+    paginas[idGrid] || 0,
+    Math.max(totalPaginas - 1, 0)
+  );
+
+  paginas[idGrid] = paginaAtual;
+
+  const inicio = paginaAtual * ITENS_POR_PAGINA;
+  const fim = inicio + ITENS_POR_PAGINA;
+
+  const pagina = limitada.slice(inicio, fim);
+
+  renderizarGrid(grid, pagina, renderCard, mensagemVazia);
+  renderizarControles(idGrid, grid, totalPaginas);
 }
 
 function renderizarSecao(idGrid, grid, lista, renderCard, mensagemVazia, tipo, regiao) {
   controlarSecao(idGrid, lista);
   aplicarBotaoVerTodos(idGrid, lista, tipo, regiao);
-  renderizarGridPaginado(grid, lista, renderCard, mensagemVazia);
+  renderizarGridPaginado(idGrid, grid, lista, renderCard, mensagemVazia);
 }
 
 function renderizarTudo() {
