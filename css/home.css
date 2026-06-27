@@ -1,7 +1,7 @@
 .hero {
   max-width: 1440px;
-  margin: 8px auto 22px;
-  padding: 0 24px;
+  margin: 8px auto 18px;
+  padding: 0 18px;
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -9,7 +9,7 @@
 }
 
 .busca {
-  height: 58px;
+  height: 56px;
   border-radius: 18px;
   background: #ffffff;
   border: 1px solid rgba(15,23,42,.10);
@@ -38,13 +38,13 @@
 
 section {
   max-width: 1440px;
-  margin: 0 auto 34px;
-  padding: 0 24px;
+  margin: 0 auto 26px;
+  padding: 0 18px;
 }
 
 section.hero,
 section.hero-app-card {
-  padding: 0 24px;
+  padding: 0 18px;
 }
 
 .secao {
@@ -55,16 +55,16 @@ section.hero-app-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 10px;
+  gap: 14px;
+  margin-bottom: 9px;
 }
 
 .section-head h2 {
   margin: 0;
   color: #0f172a;
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 950;
-  letter-spacing: -.9px;
+  letter-spacing: -.8px;
   line-height: 1.05;
 }
 
@@ -76,30 +76,30 @@ section.hero-app-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 34px;
-  padding: 0 14px;
+  min-height: 32px;
+  padding: 0 13px;
   border-radius: 999px;
   background: #ffffff;
-  border: 1px solid rgba(30,58,138,.22);
+  border: 1px solid rgba(30,58,138,.20);
   color: #1e3a8a;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 900;
   text-decoration: none;
-  box-shadow: 0 8px 18px rgba(15,23,42,.05);
+  box-shadow: 0 8px 18px rgba(15,23,42,.045);
   white-space: nowrap;
 }
 
 /* ESCOLHA DO VOLANTE */
 
 .secao-escolha {
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .mosaico-escolha {
   display: grid;
   grid-template-columns: 1.08fr 1fr 1fr;
-  grid-template-rows: 265px 265px;
-  gap: 12px;
+  grid-template-rows: 248px 248px;
+  gap: 10px;
 }
 
 .mosaico-item {
@@ -116,13 +116,13 @@ section.hero-app-card {
   min-width: 0;
   max-width: none;
   flex: initial;
-  border-radius: 24px;
+  border-radius: 22px;
   background: transparent;
-  box-shadow: 0 14px 34px rgba(15,23,42,.075);
+  box-shadow: 0 12px 30px rgba(15,23,42,.07);
 }
 
 .mosaico-escolha .mosaico-principal .card {
-  border-radius: 28px;
+  border-radius: 26px;
 }
 
 .mosaico-escolha .foto-wrap {
@@ -132,25 +132,25 @@ section.hero-app-card {
 }
 
 .mosaico-escolha .overlay-content {
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
 }
 
 .mosaico-escolha .overlay-text {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.08;
 }
 
 .mosaico-escolha .mosaico-principal .overlay-text {
-  font-size: 23px;
+  font-size: 22px;
   line-height: 1.04;
 }
 
 .mosaico-escolha .overlay-preco {
   margin-top: 5px;
   color: #ffffff;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 900;
   line-height: 1.05;
 }
@@ -158,7 +158,7 @@ section.hero-app-card {
 .mosaico-escolha .overlay-local {
   margin-top: 4px;
   color: rgba(255,255,255,.92);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   line-height: 1.15;
 }
@@ -172,21 +172,21 @@ section.hero-app-card {
 
 .home-linha-horizontal {
   display: flex;
-  gap: 18px;
+  gap: 12px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px 0 18px;
+  padding: 2px 2px 12px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
 }
 
 .home-linha-horizontal::-webkit-scrollbar {
-  height: 7px;
+  height: 6px;
 }
 
 .home-linha-horizontal::-webkit-scrollbar-thumb {
-  background: rgba(15,23,42,.13);
+  background: rgba(15,23,42,.12);
   border-radius: 999px;
 }
 
@@ -198,14 +198,14 @@ section.hero-app-card {
 
 .card {
   position: relative;
-  flex: 0 0 31.5%;
-  min-width: 310px;
-  max-width: 420px;
+  flex: 0 0 30.6%;
+  min-width: 292px;
+  max-width: 395px;
   background: transparent;
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(15,23,42,.07);
-  box-shadow: 0 12px 30px rgba(15,23,42,.055);
+  box-shadow: 0 10px 26px rgba(15,23,42,.052);
   cursor: pointer;
   scroll-snap-align: start;
 }
@@ -235,7 +235,7 @@ section.hero-app-card {
 .foto-wrap {
   position: relative;
   width: 100%;
-  height: 205px;
+  height: 192px;
   overflow: hidden;
   background: #e5e7eb;
 }
@@ -261,27 +261,27 @@ section.hero-app-card {
 
 .overlay-content {
   position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
+  left: 13px;
+  right: 13px;
+  bottom: 13px;
   z-index: 4;
 }
 
 .overlay-text {
   color: #ffffff;
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 950;
   line-height: 1.05;
-  letter-spacing: -.45px;
+  letter-spacing: -.42px;
   text-shadow: 0 2px 12px rgba(0,0,0,.25);
 }
 
 .ver-mais {
-  margin-top: 8px;
+  margin-top: 7px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 26px;
+  min-height: 25px;
   padding: 0 9px;
   border-radius: 999px;
   background: rgba(255,255,255,.14);
@@ -317,35 +317,35 @@ section.hero-app-card {
 /* EVENTOS */
 
 .eventos-banner {
-  max-width: 1440px;
-  margin: 4px auto 38px;
-  padding: 24px 26px;
-  border-radius: 28px;
+  max-width: 1404px;
+  margin: 0 auto 28px;
+  padding: 22px 24px;
+  border-radius: 26px;
   background: linear-gradient(135deg, #0f172a, #1e3a8a);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  box-shadow: 0 18px 48px rgba(15,23,42,.18);
+  gap: 22px;
+  box-shadow: 0 16px 42px rgba(15,23,42,.16);
 }
 
 .eventos-banner-conteudo {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .eventos-icone {
-  width: 56px;
-  height: 56px;
-  border-radius: 20px;
+  width: 54px;
+  height: 54px;
+  border-radius: 19px;
   background: rgba(255,255,255,.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
-  flex: 0 0 56px;
+  font-size: 24px;
+  flex: 0 0 54px;
 }
 
 .eventos-banner span {
@@ -360,7 +360,7 @@ section.hero-app-card {
 
 .eventos-banner h2 {
   margin: 0;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: 950;
   letter-spacing: -1px;
 }
@@ -373,8 +373,8 @@ section.hero-app-card {
 }
 
 .eventos-botao {
-  min-height: 42px;
-  padding: 0 17px;
+  min-height: 40px;
+  padding: 0 16px;
   border-radius: 999px;
   background: #ffffff;
   color: #1e3a8a;
@@ -391,13 +391,13 @@ section.hero-app-card {
 
 .hero-app-card {
   max-width: 1180px;
-  width: calc(100% - 48px);
-  margin: 30px auto 26px;
-  padding: 22px 20px 24px;
-  border-radius: 24px;
+  width: calc(100% - 36px);
+  margin: 26px auto 24px;
+  padding: 20px 18px 22px;
+  border-radius: 22px;
   background: rgba(255,255,255,.92);
   border: 1px solid rgba(15,23,42,.08);
-  box-shadow: 0 14px 36px rgba(15,23,42,.06);
+  box-shadow: 0 12px 32px rgba(15,23,42,.055);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -416,22 +416,22 @@ section.hero-app-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .hero-loja-btn {
-  min-width: 220px;
-  height: 58px;
+  min-width: 210px;
+  height: 56px;
   border-radius: 16px;
   background: #ffffff;
   border: 1px solid rgba(15,23,42,.12);
-  box-shadow: 0 10px 24px rgba(15,23,42,.06);
+  box-shadow: 0 10px 22px rgba(15,23,42,.055);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 11px;
   text-decoration: none;
   color: #0f172a;
 }
@@ -462,8 +462,8 @@ section.hero-app-card {
 
 .empty {
   width: 100%;
-  padding: 18px;
-  border-radius: 18px;
+  padding: 16px;
+  border-radius: 16px;
   background: #f8fafc;
   border: 1px solid rgba(15,23,42,.08);
   color: #64748b;
@@ -476,19 +476,19 @@ section.hero-app-card {
 @media (max-width: 620px) {
 
   .hero {
-    margin: 10px 0 20px;
+    margin: 8px 0 16px;
     padding: 0 12px;
   }
 
   .busca {
-    height: 52px;
+    height: 50px;
     border-radius: 15px;
     gap: 10px;
     padding: 0 14px;
   }
 
   .busca span {
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .busca input {
@@ -496,7 +496,7 @@ section.hero-app-card {
   }
 
   section {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding: 0 12px;
   }
 
@@ -507,11 +507,12 @@ section.hero-app-card {
 
   .section-head {
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    gap: 10px;
   }
 
   .section-head h2 {
-    font-size: 21px;
+    font-size: 20px;
     letter-spacing: -.6px;
   }
 
@@ -520,15 +521,15 @@ section.hero-app-card {
   }
 
   .home-ver-todos {
-    min-height: 31px;
-    padding: 0 11px;
-    font-size: 11.5px;
+    min-height: 30px;
+    padding: 0 10px;
+    font-size: 11px;
   }
 
   .mosaico-escolha {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
     overflow: visible;
     padding: 0;
   }
@@ -547,7 +548,7 @@ section.hero-app-card {
     height: auto;
     min-width: 0;
     max-width: none;
-    border-radius: 18px;
+    border-radius: 17px;
     background: transparent;
   }
 
@@ -587,19 +588,30 @@ section.hero-app-card {
   }
 
   .home-linha-horizontal {
-    gap: 10px;
-    padding-bottom: 10px;
+    gap: 9px;
+    padding: 2px 12px 9px 0;
   }
 
   .card {
-    flex: 0 0 42%;
-    min-width: 42%;
-    max-width: 42%;
+    flex: 0 0 43%;
+    min-width: 43%;
+    max-width: 43%;
     border-radius: 16px;
   }
 
   .foto-wrap {
-    height: 118px;
+    height: 122px;
+  }
+
+  .overlay-content {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .overlay-text {
+    font-size: 13px;
+    letter-spacing: -.25px;
   }
 
   .ver-mais {
@@ -607,23 +619,25 @@ section.hero-app-card {
   }
 
   .eventos-banner {
-    margin: 0 12px 28px;
-    padding: 18px;
-    border-radius: 22px;
+    margin: 0 12px 22px;
+    padding: 17px;
+    border-radius: 21px;
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
   }
 
   .eventos-banner-conteudo {
     align-items: flex-start;
+    gap: 13px;
   }
 
   .eventos-icone {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 15px;
-    font-size: 21px;
-    flex-basis: 44px;
+    font-size: 20px;
+    flex-basis: 42px;
   }
 
   .eventos-banner h2 {
@@ -641,23 +655,23 @@ section.hero-app-card {
 
   .hero-app-card {
     width: calc(100% - 24px);
-    margin: 24px auto 22px;
-    padding: 18px 14px;
+    margin: 20px auto 20px;
+    padding: 17px 14px;
     border-radius: 18px;
   }
 
   .hero-lojas {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 9px;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 14px;
   }
 
   .hero-loja-btn {
     width: 100%;
     min-width: 0;
-    height: 56px;
+    height: 54px;
     border-radius: 15px;
     gap: 8px;
   }
