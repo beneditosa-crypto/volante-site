@@ -240,10 +240,17 @@ function renderizarMosaicoEscolha(grid, lista) {
   }
 
   const selecionados = lista.slice(0, 6);
+  const total = selecionados.length;
+
+  grid.className = `mosaico-escolha mosaico-total-${total}`;
 
   grid.innerHTML = selecionados
     .map((item, index) => {
-      const classe = index === 0 ? "mosaico-item mosaico-principal" : "mosaico-item";
+      const principal = index === 0 && total >= 3;
+
+      const classe = principal
+        ? "mosaico-item mosaico-principal"
+        : "mosaico-item";
 
       return `
         <div class="${classe}">
@@ -259,7 +266,6 @@ function renderizarMosaicoEscolha(grid, lista) {
     })
     .join("");
 }
-
 function renderizarSecao(
   idGrid,
   grid,
