@@ -231,8 +231,21 @@ function renderizarCarrossel(grid, lista, renderCard, mensagemVazia) {
   `;
 }
 
+function limparClassesMosaico(grid) {
+  grid.classList.remove(
+    "mosaico-qtd-1",
+    "mosaico-qtd-2",
+    "mosaico-qtd-3",
+    "mosaico-qtd-4",
+    "mosaico-qtd-5",
+    "mosaico-qtd-6"
+  );
+}
+
 function renderizarMosaicoEscolha(grid, lista) {
   if (!grid) return;
+
+  limparClassesMosaico(grid);
 
   if (!lista.length) {
     grid.innerHTML = "";
@@ -240,6 +253,8 @@ function renderizarMosaicoEscolha(grid, lista) {
   }
 
   const selecionados = lista.slice(0, 6);
+
+  grid.classList.add(`mosaico-qtd-${selecionados.length}`);
 
   grid.innerHTML = selecionados
     .map((item, index) => {
@@ -249,16 +264,7 @@ function renderizarMosaicoEscolha(grid, lista) {
 
       return `
         <div class="${classe}">
-          ${cardAnuncio(
-            {
-              ...item,
-              destaque: true,
-              destacado: true,
-              emDestaque: true,
-              destaqueAtivo: true
-            },
-            true
-          )}
+          ${cardAnuncio(item, true)}
         </div>
       `;
     })
