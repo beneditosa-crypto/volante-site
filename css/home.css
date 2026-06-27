@@ -89,6 +89,8 @@ section.hero-app-card {
   white-space: nowrap;
 }
 
+/* ESCOLHA DO VOLANTE */
+
 .secao-escolha {
   margin-top: 4px;
 }
@@ -129,10 +131,6 @@ section.hero-app-card {
   min-height: 0;
 }
 
-.mosaico-escolha .card-body {
-  display: none !important;
-}
-
 .mosaico-escolha .overlay-content {
   left: 16px;
   right: 16px;
@@ -165,6 +163,13 @@ section.hero-app-card {
   line-height: 1.15;
 }
 
+/* CARROSSÉIS */
+
+.carousel-1linha {
+  display: block;
+  overflow: visible;
+}
+
 .home-linha-horizontal {
   display: flex;
   gap: 18px;
@@ -189,12 +194,14 @@ section.hero-app-card {
   background: transparent;
 }
 
+/* CARDS */
+
 .card {
   position: relative;
   flex: 0 0 31.5%;
   min-width: 310px;
   max-width: 420px;
-  background: rgba(255,255,255,.98);
+  background: transparent;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid rgba(15,23,42,.07);
@@ -286,16 +293,17 @@ section.hero-app-card {
 }
 
 .card-body {
-  display: block;
-  padding: 11px 14px 13px;
-  background: #ffffff;
+  display: none !important;
+  padding: 0;
+  margin: 0;
+  height: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: transparent;
 }
 
 .meta {
-  color: #64748b;
-  font-size: 12px;
-  line-height: 1.35;
-  font-weight: 700;
+  display: none;
 }
 
 .price,
@@ -305,6 +313,8 @@ section.hero-app-card {
 .floating-lojas {
   display: none !important;
 }
+
+/* EVENTOS */
 
 .eventos-banner {
   max-width: 1440px;
@@ -376,6 +386,8 @@ section.hero-app-card {
   justify-content: center;
   white-space: nowrap;
 }
+
+/* APP CARD */
 
 .hero-app-card {
   max-width: 1180px;
@@ -458,6 +470,8 @@ section.hero-app-card {
   font-weight: 800;
   text-align: center;
 }
+
+/* MOBILE */
 
 @media (max-width: 620px) {
 
@@ -549,10 +563,6 @@ section.hero-app-card {
     aspect-ratio: 16 / 9;
   }
 
-  .mosaico-escolha .card-body {
-    display: none !important;
-  }
-
   .mosaico-escolha .overlay-content {
     left: 10px;
     right: 10px;
@@ -594,15 +604,6 @@ section.hero-app-card {
 
   .ver-mais {
     display: none;
-  }
-
-  .card-body {
-    padding: 8px 9px 9px;
-  }
-
-  .meta {
-    font-size: 9.8px;
-    line-height: 1.25;
   }
 
   .eventos-banner {
