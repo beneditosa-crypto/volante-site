@@ -42,13 +42,7 @@ export function imagemHtml(item, titulo, editorial = false) {
 
         <div class="overlay editorial"></div>
 
-        ${
-          ehDestaque(item)
-            ? `<div class="selo-destaque">Destaque</div>`
-            : ""
-        }
-
-        <div class="overlay-content editorial">
+         <div class="overlay-content editorial">
 
           <div class="overlay-text editorial">
             ${escapeHtml(titulo)}
