@@ -151,14 +151,10 @@ section.hero-app-card {
 
 .mosaico-escolha .overlay-text {
   font-size: 18px;
-  line-height: 1.1;
-  letter-spacing: -.4px;
 }
 
 .mosaico-escolha .mosaico-principal .overlay-text {
   font-size: 24px;
-  line-height: 1.05;
-  letter-spacing: -.8px;
 }
 
 .mosaico-escolha .overlay-preco {
@@ -173,50 +169,6 @@ section.hero-app-card {
   color: rgba(255,255,255,.92);
   font-size: 14px;
   font-weight: 700;
-}
-
-.mosaico-escolha .selo-destaque {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(15,23,42,.90);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 900;
-  z-index: 10;
-}
-/* CARROSSÉIS */
-
-.carousel-1linha {
-  display: block;
-  overflow: visible;
-  padding-bottom: 4px;
-}
-
-.home-linha-horizontal {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 2px 0 20px;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scroll-snap-type: x proximity;
-}
-
-.home-linha-horizontal::-webkit-scrollbar {
-  height: 7px;
-}
-
-.home-linha-horizontal::-webkit-scrollbar-thumb {
-  background: rgba(15,23,42,.13);
-  border-radius: 999px;
-}
-
-.home-linha-horizontal::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 /* CARDS */
@@ -528,230 +480,86 @@ section.hero-app-card {
 /* MOBILE */
 @media (max-width: 620px) {
 
-  .hero {
-    margin: 10px 0 22px;
-    padding: 0 12px;
-  }
-
-  .busca {
-    height: 52px;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 0 14px;
-  }
-
-  .busca span {
-    font-size: 21px;
-  }
-
-  .busca input {
-    font-size: 14px;
-  }
-
   section {
-    margin-bottom: 34px;
-    padding: 0 12px;
-  }
-
-  section.hero,
-  section.hero-app-card {
+    margin-bottom: 28px;
     padding: 0 12px;
   }
 
   .section-head {
     align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .section-head h2 {
-    font-size: 21px;
-    letter-spacing: -.6px;
+    margin-bottom: 10px;
   }
 
   .section-head p {
     display: none;
   }
 
-  .home-ver-todos {
-    min-height: 31px;
-    padding: 0 11px;
-    font-size: 11.5px;
-  }
-
   .mosaico-escolha {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 0 0 12px;
-    scroll-snap-type: x proximity;
+    overflow: visible;
+    padding: 0;
   }
 
-  .mosaico-item,
   .mosaico-principal {
-    flex: 0 0 40%;
-    min-width: 40%;
-    grid-column: auto;
+    grid-column: 1 / -1;
     grid-row: auto;
-    scroll-snap-align: start;
+  }
+
+  .mosaico-item {
+    min-width: 0;
+    flex: none;
   }
 
   .mosaico-escolha .card {
-    height: auto;
+    height: 100%;
     border-radius: 18px;
-    overflow: hidden;
   }
 
-  .mosaico-escolha .foto-wrap,
   .mosaico-escolha .mosaico-principal .foto-wrap {
+    aspect-ratio: 16 / 9;
     height: auto;
     min-height: 0;
-    aspect-ratio: 4 / 3;
   }
 
-  .mosaico-escolha .foto {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+  .mosaico-escolha .mosaico-item .foto-wrap {
+    aspect-ratio: 16 / 10;
+    height: auto;
+    min-height: 0;
   }
 
-  .mosaico-escolha .overlay-content {
-    left: 9px;
-    right: 9px;
-    bottom: 9px;
+  .mosaico-escolha .overlay-text {
+    font-size: 13px;
   }
 
-  .mosaico-escolha .overlay-text,
   .mosaico-escolha .mosaico-principal .overlay-text {
-    font-size: 12px;
-    line-height: 1.08;
-    letter-spacing: -.2px;
+    font-size: 18px;
   }
 
   .mosaico-escolha .overlay-preco {
-    font-size: 12px;
-    margin-top: 4px;
+    font-size: 14px;
   }
 
   .mosaico-escolha .overlay-local {
-    font-size: 9px;
-    margin-top: 3px;
-  }
-
-  .mosaico-escolha .card.destaque .foto-wrap::after {
-    display: none !important;
+    font-size: 10px;
   }
 
   .home-linha-horizontal {
     gap: 10px;
-    padding-bottom: 14px;
+    padding-bottom: 10px;
   }
 
   .card {
-    flex: 0 0 40%;
-    min-width: 40%;
-    border-radius: 16px;
+    flex: 0 0 42%;
+    min-width: 42%;
   }
 
   .foto-wrap {
     height: 118px;
   }
 
-  .card.destaque .foto-wrap::after {
-    top: 7px;
-    right: 7px;
-    min-height: 22px;
-    padding: 0 7px;
-    font-size: 8.5px;
-  }
-
-  .overlay-content {
-    left: 9px;
-    right: 9px;
-    bottom: 9px;
-  }
-
-  .overlay-text {
-    font-size: 11.5px;
-    line-height: 1.08;
-    letter-spacing: -.2px;
-  }
-
   .ver-mais {
     display: none;
-  }
-
-  .card-body {
-    padding: 8px 9px 9px;
-  }
-
-  .meta {
-    font-size: 9.8px;
-    line-height: 1.25;
-  }
-
-  .eventos-banner {
-    margin: 0 12px 32px;
-    padding: 18px;
-    border-radius: 22px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .eventos-banner-conteudo {
-    align-items: flex-start;
-  }
-
-  .eventos-icone {
-    width: 44px;
-    height: 44px;
-    border-radius: 15px;
-    font-size: 21px;
-    flex-basis: 44px;
-  }
-
-  .eventos-banner h2 {
-    font-size: 20px;
-    letter-spacing: -.6px;
-  }
-
-  .eventos-banner p {
-    font-size: 12px;
-  }
-
-  .eventos-botao {
-    width: 100%;
-  }
-
-  .hero-app-card {
-    width: calc(100% - 24px);
-    margin: 24px auto 22px;
-    padding: 18px 14px;
-    border-radius: 18px;
-  }
-
-  .hero-lojas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    width: 100%;
-    margin-top: 16px;
-  }
-
-  .hero-loja-btn {
-    width: 100%;
-    min-width: 0;
-    height: 56px;
-    border-radius: 15px;
-    gap: 8px;
-  }
-
-  .hero-loja-texto span {
-    font-size: 10px;
-  }
-
-  .hero-loja-texto strong {
-    font-size: 15px;
   }
 }
