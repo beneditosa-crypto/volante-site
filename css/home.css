@@ -525,228 +525,59 @@ section.hero-app-card {
   text-align: center;
 }
 
-/* MOBILE */
-
-@media (max-width: 980px) {
-  .mosaico-escolha {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-  }
-
-  .mosaico-principal {
-    grid-column: span 2;
-    grid-row: auto;
-  }
-
-  .mosaico-escolha .mosaico-principal .foto-wrap {
-    min-height: 330px;
-  }
-
-  .card {
-    flex-basis: 42%;
-    min-width: 260px;
-  }
+.mosaico-escolha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  overflow: visible;
+  padding: 0;
 }
 
-@media (max-width: 620px) {
-  .hero {
-    margin: 10px 0 22px;
-    padding: 0 12px;
-  }
+.mosaico-principal {
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
 
-  .busca {
-    height: 52px;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 0 14px;
-  }
+.mosaico-item {
+  min-width: 0;
+  flex: none;
+}
 
-  .busca span {
-    font-size: 21px;
-  }
+.mosaico-escolha .card,
+.mosaico-escolha .mosaico-principal .card {
+  height: 100%;
+  border-radius: 20px;
+}
 
-  .busca input {
-    font-size: 14px;
-  }
+.mosaico-escolha .mosaico-principal .foto-wrap {
+  height: 260px;
+  min-height: 260px;
+}
 
-  section {
-    margin-bottom: 44px;
-    padding: 0 12px;
-  }
+.mosaico-escolha .mosaico-item .foto-wrap {
+  height: 165px;
+  min-height: 165px;
+}
 
-  section.hero,
-  section.hero-app-card {
-    padding: 0 12px;
-  }
+.mosaico-escolha .overlay-content {
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+}
 
-  .section-head {
-    align-items: flex-start;
-    margin-bottom: 13px;
-  }
+.mosaico-escolha .overlay-text {
+  font-size: 15px;
+  line-height: 1.1;
+}
 
-  .section-head h2 {
-    font-size: 21px;
-    letter-spacing: -.6px;
-  }
+.mosaico-escolha .mosaico-principal .overlay-text {
+  font-size: 18px;
+}
 
-  .section-head p {
-    font-size: 12.5px;
-    line-height: 1.35;
-  }
+.mosaico-escolha .overlay-preco {
+  font-size: 15px;
+}
 
-  .home-ver-todos {
-    min-height: 31px;
-    padding: 0 11px;
-    font-size: 11.5px;
-  }
-
-  .mosaico-escolha {
-    display: flex;
-    overflow-x: auto;
-    gap: 14px;
-    padding-bottom: 18px;
-    scroll-snap-type: x proximity;
-  }
-
-  .mosaico-item,
-  .mosaico-principal {
-    flex: 0 0 82%;
-    min-width: 82%;
-    grid-column: auto;
-    grid-row: auto;
-    scroll-snap-align: start;
-  }
-
-  .mosaico-escolha .card,
-  .mosaico-escolha .mosaico-principal .card {
-    height: auto;
-    border-radius: 22px;
-  }
-
-  .mosaico-escolha .foto-wrap,
-  .mosaico-escolha .mosaico-principal .foto-wrap {
-    height: 245px;
-    min-height: 245px;
-  }
-
-  .mosaico-escolha .overlay-text,
-  .mosaico-escolha .mosaico-principal .overlay-text {
-    font-size: 19px;
-    letter-spacing: -.6px;
-  }
-
-  .home-linha-horizontal {
-    gap: 14px;
-    padding-bottom: 18px;
-  }
-
-  .card {
-    flex: 0 0 44vw;
-    min-width: 44vw;
-    border-radius: 18px;
-  }
-
-  .foto-wrap {
-    height: 126px;
-  }
-
-  .card.destaque .foto-wrap::after {
-    top: 8px;
-    right: 8px;
-    min-height: 24px;
-    padding: 0 8px;
-    font-size: 9px;
-  }
-
-  .overlay-content {
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-  }
-
-  .overlay-text {
-    font-size: 12.4px;
-    line-height: 1.08;
-    letter-spacing: -.25px;
-  }
-
-  .ver-mais {
-    min-height: 23px;
-    padding: 0 8px;
-    font-size: 9px;
-    margin-top: 6px;
-  }
-
-  .card-body {
-    padding: 9px 10px 10px;
-  }
-
-  .meta {
-    font-size: 10.5px;
-    line-height: 1.3;
-  }
-
-  .eventos-banner {
-    margin: 0 12px 38px;
-    padding: 20px;
-    border-radius: 24px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .eventos-banner-conteudo {
-    align-items: flex-start;
-  }
-
-  .eventos-icone {
-    width: 46px;
-    height: 46px;
-    border-radius: 16px;
-    font-size: 22px;
-    flex-basis: 46px;
-  }
-
-  .eventos-banner h2 {
-    font-size: 21px;
-    letter-spacing: -.65px;
-  }
-
-  .eventos-banner p {
-    font-size: 13px;
-  }
-
-  .eventos-botao {
-    width: 100%;
-  }
-
-  .hero-app-card {
-    width: calc(100% - 24px);
-    margin: 28px auto 24px;
-    padding: 20px 14px;
-    border-radius: 18px;
-  }
-
-  .hero-lojas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    width: 100%;
-    margin-top: 16px;
-  }
-
-  .hero-loja-btn {
-    width: 100%;
-    min-width: 0;
-    height: 58px;
-    border-radius: 15px;
-    gap: 8px;
-  }
-
-  .hero-loja-texto span {
-    font-size: 10px;
-  }
-
-  .hero-loja-texto strong {
-    font-size: 15px;
-  }
+.mosaico-escolha .overlay-local {
+  font-size: 11px;
 }
