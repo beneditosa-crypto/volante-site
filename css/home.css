@@ -170,7 +170,31 @@ section.hero-app-card {
   font-size: 14px;
   font-weight: 700;
 }
+/* CARROSSÉIS */
 
+.home-linha-horizontal {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0 20px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.home-linha-horizontal::-webkit-scrollbar {
+  height: 7px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-thumb {
+  background: rgba(15,23,42,.13);
+  border-radius: 999px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-track {
+  background: transparent;
+}
 /* CARDS */
 
 .card {
