@@ -254,8 +254,8 @@ function renderizarMosaicoEscolha(grid, lista) {
 
   const selecionados = lista.slice(0, 6);
 
+  grid.className = "mosaico-escolha";
   grid.classList.add(`mosaico-qtd-${selecionados.length}`);
-
   grid.innerHTML = selecionados
     .map((item, index) => {
       const classe = index === 0
