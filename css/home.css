@@ -524,13 +524,15 @@ section.hero-app-card {
   font-weight: 800;
   text-align: center;
 }
+
+/* MOBILE */
 @media (max-width: 620px) {
 
   .mosaico-escolha {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    gap: 12px;
+    gap: 10px;
   }
 
   .mosaico-principal {
@@ -544,31 +546,45 @@ section.hero-app-card {
   }
 
   .mosaico-escolha .card {
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .mosaico-escolha .mosaico-principal .foto-wrap {
-    height: 260px;
-    min-height: 260px;
+    height: 220px;
+    min-height: 220px;
   }
 
   .mosaico-escolha .mosaico-item .foto-wrap {
-    height: 165px;
-    min-height: 165px;
+    height: 145px;
+    min-height: 145px;
+  }
+
+  .mosaico-escolha .foto {
+    object-fit: cover;
+    object-position: center;
   }
 
   .mosaico-escolha .overlay-content {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
   }
 
   .mosaico-escolha .overlay-text {
-    font-size: 15px;
+    font-size: 13px;
+    line-height: 1.08;
   }
 
   .mosaico-escolha .mosaico-principal .overlay-text {
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  .mosaico-escolha .overlay-preco {
+    font-size: 14px;
+  }
+
+  .mosaico-escolha .overlay-local {
+    font-size: 10px;
   }
 
 }
