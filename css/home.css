@@ -102,14 +102,14 @@ section.hero-app-card {
 /* ESCOLHA DO VOLANTE */
 
 .secao-escolha {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .mosaico-escolha {
   display: grid;
   grid-template-columns: 1.08fr 1fr 1fr;
-  grid-template-rows: 280px 280px;
-  gap: 14px;
+  grid-template-rows: 265px 265px;
+  gap: 12px;
 }
 
 .mosaico-item {
@@ -124,53 +124,54 @@ section.hero-app-card {
   width: 100%;
   height: 100%;
   flex: initial;
-  border-radius: 26px;
+  border-radius: 24px;
 }
 
 .mosaico-escolha .mosaico-principal .card {
-  border-radius: 30px;
+  border-radius: 28px;
 }
 
 .mosaico-escolha .foto-wrap {
   width: 100%;
   height: 100%;
-  min-height: 280px;
+  min-height: 265px;
 }
 
 .mosaico-escolha .mosaico-principal .foto-wrap {
   width: 100%;
   height: 100%;
-  min-height: 574px;
+  min-height: 542px;
 }
 
 .mosaico-escolha .overlay-content {
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
 }
 
 .mosaico-escolha .overlay-text {
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 1.08;
 }
 
 .mosaico-escolha .mosaico-principal .overlay-text {
-  font-size: 24px;
+  font-size: 23px;
+  line-height: 1.04;
 }
 
 .mosaico-escolha .overlay-preco {
-  margin-top: 6px;
+  margin-top: 5px;
   color: #fff;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 900;
 }
 
 .mosaico-escolha .overlay-local {
-  margin-top: 5px;
+  margin-top: 4px;
   color: rgba(255,255,255,.92);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
-
 /* CARROSSÉIS */
 
 .home-linha-horizontal {
