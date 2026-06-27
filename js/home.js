@@ -235,11 +235,7 @@ function renderizarMosaicoEscolha(grid, lista) {
   if (!grid) return;
 
   if (!lista.length) {
-    grid.innerHTML = `
-      <div class="empty">
-        Nenhum anúncio disponível no momento.
-      </div>
-    `;
+    grid.innerHTML = "";
     return;
   }
 
@@ -280,29 +276,12 @@ function renderizarSecao(
   renderizarCarrossel(grid, lista, renderCard, mensagemVazia);
 }
 
-function montarEscolhaVolante(lista) {
-  const destaquesMarcados = lista
-    .filter(anuncioEmDestaque)
-    .sort(ordenarDestaques);
-
-  const idsDestaques = new Set(
-    destaquesMarcados.map((item) => item.id)
-  );
-
-  const complemento = lista
-    .filter((item) => !idsDestaques.has(item.id))
-    .sort(ordenarPorData);
-
-  return [
-    ...destaquesMarcados,
-    ...complemento
-  ].slice(0, 6);
-}
-
 function renderizarTudo() {
   const anunciosFiltrados = filtrar(anuncios).sort(ordenarPorData);
 
-  const escolhaVolante = montarEscolhaVolante(anunciosFiltrados);
+  const destaques = anunciosFiltrados
+    .filter(anuncioEmDestaque)
+    .sort(ordenarDestaques);
 
   const eventosFiltrados = filtrar(eventos).sort(ordenarPorData);
 
@@ -356,8 +335,8 @@ function renderizarTudo() {
     REGIOES.norte
   );
 
-  controlarSecao("gridEscolhaVolante", escolhaVolante);
-  renderizarMosaicoEscolha(grids.escolhaVolante, escolhaVolante);
+  controlarSecao("gridEscolhaVolante", destaques);
+  renderizarMosaicoEscolha(grids.escolhaVolante, destaques);
 
   renderizarSecao(
     "gridRecentes",
