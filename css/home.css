@@ -107,8 +107,8 @@ section.hero-app-card {
 
 .mosaico-escolha {
   display: grid;
-  grid-template-columns: 1.1fr 1fr 1fr;
-  grid-template-rows: 275px 275px;
+  grid-template-columns: 1.08fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
   gap: 14px;
 }
 
@@ -124,31 +124,68 @@ section.hero-app-card {
   width: 100%;
   height: 100%;
   flex: initial;
-  border-radius: 28px;
+  border-radius: 26px;
 }
 
 .mosaico-escolha .mosaico-principal .card {
-  border-radius: 32px;
+  border-radius: 30px;
 }
 
 .mosaico-escolha .foto-wrap {
+  width: 100%;
   height: 100%;
-  min-height: 275px;
+  min-height: 280px;
 }
 
 .mosaico-escolha .mosaico-principal .foto-wrap {
+  width: 100%;
   height: 100%;
-  min-height: 564px;
+  min-height: 574px;
+}
+
+.mosaico-escolha .overlay-content {
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
 }
 
 .mosaico-escolha .overlay-text {
   font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: -.4px;
 }
 
 .mosaico-escolha .mosaico-principal .overlay-text {
   font-size: 24px;
   line-height: 1.05;
-  letter-spacing: -0.8px;
+  letter-spacing: -.8px;
+}
+
+.mosaico-escolha .overlay-preco {
+  margin-top: 6px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.mosaico-escolha .overlay-local {
+  margin-top: 5px;
+  color: rgba(255,255,255,.92);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mosaico-escolha .selo-destaque {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15,23,42,.90);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  z-index: 10;
 }
 /* CARROSSÉIS */
 
