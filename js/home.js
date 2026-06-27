@@ -247,13 +247,16 @@ function renderizarMosaicoEscolha(grid, lista) {
 
       return `
         <div class="${classe}">
-          ${cardAnuncio({
-            ...item,
-            destaque: true,
-            destacado: true,
-            emDestaque: true,
-            destaqueAtivo: true
-          })}
+${cardAnuncio(
+  {
+    ...item,
+    destaque: true,
+    destacado: true,
+    emDestaque: true,
+    destaqueAtivo: true
+  },
+  true
+)}
         </div>
       `;
     })
