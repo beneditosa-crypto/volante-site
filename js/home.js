@@ -19,11 +19,9 @@ import {
 
 const buscaInput = document.getElementById("busca");
 
-const ITENS_POR_LINHA = 6;
-const LIMITE_LINHAS = 3;
-const LIMITE_HOME = ITENS_POR_LINHA * LIMITE_LINHAS;
-
 const grids = {
+  escolhaVolante: document.getElementById("gridEscolhaVolante"),
+
   recentes: document.getElementById("gridRecentes"),
 
   centroOeste: document.getElementById("gridCentroOeste"),
@@ -122,7 +120,11 @@ function normalizarAnuncio(item) {
   };
 }
 
-function ordenarAnuncios(a, b) {
+function ordenarPorData(a, b) {
+  return getDataMs(b) - getDataMs(a);
+}
+
+function ordenarDestaques(a, b) {
   const destaqueA = anuncioEmDestaque(a) ? 1 : 0;
   const destaqueB = anuncioEmDestaque(b) ? 1 : 0;
 
@@ -130,11 +132,12 @@ function ordenarAnuncios(a, b) {
     return destaqueB - destaqueA;
   }
 
-  return getDataMs(b) - getDataMs(a);
+  return ordenarPorData(a, b);
 }
 
 function filtrar(lista) {
   const termo = normalizar(buscaInput?.value || "");
+
   const somenteComImagem = lista.filter((item) => !!getImagem(item));
 
   if (!termo) return somenteComImagem;
@@ -209,87 +212,48 @@ function controlarSecao(idGrid, lista) {
   secao.style.display = lista.length ? "block" : "none";
 }
 
-function obterUrlVerTodos(tipo, regiao) {
-  const params = new URLSearchParams();
-
-  if (regiao) {
-    params.set("regiao", regiao);
-  }
-
-  const query = params.toString();
-
-  if (tipo === "evento") {
-    return query ? `./eventos.html?${query}` : "./eventos.html";
-  }
-
-  return query ? `./anuncios.html?${query}` : "./anuncios.html";
-}
-
-function aplicarBotaoVerTodos(idGrid, lista, tipo, regiao) {
-  const grid = document.getElementById(idGrid);
+function renderizarCarrossel(grid, lista, renderCard, mensagemVazia) {
   if (!grid) return;
-
-  const secao = grid.closest("section");
-  if (!secao) return;
-
-  const cabecalho = secao.querySelector(".section-head");
-  if (!cabecalho) return;
-
-  let botao = cabecalho.querySelector(".home-ver-todos");
-
-  if (!botao) {
-    botao = document.createElement("a");
-    botao.className = "home-ver-todos";
-    cabecalho.appendChild(botao);
-  }
-
-  botao.textContent = tipo === "evento" ? "Ver eventos →" : "Ver todos →";
-  botao.href = obterUrlVerTodos(tipo, regiao);
-
-  botao.style.display = lista.length ? "inline-flex" : "none";
-}
-
-function dividirEmLinhas(lista) {
-  const limitada = lista.slice(0, LIMITE_HOME);
-  const linhas = [];
-
-  for (let i = 0; i < limitada.length; i += ITENS_POR_LINHA) {
-    linhas.push(limitada.slice(i, i + ITENS_POR_LINHA));
-  }
-
-  return linhas.slice(0, LIMITE_LINHAS);
-}
-
-function removerControlesAntigos(grid) {
-  if (!grid) return;
-
-  const proximo = grid.nextElementSibling;
-
-  if (
-    proximo &&
-    proximo.classList.contains("home-carrossel-controles")
-  ) {
-    proximo.remove();
-  }
-}
-
-function renderizarGridEmLinhas(grid, lista, renderCard, mensagemVazia) {
-  if (!grid) return;
-
-  removerControlesAntigos(grid);
 
   if (!lista.length) {
     renderizarGrid(grid, lista, renderCard, mensagemVazia);
     return;
   }
 
-  const linhas = dividirEmLinhas(lista);
+  grid.innerHTML = `
+    <div class="home-linha-horizontal">
+      ${lista.map((item) => renderCard(item)).join("")}
+    </div>
+  `;
+}
 
-  grid.innerHTML = linhas
-    .map((linha) => {
+function renderizarMosaicoEscolha(grid, lista) {
+  if (!grid) return;
+
+  if (!lista.length) {
+    grid.innerHTML = `
+      <div class="empty">
+        Nenhum destaque selecionado no momento.
+      </div>
+    `;
+    return;
+  }
+
+  const selecionados = lista.slice(0, 6);
+
+  grid.innerHTML = selecionados
+    .map((item, index) => {
+      const classe = index === 0 ? "mosaico-item mosaico-principal" : "mosaico-item";
+
       return `
-        <div class="home-linha-horizontal">
-          ${linha.map((item) => renderCard(item)).join("")}
+        <div class="${classe}">
+          ${cardAnuncio({
+            ...item,
+            destaque: true,
+            destacado: true,
+            emDestaque: true,
+            destaqueAtivo: true
+          })}
         </div>
       `;
     })
@@ -301,21 +265,20 @@ function renderizarSecao(
   grid,
   lista,
   renderCard,
-  mensagemVazia,
-  tipo,
-  regiao
+  mensagemVazia
 ) {
   controlarSecao(idGrid, lista);
-  aplicarBotaoVerTodos(idGrid, lista, tipo, regiao);
-  renderizarGridEmLinhas(grid, lista, renderCard, mensagemVazia);
+  renderizarCarrossel(grid, lista, renderCard, mensagemVazia);
 }
 
 function renderizarTudo() {
-  const anunciosFiltrados = filtrar(anuncios).sort(ordenarAnuncios);
+  const anunciosFiltrados = filtrar(anuncios).sort(ordenarPorData);
 
-  const eventosFiltrados = filtrar(eventos).sort(
-    (a, b) => getDataMs(b) - getDataMs(a)
-  );
+  const destaques = anunciosFiltrados
+    .filter(anuncioEmDestaque)
+    .sort(ordenarDestaques);
+
+  const eventosFiltrados = filtrar(eventos).sort(ordenarPorData);
 
   const anunciosCentroOeste = filtrarRegiao(
     anunciosFiltrados,
@@ -367,14 +330,15 @@ function renderizarTudo() {
     REGIOES.norte
   );
 
+  controlarSecao("gridEscolhaVolante", destaques);
+  renderizarMosaicoEscolha(grids.escolhaVolante, destaques);
+
   renderizarSecao(
     "gridRecentes",
     grids.recentes,
     anunciosFiltrados,
     cardAnuncio,
-    "Nenhum anúncio encontrado.",
-    "anuncio",
-    ""
+    "Nenhum anúncio encontrado."
   );
 
   renderizarSecao(
@@ -382,9 +346,7 @@ function renderizarTudo() {
     grids.centroOeste,
     anunciosCentroOeste,
     cardAnuncio,
-    "Nenhum anúncio encontrado.",
-    "anuncio",
-    "centroOeste"
+    "Nenhum anúncio encontrado."
   );
 
   renderizarSecao(
@@ -392,9 +354,7 @@ function renderizarTudo() {
     grids.sudeste,
     anunciosSudeste,
     cardAnuncio,
-    "Nenhum anúncio encontrado.",
-    "anuncio",
-    "sudeste"
+    "Nenhum anúncio encontrado."
   );
 
   renderizarSecao(
@@ -402,9 +362,7 @@ function renderizarTudo() {
     grids.sul,
     anunciosSul,
     cardAnuncio,
-    "Nenhum anúncio encontrado.",
-    "anuncio",
-    "sul"
+    "Nenhum anúncio encontrado."
   );
 
   renderizarSecao(
@@ -412,9 +370,7 @@ function renderizarTudo() {
     grids.nordeste,
     anunciosNordeste,
     cardAnuncio,
-    "Nenhum anúncio encontrado.",
-    "anuncio",
-    "nordeste"
+    "Nenhum anúncio encontrado."
   );
 
   renderizarSecao(
@@ -422,9 +378,7 @@ function renderizarTudo() {
     grids.norte,
     anunciosNorte,
     cardAnuncio,
-    "Nenhum anúncio encontrado.",
-    "anuncio",
-    "norte"
+    "Nenhum anúncio encontrado."
   );
 
   renderizarSecao(
@@ -432,9 +386,7 @@ function renderizarTudo() {
     grids.eventosCentroOeste,
     eventosCentroOeste,
     cardEvento,
-    "Nenhum evento encontrado.",
-    "evento",
-    "centroOeste"
+    "Nenhum evento encontrado."
   );
 
   renderizarSecao(
@@ -442,9 +394,7 @@ function renderizarTudo() {
     grids.eventosSudeste,
     eventosSudeste,
     cardEvento,
-    "Nenhum evento encontrado.",
-    "evento",
-    "sudeste"
+    "Nenhum evento encontrado."
   );
 
   renderizarSecao(
@@ -452,9 +402,7 @@ function renderizarTudo() {
     grids.eventosSul,
     eventosSul,
     cardEvento,
-    "Nenhum evento encontrado.",
-    "evento",
-    "sul"
+    "Nenhum evento encontrado."
   );
 
   renderizarSecao(
@@ -462,9 +410,7 @@ function renderizarTudo() {
     grids.eventosNordeste,
     eventosNordeste,
     cardEvento,
-    "Nenhum evento encontrado.",
-    "evento",
-    "nordeste"
+    "Nenhum evento encontrado."
   );
 
   renderizarSecao(
@@ -472,9 +418,7 @@ function renderizarTudo() {
     grids.eventosNorte,
     eventosNorte,
     cardEvento,
-    "Nenhum evento encontrado.",
-    "evento",
-    "norte"
+    "Nenhum evento encontrado."
   );
 }
 
@@ -499,7 +443,11 @@ async function carregarDados() {
 
     Object.values(grids).forEach((grid) => {
       if (grid) {
-        grid.innerHTML = `<div class="empty">Não foi possível carregar os dados agora.</div>`;
+        grid.innerHTML = `
+          <div class="empty">
+            Não foi possível carregar os dados agora.
+          </div>
+        `;
       }
     });
   }
