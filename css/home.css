@@ -1,6 +1,6 @@
 .hero {
   max-width: 1440px;
-  margin: 8px auto 18px;
+  margin: 8px auto 14px;
   padding: 0 18px;
   background: transparent;
   border: 0;
@@ -38,7 +38,7 @@
 
 section {
   max-width: 1440px;
-  margin: 0 auto 26px;
+  margin: 0 auto 16px;
   padding: 0 18px;
 }
 
@@ -56,7 +56,7 @@ section.hero-app-card {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 
 .section-head h2 {
@@ -92,7 +92,8 @@ section.hero-app-card {
 /* ESCOLHA DO VOLANTE */
 
 .secao-escolha {
-  margin-top: 2px;
+  margin-top: 0;
+  margin-bottom: 18px;
 }
 
 .mosaico-escolha {
@@ -108,6 +109,44 @@ section.hero-app-card {
 
 .mosaico-principal {
   grid-row: span 2;
+}
+
+.mosaico-qtd-1 {
+  grid-template-columns: minmax(320px, 460px);
+  grid-template-rows: 500px;
+}
+
+.mosaico-qtd-1 .mosaico-principal {
+  grid-row: auto;
+}
+
+.mosaico-qtd-2 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 340px;
+}
+
+.mosaico-qtd-2 .mosaico-principal {
+  grid-row: auto;
+}
+
+.mosaico-qtd-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 340px;
+}
+
+.mosaico-qtd-3 .mosaico-principal {
+  grid-row: auto;
+}
+
+.mosaico-qtd-4 {
+  grid-template-columns: 1.08fr 1fr 1fr;
+  grid-template-rows: 238px 238px;
+}
+
+.mosaico-qtd-5,
+.mosaico-qtd-6 {
+  grid-template-columns: 1.08fr 1fr 1fr;
+  grid-template-rows: 238px 238px;
 }
 
 .mosaico-escolha .card {
@@ -175,7 +214,7 @@ section.hero-app-card {
   gap: 12px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px 2px 12px;
+  padding: 2px 2px 6px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
@@ -318,7 +357,7 @@ section.hero-app-card {
 
 .eventos-banner {
   max-width: 1404px;
-  margin: 0 auto 28px;
+  margin: 0 auto 18px;
   padding: 22px 24px;
   border-radius: 26px;
   background: linear-gradient(135deg, #0f172a, #1e3a8a);
@@ -392,7 +431,7 @@ section.hero-app-card {
 .hero-app-card {
   max-width: 1180px;
   width: calc(100% - 36px);
-  margin: 26px auto 24px;
+  margin: 18px auto 20px;
   padding: 20px 18px 22px;
   border-radius: 22px;
   background: rgba(255,255,255,.92);
@@ -476,7 +515,7 @@ section.hero-app-card {
 @media (max-width: 620px) {
 
   .hero {
-    margin: 8px 0 16px;
+    margin: 8px 0 12px;
     padding: 0 12px;
   }
 
@@ -496,7 +535,7 @@ section.hero-app-card {
   }
 
   section {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     padding: 0 12px;
   }
 
@@ -507,7 +546,7 @@ section.hero-app-card {
 
   .section-head {
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     gap: 10px;
   }
 
@@ -534,7 +573,27 @@ section.hero-app-card {
     padding: 0;
   }
 
-  .mosaico-principal {
+  .mosaico-qtd-1,
+  .mosaico-qtd-2,
+  .mosaico-qtd-3,
+  .mosaico-qtd-4,
+  .mosaico-qtd-5,
+  .mosaico-qtd-6 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .mosaico-qtd-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .mosaico-principal,
+  .mosaico-qtd-1 .mosaico-principal,
+  .mosaico-qtd-2 .mosaico-principal,
+  .mosaico-qtd-3 .mosaico-principal,
+  .mosaico-qtd-4 .mosaico-principal,
+  .mosaico-qtd-5 .mosaico-principal,
+  .mosaico-qtd-6 .mosaico-principal {
     grid-column: 1 / -1;
     grid-row: auto;
   }
@@ -589,7 +648,7 @@ section.hero-app-card {
 
   .home-linha-horizontal {
     gap: 9px;
-    padding: 2px 12px 9px 0;
+    padding: 2px 12px 4px 0;
   }
 
   .card {
@@ -619,7 +678,7 @@ section.hero-app-card {
   }
 
   .eventos-banner {
-    margin: 0 12px 22px;
+    margin: 0 12px 14px;
     padding: 17px;
     border-radius: 21px;
     flex-direction: column;
@@ -655,7 +714,7 @@ section.hero-app-card {
 
   .hero-app-card {
     width: calc(100% - 24px);
-    margin: 20px auto 20px;
+    margin: 14px auto 18px;
     padding: 17px 14px;
     border-radius: 18px;
   }
