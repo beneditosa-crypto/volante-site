@@ -524,60 +524,51 @@ section.hero-app-card {
   font-weight: 800;
   text-align: center;
 }
+@media (max-width: 620px) {
 
-.mosaico-escolha {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  overflow: visible;
-  padding: 0;
-}
+  .mosaico-escolha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 12px;
+  }
 
-.mosaico-principal {
-  grid-column: 1 / -1;
-  grid-row: auto;
-}
+  .mosaico-principal {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
 
-.mosaico-item {
-  min-width: 0;
-  flex: none;
-}
+  .mosaico-item {
+    min-width: 0;
+    flex: none;
+  }
 
-.mosaico-escolha .card,
-.mosaico-escolha .mosaico-principal .card {
-  height: 100%;
-  border-radius: 20px;
-}
+  .mosaico-escolha .card {
+    border-radius: 20px;
+  }
 
-.mosaico-escolha .mosaico-principal .foto-wrap {
-  height: 260px;
-  min-height: 260px;
-}
+  .mosaico-escolha .mosaico-principal .foto-wrap {
+    height: 260px;
+    min-height: 260px;
+  }
 
-.mosaico-escolha .mosaico-item .foto-wrap {
-  height: 165px;
-  min-height: 165px;
-}
+  .mosaico-escolha .mosaico-item .foto-wrap {
+    height: 165px;
+    min-height: 165px;
+  }
 
-.mosaico-escolha .overlay-content {
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-}
+  .mosaico-escolha .overlay-content {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
 
-.mosaico-escolha .overlay-text {
-  font-size: 15px;
-  line-height: 1.1;
-}
+  .mosaico-escolha .overlay-text {
+    font-size: 15px;
+  }
 
-.mosaico-escolha .mosaico-principal .overlay-text {
-  font-size: 18px;
-}
+  .mosaico-escolha .mosaico-principal .overlay-text {
+    font-size: 18px;
+  }
 
-.mosaico-escolha .overlay-preco {
-  font-size: 15px;
-}
-
-.mosaico-escolha .overlay-local {
-  font-size: 11px;
 }
