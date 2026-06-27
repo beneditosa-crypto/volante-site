@@ -113,40 +113,47 @@ section.hero-app-card {
 .mosaico-escolha .mosaico-item:nth-child(5) { grid-area: e; }
 .mosaico-escolha .mosaico-item:nth-child(6) { grid-area: f; }
 
-.mosaico-qtd-1 {
-  display: block;
-  width: min(100%, 460px);
-  max-width: 460px;
-}
-
-.mosaico-qtd-1 .mosaico-item {
+.mosaico-escolha.mosaico-qtd-1 {
+  display: block !important;
   width: 100%;
+  max-width: 460px;
+  height: auto !important;
 }
 
-.mosaico-qtd-1 .card {
-  height: auto;
+.mosaico-escolha.mosaico-qtd-1 .mosaico-item {
+  display: block;
+  width: 100%;
+  height: auto !important;
 }
 
-.mosaico-qtd-1 .foto-wrap {
-  height: auto;
+.mosaico-escolha.mosaico-qtd-1 .card {
+  width: 100%;
+  height: auto !important;
+  min-width: 0;
+  max-width: none;
+}
+
+.mosaico-escolha.mosaico-qtd-1 .foto-wrap {
+  height: auto !important;
+  min-height: 0 !important;
   aspect-ratio: 4 / 5;
 }
 
-.mosaico-qtd-2 {
+.mosaico-escolha.mosaico-qtd-2 {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 360px;
   grid-template-areas:
     "a b";
 }
 
-.mosaico-qtd-3 {
+.mosaico-escolha.mosaico-qtd-3 {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 340px;
   grid-template-areas:
     "a b c";
 }
 
-.mosaico-qtd-4 {
+.mosaico-escolha.mosaico-qtd-4 {
   grid-template-columns: 1.08fr 1fr 1fr;
   grid-template-rows: 240px 240px;
   grid-template-areas:
@@ -154,7 +161,7 @@ section.hero-app-card {
     "a d d";
 }
 
-.mosaico-qtd-5 {
+.mosaico-escolha.mosaico-qtd-5 {
   grid-template-columns: 1.08fr 1fr 1fr;
   grid-template-rows: 240px 240px;
   grid-template-areas:
@@ -162,7 +169,7 @@ section.hero-app-card {
     "a d e";
 }
 
-.mosaico-qtd-6 {
+.mosaico-escolha.mosaico-qtd-6 {
   grid-template-columns: 1.08fr 1fr 1fr;
   grid-template-rows: 240px 240px;
   grid-template-areas:
@@ -170,7 +177,7 @@ section.hero-app-card {
     "a d e";
 }
 
-.mosaico-qtd-6 .mosaico-item:nth-child(6) {
+.mosaico-escolha.mosaico-qtd-6 .mosaico-item:nth-child(6) {
   display: none;
 }
 
@@ -226,7 +233,6 @@ section.hero-app-card {
   font-weight: 700;
   line-height: 1.15;
 }
-
 /* CARROSSÉIS */
 
 .carousel-1linha {
