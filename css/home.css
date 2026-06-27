@@ -89,8 +89,6 @@ section.hero-app-card {
   white-space: nowrap;
 }
 
-/* ESCOLHA DO VOLANTE */
-
 .secao-escolha {
   margin-top: 4px;
 }
@@ -118,6 +116,7 @@ section.hero-app-card {
   flex: initial;
   border-radius: 24px;
   background: transparent;
+  box-shadow: 0 14px 34px rgba(15,23,42,.075);
 }
 
 .mosaico-escolha .mosaico-principal .card {
@@ -128,7 +127,10 @@ section.hero-app-card {
   width: 100%;
   height: 100%;
   min-height: 0;
-  aspect-ratio: auto;
+}
+
+.mosaico-escolha .card-body {
+  display: none !important;
 }
 
 .mosaico-escolha .overlay-content {
@@ -163,8 +165,6 @@ section.hero-app-card {
   line-height: 1.15;
 }
 
-/* CARROSSÉIS */
-
 .home-linha-horizontal {
   display: flex;
   gap: 18px;
@@ -188,8 +188,6 @@ section.hero-app-card {
 .home-linha-horizontal::-webkit-scrollbar-track {
   background: transparent;
 }
-
-/* CARDS */
 
 .card {
   position: relative;
@@ -308,8 +306,6 @@ section.hero-app-card {
   display: none !important;
 }
 
-/* EVENTOS */
-
 .eventos-banner {
   max-width: 1440px;
   margin: 4px auto 38px;
@@ -380,8 +376,6 @@ section.hero-app-card {
   justify-content: center;
   white-space: nowrap;
 }
-
-/* APP CARD */
 
 .hero-app-card {
   max-width: 1180px;
@@ -464,8 +458,6 @@ section.hero-app-card {
   font-weight: 800;
   text-align: center;
 }
-
-/* MOBILE */
 
 @media (max-width: 620px) {
 
