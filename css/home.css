@@ -107,9 +107,9 @@ section.hero-app-card {
 
 .mosaico-escolha {
   display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr;
-  grid-template-rows: 260px 260px;
-  gap: 18px;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  grid-template-rows: 275px 275px;
+  gap: 14px;
 }
 
 .mosaico-item {
@@ -132,25 +132,24 @@ section.hero-app-card {
 }
 
 .mosaico-escolha .foto-wrap {
-    height: 100%;
-    min-height: 250px;
+  height: 100%;
+  min-height: 275px;
 }
 
 .mosaico-escolha .mosaico-principal .foto-wrap {
-    height: 100%;
-    min-height: 420px;
+  height: 100%;
+  min-height: 564px;
 }
 
 .mosaico-escolha .overlay-text {
-  font-size: 19px;
+  font-size: 18px;
 }
 
 .mosaico-escolha .mosaico-principal .overlay-text {
-  font-size: 28px;
-  line-height: 1.02;
-  letter-spacing: -1.2px;
+  font-size: 24px;
+  line-height: 1.05;
+  letter-spacing: -0.8px;
 }
-
 /* CARROSSÉIS */
 
 .carousel-1linha {
