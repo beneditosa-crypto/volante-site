@@ -30,205 +30,12 @@
 <meta property="og:url" content="https://volante.app.br" />
 <meta property="og:image" content="https://volante.app.br/assets/logo.png" />
 
-<meta
-  name="twitter:title"
-  content="Mais que carros, paixão - Melhor app de carros antigos do Brasil"
-/>
-
-<meta
-  name="twitter:description"
-  content="O melhor app de carros antigos do Brasil."
-/>
-
 <meta name="twitter:card" content="summary_large_image" />
 
 <link rel="icon" type="image/png" href="./assets/favicon.png" />
 
-<link rel="stylesheet" href="./css/global.css?v=00245" />
-<link rel="stylesheet" href="./css/home.css?v=00245" />
-
-<style>
-.hero {
-  max-width: 1440px;
-  margin: 8px auto 18px;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.busca {
-  height: 58px;
-  border-radius: 18px;
-  background: #fff;
-  border: 1px solid rgba(15,23,42,.10);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 18px;
-  box-shadow: 0 8px 22px rgba(15,23,42,.045);
-}
-
-.busca span {
-  font-size: 22px;
-  line-height: 1;
-  color: #1e3a8a;
-}
-
-.busca input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.hero-app-card {
-  max-width: 980px;
-  width: calc(100% - 24px);
-  margin: 34px auto 28px;
-  padding: 24px 22px 26px;
-
-  border-radius: 24px;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(15,23,42,.08);
-  box-shadow: 0 14px 36px rgba(15,23,42,.06);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.hero-app-texto {
-  width: 100%;
-  max-width: 760px;
-  text-align: center;
-}
-
-.hero-app-texto p {
-  margin: 0;
-  text-align: center;
-  color: #334155;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-.hero-lojas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-
-.hero-loja-btn {
-  min-width: 220px;
-  height: 58px;
-  border-radius: 16px;
-  background: #fff;
-  border: 1px solid rgba(15,23,42,.12);
-  box-shadow: 0 10px 24px rgba(15,23,42,.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  text-decoration: none;
-  color: #0f172a;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.hero-loja-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(15,23,42,.10);
-}
-
-.hero-loja-btn img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-}
-
-.hero-loja-texto {
-  text-align: left;
-  line-height: 1.05;
-}
-
-.hero-loja-texto span {
-  display: block;
-  font-size: 11px;
-  color: #334155;
-}
-
-.hero-loja-texto strong {
-  display: block;
-  font-size: 18px;
-  font-weight: 900;
-  color: #0f172a;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    margin: 10px 12px 22px;
-  }
-
-  .busca {
-    height: 52px;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 0 14px;
-  }
-
-  .busca span {
-    font-size: 21px;
-  }
-
-  .busca input {
-    font-size: 14px;
-  }
-
-  .hero-app-card {
-    width: calc(100% - 24px);
-    margin: 28px auto 24px;
-    padding: 20px 14px;
-    border-radius: 18px;
-  }
-
-  .hero-app-texto p {
-    font-size: 14px;
-    line-height: 1.45;
-  }
-
-  .hero-lojas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    width: 100%;
-    margin-top: 16px;
-  }
-
-  .hero-loja-btn {
-    width: 100%;
-    min-width: 0;
-    height: 58px;
-    border-radius: 15px;
-    gap: 8px;
-  }
-
-  .hero-loja-texto span {
-    font-size: 10px;
-  }
-
-  .hero-loja-texto strong {
-    font-size: 15px;
-  }
-}
-</style>
+<link rel="stylesheet" href="./css/global.css?v=00246" />
+<link rel="stylesheet" href="./css/home.css?v=00246" />
 </head>
 
 <body>
@@ -255,118 +62,168 @@
       <input
         id="busca"
         type="search"
-        placeholder="Buscar por modelo, região, descrição"
+        placeholder="Buscar por modelo, cidade, marca..."
       />
     </div>
   </section>
 
-  <section>
+  <section class="secao secao-escolha">
+    <div class="section-head">
+      <div>
+        <h2>Escolha do Volante <span class="icone-destaque">★</span></h2>
+        <p>Anúncios selecionados especialmente para você.</p>
+      </div>
+
+      <a href="./anuncios.html" class="ver-todos">Ver todos →</a>
+    </div>
+
+    <div class="mosaico-escolha" id="gridEscolhaVolante"></div>
+  </section>
+
+  <section class="secao">
     <div class="section-head">
       <div>
         <h2>Recentes</h2>
-        <p>Últimos anúncios aprovados.</p>
+        <p>Os últimos anúncios aprovados.</p>
       </div>
+
+      <a href="./anuncios.html" class="ver-todos">Ver todos →</a>
     </div>
+
     <div class="carousel-1linha" id="gridRecentes"></div>
   </section>
 
-  <section>
+  <section class="secao">
     <div class="section-head">
       <div>
         <h2>Centro-Oeste</h2>
         <p>Veículos da região.</p>
       </div>
+
+      <a href="./anuncios.html?regiao=centro-oeste" class="ver-todos">Ver todos →</a>
     </div>
+
     <div class="carousel-1linha" id="gridCentroOeste"></div>
   </section>
 
-  <section>
+  <section class="secao">
     <div class="section-head">
       <div>
         <h2>Sudeste</h2>
         <p>Veículos da região.</p>
       </div>
+
+      <a href="./anuncios.html?regiao=sudeste" class="ver-todos">Ver todos →</a>
     </div>
+
     <div class="carousel-1linha" id="gridSudeste"></div>
   </section>
 
-  <section>
+  <section class="secao">
     <div class="section-head">
       <div>
         <h2>Sul</h2>
         <p>Veículos da região.</p>
       </div>
+
+      <a href="./anuncios.html?regiao=sul" class="ver-todos">Ver todos →</a>
     </div>
+
     <div class="carousel-1linha" id="gridSul"></div>
   </section>
 
-  <section>
+  <section class="secao">
     <div class="section-head">
       <div>
         <h2>Nordeste</h2>
         <p>Veículos da região.</p>
       </div>
+
+      <a href="./anuncios.html?regiao=nordeste" class="ver-todos">Ver todos →</a>
     </div>
+
     <div class="carousel-1linha" id="gridNordeste"></div>
   </section>
 
-  <section>
+  <section class="secao">
     <div class="section-head">
       <div>
         <h2>Norte</h2>
         <p>Veículos da região.</p>
       </div>
+
+      <a href="./anuncios.html?regiao=norte" class="ver-todos">Ver todos →</a>
     </div>
+
     <div class="carousel-1linha" id="gridNorte"></div>
   </section>
 
-  <section>
+  <section class="eventos-banner">
+    <div class="eventos-banner-conteudo">
+      <div class="eventos-icone">▣</div>
+
+      <div>
+        <span>Eventos</span>
+        <h2>Encontros que movem paixões.</h2>
+        <p>Confira os próximos eventos de carros antigos na sua região.</p>
+      </div>
+    </div>
+
+    <a href="./eventos.html" class="eventos-botao">Ver eventos →</a>
+  </section>
+
+  <section class="secao eventos-lista">
     <div class="section-head">
       <div>
         <h2>Eventos Centro-Oeste</h2>
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosCentroOeste"></div>
   </section>
 
-  <section>
+  <section class="secao eventos-lista">
     <div class="section-head">
       <div>
         <h2>Eventos Sudeste</h2>
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosSudeste"></div>
   </section>
 
-  <section>
+  <section class="secao eventos-lista">
     <div class="section-head">
       <div>
         <h2>Eventos Sul</h2>
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosSul"></div>
   </section>
 
-  <section>
+  <section class="secao eventos-lista">
     <div class="section-head">
       <div>
         <h2>Eventos Nordeste</h2>
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosNordeste"></div>
   </section>
 
-  <section>
+  <section class="secao eventos-lista">
     <div class="section-head">
       <div>
         <h2>Eventos Norte</h2>
         <p>Encontros automotivos da região.</p>
       </div>
     </div>
+
     <div class="carousel-1linha" id="gridEventosNorte"></div>
   </section>
 
@@ -440,7 +297,7 @@
 
 </main>
 
-<script type="module" src="./js/home.js?v=00245"></script>
+<script type="module" src="./js/home.js?v=00246"></script>
 
 </body>
 </html>
