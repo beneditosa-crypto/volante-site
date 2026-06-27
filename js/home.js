@@ -37,6 +37,10 @@ const grids = {
   eventosNorte: document.getElementById("gridEventosNorte")
 };
 
+if (grids.escolhaVolante) {
+  grids.escolhaVolante.classList.add("mosaico-escolha");
+}
+
 let anuncios = [];
 let eventos = [];
 
@@ -233,7 +237,7 @@ function renderizarMosaicoEscolha(grid, lista) {
   if (!lista.length) {
     grid.innerHTML = `
       <div class="empty">
-        Nenhum destaque selecionado no momento.
+        Nenhum anúncio disponível no momento.
       </div>
     `;
     return;
@@ -243,20 +247,22 @@ function renderizarMosaicoEscolha(grid, lista) {
 
   grid.innerHTML = selecionados
     .map((item, index) => {
-      const classe = index === 0 ? "mosaico-item mosaico-principal" : "mosaico-item";
+      const classe = index === 0
+        ? "mosaico-item mosaico-principal"
+        : "mosaico-item";
 
       return `
         <div class="${classe}">
-    ${cardAnuncio(
-    {
-    ...item,
-    destaque: true,
-    destacado: true,
-    emDestaque: true,
-    destaqueAtivo: true
-    },
-    true
-  )}
+          ${cardAnuncio(
+            {
+              ...item,
+              destaque: true,
+              destacado: true,
+              emDestaque: true,
+              destaqueAtivo: true
+            },
+            true
+          )}
         </div>
       `;
     })
@@ -274,12 +280,29 @@ function renderizarSecao(
   renderizarCarrossel(grid, lista, renderCard, mensagemVazia);
 }
 
+function montarEscolhaVolante(lista) {
+  const destaquesMarcados = lista
+    .filter(anuncioEmDestaque)
+    .sort(ordenarDestaques);
+
+  const idsDestaques = new Set(
+    destaquesMarcados.map((item) => item.id)
+  );
+
+  const complemento = lista
+    .filter((item) => !idsDestaques.has(item.id))
+    .sort(ordenarPorData);
+
+  return [
+    ...destaquesMarcados,
+    ...complemento
+  ].slice(0, 6);
+}
+
 function renderizarTudo() {
   const anunciosFiltrados = filtrar(anuncios).sort(ordenarPorData);
 
-  const destaques = anunciosFiltrados
-    .filter(anuncioEmDestaque)
-    .sort(ordenarDestaques);
+  const escolhaVolante = montarEscolhaVolante(anunciosFiltrados);
 
   const eventosFiltrados = filtrar(eventos).sort(ordenarPorData);
 
@@ -333,8 +356,8 @@ function renderizarTudo() {
     REGIOES.norte
   );
 
-  controlarSecao("gridEscolhaVolante", destaques);
-  renderizarMosaicoEscolha(grids.escolhaVolante, destaques);
+  controlarSecao("gridEscolhaVolante", escolhaVolante);
+  renderizarMosaicoEscolha(grids.escolhaVolante, escolhaVolante);
 
   renderizarSecao(
     "gridRecentes",
