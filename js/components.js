@@ -27,7 +27,7 @@ export function imagemHtml(item, titulo, editorial = false) {
     : "";
 
   return `
-    <div class="foto-wrap ${editorial ? "editorial" : ""}">
+    <div class="foto-wrap ${editorial ? "foto-editorial" : "foto-comum"}">
       <img
         class="foto"
         src="${imagem}"
@@ -36,10 +36,10 @@ export function imagemHtml(item, titulo, editorial = false) {
         decoding="async"
       />
 
-      <div class="overlay ${editorial ? "editorial" : ""}"></div>
+      <div class="overlay ${editorial ? "overlay-editorial" : "overlay-comum"}"></div>
 
-      <div class="overlay-content ${editorial ? "editorial" : ""}">
-        <div class="overlay-text ${editorial ? "editorial" : ""}">
+      <div class="overlay-content ${editorial ? "overlay-content-editorial" : "overlay-content-comum"}">
+        <div class="overlay-text ${editorial ? "overlay-text-editorial" : "overlay-text-comum"}">
           ${escapeHtml(titulo)}
         </div>
 
@@ -74,9 +74,18 @@ export function cardAnuncio(item, editorial = false) {
   const local = textoLocal(item);
   const destaque = ehDestaque(item);
 
+  const classes = [
+    "card",
+    "card-anuncio",
+    editorial ? "card-editorial" : "card-comum",
+    destaque ? "destaque" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return `
     <article
-      class="card ${editorial ? "card-editorial" : ""} ${destaque ? "destaque" : ""}"
+      class="${classes}"
       onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'"
     >
       ${imagemHtml(item, titulo, editorial)}
@@ -106,7 +115,7 @@ export function cardEvento(item) {
 
   return `
     <article
-      class="card"
+      class="card card-evento card-comum"
       onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
     >
       ${imagemHtml(item, titulo)}
