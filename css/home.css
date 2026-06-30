@@ -1,7 +1,7 @@
 .hero {
   max-width: 1440px;
-  margin: 8px auto 14px;
-  padding: 0 18px;
+  margin: 10px auto 20px;
+  padding: 0 22px;
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -38,13 +38,13 @@
 
 section {
   max-width: 1440px;
-  margin: 0 auto 16px;
-  padding: 0 18px;
+  margin: 0 auto 26px;
+  padding: 0 22px;
 }
 
 section.hero,
 section.hero-app-card {
-  padding: 0 18px;
+  padding: 0 22px;
 }
 
 .secao {
@@ -56,7 +56,7 @@ section.hero-app-card {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 7px;
+  margin-bottom: 14px;
 }
 
 .section-head h2 {
@@ -93,12 +93,12 @@ section.hero-app-card {
 
 .secao-escolha {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 28px;
 }
 
 .mosaico-escolha {
   display: grid;
-  gap: 10px;
+  gap: 18px;
   align-items: stretch;
 }
 
@@ -116,17 +116,13 @@ section.hero-app-card {
 .mosaico-escolha.mosaico-qtd-1 {
   display: block !important;
   width: 100%;
-  max-width: 460px;
+  max-width: 500px;
   height: auto !important;
 }
 
-.mosaico-escolha.mosaico-qtd-1 .mosaico-item {
-  display: block;
-  width: 100%;
-  height: auto !important;
-}
-
+.mosaico-escolha.mosaico-qtd-1 .mosaico-item,
 .mosaico-escolha.mosaico-qtd-1 .card {
+  display: block;
   width: 100%;
   height: auto !important;
   min-width: 0;
@@ -136,48 +132,27 @@ section.hero-app-card {
 .mosaico-escolha.mosaico-qtd-1 .foto-wrap {
   height: auto !important;
   min-height: 0 !important;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 10;
 }
 
 .mosaico-escolha.mosaico-qtd-2 {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: 360px;
-  grid-template-areas:
-    "a b";
+  grid-template-areas: "a b";
 }
 
-.mosaico-escolha.mosaico-qtd-3 {
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 340px;
-  grid-template-areas:
-    "a b c";
-}
-
-.mosaico-escolha.mosaico-qtd-4 {
-  grid-template-columns: 1.08fr 1fr 1fr;
-  grid-template-rows: 240px 240px;
-  grid-template-areas:
-    "a b c"
-    "a d d";
-}
-
-.mosaico-escolha.mosaico-qtd-5 {
-  grid-template-columns: 1.08fr 1fr 1fr;
-  grid-template-rows: 240px 240px;
-  grid-template-areas:
-    "a b c"
-    "a d e";
-}
-
+.mosaico-escolha.mosaico-qtd-3,
+.mosaico-escolha.mosaico-qtd-4,
+.mosaico-escolha.mosaico-qtd-5,
 .mosaico-escolha.mosaico-qtd-6 {
-  grid-template-columns: 1.08fr 1fr 1fr;
-  grid-template-rows: 240px 240px;
-  grid-template-areas:
-    "a b c"
-    "a d e";
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 350px;
+  grid-template-areas: "a b c";
 }
 
-.mosaico-escolha.mosaico-qtd-6 .mosaico-item:nth-child(6) {
+.mosaico-escolha.mosaico-qtd-4 .mosaico-item:nth-child(n+4),
+.mosaico-escolha.mosaico-qtd-5 .mosaico-item:nth-child(n+4),
+.mosaico-escolha.mosaico-qtd-6 .mosaico-item:nth-child(n+4) {
   display: none;
 }
 
@@ -189,11 +164,7 @@ section.hero-app-card {
   flex: initial;
   border-radius: 22px;
   background: transparent;
-  box-shadow: 0 12px 30px rgba(15,23,42,.07);
-}
-
-.mosaico-escolha .mosaico-item:nth-child(1) .card {
-  border-radius: 26px;
+  box-shadow: 0 14px 32px rgba(15,23,42,.075);
 }
 
 .mosaico-escolha .foto-wrap {
@@ -203,25 +174,20 @@ section.hero-app-card {
 }
 
 .mosaico-escolha .overlay-content {
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
 }
 
 .mosaico-escolha .overlay-text {
-  font-size: 16px;
-  line-height: 1.08;
-}
-
-.mosaico-escolha .mosaico-item:nth-child(1) .overlay-text {
-  font-size: 22px;
-  line-height: 1.04;
+  font-size: 20px;
+  line-height: 1.05;
 }
 
 .mosaico-escolha .overlay-preco {
   margin-top: 5px;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   line-height: 1.05;
 }
@@ -229,10 +195,11 @@ section.hero-app-card {
 .mosaico-escolha .overlay-local {
   margin-top: 4px;
   color: rgba(255,255,255,.92);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
   line-height: 1.15;
 }
+
 /* CARROSSÉIS */
 
 .carousel-1linha {
@@ -242,10 +209,10 @@ section.hero-app-card {
 
 .home-linha-horizontal {
   display: flex;
-  gap: 12px;
+  gap: 18px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px 2px 6px;
+  padding: 2px 2px 10px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
@@ -268,9 +235,9 @@ section.hero-app-card {
 
 .card {
   position: relative;
-  flex: 0 0 30.6%;
-  min-width: 292px;
-  max-width: 395px;
+  flex: 0 0 calc((100% - 54px) / 4);
+  min-width: 310px;
+  max-width: 390px;
   background: transparent;
   border-radius: 20px;
   overflow: hidden;
@@ -305,7 +272,7 @@ section.hero-app-card {
 .foto-wrap {
   position: relative;
   width: 100%;
-  height: 192px;
+  height: 205px;
   overflow: hidden;
   background: #e5e7eb;
 }
@@ -387,8 +354,8 @@ section.hero-app-card {
 /* EVENTOS */
 
 .eventos-banner {
-  max-width: 1404px;
-  margin: 0 auto 18px;
+  max-width: 1396px;
+  margin: 2px auto 28px;
   padding: 22px 24px;
   border-radius: 26px;
   background: linear-gradient(135deg, #0f172a, #1e3a8a);
@@ -461,8 +428,8 @@ section.hero-app-card {
 
 .hero-app-card {
   max-width: 1180px;
-  width: calc(100% - 36px);
-  margin: 18px auto 20px;
+  width: calc(100% - 44px);
+  margin: 20px auto 28px;
   padding: 20px 18px 22px;
   border-radius: 22px;
   background: rgba(255,255,255,.92);
@@ -546,7 +513,7 @@ section.hero-app-card {
 @media (max-width: 620px) {
 
   .hero {
-    margin: 8px 0 12px;
+    margin: 8px 0 14px;
     padding: 0 12px;
   }
 
@@ -566,7 +533,7 @@ section.hero-app-card {
   }
 
   section {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     padding: 0 12px;
   }
 
@@ -577,7 +544,7 @@ section.hero-app-card {
 
   .section-head {
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     gap: 10px;
   }
 
@@ -607,7 +574,7 @@ section.hero-app-card {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas: none;
-    gap: 9px;
+    gap: 12px;
     overflow: visible;
     padding: 0;
     max-width: none;
@@ -655,19 +622,19 @@ section.hero-app-card {
   }
 
   .home-linha-horizontal {
-    gap: 9px;
-    padding: 2px 12px 4px 0;
+    gap: 12px;
+    padding: 2px 12px 8px 0;
   }
 
   .card {
-    flex: 0 0 43%;
-    min-width: 43%;
-    max-width: 43%;
+    flex: 0 0 46%;
+    min-width: 46%;
+    max-width: 46%;
     border-radius: 16px;
   }
 
   .foto-wrap {
-    height: 122px;
+    height: 126px;
   }
 
   .overlay-content {
@@ -686,7 +653,7 @@ section.hero-app-card {
   }
 
   .eventos-banner {
-    margin: 0 12px 14px;
+    margin: 0 12px 20px;
     padding: 17px;
     border-radius: 21px;
     flex-direction: column;
@@ -722,7 +689,7 @@ section.hero-app-card {
 
   .hero-app-card {
     width: calc(100% - 24px);
-    margin: 14px auto 18px;
+    margin: 16px auto 22px;
     padding: 17px 14px;
     border-radius: 18px;
   }
