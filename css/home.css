@@ -1,6 +1,6 @@
 .hero {
   max-width: 1440px;
-  margin: 10px auto 18px;
+  margin: 8px auto 14px;
   padding: 0 22px;
   background: transparent;
   border: 0;
@@ -38,7 +38,7 @@
 
 section {
   max-width: 1440px;
-  margin: 0 auto 18px;
+  margin: 0 auto 12px;
   padding: 0 22px;
 }
 
@@ -56,13 +56,13 @@ section.hero-app-card {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .section-head h2 {
   margin: 0;
   color: #0f172a;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 950;
   letter-spacing: -.8px;
   line-height: 1.05;
@@ -76,30 +76,31 @@ section.hero-app-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
-  padding: 0 13px;
+  min-height: 30px;
+  padding: 0 12px;
   border-radius: 999px;
   background: #ffffff;
   border: 1px solid rgba(30,58,138,.20);
   color: #1e3a8a;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 900;
   text-decoration: none;
   box-shadow: 0 8px 18px rgba(15,23,42,.045);
   white-space: nowrap;
 }
+
 /* ===========================
    ESCOLHA DO VOLANTE
 =========================== */
 
 .secao-escolha {
   margin-top: 0;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .mosaico-escolha {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   align-items: stretch;
 }
 
@@ -114,34 +115,20 @@ section.hero-app-card {
 .mosaico-escolha .mosaico-item:nth-child(5) { grid-area: e; }
 .mosaico-escolha .mosaico-item:nth-child(6) { grid-area: f; }
 
-/* 1 destaque */
-
 .mosaico-escolha.mosaico-qtd-1 {
-  grid-template-columns: minmax(360px,520px);
-  grid-template-rows: 360px;
+  grid-template-columns: minmax(340px,500px);
+  grid-template-rows: 330px;
   grid-template-areas: "a";
   justify-content: flex-start;
-}
-
-.mosaico-escolha.mosaico-qtd-1 .mosaico-item {
-  display: block;
 }
 
 .mosaico-escolha.mosaico-qtd-1 .mosaico-item:nth-child(n+2) {
   display: none;
 }
 
-.mosaico-escolha.mosaico-qtd-1 .card,
-.mosaico-escolha.mosaico-qtd-1 .foto-wrap {
-  width: 100%;
-  height: 100%;
-}
-
-/* 2 destaques */
-
 .mosaico-escolha.mosaico-qtd-2 {
   grid-template-columns: repeat(2,minmax(0,1fr));
-  grid-template-rows: 360px;
+  grid-template-rows: 330px;
   grid-template-areas: "a b";
 }
 
@@ -149,14 +136,12 @@ section.hero-app-card {
   display: none;
 }
 
-/* 3 ou mais */
-
 .mosaico-escolha.mosaico-qtd-3,
 .mosaico-escolha.mosaico-qtd-4,
 .mosaico-escolha.mosaico-qtd-5,
 .mosaico-escolha.mosaico-qtd-6 {
   grid-template-columns: repeat(3,minmax(0,1fr));
-  grid-template-rows: 360px;
+  grid-template-rows: 330px;
   grid-template-areas: "a b c";
 }
 
@@ -200,6 +185,7 @@ section.hero-app-card {
   margin-top: 4px;
   font-size: 13px;
 }
+
 /* ===========================
    CARROSSÉIS
 =========================== */
@@ -211,17 +197,17 @@ section.hero-app-card {
 
 .home-linha-horizontal {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px 2px 8px;
+  padding: 2px 2px 6px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
 }
 
 .home-linha-horizontal::-webkit-scrollbar {
-  height: 6px;
+  height: 5px;
 }
 
 .home-linha-horizontal::-webkit-scrollbar-thumb {
@@ -232,20 +218,21 @@ section.hero-app-card {
 .home-linha-horizontal::-webkit-scrollbar-track {
   background: transparent;
 }
+
 /* ===========================
    CARDS
 =========================== */
 
 .card {
   position: relative;
-  flex: 0 0 calc((100% - 54px)/4);
-  min-width: 310px;
-  max-width: 390px;
+  flex: 0 0 calc((100% - 42px)/4);
+  min-width: 270px;
+  max-width: 340px;
   background: transparent;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(15,23,42,.07);
-  box-shadow: 0 10px 26px rgba(15,23,42,.05);
+  box-shadow: 0 8px 20px rgba(15,23,42,.045);
   cursor: pointer;
   scroll-snap-align: start;
 }
@@ -257,13 +244,13 @@ section.hero-app-card {
 .card.destaque .foto-wrap::after {
   content: "Destaque";
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 9px;
+  right: 9px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 25px;
-  padding: 0 10px;
+  min-height: 24px;
+  padding: 0 9px;
   border-radius: 999px;
   background: rgba(15,23,42,.90);
   color: #fff;
@@ -275,7 +262,7 @@ section.hero-app-card {
 .foto-wrap {
   position: relative;
   width: 100%;
-  height: 205px;
+  height: 180px;
   overflow: hidden;
   background: #e5e7eb;
 }
@@ -301,15 +288,15 @@ section.hero-app-card {
 
 .overlay-content {
   position: absolute;
-  left: 13px;
-  right: 13px;
-  bottom: 13px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
   z-index: 4;
 }
 
 .overlay-text {
   color: #fff;
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 950;
   line-height: 1.05;
   letter-spacing: -.42px;
@@ -335,7 +322,7 @@ section.hero-app-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 25px;
+  min-height: 24px;
   padding: 0 9px;
   border-radius: 999px;
   background: rgba(255,255,255,.14);
@@ -371,34 +358,34 @@ section.hero-app-card {
 
 .eventos-banner {
   max-width: 1396px;
-  margin: 2px auto 18px;
-  padding: 22px 24px;
-  border-radius: 26px;
+  margin: 0 auto 12px;
+  padding: 20px 22px;
+  border-radius: 24px;
   background: linear-gradient(135deg,#0f172a,#1e3a8a);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
-  box-shadow: 0 16px 42px rgba(15,23,42,.16);
+  gap: 20px;
+  box-shadow: 0 14px 36px rgba(15,23,42,.14);
 }
 
 .eventos-banner-conteudo {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 15px;
 }
 
 .eventos-icone {
-  width: 54px;
-  height: 54px;
-  border-radius: 19px;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
   background: rgba(255,255,255,.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  flex: 0 0 54px;
+  font-size: 23px;
+  flex: 0 0 52px;
 }
 
 .eventos-banner span {
@@ -412,7 +399,7 @@ section.hero-app-card {
 
 .eventos-banner h2 {
   margin: 0;
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 950;
 }
 
@@ -424,8 +411,8 @@ section.hero-app-card {
 }
 
 .eventos-botao {
-  min-height: 40px;
-  padding: 0 16px;
+  min-height: 38px;
+  padding: 0 15px;
   border-radius: 999px;
   background: #fff;
   color: #1e3a8a;
@@ -437,309 +424,301 @@ section.hero-app-card {
   justify-content: center;
   white-space: nowrap;
 }
+
 /* ===========================
    APP CARD
 =========================== */
 
-.hero-app-card{
-    max-width:1180px;
-    width:calc(100% - 44px);
-    margin:18px auto 20px;
-    padding:20px 18px 22px;
-    border-radius:22px;
-    background:rgba(255,255,255,.92);
-    border:1px solid rgba(15,23,42,.08);
-    box-shadow:0 12px 32px rgba(15,23,42,.055);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
+.hero-app-card {
+  max-width: 1180px;
+  width: calc(100% - 44px);
+  margin: 14px auto 16px;
+  padding: 18px 18px 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.08);
+  box-shadow: 0 12px 32px rgba(15,23,42,.055);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.hero-app-texto p{
-    margin:0;
-    color:#334155;
-    font-size:15px;
-    font-weight:800;
-    line-height:1.45;
+.hero-app-texto p {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.45;
 }
 
-.hero-lojas{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:16px;
+.hero-lojas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
 }
 
-.hero-loja-btn{
-    min-width:210px;
-    height:56px;
-    border-radius:16px;
-    background:#fff;
-    border:1px solid rgba(15,23,42,.12);
-    box-shadow:0 10px 22px rgba(15,23,42,.055);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:11px;
-    text-decoration:none;
-    color:#0f172a;
+.hero-loja-btn {
+  min-width: 210px;
+  height: 54px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(15,23,42,.12);
+  box-shadow: 0 10px 22px rgba(15,23,42,.055);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  text-decoration: none;
+  color: #0f172a;
 }
 
-.hero-loja-btn img{
-    width:30px;
-    height:30px;
-    object-fit:contain;
+.hero-loja-btn img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
-.hero-loja-texto{
-    text-align:left;
-    line-height:1.05;
+.hero-loja-texto {
+  text-align: left;
+  line-height: 1.05;
 }
 
-.hero-loja-texto span{
-    display:block;
-    font-size:11px;
-    color:#334155;
+.hero-loja-texto span {
+  display: block;
+  font-size: 11px;
+  color: #334155;
 }
 
-.hero-loja-texto strong{
-    display:block;
-    font-size:18px;
-    font-weight:900;
-    color:#0f172a;
+.hero-loja-texto strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  color: #0f172a;
 }
 
-.empty{
-    width:100%;
-    padding:16px;
-    border-radius:16px;
-    background:#f8fafc;
-    border:1px solid rgba(15,23,42,.08);
-    color:#64748b;
-    font-weight:800;
-    text-align:center;
+.empty {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid rgba(15,23,42,.08);
+  color: #64748b;
+  font-weight: 800;
+  text-align: center;
 }
+
 /* ===========================
    MOBILE
 =========================== */
 
-@media (max-width:620px){
+@media (max-width:620px) {
+  .hero {
+    margin: 8px 0 10px;
+    padding: 0 12px;
+  }
 
-.hero{
-    margin:8px 0 12px;
-    padding:0 12px;
-}
+  .busca {
+    height: 50px;
+    border-radius: 15px;
+    gap: 10px;
+    padding: 0 14px;
+  }
 
-.busca{
-    height:50px;
-    border-radius:15px;
-    gap:10px;
-    padding:0 14px;
-}
+  .busca span {
+    font-size: 20px;
+  }
 
-.busca span{
-    font-size:20px;
-}
+  .busca input {
+    font-size: 14px;
+  }
 
-.busca input{
-    font-size:14px;
-}
+  section {
+    margin-bottom: 8px;
+    padding: 0 12px;
+  }
 
-section{
-    margin-bottom:16px;
-    padding:0 12px;
-}
+  .section-head {
+    margin-bottom: 6px;
+  }
 
-.section-head{
-    margin-bottom:8px;
-}
+  .section-head h2 {
+    font-size: 20px;
+  }
 
-.section-head h2{
-    font-size:20px;
-}
+  .home-ver-todos {
+    min-height: 30px;
+    font-size: 11px;
+  }
 
-.home-ver-todos{
-    min-height:30px;
-    font-size:11px;
-}
+  .mosaico-escolha,
+  .mosaico-escolha.mosaico-qtd-1,
+  .mosaico-escolha.mosaico-qtd-2,
+  .mosaico-escolha.mosaico-qtd-3,
+  .mosaico-escolha.mosaico-qtd-4,
+  .mosaico-escolha.mosaico-qtd-5,
+  .mosaico-escolha.mosaico-qtd-6 {
+    display: flex !important;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 0 6px;
+    scroll-snap-type: x proximity;
+  }
 
-/* MOBILE - ESCOLHA DO VOLANTE */
+  .mosaico-escolha .mosaico-item {
+    display: block !important;
+    flex: 0 0 74%;
+    min-width: 74%;
+    max-width: 74%;
+    height: auto !important;
+    grid-area: auto !important;
+    scroll-snap-align: start;
+  }
 
-.mosaico-escolha,
-.mosaico-escolha.mosaico-qtd-1,
-.mosaico-escolha.mosaico-qtd-2,
-.mosaico-escolha.mosaico-qtd-3,
-.mosaico-escolha.mosaico-qtd-4,
-.mosaico-escolha.mosaico-qtd-5,
-.mosaico-escolha.mosaico-qtd-6{
-    display:flex !important;
-    gap:12px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    padding:2px 0 8px;
-    scroll-snap-type:x proximity;
-}
+  .mosaico-escolha .mosaico-item:nth-child(n+5) {
+    display: none !important;
+  }
 
-.mosaico-escolha .mosaico-item{
-    display:block !important;
-    flex:0 0 82%;
-    min-width:82%;
-    max-width:82%;
-    height:auto !important;
-    grid-area:auto !important;
-    scroll-snap-align:start;
-}
+  .mosaico-escolha .card {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    border-radius: 18px;
+  }
 
-.mosaico-escolha .mosaico-item:nth-child(n+5){
-    display:none !important;
-}
+  .mosaico-escolha .foto-wrap {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 16 / 9;
+  }
 
-.mosaico-escolha .card{
-    width:100% !important;
-    height:auto !important;
-    min-width:0 !important;
-    max-width:none !important;
-    border-radius:18px;
-}
+  .mosaico-escolha .overlay-content {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
 
-.mosaico-escolha .foto-wrap{
-    width:100% !important;
-    height:auto !important;
-    min-height:0 !important;
-    aspect-ratio:16 / 10;
-}
+  .mosaico-escolha .overlay-text {
+    font-size: 17px;
+  }
 
-.mosaico-escolha .overlay-content{
-    left:12px;
-    right:12px;
-    bottom:12px;
-}
+  .mosaico-escolha .overlay-preco {
+    font-size: 16px;
+  }
 
-.mosaico-escolha .overlay-text{
-    font-size:18px;
-}
+  .mosaico-escolha .overlay-local {
+    font-size: 12px;
+  }
 
-.mosaico-escolha .overlay-preco{
-    font-size:17px;
-}
+  .home-linha-horizontal {
+    gap: 10px;
+    padding: 2px 0 6px;
+  }
 
-.mosaico-escolha .overlay-local{
-    font-size:12px;
-}
+  .home-linha-horizontal .card {
+    flex: 0 0 68%;
+    min-width: 68%;
+    max-width: 68%;
+    height: auto;
+    scroll-snap-align: start;
+  }
 
-/* MOBILE - CARROSSÉIS */
+  .home-linha-horizontal .foto-wrap {
+    height: 155px;
+  }
 
-.home-linha-horizontal{
-    gap:12px;
-    padding:2px 0 8px;
-}
+  .overlay-content {
+    left: 11px;
+    right: 11px;
+    bottom: 11px;
+  }
 
-.card{
-    flex:0 0 84%;
-    min-width:84%;
-    max-width:84%;
-    height:auto;
-    scroll-snap-align:start;
-}
+  .overlay-text {
+    font-size: 14px;
+  }
 
-.foto-wrap{
-    height:180px;
-}
+  .ver-mais {
+    display: none;
+  }
 
-.overlay-content{
-    left:11px;
-    right:11px;
-    bottom:11px;
-}
+  .eventos-banner {
+    margin: 0 12px 10px;
+    padding: 16px;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
 
-.overlay-text{
-    font-size:14px;
-}
+  .eventos-banner-conteudo {
+    align-items: flex-start;
+    gap: 12px;
+  }
 
-.ver-mais{
-    display:none;
-}
+  .eventos-icone {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    font-size: 20px;
+    flex-basis: 42px;
+  }
 
-/* MOBILE - EVENTOS */
+  .eventos-banner h2 {
+    font-size: 20px;
+  }
 
-.eventos-banner{
-    margin:0 12px 18px;
-    padding:17px;
-    border-radius:20px;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:16px;
-}
+  .eventos-banner p {
+    font-size: 12px;
+  }
 
-.eventos-banner-conteudo{
-    align-items:flex-start;
-    gap:13px;
-}
+  .eventos-botao {
+    width: 100%;
+  }
 
-.eventos-icone{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    font-size:20px;
-    flex-basis:42px;
-}
+  .hero-app-card {
+    width: calc(100% - 24px);
+    margin: 10px auto 12px;
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
 
-.eventos-banner h2{
-    font-size:20px;
-}
+  .hero-lojas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    width: 100%;
+    margin-top: 14px;
+  }
 
-.eventos-banner p{
-    font-size:12px;
-}
+  .hero-loja-btn {
+    width: 100%;
+    min-width: 0;
+    height: 54px;
+    border-radius: 15px;
+    gap: 8px;
+  }
 
-.eventos-botao{
-    width:100%;
-}
+  .hero-loja-btn img {
+    width: 26px;
+    height: 26px;
+  }
 
-/* MOBILE - APP CARD */
+  .hero-loja-texto span {
+    font-size: 10px;
+  }
 
-.hero-app-card{
-    width:calc(100% - 24px);
-    margin:16px auto 18px;
-    padding:17px 14px;
-    border-radius:18px;
-}
+  .hero-loja-texto strong {
+    font-size: 15px;
+  }
 
-.hero-lojas{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-    width:100%;
-    margin-top:14px;
-}
-
-.hero-loja-btn{
-    width:100%;
-    min-width:0;
-    height:54px;
-    border-radius:15px;
-    gap:8px;
-}
-
-.hero-loja-btn img{
-    width:26px;
-    height:26px;
-}
-
-.hero-loja-texto span{
-    font-size:10px;
-}
-
-.hero-loja-texto strong{
-    font-size:15px;
-}
-
-.empty{
-    padding:14px;
-    font-size:13px;
-}
-
+  .empty {
+    padding: 14px;
+    font-size: 13px;
+  }
 }
