@@ -20,55 +20,14 @@ function ehDestaque(item) {
 
 export function imagemHtml(item, titulo, editorial = false) {
   const imagem = getImagem(item);
-
   const local = textoLocal(item);
 
-  const preco =
-    item.preco
-      ? formatarPreco(item.preco)
-      : "";
-
-  if (editorial) {
-    return `
-      <div class="foto-wrap editorial">
-
-        <img
-          class="foto"
-          src="${imagem}"
-          alt="${escapeHtml(titulo)}"
-          loading="lazy"
-          decoding="async"
-        />
-
-        <div class="overlay editorial"></div>
-
-         <div class="overlay-content editorial">
-
-          <div class="overlay-text editorial">
-            ${escapeHtml(titulo)}
-          </div>
-
-          ${
-            preco
-              ? `<div class="overlay-preco">${escapeHtml(preco)}</div>`
-              : ""
-          }
-
-          ${
-            local
-              ? `<div class="overlay-local">${escapeHtml(local)}</div>`
-              : ""
-          }
-
-        </div>
-
-      </div>
-    `;
-  }
+  const preco = item.preco
+    ? formatarPreco(item.preco)
+    : "";
 
   return `
-    <div class="foto-wrap">
-
+    <div class="foto-wrap ${editorial ? "editorial" : ""}">
       <img
         class="foto"
         src="${imagem}"
@@ -77,72 +36,67 @@ export function imagemHtml(item, titulo, editorial = false) {
         decoding="async"
       />
 
-      <div class="overlay"></div>
+      <div class="overlay ${editorial ? "editorial" : ""}"></div>
 
-      <div class="overlay-content">
-
-        <div class="overlay-text">
+      <div class="overlay-content ${editorial ? "editorial" : ""}">
+        <div class="overlay-text ${editorial ? "editorial" : ""}">
           ${escapeHtml(titulo)}
         </div>
 
-        <span class="ver-mais">
-          Ver detalhes
-        </span>
+        ${
+          editorial && preco
+            ? `<div class="overlay-preco">${escapeHtml(preco)}</div>`
+            : ""
+        }
 
+        ${
+          editorial && local
+            ? `<div class="overlay-local">${escapeHtml(local)}</div>`
+            : ""
+        }
+
+        ${
+          !editorial
+            ? `<span class="ver-mais">Ver detalhes</span>`
+            : ""
+        }
       </div>
-
     </div>
   `;
 }
 
 export function cardAnuncio(item, editorial = false) {
-
   const titulo =
     item.titulo ||
     `${item.marca || ""} ${item.modelo || ""}`.trim() ||
     "Anúncio";
 
   const local = textoLocal(item);
-
   const destaque = ehDestaque(item);
-
-  if (editorial) {
-
-    return `
-      <article
-        class="card card-editorial ${destaque ? "destaque" : ""}"
-        onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'"
-      >
-
-        ${imagemHtml(item, titulo, true)}
-
-      </article>
-    `;
-
-  }
 
   return `
     <article
-      class="card ${destaque ? "destaque" : ""}"
+      class="card ${editorial ? "card-editorial" : ""} ${destaque ? "destaque" : ""}"
       onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'"
     >
+      ${imagemHtml(item, titulo, editorial)}
 
-      ${imagemHtml(item, titulo)}
-
-      <div class="card-body">
-
-        <div class="meta">
-          ${escapeHtml(local)}
-        </div>
-
-      </div>
-
+      ${
+        editorial
+          ? ""
+          : `
+            <div class="card-body">
+              <div class="meta">
+                ${escapeHtml(local)}
+              </div>
+            </div>
+          `
+      }
     </article>
   `;
 }
 
 export function cardEvento(item) {
-
   const titulo =
     item.titulo ||
     item.nome ||
@@ -155,17 +109,13 @@ export function cardEvento(item) {
       class="card"
       onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
     >
-
       ${imagemHtml(item, titulo)}
 
       <div class="card-body">
-
         <div class="meta">
           ${escapeHtml(local)}
         </div>
-
       </div>
-
     </article>
   `;
 }
@@ -176,11 +126,9 @@ export function renderizarGrid(
   criador,
   vazioTexto
 ) {
-
   if (!elemento) return;
 
   if (!lista.length) {
-
     elemento.innerHTML = `
       <div class="empty">
         ${vazioTexto}
@@ -188,11 +136,9 @@ export function renderizarGrid(
     `;
 
     return;
-
   }
 
   elemento.innerHTML = lista
     .map(criador)
     .join("");
-
 }
