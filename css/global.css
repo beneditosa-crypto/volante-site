@@ -72,7 +72,7 @@ main {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 18px 18px 86px;
+  padding: 14px 18px 86px;
 }
 
 header {
@@ -127,10 +127,6 @@ header {
   font-size: 12.5px;
   line-height: 1.2;
   font-weight: 600;
-}
-
-section + section {
-  margin-top: 22px;
 }
 
 .section-head {
@@ -193,7 +189,7 @@ section + section {
 
 .footer {
   width: 100%;
-  margin: 32px auto 0;
+  margin: 28px auto 0;
   padding-bottom: 72px;
 }
 
@@ -338,7 +334,7 @@ section + section {
 
 @media (max-width: 620px) {
   main {
-    padding: 8px 14px 74px;
+    padding: 8px 0 74px;
   }
 
   .topo {
@@ -362,12 +358,8 @@ section + section {
     font-size: 11.5px;
   }
 
-  section + section {
-    margin-top: 17px;
-  }
-
   .section-head {
-    margin-bottom: 9px;
+    margin-bottom: 7px;
   }
 
   .section-head h2 {
@@ -380,8 +372,8 @@ section + section {
   }
 
   .footer {
-    margin-top: 26px;
-    padding-bottom: 62px;
+    margin-top: 22px;
+    padding: 0 12px 62px;
   }
 
   .footer-card {
