@@ -566,38 +566,50 @@ section{
     font-size:11px;
 }
 
+/* MOBILE - ESCOLHA DO VOLANTE */
+
 .mosaico-escolha,
-.mosaico-qtd-1,
-.mosaico-qtd-2,
-.mosaico-qtd-3,
-.mosaico-qtd-4,
-.mosaico-qtd-5,
-.mosaico-qtd-6{
-    display:grid;
-    grid-template-columns:1fr;
-    grid-template-areas:none;
-    grid-template-rows:auto;
+.mosaico-escolha.mosaico-qtd-1,
+.mosaico-escolha.mosaico-qtd-2,
+.mosaico-escolha.mosaico-qtd-3,
+.mosaico-escolha.mosaico-qtd-4,
+.mosaico-escolha.mosaico-qtd-5,
+.mosaico-escolha.mosaico-qtd-6{
+    display:flex !important;
     gap:12px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:2px 0 8px;
+    scroll-snap-type:x proximity;
 }
 
 .mosaico-escolha .mosaico-item{
     display:block !important;
+    flex:0 0 82%;
+    min-width:82%;
+    max-width:82%;
+    height:auto !important;
+    grid-area:auto !important;
+    scroll-snap-align:start;
 }
 
-.mosaico-escolha .mosaico-item:nth-child(n+4){
+.mosaico-escolha .mosaico-item:nth-child(n+5){
     display:none !important;
 }
 
 .mosaico-escolha .card{
-    width:100%;
-    max-width:none;
-    min-width:0;
+    width:100% !important;
+    height:auto !important;
+    min-width:0 !important;
+    max-width:none !important;
     border-radius:18px;
 }
 
 .mosaico-escolha .foto-wrap{
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
     aspect-ratio:16 / 10;
-    height:auto;
 }
 
 .mosaico-escolha .overlay-content{
@@ -618,6 +630,8 @@ section{
     font-size:12px;
 }
 
+/* MOBILE - CARROSSÉIS */
+
 .home-linha-horizontal{
     gap:12px;
     padding:2px 0 8px;
@@ -627,7 +641,8 @@ section{
     flex:0 0 84%;
     min-width:84%;
     max-width:84%;
-    scroll-snap-align:center;
+    height:auto;
+    scroll-snap-align:start;
 }
 
 .foto-wrap{
@@ -647,6 +662,8 @@ section{
 .ver-mais{
     display:none;
 }
+
+/* MOBILE - EVENTOS */
 
 .eventos-banner{
     margin:0 12px 18px;
@@ -681,6 +698,8 @@ section{
 .eventos-botao{
     width:100%;
 }
+
+/* MOBILE - APP CARD */
 
 .hero-app-card{
     width:calc(100% - 24px);
