@@ -1,12 +1,12 @@
 /* home.css */
 
 /* ===========================
-   BASE / HERO
+   HERO / BUSCA
 =========================== */
 
 .hero {
   max-width: 1440px;
-  margin: 8px auto 12px;
+  margin: 8px auto 10px;
   padding: 0 22px;
   background: transparent;
   border: 0;
@@ -100,7 +100,7 @@ section.hero-app-card {
 }
 
 /* ===========================
-   ESCOLHA DO VOLANTE - DESKTOP
+   ESCOLHA DO VOLANTE
 =========================== */
 
 .secao-escolha {
@@ -123,14 +123,14 @@ section.hero-app-card {
 .mosaico-escolha .mosaico-item:nth-child(3) { grid-area: c; }
 
 .mosaico-escolha.mosaico-qtd-1 {
-  grid-template-columns: 420px;
+  grid-template-columns: minmax(320px, 430px);
   grid-template-rows: 260px;
   grid-template-areas: "a";
   justify-content: flex-start;
 }
 
 .mosaico-escolha.mosaico-qtd-2 {
-  grid-template-columns: repeat(2, 420px);
+  grid-template-columns: repeat(2, minmax(320px, 430px));
   grid-template-rows: 260px;
   grid-template-areas: "a b";
   justify-content: flex-start;
@@ -140,7 +140,7 @@ section.hero-app-card {
 .mosaico-escolha.mosaico-qtd-4,
 .mosaico-escolha.mosaico-qtd-5,
 .mosaico-escolha.mosaico-qtd-6 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1.35fr .85fr .85fr;
   grid-template-rows: 300px;
   grid-template-areas: "a b c";
 }
@@ -154,7 +154,7 @@ section.hero-app-card {
   height: 100%;
   min-width: 0;
   max-width: none;
-  border-radius: 20px;
+  border-radius: 22px;
 }
 
 .mosaico-escolha .foto-wrap {
@@ -172,9 +172,17 @@ section.hero-app-card {
   font-size: 19px;
 }
 
+.mosaico-principal .overlay-text {
+  font-size: 22px;
+}
+
 .mosaico-escolha .overlay-preco {
   margin-top: 5px;
   font-size: 18px;
+}
+
+.mosaico-principal .overlay-preco {
+  font-size: 20px;
 }
 
 .mosaico-escolha .overlay-local {
@@ -489,7 +497,7 @@ section.hero-app-card {
 
 @media (max-width: 620px) {
   .hero {
-    margin: 8px 0 10px;
+    margin: 8px 0 8px;
     padding: 0 12px;
   }
 
@@ -533,18 +541,12 @@ section.hero-app-card {
     font-size: 11px;
   }
 
-  .mosaico-escolha,
-  .mosaico-escolha.mosaico-qtd-1,
-  .mosaico-escolha.mosaico-qtd-2,
-  .mosaico-escolha.mosaico-qtd-3,
-  .mosaico-escolha.mosaico-qtd-4,
-  .mosaico-escolha.mosaico-qtd-5,
-  .mosaico-escolha.mosaico-qtd-6 {
+  .mosaico-escolha {
     display: block !important;
   }
 
-  .mosaico-escolha > .home-linha-horizontal,
-  .home-linha-horizontal {
+  .home-linha-horizontal,
+  .escolha-mobile {
     display: flex !important;
     gap: 8px;
     overflow-x: auto;
@@ -553,9 +555,8 @@ section.hero-app-card {
     scroll-snap-type: x proximity;
   }
 
-  .mosaico-escolha .card,
-  .mosaico-escolha > .home-linha-horizontal .card,
-  .home-linha-horizontal .card {
+  .home-linha-horizontal .card,
+  .escolha-mobile .card {
     flex: 0 0 calc((100vw - 40px) / 2.5) !important;
     min-width: calc((100vw - 40px) / 2.5) !important;
     max-width: calc((100vw - 40px) / 2.5) !important;
@@ -564,9 +565,8 @@ section.hero-app-card {
     border-radius: 16px;
   }
 
-  .mosaico-escolha .foto-wrap,
-  .mosaico-escolha > .home-linha-horizontal .foto-wrap,
-  .home-linha-horizontal .foto-wrap {
+  .home-linha-horizontal .foto-wrap,
+  .escolha-mobile .foto-wrap {
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 4 / 5 !important;
@@ -580,27 +580,23 @@ section.hero-app-card {
     font-size: 9px;
   }
 
-  .mosaico-escolha .overlay-content,
   .overlay-content {
     left: 9px;
     right: 9px;
     bottom: 9px;
   }
 
-  .mosaico-escolha .overlay-text,
   .overlay-text {
     font-size: 12.5px !important;
     line-height: 1.05;
     letter-spacing: -.32px;
   }
 
-  .mosaico-escolha .overlay-preco,
   .overlay-preco {
     margin-top: 4px;
     font-size: 12.5px !important;
   }
 
-  .mosaico-escolha .overlay-local,
   .overlay-local {
     margin-top: 3px;
     font-size: 10.5px !important;
