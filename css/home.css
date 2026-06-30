@@ -1,6 +1,12 @@
+/* home.css */
+
+/* ===========================
+   BASE / HERO
+=========================== */
+
 .hero {
   max-width: 1440px;
-  margin: 8px auto 14px;
+  margin: 8px auto 12px;
   padding: 0 22px;
   background: transparent;
   border: 0;
@@ -32,13 +38,17 @@
   outline: 0;
   background: transparent;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   color: #0f172a;
 }
 
+/* ===========================
+   SEÇÕES
+=========================== */
+
 section {
   max-width: 1440px;
-  margin: 0 auto 12px;
+  margin: 0 auto 14px;
   padding: 0 22px;
 }
 
@@ -62,7 +72,7 @@ section.hero-app-card {
 .section-head h2 {
   margin: 0;
   color: #0f172a;
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 950;
   letter-spacing: -.8px;
   line-height: 1.05;
@@ -76,13 +86,13 @@ section.hero-app-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 30px;
-  padding: 0 12px;
+  min-height: 32px;
+  padding: 0 13px;
   border-radius: 999px;
   background: #ffffff;
   border: 1px solid rgba(30,58,138,.20);
   color: #1e3a8a;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 900;
   text-decoration: none;
   box-shadow: 0 8px 18px rgba(15,23,42,.045);
@@ -90,12 +100,12 @@ section.hero-app-card {
 }
 
 /* ===========================
-   ESCOLHA DO VOLANTE
+   ESCOLHA DO VOLANTE - DESKTOP
 =========================== */
 
 .secao-escolha {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .mosaico-escolha {
@@ -111,44 +121,30 @@ section.hero-app-card {
 .mosaico-escolha .mosaico-item:nth-child(1) { grid-area: a; }
 .mosaico-escolha .mosaico-item:nth-child(2) { grid-area: b; }
 .mosaico-escolha .mosaico-item:nth-child(3) { grid-area: c; }
-.mosaico-escolha .mosaico-item:nth-child(4) { grid-area: d; }
-.mosaico-escolha .mosaico-item:nth-child(5) { grid-area: e; }
-.mosaico-escolha .mosaico-item:nth-child(6) { grid-area: f; }
 
 .mosaico-escolha.mosaico-qtd-1 {
-  grid-template-columns: minmax(340px,500px);
-  grid-template-rows: 330px;
+  grid-template-columns: minmax(340px, 500px);
+  grid-template-rows: 320px;
   grid-template-areas: "a";
   justify-content: flex-start;
 }
 
-.mosaico-escolha.mosaico-qtd-1 .mosaico-item:nth-child(n+2) {
-  display: none;
-}
-
 .mosaico-escolha.mosaico-qtd-2 {
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  grid-template-rows: 330px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 320px;
   grid-template-areas: "a b";
-}
-
-.mosaico-escolha.mosaico-qtd-2 .mosaico-item:nth-child(n+3) {
-  display: none;
 }
 
 .mosaico-escolha.mosaico-qtd-3,
 .mosaico-escolha.mosaico-qtd-4,
 .mosaico-escolha.mosaico-qtd-5,
 .mosaico-escolha.mosaico-qtd-6 {
-  grid-template-columns: repeat(3,minmax(0,1fr));
-  grid-template-rows: 330px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 320px;
   grid-template-areas: "a b c";
 }
 
-.mosaico-escolha.mosaico-qtd-3 .mosaico-item:nth-child(n+4),
-.mosaico-escolha.mosaico-qtd-4 .mosaico-item:nth-child(n+4),
-.mosaico-escolha.mosaico-qtd-5 .mosaico-item:nth-child(n+4),
-.mosaico-escolha.mosaico-qtd-6 .mosaico-item:nth-child(n+4) {
+.mosaico-escolha .mosaico-item:nth-child(n+4) {
   display: none;
 }
 
@@ -163,7 +159,6 @@ section.hero-app-card {
 .mosaico-escolha .foto-wrap {
   width: 100%;
   height: 100%;
-  min-height: 0;
 }
 
 .mosaico-escolha .overlay-content {
@@ -173,7 +168,7 @@ section.hero-app-card {
 }
 
 .mosaico-escolha .overlay-text {
-  font-size: 20px;
+  font-size: 21px;
 }
 
 .mosaico-escolha .overlay-preco {
@@ -220,12 +215,12 @@ section.hero-app-card {
 }
 
 /* ===========================
-   CARDS
+   CARDS PADRÃO
 =========================== */
 
 .card {
   position: relative;
-  flex: 0 0 calc((100% - 42px)/4);
+  flex: 0 0 calc((100% - 42px) / 4);
   min-width: 270px;
   max-width: 340px;
   background: transparent;
@@ -246,9 +241,6 @@ section.hero-app-card {
   position: absolute;
   top: 9px;
   right: 9px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   min-height: 24px;
   padding: 0 9px;
   border-radius: 999px;
@@ -257,12 +249,15 @@ section.hero-app-card {
   font-size: 10px;
   font-weight: 900;
   z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .foto-wrap {
   position: relative;
   width: 100%;
-  height: 180px;
+  height: 178px;
   overflow: hidden;
   background: #e5e7eb;
 }
@@ -280,7 +275,7 @@ section.hero-app-card {
   background:
     linear-gradient(
       to top,
-      rgba(2,6,23,.82),
+      rgba(2,6,23,.84),
       rgba(15,23,42,.26),
       rgba(15,23,42,.03)
     );
@@ -314,35 +309,11 @@ section.hero-app-card {
   margin-top: 4px;
   color: rgba(255,255,255,.92);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-.ver-mais {
-  margin-top: 7px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 24px;
-  padding: 0 9px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.14);
-  backdrop-filter: blur(14px);
-  color: #fff;
-  font-size: 9.5px;
-  font-weight: 850;
-  border: 1px solid rgba(255,255,255,.18);
-}
-
-.card-body {
-  display: none !important;
-  padding: 0;
-  margin: 0;
-  height: 0;
-  min-height: 0;
-  overflow: hidden;
-  background: transparent;
-}
-
+.ver-mais,
+.card-body,
 .meta,
 .price,
 .btn-favorito,
@@ -358,7 +329,7 @@ section.hero-app-card {
 
 .eventos-banner {
   max-width: 1396px;
-  margin: 0 auto 12px;
+  margin: 0 auto 14px;
   padding: 20px 22px;
   border-radius: 24px;
   background: linear-gradient(135deg,#0f172a,#1e3a8a);
@@ -433,7 +404,7 @@ section.hero-app-card {
   max-width: 1180px;
   width: calc(100% - 44px);
   margin: 14px auto 16px;
-  padding: 18px 18px 20px;
+  padding: 18px;
   border-radius: 22px;
   background: rgba(255,255,255,.92);
   border: 1px solid rgba(15,23,42,.08);
@@ -515,7 +486,7 @@ section.hero-app-card {
    MOBILE
 =========================== */
 
-@media (max-width:620px) {
+@media (max-width: 620px) {
   .hero {
     margin: 8px 0 10px;
     padding: 0 12px;
@@ -534,11 +505,16 @@ section.hero-app-card {
 
   .busca input {
     font-size: 14px;
+    font-weight: 800;
   }
 
   section {
     margin-bottom: 8px;
     padding: 0 12px;
+  }
+
+  .secao-escolha {
+    margin-bottom: 8px;
   }
 
   .section-head {
@@ -547,104 +523,90 @@ section.hero-app-card {
 
   .section-head h2 {
     font-size: 20px;
+    letter-spacing: -.7px;
   }
 
   .home-ver-todos {
     min-height: 30px;
+    padding: 0 12px;
     font-size: 11px;
   }
 
-  .mosaico-escolha,
-  .mosaico-escolha.mosaico-qtd-1,
-  .mosaico-escolha.mosaico-qtd-2,
-  .mosaico-escolha.mosaico-qtd-3,
-  .mosaico-escolha.mosaico-qtd-4,
-  .mosaico-escolha.mosaico-qtd-5,
-  .mosaico-escolha.mosaico-qtd-6 {
+  .home-linha-horizontal {
+    gap: 8px;
+    padding: 2px 0 5px;
+  }
+
+  .mosaico-escolha {
+    display: block !important;
+  }
+
+  .mosaico-escolha > .home-linha-horizontal {
     display: flex !important;
-    gap: 10px;
+    gap: 8px;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 2px 0 6px;
+    padding: 2px 0 5px;
     scroll-snap-type: x proximity;
   }
 
-  .mosaico-escolha .mosaico-item {
-    display: block !important;
-    flex: 0 0 74%;
-    min-width: 74%;
-    max-width: 74%;
+  .mosaico-escolha > .home-linha-horizontal .card {
+    flex: 0 0 38vw !important;
+    min-width: 38vw !important;
+    max-width: 38vw !important;
+    width: 38vw !important;
     height: auto !important;
-    grid-area: auto !important;
-    scroll-snap-align: start;
+    border-radius: 16px;
   }
 
-  .mosaico-escolha .mosaico-item:nth-child(n+5) {
-    display: none !important;
-  }
-
-  .mosaico-escolha .card {
+  .mosaico-escolha > .home-linha-horizontal .foto-wrap {
     width: 100% !important;
     height: auto !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    border-radius: 18px;
-  }
-
-  .mosaico-escolha .foto-wrap {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: 16 / 9;
-  }
-
-  .mosaico-escolha .overlay-content {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-  }
-
-  .mosaico-escolha .overlay-text {
-    font-size: 17px;
-  }
-
-  .mosaico-escolha .overlay-preco {
-    font-size: 16px;
-  }
-
-  .mosaico-escolha .overlay-local {
-    font-size: 12px;
-  }
-
-  .home-linha-horizontal {
-    gap: 10px;
-    padding: 2px 0 6px;
+    aspect-ratio: 4 / 5 !important;
   }
 
   .home-linha-horizontal .card {
-    flex: 0 0 68%;
-    min-width: 68%;
-    max-width: 68%;
-    height: auto;
-    scroll-snap-align: start;
+    flex: 0 0 38vw !important;
+    min-width: 38vw !important;
+    max-width: 38vw !important;
+    width: 38vw !important;
+    height: auto !important;
+    border-radius: 16px;
   }
 
   .home-linha-horizontal .foto-wrap {
-    height: 155px;
+    height: auto !important;
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .card.destaque .foto-wrap::after {
+    top: 7px;
+    right: 7px;
+    min-height: 21px;
+    padding: 0 8px;
+    font-size: 9px;
   }
 
   .overlay-content {
-    left: 11px;
-    right: 11px;
-    bottom: 11px;
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
   }
 
   .overlay-text {
-    font-size: 14px;
+    font-size: 12.5px;
+    line-height: 1.05;
+    letter-spacing: -.32px;
   }
 
-  .ver-mais {
-    display: none;
+  .overlay-preco {
+    margin-top: 4px;
+    font-size: 12.5px;
+  }
+
+  .overlay-local {
+    margin-top: 3px;
+    font-size: 10.5px;
   }
 
   .eventos-banner {
