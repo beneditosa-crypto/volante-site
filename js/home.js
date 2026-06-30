@@ -44,6 +44,16 @@ if (grids.escolhaVolante) {
 let anuncios = [];
 let eventos = [];
 
+const mediaMobile = window.matchMedia("(max-width: 620px)");
+let ultimoEstadoMobile = mediaMobile.matches;
+
+mediaMobile.addEventListener("change", () => {
+  if (ultimoEstadoMobile !== mediaMobile.matches) {
+    ultimoEstadoMobile = mediaMobile.matches;
+    renderizarTudo();
+  }
+});
+
 const REGIOES = {
   centroOeste: ["GO", "DF", "MT", "MS"],
   sudeste: ["SP", "RJ", "MG", "ES"],
@@ -248,14 +258,28 @@ function renderizarMosaicoEscolha(grid, lista) {
   limparClassesMosaico(grid);
 
   if (!lista.length) {
+    grid.className = "mosaico-escolha";
     grid.innerHTML = "";
     return;
   }
 
-  const selecionados = lista.slice(0, 6);
+  const mobile = mediaMobile.matches;
+  const limite = mobile ? 6 : 3;
+  const selecionados = lista.slice(0, limite);
 
   grid.className = "mosaico-escolha";
   grid.classList.add(`mosaico-qtd-${selecionados.length}`);
+
+  if (mobile) {
+    grid.innerHTML = `
+      <div class="home-linha-horizontal">
+        ${selecionados.map((item) => cardAnuncio(item, true)).join("")}
+      </div>
+    `;
+
+    return;
+  }
+
   grid.innerHTML = selecionados
     .map((item, index) => {
       const classe = index === 0
