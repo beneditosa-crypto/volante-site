@@ -94,6 +94,31 @@
         loading="eager"
         decoding="async"
       />
+
+      <div class="hero-banner-overlay">
+        <form class="hero-banner-busca" role="search" onsubmit="buscarHome(); return false;">
+          <span aria-hidden="true">⌕</span>
+
+          <input
+            id="busca"
+            type="search"
+            placeholder="Buscar por marca, modelo, cidade..."
+            aria-label="Buscar anúncios no Volante"
+          />
+
+          <button type="submit" class="busca-botao">
+            Buscar
+          </button>
+        </form>
+
+        <a
+          href="#"
+          onclick="baixarApp(); return false;"
+          class="hero-banner-cta"
+        >
+          Abrir ou baixar o app
+        </a>
+      </div>
     </section>
 
     <section class="secao secao-escolha" aria-labelledby="titulo-escolha">
