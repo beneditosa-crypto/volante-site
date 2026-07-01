@@ -1,1 +1,70 @@
+/* VOLANTE APP — BUSCA.CSS */
+/* Escopo: Barra de busca da Home */
 
+.busca {
+  max-width: 680px;
+  min-height: 46px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid rgba(255, 255, 255, .34);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 7px 0 14px;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, .18);
+}
+
+.busca span {
+  font-size: 17px;
+  color: #1e3a8a;
+}
+
+.busca input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 12.8px;
+  font-weight: 850;
+  color: #0f172a;
+}
+
+.busca input::placeholder {
+  color: #64748b;
+}
+
+.busca-botao {
+  min-height: 34px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 11px;
+  background: #07111f;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+
+  .busca {
+    min-height: 47px;
+    border-radius: 14px;
+    gap: 8px;
+    padding: 0 7px 0 12px;
+  }
+
+  .busca input {
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .busca-botao {
+    min-height: 34px;
+    padding: 0 11px;
+    border-radius: 10px;
+    font-size: 10.5px;
+  }
+
+}
