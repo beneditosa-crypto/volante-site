@@ -1,1 +1,145 @@
+/* VOLANTE APP — DESTAQUE.CSS */
+/* Escopo: Escolha do Volante */
 
+.mosaico-escolha {
+  display: grid;
+  gap: 13px;
+  align-items: stretch;
+}
+
+.mosaico-item {
+  min-width: 0;
+}
+
+.mosaico-escolha .mosaico-item:nth-child(1) {
+  grid-area: a;
+}
+
+.mosaico-escolha .mosaico-item:nth-child(2) {
+  grid-area: b;
+}
+
+.mosaico-escolha .mosaico-item:nth-child(3) {
+  grid-area: c;
+}
+
+.mosaico-escolha.mosaico-qtd-1 {
+  grid-template-columns: minmax(320px, 450px);
+  grid-template-rows: 250px;
+  grid-template-areas: "a";
+  justify-content: flex-start;
+}
+
+.mosaico-escolha.mosaico-qtd-2 {
+  grid-template-columns: repeat(2, minmax(320px, 450px));
+  grid-template-rows: 250px;
+  grid-template-areas: "a b";
+  justify-content: flex-start;
+}
+
+.mosaico-escolha.mosaico-qtd-3,
+.mosaico-escolha.mosaico-qtd-4,
+.mosaico-escolha.mosaico-qtd-5,
+.mosaico-escolha.mosaico-qtd-6 {
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 250px;
+  grid-template-areas: "a b c";
+}
+
+.mosaico-escolha .mosaico-item:nth-child(n + 4) {
+  display: none;
+}
+
+.mosaico-escolha .card {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: none;
+  border-radius: 18px;
+}
+
+.mosaico-escolha .foto-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.mosaico-escolha .overlay-content {
+  left: 13px;
+  right: 13px;
+  bottom: 13px;
+}
+
+.mosaico-escolha .overlay-text {
+  font-size: 16px;
+}
+
+.mosaico-principal .overlay-text {
+  font-size: 18px;
+}
+
+.mosaico-escolha .overlay-preco {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.mosaico-principal .overlay-preco {
+  font-size: 16.5px;
+}
+
+.mosaico-escolha .overlay-local {
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+/* MOBILE */
+
+@media (max-width: 620px) {
+
+  .mosaico-escolha {
+    display: block !important;
+  }
+
+  .escolha-mobile {
+    display: flex !important;
+    gap: 9px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 0 6px;
+    scroll-snap-type: x proximity;
+  }
+
+  .escolha-mobile .card {
+    flex: 0 0 calc((100vw - 42px) / 2.45) !important;
+    min-width: calc((100vw - 42px) / 2.45) !important;
+    max-width: calc((100vw - 42px) / 2.45) !important;
+    width: calc((100vw - 42px) / 2.45) !important;
+    height: auto !important;
+    border-radius: 16px;
+  }
+
+  .escolha-mobile .foto-wrap {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .mosaico-escolha .card:hover {
+    transform: none;
+  }
+
+  .mosaico-escolha .overlay-content {
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
+  }
+
+  .mosaico-escolha .overlay-text,
+  .mosaico-escolha .overlay-preco {
+    font-size: 12.5px !important;
+  }
+
+  .mosaico-escolha .overlay-local {
+    font-size: 10.5px !important;
+  }
+
+}
