@@ -1,12 +1,14 @@
 /* VOLANTE APP — HOME.CSS */
-/* Escopo: somente estrutura geral da Home */
+/* Escopo: estrutura geral da Home */
 
-.home-main {
+.home-main,
+main {
   width: 100%;
 }
 
 .home-section,
 .secao {
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto 14px;
   padding: 0 22px;
@@ -24,12 +26,27 @@
   margin-bottom: 6px;
 }
 
+.eventos-banner,
+.home-download {
+  width: calc(100% - 44px);
+  max-width: 1396px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 620px) {
 
   .home-section,
   .secao {
     margin-bottom: 10px;
     padding: 0 12px;
+  }
+
+  .eventos-banner,
+  .home-download {
+    width: auto;
+    margin-left: 12px;
+    margin-right: 12px;
   }
 
 }
