@@ -1,3 +1,21 @@
+/* ===========================================================
+   VOLANTE APP — HOME.JS
+   Finalidade:
+   Carregar e renderizar a Home pública do Volante.
+
+   Referência:
+   Plano Diretor Oficial + Protótipo Oficial Premium.
+
+   Responsabilidades:
+   - Buscar anúncios e eventos ativos no Firestore.
+   - Normalizar destaque dos anúncios.
+   - Aplicar busca local.
+   - Separar anúncios e eventos por região.
+   - Renderizar Escolha do Volante, Recentes e Eventos.
+   - Ocultar seções sem conteúdo.
+   - Preservar compatibilidade com components.js.
+=========================================================== */
+
 import {
   collection,
   getDocs
@@ -16,6 +34,10 @@ import {
   cardEvento,
   renderizarGrid
 } from "./components.js";
+
+/* ===========================================================
+   01. ELEMENTOS DA HOME
+=========================================================== */
 
 const buscaInput = document.getElementById("busca");
 
@@ -39,9 +61,9 @@ let eventos = [];
 
 const mediaMobile = window.matchMedia("(max-width: 620px)");
 
-mediaMobile.addEventListener("change", () => {
-  renderizarTudo();
-});
+/* ===========================================================
+   02. REGIÕES E ESTADOS
+=========================================================== */
 
 const REGIOES = {
   centroOeste: ["GO", "DF", "MT", "MS"],
@@ -88,9 +110,27 @@ const ESTADO_POR_NOME = {
   TOCANTINS: "TO"
 };
 
+/* ===========================================================
+   03. EVENTOS DE INTERAÇÃO
+=========================================================== */
+
 if (buscaInput) {
   buscaInput.addEventListener("input", renderizarTudo);
+
+  buscaInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      executarBuscaGlobal();
+    }
+  });
 }
+
+mediaMobile.addEventListener("change", renderizarTudo);
+
+window.buscarHome = executarBuscaGlobal;
+
+/* ===========================================================
+   04. REGRAS DE NEGÓCIO
+=========================================================== */
 
 function statusAtivo(item) {
   return String(item.status || "")
@@ -137,6 +177,10 @@ function ordenarDestaques(a, b) {
 
   return ordenarPorData(a, b);
 }
+
+/* ===========================================================
+   05. FILTROS
+=========================================================== */
 
 function filtrar(lista) {
   const termo = normalizar(buscaInput?.value || "");
@@ -207,15 +251,29 @@ function filtrarRegiao(lista, estados) {
   return lista.filter((item) => estados.includes(obterUF(item)));
 }
 
+/* ===========================================================
+   06. CONTROLE DE SEÇÕES
+=========================================================== */
+
 function controlarSecao(idGrid, lista) {
   const grid = document.getElementById(idGrid);
+
   if (!grid) return;
 
   const secao = grid.closest("section");
+
   if (!secao) return;
 
   secao.style.display = lista.length ? "block" : "none";
 }
+
+function limitarLista(lista, limiteDesktop, limiteMobile = limiteDesktop) {
+  return lista.slice(0, mediaMobile.matches ? limiteMobile : limiteDesktop);
+}
+
+/* ===========================================================
+   07. RENDERIZAÇÃO DE CARDS
+=========================================================== */
 
 function renderizarCarrossel(grid, lista, renderCard, mensagemVazia) {
   if (!grid) return;
@@ -244,12 +302,11 @@ function renderizarEscolhaVolante(grid, lista) {
     return;
   }
 
-  const mobile = mediaMobile.matches;
-  const selecionados = lista.slice(0, mobile ? 6 : 3);
+  const selecionados = limitarLista(lista, 3, 6);
 
   grid.classList.add(`mosaico-qtd-${selecionados.length}`);
 
-  if (mobile) {
+  if (mediaMobile.matches) {
     grid.innerHTML = `
       <div class="home-linha-horizontal escolha-mobile">
         ${selecionados.map((item) => cardAnuncio(item, true)).join("")}
@@ -279,11 +336,35 @@ function renderizarSecao(
   grid,
   lista,
   renderCard,
-  mensagemVazia
+  mensagemVazia,
+  limiteDesktop = 8,
+  limiteMobile = 8
 ) {
-  controlarSecao(idGrid, lista);
-  renderizarCarrossel(grid, lista, renderCard, mensagemVazia);
+  const listaLimitada = limitarLista(lista, limiteDesktop, limiteMobile);
+
+  controlarSecao(idGrid, listaLimitada);
+
+  renderizarCarrossel(grid, listaLimitada, renderCard, mensagemVazia);
 }
+
+/* ===========================================================
+   08. BUSCA GLOBAL
+=========================================================== */
+
+function executarBuscaGlobal() {
+  const termo = String(buscaInput?.value || "").trim();
+
+  if (!termo) {
+    window.location.href = "./anuncios.html";
+    return;
+  }
+
+  window.location.href = `./anuncios.html?q=${encodeURIComponent(termo)}`;
+}
+
+/* ===========================================================
+   09. RENDERIZAÇÃO PRINCIPAL
+=========================================================== */
 
 function renderizarTudo() {
   const anunciosFiltrados = filtrar(anuncios).sort(ordenarPorData);
@@ -302,7 +383,9 @@ function renderizarTudo() {
     grids.recentes,
     anunciosFiltrados,
     cardAnuncio,
-    "Nenhum anúncio encontrado."
+    "Nenhum anúncio encontrado.",
+    8,
+    8
   );
 
   renderizarSecao(
@@ -310,7 +393,9 @@ function renderizarTudo() {
     grids.centroOeste,
     filtrarRegiao(anunciosFiltrados, REGIOES.centroOeste),
     cardAnuncio,
-    "Nenhum anúncio encontrado."
+    "Nenhum anúncio encontrado.",
+    8,
+    8
   );
 
   renderizarSecao(
@@ -318,7 +403,9 @@ function renderizarTudo() {
     grids.sudeste,
     filtrarRegiao(anunciosFiltrados, REGIOES.sudeste),
     cardAnuncio,
-    "Nenhum anúncio encontrado."
+    "Nenhum anúncio encontrado.",
+    8,
+    8
   );
 
   renderizarSecao(
@@ -326,7 +413,9 @@ function renderizarTudo() {
     grids.sul,
     filtrarRegiao(anunciosFiltrados, REGIOES.sul),
     cardAnuncio,
-    "Nenhum anúncio encontrado."
+    "Nenhum anúncio encontrado.",
+    8,
+    8
   );
 
   renderizarSecao(
@@ -334,7 +423,9 @@ function renderizarTudo() {
     grids.nordeste,
     filtrarRegiao(anunciosFiltrados, REGIOES.nordeste),
     cardAnuncio,
-    "Nenhum anúncio encontrado."
+    "Nenhum anúncio encontrado.",
+    8,
+    8
   );
 
   renderizarSecao(
@@ -342,7 +433,9 @@ function renderizarTudo() {
     grids.norte,
     filtrarRegiao(anunciosFiltrados, REGIOES.norte),
     cardAnuncio,
-    "Nenhum anúncio encontrado."
+    "Nenhum anúncio encontrado.",
+    8,
+    8
   );
 
   renderizarSecao(
@@ -350,7 +443,9 @@ function renderizarTudo() {
     grids.eventosCentroOeste,
     filtrarRegiao(eventosFiltrados, REGIOES.centroOeste),
     cardEvento,
-    "Nenhum evento encontrado."
+    "Nenhum evento encontrado.",
+    6,
+    6
   );
 
   renderizarSecao(
@@ -358,7 +453,9 @@ function renderizarTudo() {
     grids.eventosSudeste,
     filtrarRegiao(eventosFiltrados, REGIOES.sudeste),
     cardEvento,
-    "Nenhum evento encontrado."
+    "Nenhum evento encontrado.",
+    6,
+    6
   );
 
   renderizarSecao(
@@ -366,7 +463,9 @@ function renderizarTudo() {
     grids.eventosSul,
     filtrarRegiao(eventosFiltrados, REGIOES.sul),
     cardEvento,
-    "Nenhum evento encontrado."
+    "Nenhum evento encontrado.",
+    6,
+    6
   );
 
   renderizarSecao(
@@ -374,7 +473,9 @@ function renderizarTudo() {
     grids.eventosNordeste,
     filtrarRegiao(eventosFiltrados, REGIOES.nordeste),
     cardEvento,
-    "Nenhum evento encontrado."
+    "Nenhum evento encontrado.",
+    6,
+    6
   );
 
   renderizarSecao(
@@ -382,9 +483,15 @@ function renderizarTudo() {
     grids.eventosNorte,
     filtrarRegiao(eventosFiltrados, REGIOES.norte),
     cardEvento,
-    "Nenhum evento encontrado."
+    "Nenhum evento encontrado.",
+    6,
+    6
   );
 }
+
+/* ===========================================================
+   10. CARREGAMENTO FIRESTORE
+=========================================================== */
 
 async function carregarDados() {
   try {
