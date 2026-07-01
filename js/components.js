@@ -1,9 +1,29 @@
+/* ===========================================================
+   VOLANTE APP — COMPONENTS.JS
+   Finalidade:
+   Componentes reutilizáveis do site público.
+
+   Referência:
+   Plano Diretor Oficial + Protótipo Oficial Premium.
+
+   Responsabilidades:
+   - Renderizar cards de anúncios.
+   - Renderizar cards de eventos.
+   - Renderizar imagens com overlay premium.
+   - Padronizar destaque, preço, local e navegação.
+   - Preservar estrutura limpa e reutilizável.
+=========================================================== */
+
 import {
   escapeHtml,
   getImagem,
   textoLocal,
   formatarPreco
 } from "./shared.js";
+
+/* ===========================================================
+   01. REGRAS DE DESTAQUE
+=========================================================== */
 
 function ehDestaque(item) {
   return (
@@ -18,13 +38,40 @@ function ehDestaque(item) {
   );
 }
 
-export function imagemHtml(item, titulo, editorial = false) {
-  const imagem = getImagem(item);
-  const local = textoLocal(item);
+/* ===========================================================
+   02. DADOS FORMATADOS
+=========================================================== */
 
-  const preco = item.preco
+function tituloAnuncio(item) {
+  return (
+    item.titulo ||
+    `${item.marca || ""} ${item.modelo || ""}`.trim() ||
+    "Anúncio"
+  );
+}
+
+function tituloEvento(item) {
+  return (
+    item.titulo ||
+    item.nome ||
+    "Evento"
+  );
+}
+
+function precoAnuncio(item) {
+  return item.preco
     ? formatarPreco(item.preco)
     : "";
+}
+
+/* ===========================================================
+   03. IMAGEM PREMIUM COM OVERLAY
+=========================================================== */
+
+export function imagemHtml(item, titulo, editorial = false, tipo = "anuncio") {
+  const imagem = getImagem(item);
+  const local = textoLocal(item);
+  const preco = tipo === "anuncio" ? precoAnuncio(item) : "";
 
   return `
     <div class="foto-wrap ${editorial ? "foto-editorial" : "foto-comum"}">
@@ -38,26 +85,22 @@ export function imagemHtml(item, titulo, editorial = false) {
 
       <div class="overlay ${editorial ? "overlay-editorial" : "overlay-comum"}"></div>
 
+      ${ehDestaque(item) ? `<span class="badge-destaque">Destaque</span>` : ""}
+
       <div class="overlay-content ${editorial ? "overlay-content-editorial" : "overlay-content-comum"}">
         <div class="overlay-text ${editorial ? "overlay-text-editorial" : "overlay-text-comum"}">
           ${escapeHtml(titulo)}
         </div>
 
         ${
-          editorial && preco
+          preco
             ? `<div class="overlay-preco">${escapeHtml(preco)}</div>`
             : ""
         }
 
         ${
-          editorial && local
+          local
             ? `<div class="overlay-local">${escapeHtml(local)}</div>`
-            : ""
-        }
-
-        ${
-          !editorial
-            ? `<span class="ver-mais">Ver detalhes</span>`
             : ""
         }
       </div>
@@ -65,13 +108,12 @@ export function imagemHtml(item, titulo, editorial = false) {
   `;
 }
 
-export function cardAnuncio(item, editorial = false) {
-  const titulo =
-    item.titulo ||
-    `${item.marca || ""} ${item.modelo || ""}`.trim() ||
-    "Anúncio";
+/* ===========================================================
+   04. CARD DE ANÚNCIO
+=========================================================== */
 
-  const local = textoLocal(item);
+export function cardAnuncio(item, editorial = false) {
+  const titulo = tituloAnuncio(item);
   const destaque = ehDestaque(item);
 
   const classes = [
@@ -86,48 +128,39 @@ export function cardAnuncio(item, editorial = false) {
   return `
     <article
       class="${classes}"
-      onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${item.id}'"
+      onclick="window.location.href='./detalhe.html?tipo=anuncio&id=${encodeURIComponent(item.id)}'"
+      role="link"
+      tabindex="0"
+      aria-label="${escapeHtml(titulo)}"
     >
-      ${imagemHtml(item, titulo, editorial)}
-
-      ${
-        editorial
-          ? ""
-          : `
-            <div class="card-body">
-              <div class="meta">
-                ${escapeHtml(local)}
-              </div>
-            </div>
-          `
-      }
+      ${imagemHtml(item, titulo, editorial, "anuncio")}
     </article>
   `;
 }
 
-export function cardEvento(item) {
-  const titulo =
-    item.titulo ||
-    item.nome ||
-    "Evento";
+/* ===========================================================
+   05. CARD DE EVENTO
+=========================================================== */
 
-  const local = textoLocal(item);
+export function cardEvento(item) {
+  const titulo = tituloEvento(item);
 
   return `
     <article
       class="card card-evento card-comum"
-      onclick="window.location.href='./detalhe.html?tipo=evento&id=${item.id}'"
+      onclick="window.location.href='./detalhe.html?tipo=evento&id=${encodeURIComponent(item.id)}'"
+      role="link"
+      tabindex="0"
+      aria-label="${escapeHtml(titulo)}"
     >
-      ${imagemHtml(item, titulo)}
-
-      <div class="card-body">
-        <div class="meta">
-          ${escapeHtml(local)}
-        </div>
-      </div>
+      ${imagemHtml(item, titulo, false, "evento")}
     </article>
   `;
 }
+
+/* ===========================================================
+   06. GRID GENÉRICO
+=========================================================== */
 
 export function renderizarGrid(
   elemento,
@@ -140,7 +173,7 @@ export function renderizarGrid(
   if (!lista.length) {
     elemento.innerHTML = `
       <div class="empty">
-        ${vazioTexto}
+        ${escapeHtml(vazioTexto)}
       </div>
     `;
 
