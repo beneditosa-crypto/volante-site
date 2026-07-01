@@ -1,1 +1,68 @@
+/* VOLANTE APP — HOME-DOWNLOAD.CSS */
+/* Escopo: Bloco de download da Home */
 
+.home-download {
+  max-width: 1396px;
+  margin: 4px auto 18px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .95);
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 11px 28px rgba(15, 23, 42, .06);
+}
+
+@media (max-width: 1024px) {
+
+  .home-download {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+@media (max-width: 620px) {
+
+  .home-download {
+    width: auto;
+    margin: 0 12px 11px;
+    padding: 15px 14px;
+    border-radius: 19px;
+  }
+
+  .hero-app-texto h2 {
+    font-size: 20px;
+  }
+
+  .hero-app-texto p {
+    font-size: 13px;
+  }
+
+  .hero-lojas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    width: 100%;
+    margin-top: 13px;
+  }
+
+  .hero-loja-btn {
+    width: 100%;
+    min-width: 0;
+    height: 52px;
+    border-radius: 14px;
+  }
+
+  .hero-loja-btn img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .hero-loja-texto strong {
+    font-size: 14px;
+  }
+
+}
