@@ -3,10 +3,7 @@
 <head>
   <!-- ===========================================================
   VOLANTE APP — HOME / SITE
-  Finalidade:
-  Estrutura principal da página inicial pública do Volante.
-  Referência:
-  Plano Diretor Oficial + Protótipo Oficial Premium.
+  Referência: Plano Diretor Oficial + Protótipo Oficial Premium
   ============================================================ -->
 
   <meta charset="UTF-8" />
@@ -26,11 +23,10 @@
 
   <meta name="author" content="Volante App" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#07111f" />
 
   <link rel="canonical" href="https://volante.app.br" />
 
-  <!-- Open Graph -->
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://volante.app.br" />
@@ -42,7 +38,6 @@
   />
   <meta property="og:image" content="https://volante.app.br/assets/logo.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Volante App | Mais que carros, paixão" />
   <meta
@@ -51,21 +46,17 @@
   />
   <meta name="twitter:image" content="https://volante.app.br/assets/logo.png" />
 
-  <!-- Assets -->
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link rel="preload" as="image" href="./assets/logo.png" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./css/global.css?v=00250" />
-  <link rel="stylesheet" href="./css/home.css?v=00250" />
+  <link rel="stylesheet" href="./css/global.css?v=00251" />
+  <link rel="stylesheet" href="./css/home.css?v=00251" />
 </head>
 
 <body>
 
   <!-- ===========================================================
   HEADER
-  Cabeçalho principal.
-  Mantém identidade premium, navegação simples e CTA principal.
   ============================================================ -->
   <header class="site-header">
     <div class="topo">
@@ -97,18 +88,16 @@
 
     <!-- ===========================================================
     HERO
-    Bloco editorial principal.
-    Contém posicionamento, busca premium, filtros rápidos e CTA app.
+    Faixa editorial principal da Home.
     ============================================================ -->
-    <section class="hero">
+    <section class="hero hero-full">
       <div class="hero-conteudo">
         <span class="hero-etiqueta">Marketplace premium de carros antigos</span>
 
-        <h1>Clássicos, histórias e paixões sobre rodas.</h1>
+        <h1>Clássicos que contam histórias.</h1>
 
         <p>
-          Encontre veículos antigos, descubra eventos automotivos e conecte-se
-          com apaixonados pelo antigomobilismo em todo o Brasil.
+          O lugar certo para quem vive mais que carros, uma paixão.
         </p>
 
         <div class="busca" role="search">
@@ -117,7 +106,7 @@
           <input
             id="busca"
             type="search"
-            placeholder="Buscar por modelo, marca, cidade ou estado..."
+            placeholder="Buscar por marca, modelo, cidade..."
             aria-label="Buscar anúncios no Volante"
           />
 
@@ -127,46 +116,21 @@
         </div>
 
         <div class="hero-chips" aria-label="Buscas rápidas">
-          <a href="./anuncios.html?q=Fusca">Fusca</a>
+          <a href="./anuncios.html?destaques=true">Destaques</a>
+          <a href="./anuncios.html?q=carros">Carros</a>
+          <a href="./anuncios.html?q=picapes">Picapes</a>
+          <a href="./anuncios.html?q=muscle">Muscle Cars</a>
+          <a href="./anuncios.html?q=anos%2070">Anos 70</a>
+          <a href="./anuncios.html?q=anos%2080">Anos 80</a>
+          <a href="./anuncios.html?q=Volkswagen">VW</a>
           <a href="./anuncios.html?q=Chevrolet">Chevrolet</a>
-          <a href="./anuncios.html?q=Mustang">Mustang</a>
-          <a href="./anuncios.html?q=Volkswagen">Volkswagen</a>
+          <a href="./anuncios.html?q=Ford">Ford</a>
         </div>
       </div>
-
-      <aside class="hero-app-card" aria-label="Baixar aplicativo Volante">
-        <div class="hero-app-texto">
-          <span>App Volante</span>
-          <h2>Publique, converse e acompanhe tudo pelo aplicativo.</h2>
-          <p>Disponível para Android e iOS.</p>
-        </div>
-
-        <div class="hero-lojas">
-          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-            <img src="./assets/apple-store.png" alt="App Store" />
-
-            <div class="hero-loja-texto">
-              <span>Disponível na</span>
-              <strong>App Store</strong>
-            </div>
-          </a>
-
-          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-            <img src="./assets/google-play.png" alt="Google Play" />
-
-            <div class="hero-loja-texto">
-              <span>Disponível no</span>
-              <strong>Google Play</strong>
-            </div>
-          </a>
-        </div>
-      </aside>
     </section>
 
     <!-- ===========================================================
     ESCOLHA DO VOLANTE
-    Curadoria premium.
-    O conteúdo é preenchido dinamicamente pelo home.js.
     ============================================================ -->
     <section class="secao secao-escolha" aria-labelledby="titulo-escolha">
       <div class="section-head">
@@ -183,9 +147,24 @@
     </section>
 
     <!-- ===========================================================
+    EVENTOS EM DESTAQUE
+    ============================================================ -->
+    <section class="eventos-banner" aria-labelledby="titulo-eventos">
+      <div class="eventos-banner-conteudo">
+        <div class="eventos-icone" aria-hidden="true">▣</div>
+
+        <div>
+          <span>Eventos em destaque</span>
+          <h2 id="titulo-eventos">Encontros que movem paixões.</h2>
+          <p>Confira os próximos eventos de carros antigos na sua região.</p>
+        </div>
+      </div>
+
+      <a href="./eventos.html" class="eventos-botao">Ver eventos →</a>
+    </section>
+
+    <!-- ===========================================================
     RECENTES
-    Últimos anúncios aprovados.
-    O conteúdo é preenchido dinamicamente pelo home.js.
     ============================================================ -->
     <section class="secao" aria-labelledby="titulo-recentes">
       <div class="section-head">
@@ -203,8 +182,7 @@
 
     <!-- ===========================================================
     REGIÕES
-    Blocos regionais.
-    Mantém IDs originais para compatibilidade com home.js.
+    Mantém IDs originais usados pelo home.js.
     ============================================================ -->
     <section class="secao secao-regioes" id="regioes" aria-labelledby="titulo-regioes">
       <div class="section-head">
@@ -294,24 +272,9 @@
     </section>
 
     <!-- ===========================================================
-    EVENTOS
-    Área editorial para encontros automotivos.
-    Mantém IDs originais para compatibilidade com home.js.
+    EVENTOS POR REGIÃO
+    Mantém IDs originais usados pelo home.js.
     ============================================================ -->
-    <section class="eventos-banner" aria-labelledby="titulo-eventos">
-      <div class="eventos-banner-conteudo">
-        <div class="eventos-icone" aria-hidden="true">▣</div>
-
-        <div>
-          <span>Eventos</span>
-          <h2 id="titulo-eventos">Encontros que movem paixões.</h2>
-          <p>Confira os próximos eventos de carros antigos na sua região.</p>
-        </div>
-      </div>
-
-      <a href="./eventos.html" class="eventos-botao">Ver eventos →</a>
-    </section>
-
     <section class="secao eventos-lista">
       <div class="section-head section-head-menor">
         <div>
@@ -368,10 +331,9 @@
     </section>
 
     <!-- ===========================================================
-    CTA FINAL
-    Reforça instalação do app sem duplicar a função do hero.
+    DOWNLOAD DO APP
     ============================================================ -->
-    <section class="home-download">
+    <section class="home-download" aria-label="Baixar aplicativo Volante">
       <div class="hero-app-texto">
         <span>Volante App</span>
         <h2>Leve o Volante com você.</h2>
@@ -403,8 +365,6 @@
 
   <!-- ===========================================================
   FOOTER
-  Rodapé institucional.
-  Links legais, aplicativo, contato e presença social.
   ============================================================ -->
   <footer class="footer">
     <div class="footer-baloes">
@@ -455,11 +415,7 @@
     </div>
   </footer>
 
-  <!-- ===========================================================
-  JAVASCRIPT
-  Arquivo responsável pelo carregamento dinâmico da home.
-  ============================================================ -->
-  <script type="module" src="./js/home.js?v=00250"></script>
+  <script type="module" src="./js/home.js?v=00251"></script>
 
 </body>
 </html>
