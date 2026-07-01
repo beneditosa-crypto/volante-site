@@ -1,135 +1,40 @@
 /* ===========================================================
    VOLANTE APP — HOME.CSS
-   Referência: PDO + Protótipo Oficial Premium
+   Escopo: estilos exclusivos da Home
+   Referência: Plano Diretor + Protótipo Oficial Premium
 =========================================================== */
+
 
 /* ===========================================================
-   01. BASE
+   01. ESTRUTURA DA HOME
 =========================================================== */
 
-body {
-  background:
-    radial-gradient(circle at top left, rgba(30, 58, 138, .045), transparent 30%),
-    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-  color: #0f172a;
-}
-
-main {
+.home-main {
   width: 100%;
 }
 
-section {
+.home-section,
+.secao {
   max-width: 1440px;
-  margin: 0 auto 12px;
+  margin: 0 auto 14px;
   padding: 0 22px;
+}
+
+.secao-escolha {
+  margin-top: 0;
+}
+
+.secao-regioes {
+  margin-bottom: 8px;
+}
+
+.regiao-bloco {
+  margin-bottom: 12px;
 }
 
 
 /* ===========================================================
-   02. HEADER PREMIUM
-=========================================================== */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #07111f;
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
-  box-shadow: 0 8px 24px rgba(2, 6, 23, .18);
-}
-
-.topo {
-  max-width: 1440px;
-  min-height: 54px;
-  margin: 0 auto;
-  padding: 0 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 22px;
-}
-
-.marca {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  text-decoration: none;
-  color: #ffffff !important;
-}
-
-.logo {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-}
-
-.nome {
-  color: #ffffff !important;
-  font-size: 18px;
-  font-weight: 950;
-  letter-spacing: -.55px;
-  line-height: 1;
-}
-
-.slogan {
-  margin-top: 2px;
-  color: rgba(255, 255, 255, .74) !important;
-  font-size: 10.5px;
-  font-weight: 800;
-}
-
-.menu-principal {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.menu-principal a {
-  color: rgba(255, 255, 255, .84);
-  font-size: 12px;
-  font-weight: 850;
-  text-decoration: none;
-}
-
-.menu-principal a:hover {
-  color: #ffffff;
-}
-
-.topo-acoes {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.topo-link,
-.topo-botao {
-  min-height: 32px;
-  padding: 0 13px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11.5px;
-  font-weight: 900;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.topo-link {
-  color: #ffffff;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, .24);
-}
-
-.topo-botao {
-  color: #07111f;
-  background: #ffffff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, .14);
-}
-
-
-/* ===========================================================
-   03. HERO PREMIUM
+   02. HERO
 =========================================================== */
 
 .hero {
@@ -171,8 +76,7 @@ section {
   z-index: 2;
 }
 
-.hero-etiqueta,
-.section-label {
+.hero-etiqueta {
   display: inline-flex;
   align-items: center;
   min-height: 22px;
@@ -226,7 +130,7 @@ section {
 
 
 /* ===========================================================
-   04. BUSCA PREMIUM
+   03. BUSCA DA HOME
 =========================================================== */
 
 .busca {
@@ -278,428 +182,20 @@ section {
 
 
 /* ===========================================================
-   05. SEÇÕES
+   04. CARD DO APP NO HERO
 =========================================================== */
 
-.secao {
-  position: relative;
-}
-
-.section-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 8px;
-}
-
-.section-head h2,
-.section-head h3 {
-  margin: 5px 0 0;
-  color: #0f172a;
-  font-size: 22px;
-  font-weight: 980;
-  letter-spacing: -.8px;
-  line-height: 1.02;
-}
-
-.section-head h3 {
-  font-size: 18px;
-  letter-spacing: -.5px;
-}
-
-.section-head p {
-  margin: 4px 0 0;
-  color: #64748b;
-  font-size: 12px;
-  font-weight: 750;
-}
-
-.section-label {
-  background: #e8eef9;
-  border-color: rgba(30, 58, 138, .12);
-  color: #1e3a8a;
-}
-
-.home-ver-todos {
-  min-height: 31px;
-  padding: 0 13px;
-  border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid rgba(30, 58, 138, .18);
-  color: #1e3a8a;
-  font-size: 11px;
-  font-weight: 950;
-  text-decoration: none;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, .05);
-  white-space: nowrap;
-}
-
-.secao-escolha {
-  margin-top: 0;
-}
-
-.secao-regioes {
-  margin-bottom: 6px;
-}
-
-.regiao-bloco {
-  margin-bottom: 11px;
-}
-
-.section-head-menor {
-  margin-bottom: 7px;
-}
-
-
-/* ===========================================================
-   06. ESCOLHA DO VOLANTE
-=========================================================== */
-
-.mosaico-escolha {
-  display: grid;
-  gap: 13px;
-  align-items: stretch;
-}
-
-.mosaico-item {
-  min-width: 0;
-}
-
-.mosaico-escolha .mosaico-item:nth-child(1) { grid-area: a; }
-.mosaico-escolha .mosaico-item:nth-child(2) { grid-area: b; }
-.mosaico-escolha .mosaico-item:nth-child(3) { grid-area: c; }
-
-.mosaico-escolha.mosaico-qtd-1 {
-  grid-template-columns: minmax(320px, 450px);
-  grid-template-rows: 230px;
-  grid-template-areas: "a";
-  justify-content: flex-start;
-}
-
-.mosaico-escolha.mosaico-qtd-2 {
-  grid-template-columns: repeat(2, minmax(320px, 450px));
-  grid-template-rows: 230px;
-  grid-template-areas: "a b";
-  justify-content: flex-start;
-}
-
-.mosaico-escolha.mosaico-qtd-3,
-.mosaico-escolha.mosaico-qtd-4,
-.mosaico-escolha.mosaico-qtd-5,
-.mosaico-escolha.mosaico-qtd-6 {
-  grid-template-columns: 1.15fr 1fr 1fr;
-  grid-template-rows: 220px;
-  grid-template-areas: "a b c";
-}
-
-.mosaico-escolha .mosaico-item:nth-child(n+4) {
-  display: none;
-}
-
-.mosaico-escolha .card {
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  max-width: none;
-  border-radius: 18px;
-}
-
-.mosaico-escolha .foto-wrap {
-  width: 100%;
-  height: 100%;
-}
-
-.mosaico-escolha .overlay-content {
-  left: 13px;
-  right: 13px;
-  bottom: 13px;
-}
-
-.mosaico-escolha .overlay-text {
-  font-size: 16px;
-}
-
-.mosaico-principal .overlay-text {
-  font-size: 18px;
-}
-
-.mosaico-escolha .overlay-preco {
-  margin-top: 4px;
-  font-size: 15px;
-}
-
-.mosaico-principal .overlay-preco {
-  font-size: 16.5px;
-}
-
-.mosaico-escolha .overlay-local {
-  margin-top: 3px;
-  font-size: 11px;
-}
-
-
-/* ===========================================================
-   07. CARROSSÉIS
-=========================================================== */
-
-.carousel-1linha {
-  display: block;
-  overflow: visible;
-}
-
-.home-linha-horizontal {
-  display: flex;
-  gap: 13px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 2px 2px 7px;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scroll-snap-type: x proximity;
-}
-
-.home-linha-horizontal::-webkit-scrollbar {
-  height: 5px;
-}
-
-.home-linha-horizontal::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, .14);
-  border-radius: 999px;
-}
-
-.home-linha-horizontal::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-
-/* ===========================================================
-   08. CARDS
-=========================================================== */
-
-.card {
-  position: relative;
-  flex: 0 0 calc((100% - 39px) / 4);
-  min-width: 252px;
-  max-width: 320px;
-  background: transparent;
-  border-radius: 17px;
-  overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, .07);
-  box-shadow: 0 9px 20px rgba(15, 23, 42, .052);
-  cursor: pointer;
-  scroll-snap-align: start;
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    border-color .18s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(30, 58, 138, .18);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, .08);
-}
-
-.card.destaque {
-  border: 1px solid rgba(15, 23, 42, .34);
-}
-
-.card.destaque .foto-wrap::after {
-  content: "Destaque";
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  min-height: 22px;
-  padding: 0 8px;
-  border-radius: 999px;
-  background: rgba(7, 17, 31, .94);
-  color: #ffffff;
-  font-size: 9px;
-  font-weight: 950;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.foto-wrap {
-  position: relative;
-  width: 100%;
-  height: 152px;
-  overflow: hidden;
-  background: #e5e7eb;
-}
-
-.foto {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to top,
-      rgba(2, 6, 23, .86),
-      rgba(15, 23, 42, .24),
-      rgba(15, 23, 42, .02)
-    );
-}
-
-.overlay-content {
-  position: absolute;
-  left: 11px;
-  right: 11px;
-  bottom: 11px;
-  z-index: 4;
-}
-
-.overlay-text {
-  color: #ffffff;
-  font-size: 13.5px;
-  font-weight: 950;
-  line-height: 1.06;
-  letter-spacing: -.36px;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, .26);
-}
-
-.overlay-preco {
-  margin-top: 4px;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 920;
-}
-
-.overlay-local {
-  margin-top: 3px;
-  color: rgba(255, 255, 255, .9);
-  font-size: 10.8px;
-  font-weight: 800;
-}
-
-.ver-mais,
-.card-body,
-.meta,
-.price,
-.btn-favorito,
-.favorito-btn,
-.favorite-btn,
-.floating-lojas {
-  display: none !important;
-}
-
-
-/* ===========================================================
-   09. EVENTOS
-=========================================================== */
-
-.eventos-banner {
-  max-width: 1396px;
-  margin: 4px auto 12px;
-  padding: 18px 20px;
-  border-radius: 21px;
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, .15), transparent 30%),
-    linear-gradient(135deg, #07111f, #1e3a8a);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  box-shadow: 0 13px 30px rgba(15, 23, 42, .13);
-}
-
-.eventos-banner-conteudo {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.eventos-icone {
-  width: 46px;
-  height: 46px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, .13);
-  border: 1px solid rgba(255, 255, 255, .12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex: 0 0 46px;
-}
-
-.eventos-banner span {
-  display: block;
-  margin-bottom: 4px;
-  color: rgba(255, 255, 255, .72);
-  font-size: 9.5px;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: .45px;
-}
-
-.eventos-banner h2 {
+.hero-app-card {
   margin: 0;
-  font-size: 22px;
-  font-weight: 980;
-  letter-spacing: -.7px;
-}
-
-.eventos-banner p {
-  margin: 4px 0 0;
-  color: rgba(255, 255, 255, .78);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.eventos-botao {
-  min-height: 34px;
-  padding: 0 14px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #1e3a8a;
-  text-decoration: none;
-  font-size: 11.5px;
-  font-weight: 950;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-}
-
-
-/* ===========================================================
-   10. DOWNLOAD APP
-=========================================================== */
-
-.hero-app-card,
-.home-download {
+  min-height: 258px;
   padding: 18px;
   border-radius: 22px;
   background: rgba(255, 255, 255, .95);
   border: 1px solid rgba(15, 23, 42, .08);
   box-shadow: 0 11px 28px rgba(15, 23, 42, .06);
-}
-
-.hero-app-card {
-  margin: 0;
-  min-height: 258px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.home-download {
-  max-width: 1396px;
-  margin: 4px auto 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
 }
 
 .hero-app-texto span {
@@ -786,90 +282,410 @@ section {
 
 
 /* ===========================================================
-   11. FOOTER
+   05. CABEÇALHOS DAS SEÇÕES DA HOME
 =========================================================== */
 
-.footer {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 22px 22px;
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 8px;
 }
 
-.footer-baloes {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr .8fr .8fr;
-  gap: 13px;
+.section-head-menor {
+  margin-bottom: 7px;
 }
 
-.footer-card {
-  min-height: 160px;
-  padding: 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, .88);
-  border: 1px solid rgba(15, 23, 42, .08);
-  box-shadow: 0 9px 22px rgba(15, 23, 42, .048);
-}
-
-.footer-logo {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-  margin-bottom: 9px;
-}
-
-.footer-card h3,
-.footer-card h4 {
-  margin: 0 0 9px;
-  color: #0f172a;
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #e8eef9;
+  border: 1px solid rgba(30, 58, 138, .12);
+  color: #1e3a8a;
+  font-size: 9.5px;
   font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .45px;
+}
+
+.section-head h2,
+.section-head h3 {
+  margin: 5px 0 0;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 980;
+  letter-spacing: -.8px;
+  line-height: 1.02;
+}
+
+.section-head h3 {
+  font-size: 18px;
   letter-spacing: -.5px;
 }
 
-.footer-card h3 {
-  font-size: 21px;
-}
-
-.footer-card h4 {
-  font-size: 14.5px;
-}
-
-.footer-card p {
-  margin: 0 0 8px;
-  color: #475569;
-  font-size: 12.8px;
-  font-weight: 700;
-  line-height: 1.42;
-}
-
-.footer-card a {
-  display: block;
-  margin: 0 0 8px;
-  color: #334155;
-  font-size: 12.8px;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.footer-card a:hover {
-  color: #1e3a8a;
-}
-
-.footer-bottom {
-  margin-top: 13px;
-  padding: 15px 0 0;
-  border-top: 1px solid rgba(15, 23, 42, .07);
+.section-head p {
+  margin: 4px 0 0;
   color: #64748b;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 750;
-  text-align: center;
+}
+
+.home-ver-todos {
+  min-height: 31px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(30, 58, 138, .18);
+  color: #1e3a8a;
+  font-size: 11px;
+  font-weight: 950;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .05);
+  white-space: nowrap;
 }
 
 
 /* ===========================================================
-   12. ESTADOS VAZIOS
+   06. ESCOLHA DO VOLANTE
 =========================================================== */
 
-.empty {
+.mosaico-escolha {
+  display: grid;
+  gap: 13px;
+  align-items: stretch;
+}
+
+.mosaico-item {
+  min-width: 0;
+}
+
+.mosaico-escolha .mosaico-item:nth-child(1) {
+  grid-area: a;
+}
+
+.mosaico-escolha .mosaico-item:nth-child(2) {
+  grid-area: b;
+}
+
+.mosaico-escolha .mosaico-item:nth-child(3) {
+  grid-area: c;
+}
+
+.mosaico-escolha.mosaico-qtd-1 {
+  grid-template-columns: minmax(320px, 450px);
+  grid-template-rows: 230px;
+  grid-template-areas: "a";
+  justify-content: flex-start;
+}
+
+.mosaico-escolha.mosaico-qtd-2 {
+  grid-template-columns: repeat(2, minmax(320px, 450px));
+  grid-template-rows: 230px;
+  grid-template-areas: "a b";
+  justify-content: flex-start;
+}
+
+.mosaico-escolha.mosaico-qtd-3,
+.mosaico-escolha.mosaico-qtd-4,
+.mosaico-escolha.mosaico-qtd-5,
+.mosaico-escolha.mosaico-qtd-6 {
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 220px;
+  grid-template-areas: "a b c";
+}
+
+.mosaico-escolha .mosaico-item:nth-child(n+4) {
+  display: none;
+}
+
+.mosaico-escolha .card {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: none;
+  border-radius: 18px;
+}
+
+.mosaico-escolha .foto-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.mosaico-escolha .overlay-content {
+  left: 13px;
+  right: 13px;
+  bottom: 13px;
+}
+
+.mosaico-escolha .overlay-text {
+  font-size: 16px;
+}
+
+.mosaico-principal .overlay-text {
+  font-size: 18px;
+}
+
+.mosaico-escolha .overlay-preco {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.mosaico-principal .overlay-preco {
+  font-size: 16.5px;
+}
+
+.mosaico-escolha .overlay-local {
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+
+/* ===========================================================
+   07. CARROSSÉIS DA HOME
+=========================================================== */
+
+.carousel-1linha {
+  display: block;
+  overflow: visible;
+}
+
+.home-linha-horizontal {
+  display: flex;
+  gap: 13px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 2px 7px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.home-linha-horizontal::-webkit-scrollbar {
+  height: 5px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, .14);
+  border-radius: 999px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.home-linha-horizontal .card {
+  flex: 0 0 calc((100% - 39px) / 4);
+  min-width: 252px;
+  max-width: 320px;
+  scroll-snap-align: start;
+}
+
+
+/* ===========================================================
+   08. AJUSTES DOS CARDS NA HOME
+   Observação: estrutura base do card deve permanecer no global.css
+=========================================================== */
+
+.home-linha-horizontal .card,
+.mosaico-escolha .card {
+  cursor: pointer;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.home-linha-horizontal .card:hover,
+.mosaico-escolha .card:hover {
+  transform: translateY(-2px);
+}
+
+.home-linha-horizontal .foto-wrap,
+.mosaico-escolha .foto-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-linha-horizontal .overlay,
+.mosaico-escolha .overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(2, 6, 23, .86),
+      rgba(15, 23, 42, .24),
+      rgba(15, 23, 42, .02)
+    );
+}
+
+.home-linha-horizontal .overlay-content,
+.mosaico-escolha .overlay-content {
+  position: absolute;
+  z-index: 4;
+}
+
+.home-linha-horizontal .overlay-content {
+  left: 11px;
+  right: 11px;
+  bottom: 11px;
+}
+
+.home-linha-horizontal .overlay-text,
+.mosaico-escolha .overlay-text {
+  color: #ffffff;
+  font-weight: 950;
+  line-height: 1.06;
+  letter-spacing: -.36px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .26);
+}
+
+.home-linha-horizontal .overlay-text {
+  font-size: 13.5px;
+}
+
+.home-linha-horizontal .overlay-preco,
+.mosaico-escolha .overlay-preco {
+  color: #ffffff;
+  font-weight: 920;
+}
+
+.home-linha-horizontal .overlay-preco {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.home-linha-horizontal .overlay-local,
+.mosaico-escolha .overlay-local {
+  color: rgba(255, 255, 255, .9);
+  font-weight: 800;
+}
+
+.home-linha-horizontal .overlay-local {
+  margin-top: 3px;
+  font-size: 10.8px;
+}
+
+.home-linha-horizontal .ver-mais,
+.home-linha-horizontal .card-body,
+.home-linha-horizontal .meta,
+.home-linha-horizontal .price,
+.mosaico-escolha .ver-mais,
+.mosaico-escolha .card-body,
+.mosaico-escolha .meta,
+.mosaico-escolha .price {
+  display: none !important;
+}
+
+
+/* ===========================================================
+   09. EVENTOS DA HOME
+=========================================================== */
+
+.eventos-banner {
+  max-width: 1396px;
+  margin: 4px auto 12px;
+  padding: 18px 20px;
+  border-radius: 21px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, .15), transparent 30%),
+    linear-gradient(135deg, #07111f, #1e3a8a);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 13px 30px rgba(15, 23, 42, .13);
+}
+
+.eventos-banner-conteudo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.eventos-icone {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .13);
+  border: 1px solid rgba(255, 255, 255, .12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex: 0 0 46px;
+}
+
+.eventos-banner span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, .72);
+  font-size: 9.5px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .45px;
+}
+
+.eventos-banner h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 980;
+  letter-spacing: -.7px;
+}
+
+.eventos-banner p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, .78);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.eventos-botao {
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1e3a8a;
+  text-decoration: none;
+  font-size: 11.5px;
+  font-weight: 950;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+
+/* ===========================================================
+   10. DOWNLOAD APP — BLOCO DA HOME
+=========================================================== */
+
+.home-download {
+  max-width: 1396px;
+  margin: 4px auto 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .95);
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 11px 28px rgba(15, 23, 42, .06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+
+/* ===========================================================
+   11. ESTADO VAZIO DA HOME
+=========================================================== */
+
+.home-empty,
+.secao .empty {
   width: 100%;
   padding: 14px;
   border-radius: 16px;
@@ -884,18 +700,10 @@ section {
 
 
 /* ===========================================================
-   13. TABLET
+   12. TABLET
 =========================================================== */
 
 @media (max-width: 1024px) {
-  .topo {
-    min-height: 56px;
-  }
-
-  .menu-principal {
-    display: none;
-  }
-
   .hero {
     grid-template-columns: 1fr;
   }
@@ -912,44 +720,18 @@ section {
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .footer-baloes {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 
 /* ===========================================================
-   14. MOBILE
+   13. MOBILE
 =========================================================== */
 
 @media (max-width: 620px) {
-  section {
+  .home-section,
+  .secao {
     margin-bottom: 10px;
     padding: 0 12px;
-  }
-
-  .topo {
-    min-height: 56px;
-    padding: 0 12px;
-    gap: 10px;
-  }
-
-  .logo {
-    width: 36px;
-    height: 36px;
-  }
-
-  .nome {
-    font-size: 17px;
-  }
-
-  .slogan {
-    font-size: 9.5px;
-  }
-
-  .topo-acoes {
-    display: none;
   }
 
   .hero {
@@ -1070,36 +852,33 @@ section {
     aspect-ratio: 4 / 5 !important;
   }
 
-  .card:hover {
+  .home-linha-horizontal .card:hover,
+  .mosaico-escolha .card:hover {
     transform: none;
   }
 
-  .card.destaque .foto-wrap::after {
-    top: 7px;
-    right: 7px;
-    min-height: 21px;
-    padding: 0 8px;
-    font-size: 9px;
-  }
-
-  .overlay-content {
+  .home-linha-horizontal .overlay-content,
+  .mosaico-escolha .overlay-content {
     left: 9px;
     right: 9px;
     bottom: 9px;
   }
 
-  .overlay-text {
+  .home-linha-horizontal .overlay-text,
+  .mosaico-escolha .overlay-text {
     font-size: 12.5px !important;
     line-height: 1.05;
     letter-spacing: -.32px;
   }
 
-  .overlay-preco {
+  .home-linha-horizontal .overlay-preco,
+  .mosaico-escolha .overlay-preco {
     margin-top: 4px;
     font-size: 12.5px !important;
   }
 
-  .overlay-local {
+  .home-linha-horizontal .overlay-local,
+  .mosaico-escolha .overlay-local {
     margin-top: 3px;
     font-size: 10.5px !important;
   }
@@ -1181,20 +960,5 @@ section {
 
   .hero-loja-texto strong {
     font-size: 14px;
-  }
-
-  .footer {
-    padding: 0 12px 18px;
-  }
-
-  .footer-baloes {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .footer-card {
-    min-height: auto;
-    padding: 17px;
-    border-radius: 19px;
   }
 }
