@@ -49,8 +49,8 @@
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link rel="preload" as="image" href="./assets/logo.png" />
 
-  <link rel="stylesheet" href="./css/global.css?v=00251" />
-  <link rel="stylesheet" href="./css/home.css?v=00251" />
+  <link rel="stylesheet" href="./css/global.css?v=00252" />
+  <link rel="stylesheet" href="./css/home.css?v=00252" />
 </head>
 
 <body>
@@ -295,7 +295,7 @@
       <div class="carousel-1linha" id="gridEventosNorte"></div>
     </section>
 
-    <section class="home-download" aria-label="Baixar aplicativo Volante">
+    <section class="home-download" id="baixar-app" aria-label="Baixar aplicativo Volante">
       <div class="hero-app-texto">
         <span>Volante App</span>
         <h2>Leve o Volante com você.</h2>
@@ -375,19 +375,30 @@
   </footer>
 
   <script>
-    function abrirPublicarAnuncio() {
+    const VOLANTE_APP_URL = "volante://";
+    const VOLANTE_PUBLICAR_URL = "volante://publicar";
+    const VOLANTE_ANDROID_STORE = "https://play.google.com/store/apps/details?id=br.com.volante.app";
+    const VOLANTE_IOS_STORE = "https://apps.apple.com/br/app/volante-app";
+
+    function dispositivoMobile() {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      const appUrl = "volante://publicar";
-      const androidStore = "https://play.google.com/store/apps/details?id=br.com.volante.app";
-      const iosStore = "https://apps.apple.com/br/app/volante-app";
-      const destinoDesktop = "#baixar-app";
+      return {
+        isAndroid: /android/i.test(userAgent),
+        isIOS: /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream
+      };
+    }
 
-      const isAndroid = /android/i.test(userAgent);
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+    function abrirAppOuLoja(appUrl) {
+      const { isAndroid, isIOS } = dispositivoMobile();
 
       if (!isAndroid && !isIOS) {
-        window.location.href = "./index.html#baixar-app";
+        const blocoDownload = document.getElementById("baixar-app");
+
+        if (blocoDownload) {
+          blocoDownload.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
         return;
       }
 
@@ -397,13 +408,21 @@
 
       setTimeout(function () {
         if (Date.now() - inicio < 1800) {
-          window.location.href = isAndroid ? androidStore : iosStore;
+          window.location.href = isAndroid ? VOLANTE_ANDROID_STORE : VOLANTE_IOS_STORE;
         }
       }, 1200);
     }
+
+    function abrirPublicarAnuncio() {
+      abrirAppOuLoja(VOLANTE_PUBLICAR_URL);
+    }
+
+    function baixarApp() {
+      abrirAppOuLoja(VOLANTE_APP_URL);
+    }
   </script>
 
-  <script type="module" src="./js/home.js?v=00251"></script>
+  <script type="module" src="./js/home.js?v=00252"></script>
 
 </body>
 </html>
