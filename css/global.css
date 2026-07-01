@@ -1,17 +1,31 @@
 :root {
   --azul-principal: #1e3a8a;
   --azul-hover: #172554;
+
   --texto: #0f172a;
   --texto-suave: #334155;
   --cinza: #64748b;
+  --cinza-claro: #94a3b8;
+
   --linha: rgba(15, 23, 42, 0.075);
   --bg: #f5f7fb;
   --branco: #ffffff;
+
   --preco: #111827;
   --dourado-suave: #b08a3c;
+
   --sombra: 0 10px 28px rgba(15, 23, 42, 0.045);
   --sombra-premium: 0 18px 42px rgba(15, 23, 42, 0.085);
+
+  --raio-sm: 14px;
+  --raio-md: 18px;
+  --raio-lg: 24px;
+  --raio-xl: 34px;
+
+  --largura-site: 1400px;
 }
+
+/* Base global */
 
 * {
   margin: 0;
@@ -52,6 +66,7 @@ svg {
 
 img {
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -60,7 +75,9 @@ a {
 }
 
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -68,12 +85,33 @@ button {
   cursor: pointer;
 }
 
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
 main {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--largura-site);
   margin: 0 auto;
   padding: 14px 18px 86px;
 }
+
+/* Acessibilidade e estados globais */
+
+:focus-visible {
+  outline: 3px solid rgba(30, 58, 138, 0.26);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(30, 58, 138, 0.16);
+  color: var(--texto);
+}
+
+/* Header e identidade visual */
 
 header {
   width: 100%;
@@ -83,11 +121,12 @@ header {
   background: rgba(245, 247, 251, 0.88);
   border-bottom: 1px solid rgba(15, 23, 42, 0.045);
   backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 }
 
 .topo {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--largura-site);
   margin: 0 auto;
   padding: 12px 18px;
   display: flex;
@@ -129,11 +168,14 @@ header {
   font-weight: 600;
 }
 
+/* Títulos globais de seção */
+
 .section-head {
   margin-bottom: 10px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: 16px;
 }
 
 .section-head h2 {
@@ -151,6 +193,8 @@ header {
   line-height: 1.35;
   font-weight: 500;
 }
+
+/* Estados globais */
 
 .loading,
 .empty,
@@ -179,7 +223,7 @@ header {
   white-space: pre-wrap;
   word-break: break-word;
   font-size: 12px;
-  color: #334155;
+  color: var(--texto-suave);
   background: #f8fafc;
   border: 1px solid var(--linha);
   border-radius: 16px;
@@ -187,8 +231,11 @@ header {
   margin-top: 12px;
 }
 
+/* Footer institucional */
+
 .footer {
   width: 100%;
+  max-width: var(--largura-site);
   margin: 28px auto 0;
   padding-bottom: 72px;
 }
@@ -235,7 +282,9 @@ header {
 
 .footer-card a {
   width: fit-content;
-  transition: color .2s ease, transform .2s ease;
+  transition:
+    color .2s ease,
+    transform .2s ease;
 }
 
 .footer-card a:hover {
@@ -246,7 +295,7 @@ header {
 .footer-bottom {
   margin-top: 14px;
   padding: 0 4px;
-  color: #94a3b8;
+  color: var(--cinza-claro);
   font-size: 11.5px;
   line-height: 1.35;
   text-align: center;
@@ -257,6 +306,8 @@ header {
   align-items: center;
   gap: 8px;
 }
+
+/* CTA fixo lojas */
 
 .floating-lojas {
   position: fixed;
@@ -281,7 +332,7 @@ header {
     0 12px 30px rgba(15, 23, 42, 0.13),
     inset 0 1px 0 rgba(255,255,255,.82);
   backdrop-filter: blur(20px);
-  cursor: pointer;
+  -webkit-backdrop-filter: blur(20px);
   transition:
     transform .22s ease,
     box-shadow .22s ease,
@@ -300,8 +351,7 @@ header {
   width: 26px;
   height: 26px;
   border-radius: 999px;
-  background:
-    linear-gradient(180deg, #111827, #020617);
+  background: linear-gradient(180deg, #111827, #020617);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -322,6 +372,8 @@ header {
   white-space: nowrap;
 }
 
+/* Responsivo */
+
 @media (max-width: 900px) {
   .footer-baloes {
     grid-template-columns: 1fr;
@@ -339,6 +391,10 @@ header {
 
   .topo {
     padding: 9px 14px;
+  }
+
+  .marca {
+    gap: 9px;
   }
 
   .logo {
@@ -360,6 +416,8 @@ header {
 
   .section-head {
     margin-bottom: 7px;
+    padding: 0 12px;
+    align-items: flex-start;
   }
 
   .section-head h2 {
@@ -369,6 +427,13 @@ header {
 
   .section-head p {
     font-size: 12px;
+  }
+
+  .loading,
+  .empty,
+  .debug-box {
+    border-radius: 18px;
+    padding: 22px 16px;
   }
 
   .footer {
