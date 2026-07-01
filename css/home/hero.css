@@ -91,7 +91,10 @@
   font-weight: 850;
 }
 
-.hero-app-card {
+/* BANNER DO APP */
+
+.hero-app-card,
+.hero-app-banner-card {
   min-height: 258px;
   padding: 0;
   border-radius: 22px;
@@ -127,6 +130,8 @@
   box-shadow: 0 10px 22px rgba(2, 6, 23, .18);
 }
 
+/* TABLET */
+
 @media (max-width: 1024px) {
 
   .hero {
@@ -137,7 +142,8 @@
     min-height: 260px;
   }
 
-  .hero-app-card {
+  .hero-app-card,
+  .hero-app-banner-card {
     min-height: 180px;
   }
 
@@ -146,6 +152,8 @@
   }
 
 }
+
+/* MOBILE */
 
 @media (max-width: 620px) {
 
@@ -185,11 +193,13 @@
     line-height: 1.22;
   }
 
-  .hero .hero-app-card {
+  .hero .hero-app-card,
+  .hero .hero-app-banner-card {
     margin-top: 8px;
   }
 
-  .hero-app-card {
+  .hero-app-card,
+  .hero-app-banner-card {
     min-height: 132px;
     border-radius: 20px;
   }
