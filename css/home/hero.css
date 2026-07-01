@@ -212,7 +212,7 @@
 
   .hero-conteudo {
     min-height: auto;
-    padding: 18px 16px 16px;
+    padding: 15px 15px 14px;
     border-radius: 20px;
     background:
       linear-gradient(135deg, rgba(2, 6, 23, .95), rgba(15, 23, 42, .82)),
@@ -220,65 +220,71 @@
   }
 
   .hero-etiqueta {
-    min-height: 20px;
+    min-height: 19px;
     padding: 0 8px;
-    font-size: 8.5px;
-    letter-spacing: .35px;
+    font-size: 8px;
+    letter-spacing: .32px;
   }
 
   .hero h1 {
-    max-width: 320px;
-    margin: 10px 0 7px;
-    font-size: 30px;
-    line-height: .95;
-    letter-spacing: -1.25px;
+    max-width: 315px;
+    margin: 9px 0 6px;
+    font-size: 26px;
+    line-height: .96;
+    letter-spacing: -1.05px;
   }
 
   .hero p {
-    margin-bottom: 14px;
-    font-size: 14px;
-    line-height: 1.25;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    line-height: 1.22;
   }
 
   .hero .hero-app-card {
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
   .hero-app-card {
     min-height: auto;
-    padding: 16px;
+    padding: 14px;
     border-radius: 20px;
   }
 
+  .hero-app-texto span {
+    min-height: 20px;
+    padding: 0 8px;
+    font-size: 8.5px;
+  }
+
   .hero-app-texto h2 {
-    margin: 8px 0 6px;
-    font-size: 22px;
-    letter-spacing: -.8px;
+    margin: 7px 0 5px;
+    font-size: 20px;
+    letter-spacing: -.7px;
   }
 
   .hero-app-texto p {
-    font-size: 15px;
-    line-height: 1.35;
+    font-size: 13.5px;
+    line-height: 1.32;
   }
 
   .hero-lojas {
-    margin-top: 18px;
+    margin-top: 14px;
   }
 
   .hero-loja-btn {
     min-width: 0;
-    width: 160px;
-    height: 56px;
-    border-radius: 16px;
+    width: 154px;
+    height: 50px;
+    border-radius: 15px;
   }
 
   .hero-loja-btn img {
-    width: 27px;
-    height: 27px;
+    width: 24px;
+    height: 24px;
   }
 
   .hero-loja-texto strong {
-    font-size: 17px;
+    font-size: 15.5px;
   }
 
 }
