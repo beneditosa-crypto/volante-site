@@ -1,29 +1,264 @@
-/* home.css */
+/* ===========================================================
+   VOLANTE APP — HOME.CSS
+   Finalidade:
+   Estilos da página inicial pública do Volante.
 
-/* ===========================
-   HERO / BUSCA
-=========================== */
+   Referência:
+   Plano Diretor Oficial + Protótipo Oficial Premium.
 
-.hero {
-  max-width: 1440px;
-  margin: 8px auto 10px;
-  padding: 0 22px;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+   Estrutura:
+   01. Base da Home
+   02. Header Premium
+   03. Hero Premium
+   04. Busca Premium
+   05. Seções
+   06. Escolha do Volante
+   07. Carrosséis
+   08. Cards
+   09. Eventos
+   10. Download App
+   11. Footer
+   12. Estados vazios
+   13. Responsividade
+=========================================================== */
+
+
+/* ===========================================================
+   01. BASE DA HOME
+=========================================================== */
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(30, 58, 138, .08), transparent 34%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: #0f172a;
 }
 
-.busca {
-  height: 56px;
-  border-radius: 18px;
-  background: #ffffff;
-  border: 1px solid rgba(15,23,42,.10);
+main {
+  width: 100%;
+}
+
+section {
+  max-width: 1440px;
+  margin: 0 auto 18px;
+  padding: 0 22px;
+}
+
+
+/* ===========================================================
+   02. HEADER PREMIUM
+=========================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248, 250, 252, .88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(15, 23, 42, .06);
+}
+
+.topo {
+  max-width: 1440px;
+  min-height: 74px;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.marca {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 0 18px;
-  box-shadow: 0 8px 22px rgba(15,23,42,.045);
+  text-decoration: none;
+  color: #0f172a;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.nome {
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -.7px;
+  line-height: 1;
+}
+
+.slogan {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.menu-principal {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.menu-principal a {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.menu-principal a:hover {
+  color: #1e3a8a;
+}
+
+.topo-acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topo-link,
+.topo-botao {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.topo-link {
+  color: #1e3a8a;
+  background: #ffffff;
+  border: 1px solid rgba(30, 58, 138, .16);
+}
+
+.topo-botao {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .16);
+}
+
+
+/* ===========================================================
+   03. HERO PREMIUM
+=========================================================== */
+
+.hero {
+  max-width: 1440px;
+  margin: 18px auto 20px;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hero-conteudo {
+  min-height: 390px;
+  padding: 42px;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(2, 6, 23, .88), rgba(30, 58, 138, .72)),
+    url("../assets/logo.png") center right 58px / 260px no-repeat,
+    #0f172a;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, .18);
+  color: #ffffff;
+}
+
+.hero-conteudo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 88% 20%, rgba(255, 255, 255, .16), transparent 28%),
+    linear-gradient(to right, rgba(2, 6, 23, .22), transparent);
+  pointer-events: none;
+}
+
+.hero-conteudo > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-etiqueta,
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .84);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.hero h1 {
+  max-width: 680px;
+  margin: 18px 0 14px;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 980;
+  line-height: .96;
+  letter-spacing: -2.4px;
+}
+
+.hero p {
+  max-width: 640px;
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.48;
+}
+
+.hero-chips {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-chips a {
+  min-height: 32px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .16);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+
+/* ===========================================================
+   04. BUSCA PREMIUM
+=========================================================== */
+
+.busca {
+  max-width: 760px;
+  min-height: 62px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid rgba(255, 255, 255, .36);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px 0 18px;
+  box-shadow: 0 18px 38px rgba(2, 6, 23, .22);
 }
 
 .busca span {
@@ -34,28 +269,36 @@
 
 .busca input {
   width: 100%;
+  min-width: 0;
   border: 0;
   outline: 0;
   background: transparent;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 850;
   color: #0f172a;
 }
 
-/* ===========================
-   SEÇÕES
-=========================== */
-
-section {
-  max-width: 1440px;
-  margin: 0 auto 12px;
-  padding: 0 22px;
+.busca input::placeholder {
+  color: #64748b;
 }
 
-section.hero,
-section.hero-app-card {
-  padding: 0 22px;
+.busca-botao {
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 950;
+  cursor: pointer;
+  white-space: nowrap;
 }
+
+
+/* ===========================================================
+   05. SEÇÕES
+=========================================================== */
 
 .secao {
   position: relative;
@@ -63,54 +306,78 @@ section.hero-app-card {
 
 .section-head {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 8px;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 
-.section-head h2 {
-  margin: 0;
+.section-head h2,
+.section-head h3 {
+  margin: 7px 0 0;
   color: #0f172a;
-  font-size: 24px;
-  font-weight: 950;
-  letter-spacing: -.8px;
-  line-height: 1.05;
+  font-size: 28px;
+  font-weight: 980;
+  letter-spacing: -1px;
+  line-height: 1.02;
+}
+
+.section-head h3 {
+  font-size: 21px;
+  letter-spacing: -.7px;
 }
 
 .section-head p {
-  display: none;
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.section-label {
+  background: #e8eef9;
+  border-color: rgba(30, 58, 138, .12);
+  color: #1e3a8a;
 }
 
 .home-ver-todos {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 32px;
-  padding: 0 13px;
+  min-height: 36px;
+  padding: 0 15px;
   border-radius: 999px;
   background: #ffffff;
-  border: 1px solid rgba(30,58,138,.20);
+  border: 1px solid rgba(30, 58, 138, .18);
   color: #1e3a8a;
   font-size: 12.5px;
-  font-weight: 900;
+  font-weight: 950;
   text-decoration: none;
-  box-shadow: 0 8px 18px rgba(15,23,42,.045);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .055);
   white-space: nowrap;
 }
 
-/* ===========================
-   ESCOLHA DO VOLANTE
-=========================== */
+.secao-regioes {
+  margin-bottom: 8px;
+}
+
+.regiao-bloco {
+  margin-bottom: 16px;
+}
+
+.section-head-menor {
+  margin-bottom: 10px;
+}
+
+
+/* ===========================================================
+   06. ESCOLHA DO VOLANTE
+=========================================================== */
 
 .secao-escolha {
-  margin-top: 0;
-  margin-bottom: 12px;
+  margin-top: 2px;
 }
 
 .mosaico-escolha {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   align-items: stretch;
 }
 
@@ -123,15 +390,15 @@ section.hero-app-card {
 .mosaico-escolha .mosaico-item:nth-child(3) { grid-area: c; }
 
 .mosaico-escolha.mosaico-qtd-1 {
-  grid-template-columns: minmax(320px, 430px);
-  grid-template-rows: 260px;
+  grid-template-columns: minmax(320px, 500px);
+  grid-template-rows: 320px;
   grid-template-areas: "a";
   justify-content: flex-start;
 }
 
 .mosaico-escolha.mosaico-qtd-2 {
-  grid-template-columns: repeat(2, minmax(320px, 430px));
-  grid-template-rows: 260px;
+  grid-template-columns: repeat(2, minmax(320px, 500px));
+  grid-template-rows: 320px;
   grid-template-areas: "a b";
   justify-content: flex-start;
 }
@@ -140,8 +407,8 @@ section.hero-app-card {
 .mosaico-escolha.mosaico-qtd-4,
 .mosaico-escolha.mosaico-qtd-5,
 .mosaico-escolha.mosaico-qtd-6 {
-  grid-template-columns: 1.35fr .85fr .85fr;
-  grid-template-rows: 300px;
+  grid-template-columns: 1.34fr .86fr .86fr;
+  grid-template-rows: 340px;
   grid-template-areas: "a b c";
 }
 
@@ -154,7 +421,7 @@ section.hero-app-card {
   height: 100%;
   min-width: 0;
   max-width: none;
-  border-radius: 22px;
+  border-radius: 26px;
 }
 
 .mosaico-escolha .foto-wrap {
@@ -163,36 +430,37 @@ section.hero-app-card {
 }
 
 .mosaico-escolha .overlay-content {
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
 }
 
 .mosaico-escolha .overlay-text {
-  font-size: 19px;
+  font-size: 20px;
 }
 
 .mosaico-principal .overlay-text {
-  font-size: 22px;
+  font-size: 26px;
 }
 
 .mosaico-escolha .overlay-preco {
-  margin-top: 5px;
+  margin-top: 6px;
   font-size: 18px;
 }
 
 .mosaico-principal .overlay-preco {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .mosaico-escolha .overlay-local {
-  margin-top: 4px;
+  margin-top: 5px;
   font-size: 13px;
 }
 
-/* ===========================
-   CARROSSÉIS
-=========================== */
+
+/* ===========================================================
+   07. CARROSSÉIS
+=========================================================== */
 
 .carousel-1linha {
   display: block;
@@ -204,7 +472,7 @@ section.hero-app-card {
   gap: 14px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px 2px 6px;
+  padding: 2px 2px 8px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
@@ -215,7 +483,7 @@ section.hero-app-card {
 }
 
 .home-linha-horizontal::-webkit-scrollbar-thumb {
-  background: rgba(15,23,42,.12);
+  background: rgba(15, 23, 42, .14);
   border-radius: 999px;
 }
 
@@ -223,40 +491,51 @@ section.hero-app-card {
   background: transparent;
 }
 
-/* ===========================
-   CARDS
-=========================== */
+
+/* ===========================================================
+   08. CARDS
+=========================================================== */
 
 .card {
   position: relative;
   flex: 0 0 calc((100% - 42px) / 4);
-  min-width: 270px;
-  max-width: 340px;
+  min-width: 272px;
+  max-width: 350px;
   background: transparent;
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(15,23,42,.07);
-  box-shadow: 0 8px 20px rgba(15,23,42,.045);
+  border: 1px solid rgba(15, 23, 42, .07);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .06);
   cursor: pointer;
   scroll-snap-align: start;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(30, 58, 138, .18);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .10);
 }
 
 .card.destaque {
-  border: 2px solid #1f2937;
+  border: 2px solid rgba(15, 23, 42, .82);
 }
 
 .card.destaque .foto-wrap::after {
   content: "Destaque";
   position: absolute;
-  top: 9px;
-  right: 9px;
-  min-height: 24px;
-  padding: 0 9px;
+  top: 10px;
+  right: 10px;
+  min-height: 25px;
+  padding: 0 10px;
   border-radius: 999px;
-  background: rgba(15,23,42,.90);
+  background: rgba(15, 23, 42, .92);
   color: #ffffff;
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 950;
   z-index: 10;
   display: inline-flex;
   align-items: center;
@@ -266,7 +545,7 @@ section.hero-app-card {
 .foto-wrap {
   position: relative;
   width: 100%;
-  height: 178px;
+  height: 190px;
   overflow: hidden;
   background: #e5e7eb;
 }
@@ -284,17 +563,17 @@ section.hero-app-card {
   background:
     linear-gradient(
       to top,
-      rgba(2,6,23,.84),
-      rgba(15,23,42,.26),
-      rgba(15,23,42,.03)
+      rgba(2, 6, 23, .88),
+      rgba(15, 23, 42, .28),
+      rgba(15, 23, 42, .02)
     );
 }
 
 .overlay-content {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  left: 13px;
+  right: 13px;
+  bottom: 13px;
   z-index: 4;
 }
 
@@ -302,21 +581,21 @@ section.hero-app-card {
   color: #ffffff;
   font-size: 15px;
   font-weight: 950;
-  line-height: 1.05;
+  line-height: 1.06;
   letter-spacing: -.42px;
-  text-shadow: 0 2px 12px rgba(0,0,0,.25);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .28);
 }
 
 .overlay-preco {
   margin-top: 5px;
   color: #ffffff;
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 920;
 }
 
 .overlay-local {
   margin-top: 4px;
-  color: rgba(255,255,255,.92);
+  color: rgba(255, 255, 255, .9);
   font-size: 12px;
   font-weight: 800;
 }
@@ -332,67 +611,73 @@ section.hero-app-card {
   display: none !important;
 }
 
-/* ===========================
-   EVENTOS
-=========================== */
+
+/* ===========================================================
+   09. EVENTOS
+=========================================================== */
 
 .eventos-banner {
   max-width: 1396px;
-  margin: 0 auto 12px;
-  padding: 20px 22px;
-  border-radius: 24px;
-  background: linear-gradient(135deg,#0f172a,#1e3a8a);
+  margin: 6px auto 18px;
+  padding: 24px 26px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, .18), transparent 30%),
+    linear-gradient(135deg, #0f172a, #1e3a8a);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  box-shadow: 0 14px 36px rgba(15,23,42,.14);
+  gap: 22px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, .16);
 }
 
 .eventos-banner-conteudo {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
 .eventos-icone {
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.12);
+  width: 56px;
+  height: 56px;
+  border-radius: 19px;
+  background: rgba(255, 255, 255, .13);
+  border: 1px solid rgba(255, 255, 255, .12);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 23px;
-  flex: 0 0 52px;
+  flex: 0 0 56px;
 }
 
 .eventos-banner span {
   display: block;
-  margin-bottom: 4px;
-  color: rgba(255,255,255,.70);
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, .72);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 950;
   text-transform: uppercase;
+  letter-spacing: .5px;
 }
 
 .eventos-banner h2 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 950;
+  font-size: 27px;
+  font-weight: 980;
+  letter-spacing: -.9px;
 }
 
 .eventos-banner p {
-  margin: 5px 0 0;
-  color: rgba(255,255,255,.76);
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, .78);
   font-size: 14px;
   font-weight: 700;
 }
 
 .eventos-botao {
-  min-height: 38px;
-  padding: 0 15px;
+  min-height: 40px;
+  padding: 0 17px;
   border-radius: 999px;
   background: #ffffff;
   color: #1e3a8a;
@@ -405,49 +690,83 @@ section.hero-app-card {
   white-space: nowrap;
 }
 
-/* ===========================
-   APP CARD
-=========================== */
+
+/* ===========================================================
+   10. DOWNLOAD APP
+=========================================================== */
+
+.hero-app-card,
+.home-download {
+  padding: 22px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, .075);
+}
 
 .hero-app-card {
-  max-width: 1180px;
-  width: calc(100% - 44px);
-  margin: 14px auto 16px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(15,23,42,.08);
-  box-shadow: 0 12px 32px rgba(15,23,42,.055);
+  margin: 0;
+  min-height: 390px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.home-download {
+  max-width: 1396px;
+  margin: 8px auto 22px;
+  display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.hero-app-texto span {
+  display: inline-flex;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #e8eef9;
+  color: #1e3a8a;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  align-items: center;
+}
+
+.hero-app-texto h2 {
+  margin: 12px 0 8px;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 980;
+  line-height: 1.02;
+  letter-spacing: -1px;
 }
 
 .hero-app-texto p {
   margin: 0;
-  color: #334155;
+  color: #475569;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 760;
   line-height: 1.45;
 }
 
 .hero-lojas {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 14px;
+  margin-top: 18px;
 }
 
 .hero-loja-btn {
   min-width: 210px;
-  height: 54px;
-  border-radius: 16px;
+  height: 56px;
+  border-radius: 17px;
   background: #ffffff;
-  border: 1px solid rgba(15,23,42,.12);
-  box-shadow: 0 10px 22px rgba(15,23,42,.055);
+  border: 1px solid rgba(15, 23, 42, .12);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -471,73 +790,281 @@ section.hero-app-card {
   display: block;
   font-size: 11px;
   color: #334155;
+  text-transform: none;
+  background: transparent;
+  padding: 0;
+  min-height: 0;
 }
 
 .hero-loja-texto strong {
   display: block;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 950;
   color: #0f172a;
 }
 
-.empty {
-  width: 100%;
-  padding: 14px;
-  border-radius: 16px;
-  background: #f8fafc;
-  border: 1px solid rgba(15,23,42,.08);
-  color: #64748b;
+
+/* ===========================================================
+   11. FOOTER
+=========================================================== */
+
+.footer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 22px 22px;
+}
+
+.footer-baloes {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr .8fr .8fr;
+  gap: 14px;
+}
+
+.footer-card {
+  min-height: 180px;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, .055);
+}
+
+.footer-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.footer-card h3,
+.footer-card h4 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-weight: 950;
+  letter-spacing: -.5px;
+}
+
+.footer-card h3 {
+  font-size: 24px;
+}
+
+.footer-card h4 {
+  font-size: 16px;
+}
+
+.footer-card p {
+  margin: 0 0 8px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.footer-card a {
+  display: block;
+  margin: 0 0 9px;
+  color: #334155;
+  font-size: 14px;
   font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-card a:hover {
+  color: #1e3a8a;
+}
+
+.footer-bottom {
+  margin-top: 14px;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(15, 23, 42, .07);
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 750;
   text-align: center;
 }
 
-/* ===========================
-   MOBILE
-=========================== */
+
+/* ===========================================================
+   12. ESTADOS VAZIOS
+=========================================================== */
+
+.empty {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  color: #64748b;
+  font-weight: 850;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .045);
+}
+
+
+/* ===========================================================
+   13. RESPONSIVIDADE — TABLET
+=========================================================== */
+
+@media (max-width: 1024px) {
+  .topo {
+    min-height: 68px;
+  }
+
+  .menu-principal {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-conteudo {
+    min-height: 360px;
+  }
+
+  .hero-app-card {
+    min-height: auto;
+  }
+
+  .home-download {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-baloes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ===========================================================
+   14. RESPONSIVIDADE — MOBILE
+=========================================================== */
 
 @media (max-width: 620px) {
-  .hero {
-    margin: 8px 0 8px;
+  section {
+    margin-bottom: 12px;
     padding: 0 12px;
+  }
+
+  .site-header {
+    position: sticky;
+  }
+
+  .topo {
+    min-height: 64px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nome {
+    font-size: 19px;
+  }
+
+  .slogan {
+    font-size: 10.5px;
+  }
+
+  .topo-acoes {
+    display: none;
+  }
+
+  .hero {
+    margin: 10px 0 14px;
+    padding: 0 12px;
+    display: block;
+  }
+
+  .hero-conteudo {
+    min-height: auto;
+    padding: 24px 18px;
+    border-radius: 24px;
+    background:
+      linear-gradient(135deg, rgba(2, 6, 23, .90), rgba(30, 58, 138, .72)),
+      #0f172a;
+  }
+
+  .hero-etiqueta,
+  .section-label {
+    min-height: 25px;
+    padding: 0 9px;
+    font-size: 9.5px;
+  }
+
+  .hero h1 {
+    margin: 14px 0 10px;
+    font-size: 34px;
+    letter-spacing: -1.4px;
+  }
+
+  .hero p {
+    margin-bottom: 18px;
+    font-size: 14px;
   }
 
   .busca {
-    height: 50px;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 0 14px;
+    min-height: 52px;
+    border-radius: 16px;
+    gap: 9px;
+    padding: 0 8px 0 13px;
   }
 
   .busca span {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .busca input {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
   }
 
-  section {
-    margin-bottom: 8px;
-    padding: 0 12px;
+  .busca-botao {
+    min-height: 38px;
+    padding: 0 13px;
+    border-radius: 12px;
+    font-size: 11px;
   }
 
-  .secao-escolha {
-    margin-bottom: 8px;
+  .hero-chips {
+    gap: 7px;
+  }
+
+  .hero-chips a {
+    min-height: 29px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .hero .hero-app-card {
+    margin-top: 12px;
   }
 
   .section-head {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    align-items: flex-start;
   }
 
   .section-head h2 {
-    font-size: 20px;
-    letter-spacing: -.7px;
+    font-size: 22px;
+    letter-spacing: -.8px;
+  }
+
+  .section-head h3 {
+    font-size: 18px;
+  }
+
+  .section-head p {
+    font-size: 12px;
   }
 
   .home-ver-todos {
-    min-height: 30px;
-    padding: 0 12px;
+    min-height: 31px;
+    padding: 0 11px;
     font-size: 11px;
   }
 
@@ -548,21 +1075,21 @@ section.hero-app-card {
   .home-linha-horizontal,
   .escolha-mobile {
     display: flex !important;
-    gap: 8px;
+    gap: 9px;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 2px 0 5px;
+    padding: 2px 0 6px;
     scroll-snap-type: x proximity;
   }
 
   .home-linha-horizontal .card,
   .escolha-mobile .card {
-    flex: 0 0 calc((100vw - 40px) / 2.5) !important;
-    min-width: calc((100vw - 40px) / 2.5) !important;
-    max-width: calc((100vw - 40px) / 2.5) !important;
-    width: calc((100vw - 40px) / 2.5) !important;
+    flex: 0 0 calc((100vw - 42px) / 2.45) !important;
+    min-width: calc((100vw - 42px) / 2.45) !important;
+    max-width: calc((100vw - 42px) / 2.45) !important;
+    width: calc((100vw - 42px) / 2.45) !important;
     height: auto !important;
-    border-radius: 16px;
+    border-radius: 17px;
   }
 
   .home-linha-horizontal .foto-wrap,
@@ -570,6 +1097,10 @@ section.hero-app-card {
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 4 / 5 !important;
+  }
+
+  .card:hover {
+    transform: none;
   }
 
   .card.destaque .foto-wrap::after {
@@ -603,9 +1134,9 @@ section.hero-app-card {
   }
 
   .eventos-banner {
-    margin: 0 12px 10px;
+    margin: 0 12px 12px;
     padding: 16px;
-    border-radius: 20px;
+    border-radius: 21px;
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
@@ -620,12 +1151,12 @@ section.hero-app-card {
     width: 42px;
     height: 42px;
     border-radius: 14px;
-    font-size: 20px;
+    font-size: 19px;
     flex-basis: 42px;
   }
 
   .eventos-banner h2 {
-    font-size: 20px;
+    font-size: 21px;
   }
 
   .eventos-banner p {
@@ -636,11 +1167,20 @@ section.hero-app-card {
     width: 100%;
   }
 
-  .hero-app-card {
-    width: calc(100% - 24px);
-    margin: 10px auto 12px;
+  .hero-app-card,
+  .home-download {
+    width: auto;
+    margin: 0 12px 12px;
     padding: 16px 14px;
-    border-radius: 18px;
+    border-radius: 20px;
+  }
+
+  .hero-app-texto h2 {
+    font-size: 21px;
+  }
+
+  .hero-app-texto p {
+    font-size: 13px;
   }
 
   .hero-lojas {
@@ -670,6 +1210,21 @@ section.hero-app-card {
 
   .hero-loja-texto strong {
     font-size: 15px;
+  }
+
+  .footer {
+    padding: 0 12px 18px;
+  }
+
+  .footer-baloes {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .footer-card {
+    min-height: auto;
+    padding: 18px;
+    border-radius: 20px;
   }
 
   .empty {
