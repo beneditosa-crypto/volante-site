@@ -55,9 +55,6 @@
 
 <body>
 
-  <!-- ===========================================================
-  HEADER
-  ============================================================ -->
   <header class="site-header">
     <div class="topo">
       <a href="./index.html" class="marca" aria-label="Volante App - Página inicial">
@@ -69,15 +66,9 @@
         </div>
       </a>
 
-      <nav class="menu-principal" aria-label="Menu principal">
-        <a href="./anuncios.html">Anúncios</a>
-        <a href="./eventos.html">Eventos</a>
-        <a href="#regioes">Regiões</a>
-      </nav>
-
       <div class="topo-acoes">
         <a href="./anuncios.html" class="topo-link">Buscar clássico</a>
-        <a href="#" onclick="baixarApp(); return false;" class="topo-botao">
+        <a href="#" onclick="abrirPublicarAnuncio(); return false;" class="topo-botao">
           Publicar anúncio
         </a>
       </div>
@@ -86,19 +77,13 @@
 
   <main>
 
-    <!-- ===========================================================
-    HERO
-    Faixa editorial principal da Home.
-    ============================================================ -->
     <section class="hero hero-full">
       <div class="hero-conteudo">
         <span class="hero-etiqueta">Marketplace premium de carros antigos</span>
 
         <h1>Clássicos que contam histórias.</h1>
 
-        <p>
-          O lugar certo para quem vive mais que carros, uma paixão.
-        </p>
+        <p>Mais que carros, paixão.</p>
 
         <div class="busca" role="search">
           <span aria-hidden="true">⌕</span>
@@ -114,24 +99,28 @@
             Buscar
           </button>
         </div>
-
-        <div class="hero-chips" aria-label="Buscas rápidas">
-          <a href="./anuncios.html?destaques=true">Destaques</a>
-          <a href="./anuncios.html?q=carros">Carros</a>
-          <a href="./anuncios.html?q=picapes">Picapes</a>
-          <a href="./anuncios.html?q=muscle">Muscle Cars</a>
-          <a href="./anuncios.html?q=anos%2070">Anos 70</a>
-          <a href="./anuncios.html?q=anos%2080">Anos 80</a>
-          <a href="./anuncios.html?q=Volkswagen">VW</a>
-          <a href="./anuncios.html?q=Chevrolet">Chevrolet</a>
-          <a href="./anuncios.html?q=Ford">Ford</a>
-        </div>
       </div>
+
+      <aside class="hero-app-card" aria-label="Baixar aplicativo Volante">
+        <div class="hero-app-texto">
+          <span>Volante App</span>
+          <h2>Publique pelo app.</h2>
+          <p>Anuncie seu clássico, acompanhe conversas e descubra eventos automotivos.</p>
+        </div>
+
+        <div class="hero-lojas">
+          <a href="#" onclick="abrirPublicarAnuncio(); return false;" class="hero-loja-btn">
+            <img src="./assets/logo.png" alt="Volante App" />
+
+            <div class="hero-loja-texto">
+              <span>Abrir ou baixar</span>
+              <strong>Volante</strong>
+            </div>
+          </a>
+        </div>
+      </aside>
     </section>
 
-    <!-- ===========================================================
-    ESCOLHA DO VOLANTE
-    ============================================================ -->
     <section class="secao secao-escolha" aria-labelledby="titulo-escolha">
       <div class="section-head">
         <div>
@@ -146,9 +135,6 @@
       <div class="mosaico-escolha" id="gridEscolhaVolante"></div>
     </section>
 
-    <!-- ===========================================================
-    EVENTOS EM DESTAQUE
-    ============================================================ -->
     <section class="eventos-banner" aria-labelledby="titulo-eventos">
       <div class="eventos-banner-conteudo">
         <div class="eventos-icone" aria-hidden="true">▣</div>
@@ -163,9 +149,6 @@
       <a href="./eventos.html" class="eventos-botao">Ver eventos →</a>
     </section>
 
-    <!-- ===========================================================
-    RECENTES
-    ============================================================ -->
     <section class="secao" aria-labelledby="titulo-recentes">
       <div class="section-head">
         <div>
@@ -180,10 +163,6 @@
       <div class="carousel-1linha" id="gridRecentes"></div>
     </section>
 
-    <!-- ===========================================================
-    REGIÕES
-    Mantém IDs originais usados pelo home.js.
-    ============================================================ -->
     <section class="secao secao-regioes" id="regioes" aria-labelledby="titulo-regioes">
       <div class="section-head">
         <div>
@@ -203,9 +182,7 @@
           <p>GO, DF, MT e MS.</p>
         </div>
 
-        <a href="./anuncios.html?regiao=centroOeste" class="home-ver-todos">
-          Ver todos →
-        </a>
+        <a href="./anuncios.html?regiao=centroOeste" class="home-ver-todos">Ver todos →</a>
       </div>
 
       <div class="carousel-1linha" id="gridCentroOeste"></div>
@@ -218,9 +195,7 @@
           <p>SP, RJ, MG e ES.</p>
         </div>
 
-        <a href="./anuncios.html?regiao=sudeste" class="home-ver-todos">
-          Ver todos →
-        </a>
+        <a href="./anuncios.html?regiao=sudeste" class="home-ver-todos">Ver todos →</a>
       </div>
 
       <div class="carousel-1linha" id="gridSudeste"></div>
@@ -233,9 +208,7 @@
           <p>PR, SC e RS.</p>
         </div>
 
-        <a href="./anuncios.html?regiao=sul" class="home-ver-todos">
-          Ver todos →
-        </a>
+        <a href="./anuncios.html?regiao=sul" class="home-ver-todos">Ver todos →</a>
       </div>
 
       <div class="carousel-1linha" id="gridSul"></div>
@@ -248,9 +221,7 @@
           <p>Veículos clássicos do Nordeste.</p>
         </div>
 
-        <a href="./anuncios.html?regiao=nordeste" class="home-ver-todos">
-          Ver todos →
-        </a>
+        <a href="./anuncios.html?regiao=nordeste" class="home-ver-todos">Ver todos →</a>
       </div>
 
       <div class="carousel-1linha" id="gridNordeste"></div>
@@ -263,18 +234,12 @@
           <p>Veículos clássicos do Norte.</p>
         </div>
 
-        <a href="./anuncios.html?regiao=norte" class="home-ver-todos">
-          Ver todos →
-        </a>
+        <a href="./anuncios.html?regiao=norte" class="home-ver-todos">Ver todos →</a>
       </div>
 
       <div class="carousel-1linha" id="gridNorte"></div>
     </section>
 
-    <!-- ===========================================================
-    EVENTOS POR REGIÃO
-    Mantém IDs originais usados pelo home.js.
-    ============================================================ -->
     <section class="secao eventos-lista">
       <div class="section-head section-head-menor">
         <div>
@@ -330,9 +295,6 @@
       <div class="carousel-1linha" id="gridEventosNorte"></div>
     </section>
 
-    <!-- ===========================================================
-    DOWNLOAD DO APP
-    ============================================================ -->
     <section class="home-download" aria-label="Baixar aplicativo Volante">
       <div class="hero-app-texto">
         <span>Volante App</span>
@@ -363,9 +325,6 @@
 
   </main>
 
-  <!-- ===========================================================
-  FOOTER
-  ============================================================ -->
   <footer class="footer">
     <div class="footer-baloes">
       <div class="footer-card footer-brand">
@@ -414,6 +373,35 @@
       Volante App © 2026. Todos os direitos reservados.
     </div>
   </footer>
+
+  <script>
+    function abrirPublicarAnuncio() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      const appUrl = "volante://publicar";
+      const androidStore = "https://play.google.com/store/apps/details?id=br.com.volante.app";
+      const iosStore = "https://apps.apple.com/br/app/volante-app";
+      const destinoDesktop = "#baixar-app";
+
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+      if (!isAndroid && !isIOS) {
+        window.location.href = "./index.html#baixar-app";
+        return;
+      }
+
+      const inicio = Date.now();
+
+      window.location.href = appUrl;
+
+      setTimeout(function () {
+        if (Date.now() - inicio < 1800) {
+          window.location.href = isAndroid ? androidStore : iosStore;
+        }
+      }, 1200);
+    }
+  </script>
 
   <script type="module" src="./js/home.js?v=00251"></script>
 
