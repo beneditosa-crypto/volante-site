@@ -1,1 +1,122 @@
+/* VOLANTE APP — CARROSSEL.CSS */
+/* Escopo: Carrosséis da Home */
 
+.carousel-1linha {
+  display: block;
+  overflow: visible;
+}
+
+.home-linha-horizontal {
+  display: flex;
+  gap: 13px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 2px 7px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.home-linha-horizontal::-webkit-scrollbar {
+  height: 5px;
+}
+
+.home-linha-horizontal::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, .14);
+  border-radius: 999px;
+}
+
+.home-linha-horizontal .card {
+  flex: 0 0 292px;
+  min-width: 292px;
+  max-width: 292px;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: transform .18s ease,
+              box-shadow .18s ease,
+              border-color .18s ease;
+}
+
+.home-linha-horizontal .card:hover {
+  transform: translateY(-2px);
+}
+
+.home-linha-horizontal .foto-wrap {
+  height: 190px;
+}
+
+.home-linha-horizontal .overlay-content {
+  left: 11px;
+  right: 11px;
+  bottom: 11px;
+}
+
+.home-linha-horizontal .overlay-text {
+  font-size: 13.5px;
+}
+
+.home-linha-horizontal .overlay-preco {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.home-linha-horizontal .overlay-local {
+  margin-top: 3px;
+  font-size: 10.8px;
+}
+
+.home-linha-horizontal .ver-mais,
+.home-linha-horizontal .card-body,
+.home-linha-horizontal .meta,
+.home-linha-horizontal .price {
+  display: none !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 620px) {
+
+  .home-linha-horizontal {
+    display: flex !important;
+    gap: 9px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 0 6px;
+    scroll-snap-type: x proximity;
+  }
+
+  .home-linha-horizontal .card {
+    flex: 0 0 calc((100vw - 42px) / 2.45) !important;
+    min-width: calc((100vw - 42px) / 2.45) !important;
+    max-width: calc((100vw - 42px) / 2.45) !important;
+    width: calc((100vw - 42px) / 2.45) !important;
+    height: auto !important;
+    border-radius: 16px;
+  }
+
+  .home-linha-horizontal .foto-wrap {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .home-linha-horizontal .card:hover {
+    transform: none;
+  }
+
+  .home-linha-horizontal .overlay-content {
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
+  }
+
+  .home-linha-horizontal .overlay-text,
+  .home-linha-horizontal .overlay-preco {
+    font-size: 12.5px !important;
+  }
+
+  .home-linha-horizontal .overlay-local {
+    font-size: 10.5px !important;
+  }
+
+}
