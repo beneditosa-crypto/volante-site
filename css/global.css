@@ -168,10 +168,11 @@ header {
   line-height: 1.2;
 }
 
-.menu-principal {
+.menu-principal,
+.topo-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 9px;
 }
 
 .menu-principal a {
@@ -363,76 +364,105 @@ header {
 =========================================================== */
 
 .footer {
+  width: 100%;
+  max-width: none;
+  margin: 28px 0 0;
+  padding: 0;
+  background:
+    radial-gradient(circle at top left, rgba(176, 138, 60, 0.14), transparent 28%),
+    linear-gradient(135deg, #07111f 0%, #0b1b31 56%, #07111f 100%);
+  color: #ffffff;
+}
+
+.footer-conteudo {
+  width: 100%;
   max-width: var(--largura-site);
   margin: 0 auto;
-  padding: 0 22px 22px;
-}
-
-.footer-baloes {
+  padding: 34px 22px 28px;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr;
-  gap: 13px;
-}
-
-.footer-card {
-  min-height: 160px;
-  padding: 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 9px 22px rgba(15, 23, 42, 0.048);
+  grid-template-columns: 1.45fr repeat(5, 1fr);
+  gap: 30px;
+  align-items: start;
 }
 
 .footer-logo {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  margin-bottom: 9px;
+  margin-bottom: 10px;
 }
 
-.footer-card h3,
-.footer-card h4 {
-  margin: 0 0 9px;
-  color: var(--texto);
-  font-weight: 950;
-  letter-spacing: -0.5px;
+.footer-coluna h3,
+.footer-coluna h4 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
-.footer-card h3 {
-  font-size: 21px;
+.footer-coluna h3 {
+  font-size: 1.35rem;
 }
 
-.footer-card h4 {
-  font-size: 14.5px;
+.footer-coluna h4 {
+  font-size: .95rem;
 }
 
-.footer-card p {
+.footer-coluna p {
+  max-width: 270px;
   margin: 0 0 8px;
-  color: #475569;
-  font-size: 12.8px;
-  font-weight: 700;
-  line-height: 1.42;
+  color: rgba(255, 255, 255, .72);
+  font-size: .86rem;
+  font-weight: 560;
+  line-height: 1.45;
 }
 
-.footer-card a {
+.footer-coluna a {
   display: block;
   margin: 0 0 8px;
-  color: #334155;
-  font-size: 12.8px;
-  font-weight: 800;
+  color: rgba(255, 255, 255, .72);
+  font-size: .84rem;
+  font-weight: 620;
+  line-height: 1.35;
+  transition: .2s ease;
 }
 
-.footer-card a:hover {
-  color: var(--azul-principal);
+.footer-coluna a:hover {
+  color: #ffffff;
+}
+
+.footer-brand p:first-of-type {
+  color: rgba(255, 255, 255, .86);
+  font-weight: 750;
+}
+
+.footer-social {
+  margin-top: 14px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, .18);
+  background: rgba(255, 255, 255, .06);
+  font-size: .78rem;
+  font-weight: 760;
 }
 
 .footer-bottom {
-  margin-top: 13px;
-  padding: 15px 0 0;
-  border-top: 1px solid rgba(15, 23, 42, 0.07);
-  color: var(--cinza);
-  font-size: 12.5px;
-  font-weight: 750;
+  max-width: var(--largura-site);
+  margin: 0 auto;
+  padding: 16px 22px 20px;
+  border-top: 1px solid rgba(255, 255, 255, .10);
+  color: rgba(255, 255, 255, .58);
+  font-size: .78rem;
+  font-weight: 650;
   text-align: center;
 }
 
@@ -513,6 +543,13 @@ header {
    RESPONSIVO GLOBAL
 =========================================================== */
 
+@media (max-width: 1180px) {
+  .footer-conteudo {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 24px;
+  }
+}
+
 @media (max-width: 1024px) {
   .topo {
     min-height: 56px;
@@ -521,9 +558,16 @@ header {
   .menu-principal {
     display: none;
   }
+}
 
-  .footer-baloes {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 760px) {
+  .footer-conteudo {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
   }
 }
 
@@ -551,6 +595,22 @@ header {
     display: none;
   }
 
+  .topo-nav {
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .topo-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topo-link {
+    min-height: 30px;
+    padding: 0 10px;
+    font-size: 10.5px;
+  }
+
   .card.destaque .foto-wrap::after {
     top: 7px;
     right: 7px;
@@ -567,18 +627,31 @@ header {
   }
 
   .footer {
-    padding: 0 12px 18px;
+    margin-top: 22px;
   }
 
-  .footer-baloes {
+  .footer-conteudo {
     grid-template-columns: 1fr;
-    gap: 10px;
+    padding: 28px 18px 22px;
+    gap: 18px;
   }
 
-  .footer-card {
-    min-height: auto;
-    padding: 17px;
-    border-radius: 19px;
+  .footer-coluna h3 {
+    font-size: 1.25rem;
+  }
+
+  .footer-coluna h4 {
+    margin-bottom: 9px;
+  }
+
+  .footer-coluna p,
+  .footer-coluna a {
+    font-size: .82rem;
+  }
+
+  .footer-bottom {
+    padding: 14px 18px 18px;
+    font-size: .74rem;
   }
 
   .floating-lojas {
