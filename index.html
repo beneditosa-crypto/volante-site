@@ -48,16 +48,17 @@
 
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link rel="preload" as="image" href="./assets/logo.png" />
+  <link rel="preload" as="image" href="./assets/mockup-banner.png" />
 
-  <link rel="stylesheet" href="./css/global.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/hero.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/busca.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/secoes.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/destaque.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/carrossel.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/eventos.css?v=00252" />
-  <link rel="stylesheet" href="./css/home/download.css?v=00252" />
-  <link rel="stylesheet" href="./css/home.css?v=00252" />
+  <link rel="stylesheet" href="./css/global.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/hero.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/busca.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/secoes.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/destaque.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/carrossel.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/eventos.css?v=00254" />
+  <link rel="stylesheet" href="./css/home/download.css?v=00254" />
+  <link rel="stylesheet" href="./css/home.css?v=00254" />
 </head>
 
 <body>
@@ -73,8 +74,13 @@
         </div>
       </a>
 
-      <nav class="topo-nav" aria-label="Navegação principal"></nav>
-
+      <nav class="topo-nav" aria-label="Navegação principal">
+        <a href="./anuncios.html">Anúncios</a>
+        <a href="./eventos.html">Eventos</a>
+        <a href="./sobre.html">Sobre</a>
+        <a href="./contato.html">Contato</a>
+        <a href="#baixar-app" class="topo-nav-destaque" onclick="abrirPublicarAnuncio(); return false;">Publicar anúncio</a>
+      </nav>
     </div>
   </header>
 
@@ -82,6 +88,7 @@
 
     <section class="home-intro" aria-labelledby="titulo-home">
       <div class="home-intro-texto">
+        <span class="section-label">Volante App</span>
         <h1 id="titulo-home">Encontre o clássico que combina com você.</h1>
         <p>Clássicos, premium e especiais em um só lugar.</p>
       </div>
@@ -153,7 +160,7 @@
       <div class="carousel-1linha" id="gridRecentes"></div>
     </section>
 
-    <section class="home-grade-secundaria">
+    <section class="home-grade-secundaria" aria-label="Eventos, regiões e aplicativo">
       <section class="secao agenda-eventos" aria-labelledby="titulo-eventos">
         <div class="section-head section-head-menor">
           <div>
@@ -211,7 +218,6 @@
       </section>
 
       <section class="home-download" id="baixar-app" aria-label="Baixar aplicativo Volante">
-
         <div class="hero-app-texto">
           <span>Volante App</span>
           <h2>Baixe o aplicativo</h2>
@@ -219,17 +225,21 @@
         </div>
 
         <div class="hero-lojas">
-          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-            <img src="./assets/apple-store.png" alt="App Store" />
+          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn" aria-label="Baixar na App Store">
+            <img src="./assets/apple-store.png" alt="Baixar na App Store" />
           </a>
 
-          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-            <img src="./assets/google-play.png" alt="Google Play" />
+          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn" aria-label="Disponível no Google Play">
+            <img src="./assets/google-play.png" alt="Disponível no Google Play" />
           </a>
         </div>
 
+        <div class="hero-app-visual" aria-hidden="true">
+          <img src="./assets/mockup-banner.png" alt="" loading="lazy" />
+        </div>
       </section>
-    
+    </section>
+
     <section class="home-grids-apoio" aria-hidden="true">
       <div class="carousel-1linha" id="gridCentroOeste"></div>
       <div class="carousel-1linha" id="gridSudeste"></div>
@@ -378,7 +388,7 @@
     }
   </script>
 
-  <script type="module" src="./js/home.js?v=00253"></script>
+  <script type="module" src="./js/home.js?v=00254"></script>
 
 </body>
 </html>
