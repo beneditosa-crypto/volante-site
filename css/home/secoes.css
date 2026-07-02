@@ -87,12 +87,14 @@
 /* EXPLORE POR REGIÃO */
 
 .regioes-grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
 .regiao-card {
+  min-width: 0;
   min-height: 56px;
   padding: 10px 12px;
   border-radius: 16px;
@@ -102,6 +104,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: inherit;
+  text-decoration: none;
   transition: .2s ease;
 }
 
@@ -112,6 +116,7 @@
 }
 
 .regiao-card strong {
+  display: block;
   color: var(--texto);
   font-size: .9rem;
   font-weight: 850;
@@ -119,6 +124,7 @@
 }
 
 .regiao-card span {
+  display: block;
   margin-top: 4px;
   color: var(--cinza);
   font-size: .72rem;
@@ -143,6 +149,14 @@
 }
 
 /* MOBILE */
+
+@media (max-width: 820px) {
+
+  .regioes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
 
 @media (max-width: 620px) {
 
@@ -176,11 +190,22 @@
   }
 
   .regioes-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .regiao-card {
     min-height: 54px;
+    padding: 10px 12px;
+    border-radius: 16px;
+  }
+
+}
+
+@media (max-width: 360px) {
+
+  .regioes-grid {
+    grid-template-columns: 1fr;
   }
 
 }
