@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
   <!-- ===========================================================
@@ -11,45 +12,15 @@
 
   <title>Volante App | Mais que carros, paixão</title>
 
-  <meta
-    name="description"
-    content="Volante é a plataforma premium para veículos antigos, clássicos, eventos automotivos e apaixonados pelo antigomobilismo no Brasil."
-  />
+<meta
+ name="description"
+ content="Volante é a plataforma premium para veículos antigos, clássicos, eventos automotivos e apaixonados pelo antigomobilismo no Brasil."
+/>
 
-  <meta
-    name="keywords"<section class="home-download" id="baixar-app" aria-label="Baixar aplicativo Volante">
-
-  <div class="hero-app-conteudo">
-
-    <div class="hero-app-texto">
-      <h2>Baixe o aplicativo</h2>
-      <p>Leve o Volante com você.</p>
-      <p>Anuncie, encontre e acompanhe de onde estiver.</p>
-    </div>
-
-    <div class="hero-lojas">
-      <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-        <img src="./assets/apple-store.png" alt="App Store" />
-      </a>
-
-      <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-        <img src="./assets/google-play.png" alt="Google Play" />
-      </a>
-    </div>
-
-  </div>
-
-  <img
-    src="./assets/mokup-banner.png"
-    alt="Prévia do aplicativo Volante"
-    class="home-download-celular"
-    loading="lazy"
-    decoding="async"
-  />
-
-</section>
-    content="Volante, carros antigos, carros clássicos, veículos antigos, antigomobilismo, eventos automotivos, marketplace de carros antigos"
-  />
+<meta
+ name="keywords"
+ content="Volante, carros antigos, carros clássicos, veículos antigos, antigomobilismo, eventos automotivos, marketplace de carros antigos"
+/>
 
   <meta name="author" content="Volante App" />
   <meta name="robots" content="index, follow" />
@@ -99,198 +70,199 @@
       <a href="./index.html" class="marca" aria-label="Volante App - Página inicial">
         <img src="./assets/logo.png" alt="Volante App" class="logo" />
 
-        <div>
-          <div class="nome">Volante</div>
-          <div class="slogan">Mais que carros, paixão.</div>
-        </div>
-      </a>
-
-      <nav class="topo-nav" aria-label="Navegação principal">
-        <a href="./anuncios.html" class="topo-link">Anúncios</a>
-        <a href="./eventos.html" class="topo-link">Eventos</a>
-        <a href="./sobre.html" class="topo-link">Sobre</a>
-        <a href="./contato.html" class="topo-link">Contato</a>
-      </nav>
-
-      <div class="topo-acoes">
-        <a href="#" onclick="abrirPublicarAnuncio(); return false;" class="topo-botao">
-          Anunciar
-        </a>
-      </div>
+    <div>
+      <div class="nome">Volante</div>
+      <div class="slogan">Mais que carros, paixão.</div>
     </div>
+  </a>
+
+  <nav class="topo-nav" aria-label="Navegação principal">
+    <a href="./anuncios.html" class="topo-link">Anúncios</a>
+    <a href="./eventos.html" class="topo-link">Eventos</a>
+    <a href="./sobre.html" class="topo-link">Sobre</a>
+    <a href="./contato.html" class="topo-link">Contato</a>
+  </nav>
+
+  <div class="topo-acoes">
+    <a href="#" onclick="abrirPublicarAnuncio(); return false;" class="topo-botao">
+      Anunciar
+    </a>
+  </div>
+</div>
+
   </header>
 
   <main>
 
-    <section class="home-intro" aria-labelledby="titulo-home">
-      <div class="home-intro-texto">
-        <h1 id="titulo-home">Encontre o clássico que combina com você.</h1>
-        <p>Clássicos, premium e especiais em um só lugar.</p>
+<section class="home-intro" aria-labelledby="titulo-home">
+  <div class="home-intro-texto">
+    <h1 id="titulo-home">Encontre o clássico que combina com você.</h1>
+    <p>Clássicos, premium e especiais em um só lugar.</p>
+  </div>
+
+  <form class="home-busca" role="search" onsubmit="buscarHome(); return false;">
+    <div class="home-busca-campo">
+      <span aria-hidden="true">⌕</span>
+      <input
+        id="busca"
+        type="search"
+        placeholder="Buscar por marca, modelo, ano..."
+        aria-label="Buscar anúncios no Volante"
+      />
+    </div>
+
+    <div class="home-busca-campo">
+      <span aria-hidden="true">⌖</span>
+      <select id="filtroRegiao" aria-label="Filtrar por região">
+        <option value="">Todas as regiões</option>
+        <option value="centroOeste">Centro-Oeste</option>
+        <option value="sudeste">Sudeste</option>
+        <option value="sul">Sul</option>
+        <option value="nordeste">Nordeste</option>
+        <option value="norte">Norte</option>
+      </select>
+    </div>
+
+    <div class="home-busca-campo">
+      <span aria-hidden="true">▣</span>
+      <select id="filtroTipo" aria-label="Filtrar por tipo de veículo">
+        <option value="">Tipo de veículo</option>
+        <option value="carro">Carros</option>
+        <option value="moto">Motos</option>
+        <option value="caminhonete">Caminhonetes</option>
+      </select>
+    </div>
+
+    <button type="submit" class="busca-botao">
+      Buscar
+    </button>
+  </form>
+</section>
+
+<section class="secao secao-escolha" aria-labelledby="titulo-escolha">
+  <div class="section-head">
+    <div>
+      <span class="section-label">☆ Curadoria</span>
+      <h2 id="titulo-escolha">Escolha do Volante</h2>
+      <p>Modelos selecionados pela nossa curadoria.</p>
+    </div>
+
+    <a href="./anuncios.html" class="home-ver-todos">Ver todos →</a>
+  </div>
+
+  <div class="mosaico-escolha" id="gridEscolhaVolante"></div>
+</section>
+
+<section class="secao" aria-labelledby="titulo-recentes">
+  <div class="section-head">
+    <div>
+      <span class="section-label">◷ Novidades</span>
+      <h2 id="titulo-recentes">Anúncios recentes</h2>
+      <p>Últimos veículos aprovados na plataforma.</p>
+    </div>
+
+    <a href="./anuncios.html" class="home-ver-todos">Ver todos →</a>
+  </div>
+
+  <div class="carousel-1linha" id="gridRecentes"></div>
+</section>
+
+<section class="home-grade-secundaria">
+  <section class="secao agenda-eventos" aria-labelledby="titulo-eventos">
+    <div class="section-head section-head-menor">
+      <div>
+        <span class="section-label">▣ Agenda</span>
+        <h2 id="titulo-eventos">Agenda de eventos</h2>
       </div>
 
-      <form class="home-busca" role="search" onsubmit="buscarHome(); return false;">
-        <div class="home-busca-campo">
-          <span aria-hidden="true">⌕</span>
-          <input
-            id="busca"
-            type="search"
-            placeholder="Buscar por marca, modelo, ano..."
-            aria-label="Buscar anúncios no Volante"
-          />
-        </div>
+      <a href="./eventos.html" class="home-ver-todos">Ver todos →</a>
+    </div>
 
-        <div class="home-busca-campo">
-          <span aria-hidden="true">⌖</span>
-          <select id="filtroRegiao" aria-label="Filtrar por região">
-            <option value="">Todas as regiões</option>
-            <option value="centroOeste">Centro-Oeste</option>
-            <option value="sudeste">Sudeste</option>
-            <option value="sul">Sul</option>
-            <option value="nordeste">Nordeste</option>
-            <option value="norte">Norte</option>
-          </select>
-        </div>
+    <div class="agenda-eventos-lista" id="gridEventosCentroOeste"></div>
+  </section>
 
-        <div class="home-busca-campo">
-          <span aria-hidden="true">▣</span>
-          <select id="filtroTipo" aria-label="Filtrar por tipo de veículo">
-            <option value="">Tipo de veículo</option>
-            <option value="carro">Carros</option>
-            <option value="moto">Motos</option>
-            <option value="caminhonete">Caminhonetes</option>
-          </select>
-        </div>
-
-        <button type="submit" class="busca-botao">
-          Buscar
-        </button>
-      </form>
-    </section>
-
-    <section class="secao secao-escolha" aria-labelledby="titulo-escolha">
-      <div class="section-head">
-        <div>
-          <span class="section-label">☆ Curadoria</span>
-          <h2 id="titulo-escolha">Escolha do Volante</h2>
-          <p>Modelos selecionados pela nossa curadoria.</p>
-        </div>
-
-        <a href="./anuncios.html" class="home-ver-todos">Ver todos →</a>
+  <section class="secao secao-regioes" id="regioes" aria-labelledby="titulo-regioes">
+    <div class="section-head section-head-menor">
+      <div>
+        <span class="section-label">⌖ Regiões</span>
+        <h2 id="titulo-regioes">Explore por região</h2>
       </div>
 
-      <div class="mosaico-escolha" id="gridEscolhaVolante"></div>
-    </section>
+      <a href="./anuncios.html" class="home-ver-todos">Ver todas →</a>
+    </div>
 
-    <section class="secao" aria-labelledby="titulo-recentes">
-      <div class="section-head">
-        <div>
-          <span class="section-label">◷ Novidades</span>
-          <h2 id="titulo-recentes">Anúncios recentes</h2>
-          <p>Últimos veículos aprovados na plataforma.</p>
-        </div>
+    <div class="regioes-grid">
+      <a href="./anuncios.html?estado=SP" class="regiao-card">
+        <strong>São Paulo</strong>
+        <span>Ver anúncios</span>
+      </a>
 
-        <a href="./anuncios.html" class="home-ver-todos">Ver todos →</a>
-      </div>
+      <a href="./anuncios.html?estado=RJ" class="regiao-card">
+        <strong>Rio de Janeiro</strong>
+        <span>Ver anúncios</span>
+      </a>
 
-      <div class="carousel-1linha" id="gridRecentes"></div>
-    </section>
+      <a href="./anuncios.html?estado=MG" class="regiao-card">
+        <strong>Minas Gerais</strong>
+        <span>Ver anúncios</span>
+      </a>
 
-    <section class="home-grade-secundaria">
-      <section class="secao agenda-eventos" aria-labelledby="titulo-eventos">
-        <div class="section-head section-head-menor">
-          <div>
-            <span class="section-label">▣ Agenda</span>
-            <h2 id="titulo-eventos">Agenda de eventos</h2>
-          </div>
+      <a href="./anuncios.html?estado=PR" class="regiao-card">
+        <strong>Paraná</strong>
+        <span>Ver anúncios</span>
+      </a>
 
-          <a href="./eventos.html" class="home-ver-todos">Ver todos →</a>
-        </div>
+      <a href="./anuncios.html?estado=RS" class="regiao-card">
+        <strong>Rio Grande do Sul</strong>
+        <span>Ver anúncios</span>
+      </a>
 
-        <div class="agenda-eventos-lista" id="gridEventosCentroOeste"></div>
-      </section>
+      <a href="./anuncios.html?estado=DF" class="regiao-card">
+        <strong>Distrito Federal</strong>
+        <span>Ver anúncios</span>
+      </a>
+    </div>
+  </section>
 
-      <section class="secao secao-regioes" id="regioes" aria-labelledby="titulo-regioes">
-        <div class="section-head section-head-menor">
-          <div>
-            <span class="section-label">⌖ Regiões</span>
-            <h2 id="titulo-regioes">Explore por região</h2>
-          </div>
+  <section class="home-download" id="baixar-app" aria-label="Baixar aplicativo Volante">
+    <div class="hero-app-texto">
+      <h2>Baixe o aplicativo</h2>
+      <p>Leve o Volante com você.</p>
+      <p>Anuncie, encontre e acompanhe de onde estiver.</p>
+    </div>
 
-          <a href="./anuncios.html" class="home-ver-todos">Ver todas →</a>
-        </div>
+    <div class="hero-lojas">
+      <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
+        <img src="./assets/apple-store.png" alt="App Store" />
+      </a>
 
-        <div class="regioes-grid">
-          <a href="./anuncios.html?estado=SP" class="regiao-card">
-            <strong>São Paulo</strong>
-            <span>Ver anúncios</span>
-          </a>
+      <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
+        <img src="./assets/google-play.png" alt="Google Play" />
+      </a>
+    </div>
 
-          <a href="./anuncios.html?estado=RJ" class="regiao-card">
-            <strong>Rio de Janeiro</strong>
-            <span>Ver anúncios</span>
-          </a>
+    <img
+      src="./assets/mokup-banner.png"
+      alt="Prévia do aplicativo Volante"
+      class="home-download-celular"
+      loading="lazy"
+      decoding="async"
+    />
+  </section>
+</section>
 
-          <a href="./anuncios.html?estado=MG" class="regiao-card">
-            <strong>Minas Gerais</strong>
-            <span>Ver anúncios</span>
-          </a>
+<section class="home-grids-apoio" aria-hidden="true">
+  <div class="carousel-1linha" id="gridCentroOeste"></div>
+  <div class="carousel-1linha" id="gridSudeste"></div>
+  <div class="carousel-1linha" id="gridSul"></div>
+  <div class="carousel-1linha" id="gridNordeste"></div>
+  <div class="carousel-1linha" id="gridNorte"></div>
 
-          <a href="./anuncios.html?estado=PR" class="regiao-card">
-            <strong>Paraná</strong>
-            <span>Ver anúncios</span>
-          </a>
-
-          <a href="./anuncios.html?estado=RS" class="regiao-card">
-            <strong>Rio Grande do Sul</strong>
-            <span>Ver anúncios</span>
-          </a>
-
-          <a href="./anuncios.html?estado=DF" class="regiao-card">
-            <strong>Distrito Federal</strong>
-            <span>Ver anúncios</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="home-download" id="baixar-app" aria-label="Baixar aplicativo Volante">
-        <div class="hero-app-texto">
-          <h2>Baixe o aplicativo</h2>
-          <p>Leve o Volante com você.</p>
-          <p>Anuncie, encontre e acompanhe de onde estiver.</p>
-        </div>
-
-        <div class="hero-lojas">
-          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-            <img src="./assets/apple-store.png" alt="App Store" />
-          </a>
-
-          <a href="#" onclick="baixarApp(); return false;" class="hero-loja-btn">
-            <img src="./assets/google-play.png" alt="Google Play" />
-          </a>
-        </div>
-
-        <img
-          src="./assets/mokup-banner.png"
-          alt="Prévia do aplicativo Volante"
-          class="home-download-celular"
-          loading="lazy"
-          decoding="async"
-        />
-      </section>
-    </section>
-
-    <section class="home-grids-apoio" aria-hidden="true">
-      <div class="carousel-1linha" id="gridCentroOeste"></div>
-      <div class="carousel-1linha" id="gridSudeste"></div>
-      <div class="carousel-1linha" id="gridSul"></div>
-      <div class="carousel-1linha" id="gridNordeste"></div>
-      <div class="carousel-1linha" id="gridNorte"></div>
-
-      <div class="carousel-1linha" id="gridEventosSudeste"></div>
-      <div class="carousel-1linha" id="gridEventosSul"></div>
-      <div class="carousel-1linha" id="gridEventosNordeste"></div>
-      <div class="carousel-1linha" id="gridEventosNorte"></div>
-    </section>
+  <div class="carousel-1linha" id="gridEventosSudeste"></div>
+  <div class="carousel-1linha" id="gridEventosSul"></div>
+  <div class="carousel-1linha" id="gridEventosNordeste"></div>
+  <div class="carousel-1linha" id="gridEventosNorte"></div>
+</section>
 
   </main>
 
@@ -299,66 +271,67 @@
       <div class="footer-coluna footer-brand">
         <img src="./assets/logo.png" alt="Volante App" class="footer-logo" />
 
-        <h3>Volante</h3>
-        <p>Mais que carros, paixão.</p>
-        <p>
-          O maior ecossistema de veículos clássicos, premium e especiais do Brasil.
-        </p>
+    <h3>Volante</h3>
+    <p>Mais que carros, paixão.</p>
+    <p>
+      O maior ecossistema de veículos clássicos, premium e especiais do Brasil.
+    </p>
 
-        <div class="footer-social">
-          <a
-            href="https://www.instagram.com/appvolante"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram do Volante"
-          >
-            Instagram
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-coluna">
-        <h4>Institucional</h4>
-        <a href="./sobre.html">Sobre o Volante</a>
-        <a href="./como-funciona.html">Como funciona</a>
-        <a href="./seguranca.html">Segurança</a>
-        <a href="./privacidade.html">Política de privacidade</a>
-        <a href="./termos.html">Termos de uso</a>
-      </div>
-
-      <div class="footer-coluna">
-        <h4>Ajuda</h4>
-        <a href="./ajuda.html">Central de ajuda</a>
-        <a href="./seguranca.html">Dicas de segurança</a>
-        <a href="./denunciar.html">Anúncios ilegais</a>
-        <a href="./contato.html">Fale conosco</a>
-      </div>
-
-      <div class="footer-coluna">
-        <h4>Para parceiros</h4>
-        <a href="./parceiros.html">Seja um parceiro</a>
-        <a href="./anunciar.html">Anuncie conosco</a>
-      </div>
-
-      <div class="footer-coluna">
-        <h4>Baixe o app</h4>
-        <a href="#" onclick="baixarApp(); return false;">App Store</a>
-        <a href="#" onclick="baixarApp(); return false;">Google Play</a>
-      </div>
-
-      <div class="footer-coluna">
-        <h4>Fale com o Volante</h4>
-        <a href="https://wa.me/5561999999999" target="_blank" rel="noopener noreferrer">
-          WhatsApp
-        </a>
-        <a href="tel:+5561999999999">(61) 99999-9999</a>
-        <a href="mailto:contato@volante.app.br">contato@volante.app.br</a>
-      </div>
+    <div class="footer-social">
+      <a
+        href="https://www.instagram.com/appvolante"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram do Volante"
+      >
+        Instagram
+      </a>
     </div>
+  </div>
 
-    <div class="footer-bottom">
-      Volante App © 2026. Todos os direitos reservados.
-    </div>
+  <div class="footer-coluna">
+    <h4>Institucional</h4>
+    <a href="./sobre.html">Sobre o Volante</a>
+    <a href="./como-funciona.html">Como funciona</a>
+    <a href="./seguranca.html">Segurança</a>
+    <a href="./privacidade.html">Política de privacidade</a>
+    <a href="./termos.html">Termos de uso</a>
+  </div>
+
+  <div class="footer-coluna">
+    <h4>Ajuda</h4>
+    <a href="./ajuda.html">Central de ajuda</a>
+    <a href="./seguranca.html">Dicas de segurança</a>
+    <a href="./denunciar.html">Anúncios ilegais</a>
+    <a href="./contato.html">Fale conosco</a>
+  </div>
+
+  <div class="footer-coluna">
+    <h4>Para parceiros</h4>
+    <a href="./parceiros.html">Seja um parceiro</a>
+    <a href="./anunciar.html">Anuncie conosco</a>
+  </div>
+
+  <div class="footer-coluna">
+    <h4>Baixe o app</h4>
+    <a href="#" onclick="baixarApp(); return false;">App Store</a>
+    <a href="#" onclick="baixarApp(); return false;">Google Play</a>
+  </div>
+
+  <div class="footer-coluna">
+    <h4>Fale com o Volante</h4>
+    <a href="https://wa.me/5561999999999" target="_blank" rel="noopener noreferrer">
+      WhatsApp
+    </a>
+    <a href="tel:+5561999999999">(61) 99999-9999</a>
+    <a href="mailto:contato@volante.app.br">contato@volante.app.br</a>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  Volante App © 2026. Todos os direitos reservados.
+</div>
+
   </footer>
 
   <script>
