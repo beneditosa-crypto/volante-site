@@ -11,23 +11,23 @@ main {
 .secao {
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto 18px;
+  margin: 0 auto 14px;
   padding: 0 22px;
 }
 
 .home-intro {
   display: grid;
-  grid-template-columns: minmax(280px, 420px) 1fr;
-  gap: 42px;
+  grid-template-columns: minmax(260px, 390px) 1fr;
+  gap: 30px;
   align-items: center;
-  padding-top: 26px;
-  padding-bottom: 8px;
+  padding-top: 18px;
+  padding-bottom: 2px;
 }
 
 .home-intro-texto h1 {
-  max-width: 420px;
-  margin: 0 0 8px;
-  font-size: clamp(2rem, 3vw, 3.25rem);
+  max-width: 390px;
+  margin: 0 0 6px;
+  font-size: clamp(1.85rem, 2.6vw, 2.85rem);
   line-height: 1.02;
   letter-spacing: -0.045em;
 }
@@ -35,8 +35,8 @@ main {
 .home-intro-texto p {
   margin: 0;
   color: var(--texto-suave);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: .95rem;
+  line-height: 1.45;
 }
 
 .secao-escolha {
@@ -46,7 +46,7 @@ main {
 .home-grade-secundaria {
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto 18px;
+  margin: 0 auto 14px;
   padding: 0 22px;
   display: grid;
   grid-template-columns: minmax(300px, 1fr) minmax(420px, 1.1fr) minmax(300px, .9fr);
@@ -69,7 +69,7 @@ main {
 
   .home-intro {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
   }
 
   .home-grade-secundaria {
@@ -104,17 +104,17 @@ main {
   .home-section,
   .secao,
   .home-grade-secundaria {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
   }
 
   .home-intro {
-    padding-top: 18px;
+    padding-top: 14px;
   }
 
   .home-intro-texto h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
 }
