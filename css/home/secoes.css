@@ -10,6 +10,207 @@
   max-width: 1440px;
   margin: 0 auto 18px;
   padding: 0 22px;
+}/* VOLANTE APP — SECOES.CSS */
+/* Escopo: Estrutura e cabeçalhos da Home */
+
+.home-main {
+  width: 100%;
+}
+
+.home-section,
+.secao {
+  max-width: 1440px;
+  margin: 0 auto 18px;
+  padding: 0 22px;
+}
+
+.secao-escolha {
+  margin-top: 0;
+}
+
+.secao-regioes {
+  margin-bottom: 0;
+}
+
+/* CABEÇALHOS */
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+.section-head-menor {
+  margin-bottom: 12px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #eef4ff;
+  border: 1px solid rgba(30, 58, 138, .14);
+  color: var(--azul-principal);
+  font-size: .68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.section-head h2,
+.section-head h3 {
+  margin: 7px 0 0;
+  color: var(--texto);
+  font-size: 1.55rem;
+  font-weight: 850;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+
+.section-head h3 {
+  font-size: 1.25rem;
+}
+
+.section-head p {
+  margin: 5px 0 0;
+  color: var(--cinza);
+  font-size: .92rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.home-ver-todos {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(30, 58, 138, .18);
+  color: var(--azul-principal);
+  font-size: .82rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .05);
+  white-space: nowrap;
+  transition: .2s ease;
+}
+
+.home-ver-todos:hover {
+  border-color: rgba(30, 58, 138, .32);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, .08);
+}
+
+/* EXPLORE POR REGIÃO */
+
+.regioes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.regiao-card {
+  min-height: 56px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .045);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: .2s ease;
+}
+
+.regiao-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(30, 58, 138, .22);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, .075);
+}
+
+.regiao-card strong {
+  color: var(--texto);
+  font-size: .9rem;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.regiao-card span {
+  margin-top: 4px;
+  color: var(--cinza);
+  font-size: .72rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+/* ESTADO VAZIO */
+
+.home-empty,
+.secao .empty {
+  width: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  color: var(--cinza);
+  font-size: .92rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .04);
+}
+
+/* MOBILE */
+
+@media (max-width: 620px) {
+
+  .home-section,
+  .secao {
+    margin-bottom: 14px;
+    padding: 0 12px;
+  }
+
+  .section-head {
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .section-label {
+    min-height: 22px;
+    padding: 0 9px;
+    font-size: .62rem;
+  }
+
+  .section-head h2 {
+    font-size: 1.35rem;
+  }
+
+  .section-head h3 {
+    font-size: 1.15rem;
+  }
+
+  .section-head p {
+    font-size: .82rem;
+  }
+
+  .home-ver-todos {
+    min-height: 32px;
+    padding: 0 12px;
+    font-size: .74rem;
+  }
+
+  .regioes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .regiao-card {
+    min-height: 54px;
+  }
+
 }
 
 .secao-escolha {
