@@ -1,127 +1,149 @@
 /* VOLANTE APP — HOME-EVENTOS.CSS */
-/* Escopo: Banner de eventos da Home */
+/* Escopo: Agenda de eventos da Home */
 
-.eventos-banner {
-  width: calc(100% - 44px);
-  max-width: 1396px;
-  margin: 4px auto 12px;
-  padding: 18px 20px;
+.agenda-eventos {
+  min-height: 100%;
+  padding: 20px;
   border-radius: 22px;
-  background:
-    radial-gradient(circle at top right, rgba(255,255,255,.15), transparent 30%),
-    linear-gradient(135deg,#07111f,#1e3a8a);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  box-shadow: 0 13px 30px rgba(15,23,42,.13);
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, .055);
 }
 
-.eventos-banner-conteudo {
+.agenda-eventos-lista {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.eventos-icone {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  border-radius: 15px;
-  background: rgba(255,255,255,.13);
-  border: 1px solid rgba(255,255,255,.12);
+.agenda-eventos-lista .card-evento,
+.agenda-eventos-lista .evento-card,
+.agenda-eventos-lista article,
+.agenda-eventos-lista a {
+  width: 100%;
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: none;
+  color: var(--texto);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.agenda-eventos-lista .card-evento:last-child,
+.agenda-eventos-lista .evento-card:last-child,
+.agenda-eventos-lista article:last-child,
+.agenda-eventos-lista a:last-child {
+  border-bottom: 0;
+}
+
+.agenda-eventos-lista img,
+.agenda-eventos-lista picture,
+.agenda-eventos-lista .card-img,
+.agenda-eventos-lista .evento-img,
+.agenda-eventos-lista .imagem,
+.agenda-eventos-lista .badge,
+.agenda-eventos-lista .tag,
+.agenda-eventos-lista .favorito,
+.agenda-eventos-lista .card-actions {
+  display: none !important;
+}
+
+.agenda-eventos-lista .evento-data,
+.agenda-eventos-lista .data-evento,
+.agenda-eventos-lista time {
+  width: 58px;
+  min-height: 58px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(30, 58, 138, .16);
+  color: var(--azul-principal);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-}
-
-.eventos-banner span {
-  display: block;
-  margin-bottom: 4px;
-  color: rgba(255,255,255,.72);
-  font-size: 9.5px;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: .45px;
-}
-
-.eventos-banner h2 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 980;
-  letter-spacing: -.7px;
-}
-
-.eventos-banner p {
-  margin: 4px 0 0;
-  color: rgba(255,255,255,.80);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.eventos-botao {
-  min-height: 36px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: #fff;
-  color: #1e3a8a;
-  font-size: 12px;
+  text-align: center;
   font-weight: 900;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  transition: .2s;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .045);
 }
 
-.eventos-botao:hover {
-  transform: translateY(-1px);
+.agenda-eventos-lista .evento-data strong,
+.agenda-eventos-lista .data-evento strong,
+.agenda-eventos-lista time strong {
+  display: block;
+  font-size: 1.25rem;
 }
 
-@media (max-width:1024px){
-
-  .eventos-banner{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
+.agenda-eventos-lista .evento-data span,
+.agenda-eventos-lista .data-evento span,
+.agenda-eventos-lista time span {
+  display: block;
+  margin-top: 4px;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
 }
 
-@media (max-width:620px){
+.agenda-eventos-lista h3,
+.agenda-eventos-lista h4,
+.agenda-eventos-lista .titulo,
+.agenda-eventos-lista .evento-titulo {
+  margin: 0 0 4px;
+  color: var(--texto);
+  font-size: .95rem;
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
 
-  .eventos-banner{
-    width:auto;
-    margin:0 12px 12px;
-    padding:16px;
-    border-radius:20px;
-    gap:14px;
+.agenda-eventos-lista p,
+.agenda-eventos-lista .local,
+.agenda-eventos-lista .evento-local,
+.agenda-eventos-lista .categoria {
+  margin: 0;
+  color: var(--cinza);
+  font-size: .78rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.eventos-banner,
+.eventos-banner-conteudo,
+.eventos-icone,
+.eventos-botao {
+  display: none;
+}
+
+@media (max-width: 620px) {
+
+  .agenda-eventos {
+    padding: 16px;
+    border-radius: 20px;
   }
 
-  .eventos-banner-conteudo{
-    align-items:flex-start;
+  .agenda-eventos-lista .card-evento,
+  .agenda-eventos-lista .evento-card,
+  .agenda-eventos-lista article,
+  .agenda-eventos-lista a {
+    grid-template-columns: 54px 1fr;
+    gap: 10px;
+    min-height: 68px;
   }
 
-  .eventos-icone{
-    width:40px;
-    height:40px;
-    flex-basis:40px;
-    border-radius:13px;
-    font-size:18px;
-  }
-
-  .eventos-banner h2{
-    font-size:20px;
-  }
-
-  .eventos-banner p{
-    font-size:13px;
-  }
-
-  .eventos-botao{
-    width:100%;
-    min-height:44px;
+  .agenda-eventos-lista .evento-data,
+  .agenda-eventos-lista .data-evento,
+  .agenda-eventos-lista time {
+    width: 54px;
+    min-height: 54px;
+    border-radius: 13px;
   }
 
 }
