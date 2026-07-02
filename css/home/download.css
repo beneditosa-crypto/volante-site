@@ -4,13 +4,14 @@
 .home-download {
   width: 100%;
   min-height: auto;
+  height: auto;
   padding: 22px;
   position: relative;
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0,1fr) 240px;
   gap: 24px;
-  align-items: end;
+  align-items: center;
   border-radius: 22px;
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, .08);
