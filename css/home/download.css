@@ -4,7 +4,7 @@
 .home-download {
   width: 100%;
   min-height: auto;
-  padding: 22px 22px 0;
+  padding: 22px;
   position: relative;
   overflow: hidden;
   display: grid;
@@ -21,6 +21,7 @@
   position: relative;
   z-index: 2;
   align-self: start;
+  min-width: 0;
 }
 
 .hero-app-texto h2 {
@@ -33,7 +34,7 @@
 }
 
 .hero-app-texto p {
-  max-width: 250px;
+  max-width: 360px;
   margin: 0;
   color: var(--texto-suave);
   font-size: .9rem;
@@ -43,14 +44,17 @@
 
 .hero-lojas {
   width: 100%;
+  max-width: 316px;
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin-top: 16px;
   align-self: start;
 }
 
 .hero-loja-btn {
-  width: 148px;
+  width: 100%;
+  min-width: 0;
   min-height: 42px;
   padding: 0 14px;
   display: inline-flex;
@@ -104,11 +108,11 @@
 
   .home-download {
     grid-template-columns: minmax(0, 1fr) 120px;
-    padding: 20px 18px 0;
+    padding: 20px 18px;
   }
 
-  .hero-loja-btn {
-    width: 138px;
+  .hero-lojas {
+    max-width: 292px;
   }
 
   .home-download-celular {
@@ -123,27 +127,36 @@
   .home-download {
     grid-template-columns: 1fr;
     padding: 20px;
+    border-radius: 22px;
+  }
+
+  .hero-app-texto h2 {
+    font-size: 1.35rem;
   }
 
   .hero-app-texto p {
     max-width: none;
+    font-size: .88rem;
   }
 
   .hero-lojas {
     width: 100%;
+    max-width: none;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .hero-loja-btn {
     width: 100%;
     min-width: 0;
-    min-height: 42px;
+    min-height: 44px;
     padding: 0 10px;
+    border-radius: 14px;
   }
 
   .hero-loja-btn img {
-    max-width: 100%;
-    max-height: 26px;
+    max-width: 112px;
+    max-height: 25px;
   }
 
   .home-download-celular {
