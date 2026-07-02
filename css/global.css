@@ -385,6 +385,10 @@ header {
   align-items: start;
 }
 
+.footer-coluna {
+  min-width: 0;
+}
+
 .footer-logo {
   width: 42px;
   height: 42px;
@@ -420,12 +424,16 @@ header {
 
 .footer-coluna a {
   display: block;
+  width: fit-content;
+  max-width: 100%;
   margin: 0 0 8px;
   color: rgba(255, 255, 255, .72);
   font-size: .84rem;
   font-weight: 620;
   line-height: 1.35;
   transition: .2s ease;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .footer-coluna a:hover {
@@ -572,6 +580,10 @@ header {
 }
 
 @media (max-width: 620px) {
+  body {
+    padding-bottom: 58px;
+  }
+
   .topo {
     min-height: 56px;
     padding: 0 12px;
@@ -632,26 +644,53 @@ header {
 
   .footer-conteudo {
     grid-template-columns: 1fr;
-    padding: 28px 18px 22px;
-    gap: 18px;
+    padding: 24px 18px 18px;
+    gap: 16px;
   }
 
-  .footer-coluna h3 {
-    font-size: 1.25rem;
-  }
-
-  .footer-coluna h4 {
+  .footer-logo {
+    width: 38px;
+    height: 38px;
     margin-bottom: 9px;
   }
 
-  .footer-coluna p,
+  .footer-coluna h3 {
+    margin-bottom: 8px;
+    font-size: 1.16rem;
+  }
+
+  .footer-coluna h4 {
+    margin-bottom: 7px;
+    font-size: .86rem;
+  }
+
+  .footer-coluna p {
+    max-width: none;
+    margin-bottom: 6px;
+    font-size: .78rem;
+    line-height: 1.38;
+  }
+
   .footer-coluna a {
-    font-size: .82rem;
+    margin-bottom: 6px;
+    font-size: .78rem;
+    line-height: 1.28;
+  }
+
+  .footer-social {
+    margin-top: 10px;
+  }
+
+  .footer-social a {
+    min-height: 28px;
+    padding: 0 11px;
+    font-size: .74rem;
   }
 
   .footer-bottom {
-    padding: 14px 18px 18px;
-    font-size: .74rem;
+    padding: 12px 18px 16px;
+    font-size: .7rem;
+    line-height: 1.35;
   }
 
   .floating-lojas {
@@ -670,5 +709,25 @@ header {
 
   .floating-lojas span {
     font-size: 11.3px;
+  }
+}
+
+@media (max-width: 380px) {
+  .footer-conteudo {
+    padding: 22px 16px 16px;
+    gap: 14px;
+  }
+
+  .footer-coluna h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-coluna h4 {
+    font-size: .82rem;
+  }
+
+  .footer-coluna p,
+  .footer-coluna a {
+    font-size: .74rem;
   }
 }
