@@ -96,6 +96,7 @@ select:disabled {
 
 main {
   width: 100%;
+  min-width: 0;
 }
 
 /* ===========================================================
@@ -170,18 +171,22 @@ header {
 
 .menu-principal,
 .topo-nav {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 9px;
 }
 
-.menu-principal a {
+.menu-principal a,
+.topo-nav a {
   color: rgba(255, 255, 255, 0.84);
   font-size: 12px;
   font-weight: 850;
+  white-space: nowrap;
 }
 
-.menu-principal a:hover {
+.menu-principal a:hover,
+.topo-nav a:hover {
   color: #ffffff;
 }
 
@@ -560,19 +565,22 @@ header {
 
 @media (max-width: 1024px) {
   .topo {
-    min-height: 64px;
+    min-height: 62px;
   }
 
-  .menu-principal {
-    display:flex;
-    flex:1;
-    overflow-x:auto;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
+  .menu-principal,
+  .topo-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .menu-principal::-webkit-scrollbar{
-    display:none;
+  .menu-principal::-webkit-scrollbar,
+  .topo-nav::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -593,19 +601,24 @@ header {
   }
 
   .topo {
-    min-height: 64px;
-    padding: 0 10px;
-    gap: 10px;
+    min-height: auto;
+    padding: 8px 12px 9px;
+    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
     align-items: center;
   }
 
   .marca {
-    flex: 0 0 auto;
+    width: 100%;
+    flex: none;
+    justify-content: center;
   }
 
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
   }
 
   .nome {
@@ -622,27 +635,42 @@ header {
     display: none;
   }
 
+  .menu-principal,
   .topo-nav {
-    flex:1;
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    white-space:nowrap;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 7px;
+    padding: 2px 0 1px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
+  .menu-principal::-webkit-scrollbar,
   .topo-nav::-webkit-scrollbar {
-    display:none;
+    display: none;
   }
 
+  .menu-principal a,
+  .topo-nav a,
   .topo-link {
-    flex:0 0 auto;
-    min-height:34px;
-    padding:0 18px;
-    font-size:13px;
-    font-weight:800;
+    flex: 0 0 auto;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11.5px;
+    font-weight: 850;
+    color: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.045);
   }
 
   .card.destaque .foto-wrap::after {
