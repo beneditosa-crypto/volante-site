@@ -2,67 +2,144 @@
 /* Escopo: Bloco de download da Home */
 
 .home-download {
-  max-width: 1396px;
-  margin: 4px auto 18px;
-  padding: 18px;
+  min-height: 100%;
+  padding: 26px 26px 0;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 145px;
+  gap: 18px;
+  align-items: end;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, .055);
+}
+
+.hero-app-texto {
+  align-self: start;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-app-texto h2 {
+  margin: 0 0 8px;
+  color: var(--texto);
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+
+.hero-app-texto p {
+  max-width: 220px;
+  margin: 0 0 6px;
+  color: var(--texto-suave);
+  font-size: .9rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.hero-lojas {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 10px;
+  align-self: start;
+  margin-top: 18px;
+}
+
+.hero-loja-btn {
+  width: 150px;
+  min-height: 44px;
+  padding: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .95);
-  border: 1px solid rgba(15, 23, 42, .08);
-  box-shadow: 0 11px 28px rgba(15, 23, 42, .06);
+  justify-content: center;
+  border-radius: 11px;
+  overflow: hidden;
+  background: #000000;
+  border: 1px solid rgba(15, 23, 42, .10);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .08);
 }
 
-@media (max-width: 1024px) {
+.hero-loja-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.hero-loja-texto {
+  display: none;
+}
+
+.home-download-celular {
+  width: 145px;
+  max-height: 220px;
+  object-fit: contain;
+  align-self: end;
+  justify-self: end;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1180px) {
 
   .home-download {
-    flex-direction: column;
-    align-items: flex-start;
+    min-height: 260px;
+    grid-template-columns: 1fr 180px;
+  }
+
+  .home-download-celular {
+    width: 180px;
+    max-height: 250px;
   }
 
 }
 
-@media (max-width: 620px) {
+@media (max-width: 720px) {
 
   .home-download {
-    width: auto;
-    margin: 0 12px 11px;
-    padding: 15px 14px;
-    border-radius: 19px;
+    min-height: auto;
+    grid-template-columns: 1fr 130px;
+    padding: 20px 18px 0;
   }
 
-  .hero-app-texto h2 {
-    font-size: 20px;
+  .hero-loja-btn {
+    width: 138px;
+  }
+
+  .home-download-celular {
+    width: 130px;
+    max-height: 210px;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .home-download {
+    grid-template-columns: 1fr;
+    padding: 20px;
   }
 
   .hero-app-texto p {
-    font-size: 13px;
+    max-width: none;
   }
 
   .hero-lojas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
     width: 100%;
-    margin-top: 13px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .hero-loja-btn {
     width: 100%;
-    min-width: 0;
-    height: 52px;
-    border-radius: 14px;
+    min-height: 42px;
   }
 
-  .hero-loja-btn img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .hero-loja-texto strong {
-    font-size: 14px;
+  .home-download-celular {
+    display: none;
   }
 
 }
