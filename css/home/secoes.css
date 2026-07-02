@@ -7,7 +7,9 @@
 
 .home-section,
 .secao {
+  width: 100%;
   max-width: 1440px;
+  min-width: 0;
 }
 
 /* CABEÇALHOS */
@@ -88,6 +90,7 @@
 
 .regioes-grid {
   width: 100%;
+  min-width: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
@@ -165,6 +168,10 @@
     margin-bottom: 10px;
   }
 
+  .section-head > div {
+    min-width: 0;
+  }
+
   .section-label {
     min-height: 22px;
     padding: 0 9px;
@@ -187,17 +194,24 @@
     min-height: 32px;
     padding: 0 12px;
     font-size: .74rem;
+    flex: 0 0 auto;
   }
 
   .regioes-grid {
+    width: 100%;
+    display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
   .regiao-card {
+    width: 100%;
+    min-width: 0;
     min-height: 54px;
     padding: 10px 12px;
     border-radius: 16px;
+    display: flex !important;
+    flex-direction: column;
   }
 
 }
