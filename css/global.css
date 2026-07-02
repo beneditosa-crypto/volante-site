@@ -96,7 +96,6 @@ select:disabled {
 
 main {
   width: 100%;
-  min-width: 0;
 }
 
 /* ===========================================================
@@ -134,7 +133,7 @@ header {
   padding: 0 22px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 22px;
 }
 
@@ -170,55 +169,11 @@ header {
 }
 
 .menu-principal,
-.topo-nav {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.menu-principal a,
-.topo-nav a {
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 12px;
-  font-weight: 850;
-  white-space: nowrap;
-}
-
-.menu-principal a:hover,
-.topo-nav a:hover {
-  color: #ffffff;
-}
-
-.topo-acoes {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
+.topo-nav,
+.topo-acoes,
 .topo-link,
 .topo-botao {
-  min-height: 32px;
-  padding: 0 13px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11.5px;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.topo-link {
-  color: #ffffff;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-}
-
-.topo-botao {
-  color: #07111f;
-  background: #ffffff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+  display: none !important;
 }
 
 /* ===========================================================
@@ -565,22 +520,7 @@ header {
 
 @media (max-width: 1024px) {
   .topo {
-    min-height: 62px;
-  }
-
-  .menu-principal,
-  .topo-nav {
-    flex: 1 1 auto;
-    min-width: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .menu-principal::-webkit-scrollbar,
-  .topo-nav::-webkit-scrollbar {
-    display: none;
+    min-height: 60px;
   }
 }
 
@@ -601,24 +541,20 @@ header {
   }
 
   .topo {
-    min-height: auto;
-    padding: 8px 12px 9px;
-    gap: 8px;
-    display: grid;
-    grid-template-columns: 1fr;
+    min-height: 60px;
+    padding: 0 14px;
+    gap: 10px;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .marca {
-    width: 100%;
-    flex: none;
-    justify-content: center;
+    flex: 0 0 auto;
   }
 
   .logo {
-    width: 36px;
-    height: 36px;
-    flex-basis: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .nome {
@@ -629,48 +565,6 @@ header {
   .slogan {
     font-size: 8.5px;
     line-height: 1.15;
-  }
-
-  .topo-acoes {
-    display: none;
-  }
-
-  .menu-principal,
-  .topo-nav {
-    width: 100%;
-    max-width: 100%;
-    flex: none;
-    display: flex;
-    justify-content: flex-start;
-    gap: 7px;
-    padding: 2px 0 1px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .menu-principal::-webkit-scrollbar,
-  .topo-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .menu-principal a,
-  .topo-nav a,
-  .topo-link {
-    flex: 0 0 auto;
-    min-height: 30px;
-    padding: 0 12px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11.5px;
-    font-weight: 850;
-    color: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.045);
   }
 
   .card.destaque .foto-wrap::after {
