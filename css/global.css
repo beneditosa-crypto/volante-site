@@ -560,11 +560,19 @@ header {
 
 @media (max-width: 1024px) {
   .topo {
-    min-height: 56px;
+    min-height: 64px;
   }
 
   .menu-principal {
-    display: none;
+    display:flex;
+    flex:1;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .menu-principal::-webkit-scrollbar{
+    display:none;
   }
 }
 
@@ -585,22 +593,29 @@ header {
   }
 
   .topo {
-    min-height: 56px;
-    padding: 0 12px;
+    min-height: 64px;
+    padding: 0 10px;
     gap: 10px;
+    align-items: center;
+  }
+
+  .marca {
+    flex: 0 0 auto;
   }
 
   .logo {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .nome {
-    font-size: 17px;
+    font-size: 15px;
+    line-height: 1;
   }
 
   .slogan {
-    font-size: 9.5px;
+    font-size: 8.5px;
+    line-height: 1.15;
   }
 
   .topo-acoes {
@@ -608,19 +623,26 @@ header {
   }
 
   .topo-nav {
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    flex:1;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
   }
 
   .topo-nav::-webkit-scrollbar {
-    display: none;
+    display:none;
   }
 
   .topo-link {
-    min-height: 30px;
-    padding: 0 10px;
-    font-size: 10.5px;
+    flex:0 0 auto;
+    min-height:34px;
+    padding:0 18px;
+    font-size:13px;
+    font-weight:800;
   }
 
   .card.destaque .foto-wrap::after {
