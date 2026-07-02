@@ -3,13 +3,13 @@
 
 .home-download {
   min-height: 100%;
-  padding: 26px 26px 0;
+  padding: 24px;
   position: relative;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 145px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 18px;
-  align-items: end;
   border-radius: 22px;
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, .08);
@@ -17,7 +17,6 @@
 }
 
 .hero-app-texto {
-  align-self: start;
   position: relative;
   z-index: 2;
 }
@@ -32,7 +31,7 @@
 }
 
 .hero-app-texto p {
-  max-width: 220px;
+  max-width: 260px;
   margin: 0 0 6px;
   color: var(--texto-suave);
   font-size: .9rem;
@@ -45,27 +44,25 @@
   z-index: 2;
   display: grid;
   gap: 10px;
-  align-self: start;
-  margin-top: 18px;
+  margin-top: 4px;
 }
 
 .hero-loja-btn {
-  width: 150px;
   min-height: 44px;
-  padding: 0;
+  padding: 0 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 11px;
-  overflow: hidden;
-  background: #000000;
-  border: 1px solid rgba(15, 23, 42, .10);
+  border-radius: 13px;
+  background: #07111f;
+  border: 1px solid rgba(7, 17, 31, .12);
+  color: #ffffff;
   box-shadow: 0 8px 18px rgba(15, 23, 42, .08);
 }
 
 .hero-loja-btn img {
-  width: 100%;
-  height: 100%;
+  max-width: 118px;
+  max-height: 28px;
   object-fit: contain;
   display: block;
 }
@@ -75,52 +72,12 @@
 }
 
 .home-download-celular {
-  width: 145px;
-  max-height: 220px;
-  object-fit: contain;
-  align-self: end;
-  justify-self: end;
-  position: relative;
-  z-index: 1;
-}
-
-@media (max-width: 1180px) {
-
-  .home-download {
-    min-height: 260px;
-    grid-template-columns: 1fr 180px;
-  }
-
-  .home-download-celular {
-    width: 180px;
-    max-height: 250px;
-  }
-
-}
-
-@media (max-width: 720px) {
-
-  .home-download {
-    min-height: auto;
-    grid-template-columns: 1fr 130px;
-    padding: 20px 18px 0;
-  }
-
-  .hero-loja-btn {
-    width: 138px;
-  }
-
-  .home-download-celular {
-    width: 130px;
-    max-height: 210px;
-  }
-
+  display: none;
 }
 
 @media (max-width: 520px) {
 
   .home-download {
-    grid-template-columns: 1fr;
     padding: 20px;
   }
 
@@ -136,10 +93,7 @@
   .hero-loja-btn {
     width: 100%;
     min-height: 42px;
-  }
-
-  .home-download-celular {
-    display: none;
+    padding: 0 10px;
   }
 
 }
