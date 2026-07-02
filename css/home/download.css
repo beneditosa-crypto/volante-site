@@ -2,13 +2,13 @@
 /* Escopo: Bloco de download da Home */
 
 .home-download {
-  min-height: 100%;
-  padding: 24px 24px 0;
+  min-height: auto;
+  padding: 22px 22px 0;
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 38%;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: 16px;
   align-items: end;
   border-radius: 22px;
   background: #ffffff;
@@ -32,7 +32,7 @@
 }
 
 .hero-app-texto p {
-  max-width: 240px;
+  max-width: 250px;
   margin: 0;
   color: var(--texto-suave);
   font-size: .9rem;
@@ -43,12 +43,13 @@
 .hero-lojas {
   display: grid;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 16px;
+  align-self: start;
 }
 
 .hero-loja-btn {
-  width: 150px;
-  min-height: 44px;
+  width: 148px;
+  min-height: 42px;
   padding: 0 14px;
   display: flex;
   align-items: center;
@@ -60,8 +61,8 @@
 }
 
 .hero-loja-btn img {
-  max-width: 118px;
-  max-height: 28px;
+  max-width: 116px;
+  max-height: 27px;
   object-fit: contain;
   display: block;
 }
@@ -71,9 +72,9 @@
 }
 
 .home-download-celular {
-  width: 100%;
+  width: 150px;
   max-width: 150px;
-  max-height: 220px;
+  max-height: 205px;
   object-fit: contain;
   object-position: bottom right;
   align-self: end;
@@ -84,7 +85,12 @@
 @media (max-width:1180px){
 
   .home-download{
-    grid-template-columns:minmax(0,1fr) 36%;
+    grid-template-columns:minmax(0,1fr) 145px;
+  }
+
+  .home-download-celular{
+    width:145px;
+    max-height:195px;
   }
 
 }
@@ -92,7 +98,7 @@
 @media (max-width:720px){
 
   .home-download{
-    grid-template-columns:minmax(0,1fr) 130px;
+    grid-template-columns:minmax(0,1fr) 120px;
     padding:20px 18px 0;
   }
 
@@ -101,8 +107,8 @@
   }
 
   .home-download-celular{
-    max-width:120px;
-    max-height:180px;
+    width:120px;
+    max-height:175px;
   }
 
 }
