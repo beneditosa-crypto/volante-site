@@ -4,14 +4,14 @@
    Carregar e renderizar a Home pública do Volante.
 
    Referência:
-   Plano Diretor Oficial + Protótipo Oficial Premium.
+   Plano Diretor Oficial + Protótipo Web Oficial.
 
    Responsabilidades:
    - Buscar anúncios e eventos ativos no Firestore.
    - Normalizar destaque dos anúncios.
    - Aplicar busca local.
-   - Separar anúncios e eventos por região.
-   - Renderizar Escolha do Volante, Recentes e Eventos.
+   - Separar anúncios por região.
+   - Renderizar Escolha do Volante, Recentes e Agenda de Eventos.
    - Ocultar seções sem conteúdo.
    - Preservar compatibilidade com components.js.
 =========================================================== */
@@ -31,7 +31,6 @@ import {
 
 import {
   cardAnuncio,
-  cardEvento,
   renderizarGrid
 } from "./components.js";
 
@@ -40,6 +39,8 @@ import {
 =========================================================== */
 
 const buscaInput = document.getElementById("busca");
+const filtroRegiao = document.getElementById("filtroRegiao");
+const filtroTipo = document.getElementById("filtroTipo");
 
 const grids = {
   escolhaVolante: document.getElementById("gridEscolhaVolante"),
@@ -110,6 +111,11 @@ const ESTADO_POR_NOME = {
   TOCANTINS: "TO"
 };
 
+const MESES = [
+  "JAN", "FEV", "MAR", "ABR", "MAI", "JUN",
+  "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"
+];
+
 /* ===========================================================
    03. EVENTOS DE INTERAÇÃO
 =========================================================== */
@@ -167,6 +173,10 @@ function ordenarPorData(a, b) {
   return getDataMs(b) - getDataMs(a);
 }
 
+function ordenarEventosAgenda(a, b) {
+  return getDataMs(a) - getDataMs(b);
+}
+
 function ordenarDestaques(a, b) {
   const destaqueA = anuncioEmDestaque(a) ? 1 : 0;
   const destaqueB = anuncioEmDestaque(b) ? 1 : 0;
@@ -202,6 +212,30 @@ function filtrar(lista) {
       item.estado,
       item.uf,
       item.preco
+    ].join(" "));
+
+    return texto.includes(termo);
+  });
+}
+
+function filtrarEventos(lista) {
+  const termo = normalizar(buscaInput?.value || "");
+
+  if (!termo) {
+    return lista;
+  }
+
+  return lista.filter((item) => {
+    const texto = normalizar([
+      item.titulo,
+      item.nome,
+      item.descricao,
+      item.cidade,
+      item.estado,
+      item.uf,
+      item.local,
+      item.categoria,
+      item.tipo
     ].join(" "));
 
     return texto.includes(termo);
@@ -348,22 +382,139 @@ function renderizarSecao(
 }
 
 /* ===========================================================
-   08. BUSCA GLOBAL
+   08. AGENDA DE EVENTOS
+=========================================================== */
+
+function dataEventoMs(item) {
+  return getDataMs(item);
+}
+
+function dataEventoFormatada(item) {
+  const ms = dataEventoMs(item);
+
+  if (!ms || Number.isNaN(ms)) {
+    return {
+      dia: "--",
+      mes: "DATA"
+    };
+  }
+
+  const data = new Date(ms);
+
+  return {
+    dia: String(data.getDate()).padStart(2, "0"),
+    mes: MESES[data.getMonth()] || "DATA"
+  };
+}
+
+function tituloEvento(item) {
+  return String(
+    item.titulo ||
+    item.nome ||
+    "Evento Volante"
+  ).trim();
+}
+
+function localEvento(item) {
+  const cidade = String(item.cidade || "").trim();
+  const uf = obterUF(item);
+  const local = String(item.local || "").trim();
+
+  if (cidade && uf) return `${cidade}, ${uf}`;
+  if (cidade) return cidade;
+  if (uf) return uf;
+  if (local) return local;
+
+  return "Local a confirmar";
+}
+
+function categoriaEvento(item) {
+  return String(
+    item.categoria ||
+    item.tipo ||
+    "Evento"
+  ).trim();
+}
+
+function urlEvento(item) {
+  if (!item?.id) {
+    return "./eventos.html";
+  }
+
+  return `./eventos.html?id=${encodeURIComponent(item.id)}`;
+}
+
+function agendaEvento(item) {
+  const data = dataEventoFormatada(item);
+
+  return `
+    <a href="${urlEvento(item)}" class="agenda-item">
+      <div class="agenda-data" aria-hidden="true">
+        <strong>${data.dia}</strong>
+        <span>${data.mes}</span>
+      </div>
+
+      <div class="agenda-info">
+        <h3>${tituloEvento(item)}</h3>
+        <p>${localEvento(item)}</p>
+        <p>${categoriaEvento(item)}</p>
+      </div>
+    </a>
+  `;
+}
+
+function renderizarAgendaEventos(grid, lista) {
+  if (!grid) return;
+
+  const listaLimitada = limitarLista(
+    [...lista].sort(ordenarEventosAgenda),
+    4,
+    4
+  );
+
+  controlarSecao("gridEventosCentroOeste", listaLimitada);
+
+  grid.className = "agenda-eventos-lista";
+
+  if (!listaLimitada.length) {
+    grid.innerHTML = `
+      <div class="empty">
+        Nenhum evento encontrado.
+      </div>
+    `;
+
+    return;
+  }
+
+  grid.innerHTML = listaLimitada
+    .map((item) => agendaEvento(item))
+    .join("");
+}
+
+/* ===========================================================
+   09. BUSCA GLOBAL
 =========================================================== */
 
 function executarBuscaGlobal() {
   const termo = String(buscaInput?.value || "").trim();
+  const regiao = String(filtroRegiao?.value || "").trim();
+  const tipo = String(filtroTipo?.value || "").trim();
 
-  if (!termo) {
-    window.location.href = "./anuncios.html";
-    return;
-  }
+  const params = new URLSearchParams();
 
-  window.location.href = `./anuncios.html?q=${encodeURIComponent(termo)}`;
+  if (termo) params.set("q", termo);
+  if (regiao) params.set("regiao", regiao);
+  if (tipo) params.set("tipo", tipo);
+
+  const queryString = params.toString();
+
+  window.location.href = queryString
+    ? `./anuncios.html?${queryString}`
+    : "./anuncios.html";
 }
 
 /* ===========================================================
-   09. RENDERIZAÇÃO PRINCIPAL
+   10. RENDERIZAÇÃO PRINCIPAL
 =========================================================== */
 
 function renderizarTudo() {
@@ -373,7 +524,7 @@ function renderizarTudo() {
     .filter(anuncioEmDestaque)
     .sort(ordenarDestaques);
 
-  const eventosFiltrados = filtrar(eventos).sort(ordenarPorData);
+  const eventosFiltrados = filtrarEventos(eventos);
 
   controlarSecao("gridEscolhaVolante", destaques);
   renderizarEscolhaVolante(grids.escolhaVolante, destaques);
@@ -438,59 +589,19 @@ function renderizarTudo() {
     8
   );
 
-  renderizarSecao(
-    "gridEventosCentroOeste",
+  renderizarAgendaEventos(
     grids.eventosCentroOeste,
-    filtrarRegiao(eventosFiltrados, REGIOES.centroOeste),
-    cardEvento,
-    "Nenhum evento encontrado.",
-    6,
-    6
+    eventosFiltrados
   );
 
-  renderizarSecao(
-    "gridEventosSudeste",
-    grids.eventosSudeste,
-    filtrarRegiao(eventosFiltrados, REGIOES.sudeste),
-    cardEvento,
-    "Nenhum evento encontrado.",
-    6,
-    6
-  );
-
-  renderizarSecao(
-    "gridEventosSul",
-    grids.eventosSul,
-    filtrarRegiao(eventosFiltrados, REGIOES.sul),
-    cardEvento,
-    "Nenhum evento encontrado.",
-    6,
-    6
-  );
-
-  renderizarSecao(
-    "gridEventosNordeste",
-    grids.eventosNordeste,
-    filtrarRegiao(eventosFiltrados, REGIOES.nordeste),
-    cardEvento,
-    "Nenhum evento encontrado.",
-    6,
-    6
-  );
-
-  renderizarSecao(
-    "gridEventosNorte",
-    grids.eventosNorte,
-    filtrarRegiao(eventosFiltrados, REGIOES.norte),
-    cardEvento,
-    "Nenhum evento encontrado.",
-    6,
-    6
-  );
+  controlarSecao("gridEventosSudeste", []);
+  controlarSecao("gridEventosSul", []);
+  controlarSecao("gridEventosNordeste", []);
+  controlarSecao("gridEventosNorte", []);
 }
 
 /* ===========================================================
-   10. CARREGAMENTO FIRESTORE
+   11. CARREGAMENTO FIRESTORE
 =========================================================== */
 
 async function carregarDados() {
