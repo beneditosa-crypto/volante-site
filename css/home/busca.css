@@ -89,7 +89,7 @@
     width: 100%;
     grid-template-columns: minmax(0, 1fr);
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 0;
   }
 
   .home-busca-campo,
