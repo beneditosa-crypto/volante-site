@@ -62,9 +62,9 @@
 
 <body>
 
-  <header class="site-header">
-    <div class="topo">
-      <a href="./index.html" class="marca" aria-label="Volante App - Página inicial">
+  <header class="site-header site-header-home">
+    <div class="topo topo-home">
+      <a href="./index.html" class="marca marca-home" aria-label="Volante App - Página inicial">
         <img src="./assets/logo.png" alt="Volante App" class="logo" />
 
         <div>
@@ -73,31 +73,21 @@
         </div>
       </a>
 
-      <nav class="topo-nav" aria-label="Navegação principal"></nav>
-
-    </div>
-  </header>
-
-  <main>
-
-    <section class="home-intro" aria-labelledby="titulo-home">
-      <div class="home-intro-texto">
-        <h1 id="titulo-home">Encontre o clássico que combina com você.</h1>
-        <p>Clássicos, premium e especiais em um só lugar.</p>
-      </div>
-
-      <form class="home-busca" role="search" onsubmit="buscarHome(); return false;">
+      <form class="home-busca busca-header" role="search" onsubmit="buscarHome(); return false;">
         <div class="home-busca-campo">
           <span aria-hidden="true">⌕</span>
           <input
             id="busca"
             type="search"
-            placeholder="Buscar por marca, modelo, ano..."
+            placeholder="Buscar por modelo, cidade, marca..."
             aria-label="Buscar anúncios no Volante"
           />
         </div>
       </form>
-    </section>
+    </div>
+  </header>
+
+  <main>
 
     <section class="secao secao-escolha" aria-labelledby="titulo-escolha">
       <div class="section-head">
