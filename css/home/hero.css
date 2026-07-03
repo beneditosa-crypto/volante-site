@@ -10,6 +10,7 @@
   grid-template-columns: minmax(320px, 440px) minmax(0, 520px);
   gap: 24px;
   align-items: start;
+  justify-content: space-between;
 }
 
 .home-intro-texto {
@@ -35,7 +36,8 @@
 
 .home-busca {
   align-self: center;
-  max-width: 520px;
+  justify-self: end;
+  max-width: 420px;
 }
 
 .hero-banner-home {
@@ -144,7 +146,8 @@
 
   .home-busca {
     align-self: start;
-    max-width: 520px;
+    justify-self: end;
+    max-width: 420px;
   }
 
   .hero-banner-home-img {
@@ -185,6 +188,7 @@
 
   .home-busca {
     max-width: 100%;
+    justify-self: stretch;
   }
 
   .hero-banner-home {
