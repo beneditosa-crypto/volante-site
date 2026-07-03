@@ -19,12 +19,15 @@ main {
   max-width: 1440px;
   margin: 18px auto 22px;
   padding: 0 22px;
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  align-items: center;
 }
 
 .home-busca-area .home-busca {
-  width: min(100%, 720px);
+  width: 100%;
+  grid-column: 2;
+  justify-self: end;
 }
 
 .secao-escolha {
@@ -77,10 +80,12 @@ main {
   .home-busca-area {
     margin-top: 16px;
     margin-bottom: 24px;
+    grid-template-columns: 1fr;
   }
 
   .home-busca-area .home-busca {
     width: 100%;
+    grid-column: 1;
   }
 
   .home-grade-secundaria {
