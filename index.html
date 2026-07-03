@@ -96,32 +96,6 @@
             aria-label="Buscar anúncios no Volante"
           />
         </div>
-
-        <div class="home-busca-campo">
-          <span aria-hidden="true">⌖</span>
-          <select id="filtroRegiao" aria-label="Filtrar por região">
-            <option value="">Todas as regiões</option>
-            <option value="centroOeste">Centro-Oeste</option>
-            <option value="sudeste">Sudeste</option>
-            <option value="sul">Sul</option>
-            <option value="nordeste">Nordeste</option>
-            <option value="norte">Norte</option>
-          </select>
-        </div>
-
-        <div class="home-busca-campo">
-          <span aria-hidden="true">▣</span>
-          <select id="filtroTipo" aria-label="Filtrar por tipo de veículo">
-            <option value="">Tipo de veículo</option>
-            <option value="carro">Carros</option>
-            <option value="moto">Motos</option>
-            <option value="caminhonete">Caminhonetes</option>
-          </select>
-        </div>
-
-        <button type="submit" class="busca-botao">
-          Buscar
-        </button>
       </form>
     </section>
 
@@ -365,14 +339,9 @@
 
     function buscarHome() {
       const termo = document.getElementById("busca")?.value?.trim() || "";
-      const regiao = document.getElementById("filtroRegiao")?.value || "";
-      const tipo = document.getElementById("filtroTipo")?.value || "";
-
       const params = new URLSearchParams();
 
       if (termo) params.set("busca", termo);
-      if (regiao) params.set("regiao", regiao);
-      if (tipo) params.set("tipo", tipo);
 
       const queryString = params.toString();
 
