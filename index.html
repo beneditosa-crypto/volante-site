@@ -77,8 +77,17 @@
 
   <main>
 
-    <section class="home-busca-area" aria-label="Buscar anúncios">
-      <form class="home-busca" role="search" onsubmit="buscarHome(); return false;">
+    <section
+      class="home-busca-area"
+      aria-label="Buscar anúncios"
+      style="display:flex; justify-content:flex-end; align-items:center;"
+    >
+      <form
+        class="home-busca"
+        role="search"
+        onsubmit="buscarHome(); return false;"
+        style="width:100%; max-width:420px; margin-left:auto;"
+      >
         <div class="home-busca-campo">
           <span aria-hidden="true">⌕</span>
           <input
