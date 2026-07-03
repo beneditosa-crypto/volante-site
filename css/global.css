@@ -121,51 +121,54 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #07111f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.18);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.055);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .topo {
   max-width: var(--largura-site);
-  min-height: 54px;
+  min-height: 78px;
   margin: 0 auto;
   padding: 0 22px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 22px;
+  justify-content: space-between;
+  gap: 18px;
 }
 
 .marca {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   min-width: 0;
-  color: #ffffff;
+  color: var(--texto);
 }
 
 .logo {
-  width: 36px;
-  height: 36px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
-  flex: 0 0 36px;
+  flex: 0 0 58px;
 }
 
 .nome {
-  color: #ffffff;
-  font-size: 18px;
+  color: var(--texto);
+  font-size: 28px;
   font-weight: 950;
-  letter-spacing: -0.55px;
+  letter-spacing: -0.95px;
   line-height: 1;
 }
 
 .slogan {
-  margin-top: 2px;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 10.5px;
-  font-weight: 800;
-  line-height: 1.2;
+  margin-top: 4px;
+  color: var(--texto);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.18;
+  letter-spacing: -0.25px;
 }
 
 .menu-principal,
@@ -520,7 +523,7 @@ header {
 
 @media (max-width: 1024px) {
   .topo {
-    min-height: 60px;
+    min-height: 72px;
   }
 }
 
@@ -540,31 +543,50 @@ header {
     padding-bottom: 58px;
   }
 
+  .site-header,
+  header {
+    position: relative;
+    background: transparent;
+    border-bottom: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .topo {
-    min-height: 60px;
-    padding: 0 14px;
-    gap: 10px;
+    min-height: auto;
+    padding: 26px 18px 10px;
+    gap: 0;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .marca {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
   }
 
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 118px;
+    height: 118px;
+    flex: 0 0 118px;
+    margin: 0 auto;
   }
 
   .nome {
-    font-size: 15px;
-    line-height: 1;
+    font-size: 38px;
+    line-height: 0.94;
+    letter-spacing: -1.6px;
   }
 
   .slogan {
-    font-size: 8.5px;
-    line-height: 1.15;
+    margin-top: 8px;
+    font-size: 21px;
+    line-height: 1.14;
+    letter-spacing: -0.7px;
   }
 
   .card.destaque .foto-wrap::after {
@@ -673,5 +695,70 @@ header {
   .footer-coluna p,
   .footer-coluna a {
     font-size: .74rem;
+  }
+}
+
+/* ===========================================================
+   NAVEGAÇÃO INFERIOR MOBILE
+=========================================================== */
+
+.mobile-bottom-nav,
+.bottom-nav,
+.nav-mobile,
+.app-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .mobile-bottom-nav,
+  .bottom-nav,
+  .nav-mobile,
+  .app-bottom-nav {
+    position: fixed;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    z-index: 998;
+    min-height: 82px;
+    padding: 9px 12px;
+    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    gap: 4px;
+  }
+
+  .mobile-bottom-nav a,
+  .bottom-nav a,
+  .nav-mobile a,
+  .app-bottom-nav a {
+    min-height: 62px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 850;
+    line-height: 1;
+  }
+
+  .mobile-bottom-nav a.ativo,
+  .bottom-nav a.ativo,
+  .nav-mobile a.ativo,
+  .app-bottom-nav a.ativo,
+  .mobile-bottom-nav a.active,
+  .bottom-nav a.active,
+  .nav-mobile a.active,
+  .app-bottom-nav a.active {
+    background: var(--azul-principal);
+    color: #ffffff;
   }
 }
