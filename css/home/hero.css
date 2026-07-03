@@ -4,32 +4,32 @@
 .home-intro {
   width: 100%;
   max-width: 1440px;
-  margin: 12px auto 10px;
+  margin: 8px auto 8px;
   padding: 0 22px;
   display: grid;
-  grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr);
-  gap: 28px;
+  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+  gap: 24px;
   align-items: center;
 }
 
 .home-intro-texto {
-  max-width: 520px;
+  max-width: 360px;
 }
 
 .home-intro-texto h1 {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   color: var(--texto);
-  font-size: clamp(2rem, 4vw, 4.1rem);
-  line-height: .94;
-  letter-spacing: -.055em;
+  font-size: clamp(1.85rem, 2.6vw, 2.85rem);
+  line-height: 1.02;
+  letter-spacing: -.045em;
   font-weight: 950;
 }
 
 .home-intro-texto p {
   margin: 0;
   color: var(--texto-suave);
-  font-size: clamp(.95rem, 1.4vw, 1.25rem);
-  line-height: 1.35;
+  font-size: .95rem;
+  line-height: 1.4;
   font-weight: 500;
 }
 
@@ -126,15 +126,15 @@
 
   .home-intro {
     grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
+    gap: 12px;
   }
 
   .home-intro-texto {
-    max-width: 620px;
+    max-width: 560px;
   }
 
   .home-intro-texto h1 {
-    font-size: clamp(2rem, 6vw, 3.3rem);
+    font-size: clamp(1.85rem, 5vw, 3rem);
   }
 
   .hero-banner-home-img {
@@ -153,20 +153,24 @@
 
   .home-intro {
     margin: 8px auto 8px;
-    padding: 0 14px;
-    gap: 12px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .home-intro-texto {
+    max-width: 100%;
   }
 
   .home-intro-texto h1 {
-    margin-bottom: 8px;
-    font-size: 2.25rem;
-    line-height: .96;
-    letter-spacing: -.05em;
+    margin-bottom: 6px;
+    font-size: 1.9rem;
+    line-height: 1.02;
+    letter-spacing: -.045em;
   }
 
   .home-intro-texto p {
-    font-size: .98rem;
-    line-height: 1.3;
+    font-size: .92rem;
+    line-height: 1.35;
   }
 
   .hero-banner-home {
