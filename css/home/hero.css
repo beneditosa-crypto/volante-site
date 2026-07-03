@@ -1,5 +1,37 @@
 /* VOLANTE APP — HOME-HERO.CSS */
-/* Escopo: Hero Banner da Home */
+/* Escopo: Hero / Intro da Home */
+
+.home-intro {
+  width: 100%;
+  max-width: 1440px;
+  margin: 12px auto 10px;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.home-intro-texto {
+  max-width: 520px;
+}
+
+.home-intro-texto h1 {
+  margin: 0 0 10px;
+  color: var(--texto);
+  font-size: clamp(2rem, 4vw, 4.1rem);
+  line-height: .94;
+  letter-spacing: -.055em;
+  font-weight: 950;
+}
+
+.home-intro-texto p {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: clamp(.95rem, 1.4vw, 1.25rem);
+  line-height: 1.35;
+  font-weight: 500;
+}
 
 .hero-banner-home {
   width: 100%;
@@ -92,6 +124,19 @@
 
 @media (max-width: 1024px) {
 
+  .home-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .home-intro-texto {
+    max-width: 620px;
+  }
+
+  .home-intro-texto h1 {
+    font-size: clamp(2rem, 6vw, 3.3rem);
+  }
+
   .hero-banner-home-img {
     height: 330px;
   }
@@ -105,6 +150,24 @@
 }
 
 @media (max-width: 620px) {
+
+  .home-intro {
+    margin: 8px auto 8px;
+    padding: 0 14px;
+    gap: 12px;
+  }
+
+  .home-intro-texto h1 {
+    margin-bottom: 8px;
+    font-size: 2.25rem;
+    line-height: .96;
+    letter-spacing: -.05em;
+  }
+
+  .home-intro-texto p {
+    font-size: .98rem;
+    line-height: 1.3;
+  }
 
   .hero-banner-home {
     margin: 8px 0 8px;
