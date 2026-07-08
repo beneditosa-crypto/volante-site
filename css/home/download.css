@@ -179,15 +179,19 @@
 
 @media (max-width: 430px) {
   .hero-lojas {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .hero-loja-btn {
-    height: 52px;
+    height: 44px;
+    padding: 0 7px;
+    border-radius: 14px;
   }
 
   .hero-loja-btn img {
-    max-width: 148px;
+    max-width: 112px;
+    max-height: 28px;
   }
 }
 
@@ -202,5 +206,19 @@
 
   .hero-app-texto p {
     font-size: .86rem;
+  }
+
+  .hero-lojas {
+    gap: 7px;
+  }
+
+  .hero-loja-btn {
+    height: 42px;
+    padding: 0 6px;
+  }
+
+  .hero-loja-btn img {
+    max-width: 104px;
+    max-height: 26px;
   }
 }
