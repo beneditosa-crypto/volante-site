@@ -96,15 +96,15 @@
   z-index: 3;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
   margin: auto 0 0;
 }
 
 .hero-loja-btn {
   width: 100%;
-  height: 42px;
-  padding: 0 12px;
+  height: 44px;
+  padding: 0 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -124,8 +124,8 @@
 
 .hero-loja-btn img {
   width: 100%;
-  max-width: 126px;
-  max-height: 30px;
+  max-width: 112px;
+  max-height: 28px;
   object-fit: contain;
   display: block;
 }
@@ -170,6 +170,11 @@
     height: 50px;
     border-radius: 16px;
   }
+
+  .hero-loja-btn img {
+    max-width: 132px;
+    max-height: 32px;
+  }
 }
 
 @media (max-width: 430px) {
@@ -179,5 +184,23 @@
 
   .hero-loja-btn {
     height: 52px;
+  }
+
+  .hero-loja-btn img {
+    max-width: 148px;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-download {
+    padding: 18px;
+  }
+
+  .hero-app-texto h2 {
+    font-size: 1.78rem;
+  }
+
+  .hero-app-texto p {
+    font-size: .86rem;
   }
 }
