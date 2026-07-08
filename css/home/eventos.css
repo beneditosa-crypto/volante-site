@@ -5,11 +5,11 @@
   width: 100%;
   min-width: 0;
   min-height: auto;
-  padding: 14px;
-  border-radius: 20px;
+  padding: 12px;
+  border-radius: 18px;
   background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, .08);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, .05);
+  border: 1px solid rgba(15, 23, 42, .07);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .04);
 }
 
 .agenda-eventos-lista {
@@ -26,19 +26,27 @@
 .agenda-eventos-lista > a {
   width: 100%;
   min-width: 0;
-  min-height: 52px;
+  min-height: 46px;
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
-  gap: 10px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 9px;
   align-items: center;
-  padding: 8px 0;
+  padding: 6px 0;
   border-radius: 0;
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(15, 23, 42, .055);
+  border-bottom: 1px solid rgba(15, 23, 42, .045);
   box-shadow: none;
   color: var(--texto);
   text-decoration: none;
+}
+
+.agenda-eventos-lista .agenda-item:nth-child(n+4),
+.agenda-eventos-lista .card-evento:nth-child(n+4),
+.agenda-eventos-lista .evento-card:nth-child(n+4),
+.agenda-eventos-lista article:nth-child(n+4),
+.agenda-eventos-lista > a:nth-child(n+4) {
+  display: none;
 }
 
 .agenda-eventos-lista .agenda-item:last-child,
@@ -65,12 +73,12 @@
 .agenda-eventos-lista .evento-data,
 .agenda-eventos-lista .data-evento,
 .agenda-eventos-lista time {
-  width: 48px;
-  min-width: 48px;
-  min-height: 44px;
-  border-radius: 13px;
+  width: 42px;
+  min-width: 42px;
+  min-height: 38px;
+  border-radius: 12px;
   background: #f8fafc;
-  border: 1px solid rgba(30, 58, 138, .13);
+  border: 1px solid rgba(30, 58, 138, .12);
   color: var(--azul-principal);
   display: flex;
   flex-direction: column;
@@ -79,7 +87,7 @@
   text-align: center;
   font-weight: 900;
   line-height: 1;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, .028);
+  box-shadow: 0 5px 12px rgba(15, 23, 42, .025);
   flex-shrink: 0;
 }
 
@@ -88,7 +96,7 @@
 .agenda-eventos-lista .data-evento strong,
 .agenda-eventos-lista time strong {
   display: block;
-  font-size: 1rem;
+  font-size: .92rem;
   font-weight: 950;
   letter-spacing: -.04em;
 }
@@ -98,8 +106,8 @@
 .agenda-eventos-lista .data-evento span,
 .agenda-eventos-lista time span {
   display: block;
-  margin-top: 3px;
-  font-size: .58rem;
+  margin-top: 2px;
+  font-size: .52rem;
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -114,11 +122,11 @@
 .agenda-eventos-lista h4,
 .agenda-eventos-lista .titulo,
 .agenda-eventos-lista .evento-titulo {
-  margin: 0 0 3px;
+  margin: 0 0 2px;
   color: var(--texto);
-  font-size: .76rem;
+  font-size: .72rem;
   font-weight: 850;
-  line-height: 1.12;
+  line-height: 1.08;
   letter-spacing: -.018em;
   word-break: break-word;
 }
@@ -130,9 +138,9 @@
 .agenda-eventos-lista .categoria {
   margin: 0;
   color: var(--cinza);
-  font-size: .64rem;
+  font-size: .58rem;
   font-weight: 650;
-  line-height: 1.18;
+  line-height: 1.12;
   word-break: break-word;
 }
 
@@ -148,11 +156,10 @@
 }
 
 @media (max-width: 620px) {
-
   .agenda-eventos {
     width: 100%;
-    padding: 12px;
-    border-radius: 18px;
+    padding: 11px;
+    border-radius: 17px;
   }
 
   .agenda-eventos-lista .agenda-item,
@@ -160,10 +167,10 @@
   .agenda-eventos-lista .evento-card,
   .agenda-eventos-lista article,
   .agenda-eventos-lista > a {
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 9px;
-    min-height: 48px;
-    padding: 7px 0;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 8px;
+    min-height: 44px;
+    padding: 6px 0;
     align-items: center;
   }
 
@@ -171,24 +178,24 @@
   .agenda-eventos-lista .evento-data,
   .agenda-eventos-lista .data-evento,
   .agenda-eventos-lista time {
-    width: 44px;
-    min-width: 44px;
-    min-height: 40px;
-    border-radius: 12px;
+    width: 40px;
+    min-width: 40px;
+    min-height: 36px;
+    border-radius: 11px;
   }
 
   .agenda-data strong,
   .agenda-eventos-lista .evento-data strong,
   .agenda-eventos-lista .data-evento strong,
   .agenda-eventos-lista time strong {
-    font-size: .94rem;
+    font-size: .88rem;
   }
 
   .agenda-data span,
   .agenda-eventos-lista .evento-data span,
   .agenda-eventos-lista .data-evento span,
   .agenda-eventos-lista time span {
-    font-size: .54rem;
+    font-size: .5rem;
   }
 
   .agenda-info h3,
@@ -196,8 +203,8 @@
   .agenda-eventos-lista h4,
   .agenda-eventos-lista .titulo,
   .agenda-eventos-lista .evento-titulo {
-    font-size: .72rem;
-    line-height: 1.1;
+    font-size: .7rem;
+    line-height: 1.08;
   }
 
   .agenda-info p,
@@ -205,14 +212,12 @@
   .agenda-eventos-lista .local,
   .agenda-eventos-lista .evento-local,
   .agenda-eventos-lista .categoria {
-    font-size: .6rem;
-    line-height: 1.15;
+    font-size: .57rem;
+    line-height: 1.1;
   }
-
 }
 
 @media (max-width: 380px) {
-
   .agenda-eventos {
     padding: 10px;
   }
@@ -222,18 +227,17 @@
   .agenda-eventos-lista .evento-card,
   .agenda-eventos-lista article,
   .agenda-eventos-lista > a {
-    grid-template-columns: 42px minmax(0, 1fr);
-    gap: 8px;
-    min-height: 46px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 7px;
+    min-height: 42px;
   }
 
   .agenda-data,
   .agenda-eventos-lista .evento-data,
   .agenda-eventos-lista .data-evento,
   .agenda-eventos-lista time {
-    width: 42px;
-    min-width: 42px;
-    min-height: 38px;
+    width: 38px;
+    min-width: 38px;
+    min-height: 35px;
   }
-
 }
