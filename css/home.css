@@ -18,6 +18,12 @@ main {
   display: none;
 }
 
+/* RESPIRO APÓS O CABEÇALHO */
+
+main {
+  padding-top: 22px;
+}
+
 .secao-escolha {
   margin-top: 0;
 }
@@ -67,6 +73,10 @@ main {
     padding-right: 16px;
   }
 
+  main {
+    padding-top: 18px;
+  }
+
   .home-grade-secundaria {
     grid-template-columns: 1fr;
   }
@@ -85,7 +95,11 @@ main {
     padding-right: 12px;
   }
 
+  main {
+    padding-top: 14px;
+  }
+
   .secao-escolha {
-    margin-top: 4px;
+    margin-top: 0;
   }
 }
