@@ -15,19 +15,7 @@ main {
 }
 
 .home-busca-area {
-  width: 100%;
-  max-width: 1440px;
-  margin: 18px auto 22px;
-  padding: 0 22px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
-  align-items: center;
-}
-
-.home-busca-area .home-busca {
-  width: 100%;
-  grid-column: 2;
-  justify-self: end;
+  display: none;
 }
 
 .secao-escolha {
@@ -40,7 +28,7 @@ main {
   margin: 0 auto 14px;
   padding: 0 22px;
   display: grid;
-  grid-template-columns: minmax(300px, .95fr) minmax(420px, 1fr) minmax(300px, .85fr);
+  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1fr) minmax(300px, 0.85fr);
   gap: 18px;
   align-items: stretch;
 }
@@ -74,21 +62,9 @@ main {
 @media (max-width: 820px) {
   .home-section,
   .secao,
-  .home-busca-area,
   .home-grade-secundaria {
     padding-left: 16px;
     padding-right: 16px;
-  }
-
-  .home-busca-area {
-    margin-top: 16px;
-    margin-bottom: 24px;
-    grid-template-columns: 1fr;
-  }
-
-  .home-busca-area .home-busca {
-    width: 100%;
-    grid-column: 1;
   }
 
   .home-grade-secundaria {
@@ -103,16 +79,10 @@ main {
 @media (max-width: 620px) {
   .home-section,
   .secao,
-  .home-busca-area,
   .home-grade-secundaria {
     margin-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
-  }
-
-  .home-busca-area {
-    margin-top: 14px;
-    margin-bottom: 22px;
   }
 
   .secao-escolha {
