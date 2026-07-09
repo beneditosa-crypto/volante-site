@@ -20,6 +20,7 @@
   justify-content: space-between;
   gap: 14px;
   margin-bottom: 12px;
+  padding: 0 16px;
 }
 
 .section-head-menor {
@@ -170,6 +171,10 @@
 /* MOBILE */
 
 @media (max-width: 820px) {
+  .section-head {
+    padding: 0 12px;
+  }
+
   .regioes-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -179,6 +184,7 @@
   .section-head {
     align-items: flex-start;
     margin-bottom: 10px;
+    padding: 0 10px;
   }
 
   .section-label {
