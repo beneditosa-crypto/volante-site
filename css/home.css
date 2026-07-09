@@ -15,10 +15,12 @@ main {
 }
 
 .home-busca-area {
-  display: none;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto 22px;
+  padding: 0 22px;
+  display: block;
 }
-
-/* RESPIRO APÓS O CABEÇALHO */
 
 main {
   padding-top: 22px;
@@ -68,7 +70,8 @@ main {
 @media (max-width: 820px) {
   .home-section,
   .secao,
-  .home-grade-secundaria {
+  .home-grade-secundaria,
+  .home-busca-area {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -89,7 +92,8 @@ main {
 @media (max-width: 620px) {
   .home-section,
   .secao,
-  .home-grade-secundaria {
+  .home-grade-secundaria,
+  .home-busca-area {
     margin-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
