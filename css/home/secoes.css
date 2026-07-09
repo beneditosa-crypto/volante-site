@@ -20,7 +20,7 @@
   justify-content: space-between;
   gap: 14px;
   margin-bottom: 12px;
-  padding: 0 16px;
+  padding: 14px 20px 0;
 }
 
 .section-head-menor {
@@ -98,7 +98,7 @@
   width: 100%;
   min-width: 0;
   min-height: auto;
-  padding: 12px;
+  padding: 0 12px 12px;
   border-radius: 18px;
   background: #ffffff;
   border: 1px solid rgba(15, 23, 42, .07);
@@ -172,7 +172,7 @@
 
 @media (max-width: 820px) {
   .section-head {
-    padding: 0 12px;
+    padding: 12px 14px 0;
   }
 
   .regioes-grid {
@@ -184,7 +184,7 @@
   .section-head {
     align-items: flex-start;
     margin-bottom: 10px;
-    padding: 0 10px;
+    padding: 12px 14px 0;
   }
 
   .section-label {
@@ -213,7 +213,7 @@
 
   .secao-regioes {
     width: 100%;
-    padding: 11px;
+    padding: 0 11px 11px;
     border-radius: 17px;
   }
 
