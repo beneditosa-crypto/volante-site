@@ -1,1 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Sobre | Volante App</title>
+
+<meta name="description" content="Conheça o Volante App, a plataforma premium para veículos antigos, clássicos, eventos automotivos e apaixonados pelo antigomobilismo." />
+<meta property="og:title" content="Sobre | Volante App" />
+<meta property="og:description" content="Volante App: mais que carros, paixão. Uma vitrine premium para veículos clássicos, antigos e experiências automotivas." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://volante.app.br/sobre.html" />
+<meta property="og:image" content="https://volante.app.br/assets/logo.png" />
+<meta property="og:site_name" content="Volante App" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="canonical" href="https://volante.app.br/sobre.html" />
+<link rel="icon" type="image/png" href="./assets/favicon.png" />
+
+<link rel="stylesheet" href="./css/global.css?v=00254" />
+<link rel="stylesheet" href="./css/detalhe/detalhe.css?v=00254" />
+
+<style>
+  .pagina-institucional {
+    width: min(100%, 1120px);
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px 18px 40px;
+  }
+
+  .institucional-hero {
+    margin-top: 8px;
+    padding: 42px;
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at top left, rgba(30, 58, 138, .12), transparent 34%),
+      linear-gradient(135deg, rgba(255,255,255,.98), rgba(241,245,249,.94));
+    border: 1px solid rgba(15,23,42,.07);
+    box-shadow: 0 18px 46px rgba(15,23,42,.08);
+  }
+
+  .institucional-label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(30,58,138,.12), rgba(22,48,122,.08));
+    color: #16307a;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(30,58,138,.10);
+    text-transform: uppercase;
+  }
+
+  .institucional-hero h1 {
+    max-width: 780px;
+    margin: 0;
+    color: #0f172a;
+    font-size: 44px;
+    font-weight: 950;
+    line-height: 1.02;
+    letter-spacing: -1.6px;
+  }
+
+  .institucional-hero p {
+    max-width: 760px;
+    margin: 18px 0 0;
+    color: #334155;
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 560;
+  }
+
+  .institucional-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .institucional-card {
+    padding: 28px;
+    border-radius: 28px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(15,23,42,.07);
+    box-shadow: 0 14px 34px rgba(15,23,42,.055);
+  }
+
+  .institucional-card h2 {
+    margin: 0 0 12px;
+    color: #0f172a;
+    font-size: 24px;
+    font-weight: 950;
+    line-height: 1.08;
+    letter-spacing: -.8px;
+  }
+
+  .institucional-card p {
+    margin: 0 0 12px;
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.72;
+  }
+
+  .institucional-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .institucional-lista li {
+    position: relative;
+    margin: 0 0 10px;
+    padding-left: 18px;
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .institucional-lista li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .62em;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #1e3a8a;
+  }
+
+  .institucional-destaque {
+    margin-top: 28px;
+    padding: 32px;
+    border-radius: 30px;
+    background: #0f172a;
+    color: #ffffff;
+    box-shadow: 0 18px 46px rgba(15,23,42,.16);
+  }
+
+  .institucional-destaque h2 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 950;
+    letter-spacing: -1px;
+  }
+
+  .institucional-destaque p {
+    max-width: 840px;
+    margin: 0;
+    color: rgba(255,255,255,.82);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 820px) {
+    .institucional-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .institucional-hero {
+      padding: 32px;
+    }
+
+    .institucional-hero h1 {
+      font-size: 36px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .pagina-institucional {
+      padding: 10px 12px 28px;
+    }
+
+    .institucional-hero {
+      padding: 24px 20px;
+      border-radius: 26px;
+    }
+
+    .institucional-hero h1 {
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    .institucional-hero p {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .institucional-card {
+      padding: 22px 18px;
+      border-radius: 22px;
+    }
+
+    .institucional-card h2 {
+      font-size: 21px;
+    }
+
+    .institucional-card p,
+    .institucional-lista li {
+      font-size: 14px;
+    }
+
+    .institucional-destaque {
+      padding: 24px 20px;
+      border-radius: 24px;
+    }
+
+    .institucional-destaque h2 {
+      font-size: 22px;
+    }
+
+    .institucional-destaque p {
+      font-size: 14px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="topo detalhe-topo">
+    <div></div>
+
+    <a href="./index.html" class="marca">
+      <img src="./assets/logo.png" alt="Volante App" class="logo" />
+      <div>
+        <div class="nome">Volante</div>
+        <div class="slogan">Mais que carros, paixão</div>
+      </div>
+    </a>
+
+    <div></div>
+  </div>
+</header>
+
+<main class="pagina-institucional">
+  <a href="./index.html" class="btn-voltar" aria-label="Voltar para a página inicial">
+    ← Voltar
+  </a>
+
+  <section class="institucional-hero">
+    <span class="institucional-label">Sobre o Volante</span>
+    <h1>Uma plataforma feita para quem vive a cultura dos veículos clássicos.</h1>
+    <p>
+      O Volante nasceu para reunir anúncios, eventos e experiências ligadas ao antigomobilismo em um ambiente premium,
+      organizado e seguro. Mais do que uma vitrine de veículos, o Volante valoriza histórias, conservação, procedência
+      e a paixão que conecta colecionadores, entusiastas e admiradores.
+    </p>
+  </section>
+
+  <section class="institucional-grid">
+    <article class="institucional-card">
+      <h2>Nosso propósito</h2>
+      <p>
+        Criar uma experiência mais qualificada para encontrar, anunciar e acompanhar veículos antigos e clássicos,
+        aproximando pessoas que compartilham o mesmo cuidado pela memória automotiva.
+      </p>
+      <p>
+        A proposta do Volante é oferecer uma navegação clara, visual elegante e conteúdo selecionado, mantendo o veículo
+        como protagonista.
+      </p>
+    </article>
+
+    <article class="institucional-card">
+      <h2>O que você encontra</h2>
+      <ul class="institucional-lista">
+        <li>Anúncios de veículos antigos e clássicos.</li>
+        <li>Eventos automotivos organizados por região.</li>
+        <li>Experiência integrada entre site público e aplicativo.</li>
+        <li>Contato e acompanhamento pelo app do Volante.</li>
+      </ul>
+    </article>
+
+    <article class="institucional-card">
+      <h2>Curadoria e padrão</h2>
+      <p>
+        O Volante prioriza uma apresentação editorial, limpa e premium. Os anúncios e eventos passam por critérios de
+        organização para preservar a qualidade da plataforma e facilitar a busca por oportunidades relevantes.
+      </p>
+    </article>
+
+    <article class="institucional-card">
+      <h2>Para apaixonados</h2>
+      <p>
+        O Volante foi pensado para quem entende que veículos clássicos não são apenas meios de transporte. São memória,
+        identidade, engenharia, estilo e paixão.
+      </p>
+    </article>
+  </section>
+
+  <section class="institucional-destaque">
+    <h2>Mais que carros, paixão.</h2>
+    <p>
+      Esse é o compromisso do Volante: criar um ambiente confiável, elegante e funcional para fortalecer a cultura dos
+      veículos antigos e clássicos no Brasil.
+    </p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-baloes">
+    <div class="footer-card">
+      <h3>Volante</h3>
+      <p>Mais que carros, paixão.</p>
+      <p>Uma vitrine premium para veículos clássicos, antigos e experiências automotivas.</p>
+    </div>
+
+    <div class="footer-card">
+      <h4>Institucional</h4>
+      <a href="./privacidade.html">Política de privacidade</a>
+      <a href="./termos.html">Termos de uso</a>
+    </div>
+
+    <div class="footer-card">
+      <h4>Aplicativo e contato</h4>
+      <a href="https://play.google.com/store/apps/details?id=br.com.volante.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+      <a href="https://apps.apple.com/br/app/id6778161042" target="_blank" rel="noopener noreferrer">App Store</a>
+      <a href="https://www.instagram.com/appvolante" target="_blank" rel="noopener noreferrer">@appvolante</a>
+      <a href="mailto:contato@volante.app.br">contato@volante.app.br</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    Volante App © 2026. Todos os direitos reservados.
+  </div>
+</footer>
+
+</body>
+</html>
 
