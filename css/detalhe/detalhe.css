@@ -334,13 +334,17 @@
 }
 
 .footer {
-  width: min(100%, 1120px);
-  max-width: 1120px;
-  margin: 46px auto 0;
-  padding: 0 18px 34px;
+  width: 100%;
+  max-width: none;
+  margin: 46px 0 0;
+  padding: 42px 18px 30px;
+  background: #0f172a;
 }
 
 .footer-baloes {
+  width: min(100%, 1120px);
+  max-width: 1120px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1.2fr .8fr 1fr;
   gap: 18px;
@@ -349,21 +353,21 @@
 .footer-card {
   padding: 22px;
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,252,.92));
-  border: 1px solid rgba(15,23,42,.08);
-  box-shadow: 0 14px 34px rgba(15,23,42,.06);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
 }
 
 .footer-card h3,
 .footer-card h4 {
   margin: 0 0 8px;
-  color: #0f172a;
+  color: #ffffff;
   font-weight: 950;
 }
 
 .footer-card p {
   margin: 0 0 6px;
-  color: #334155;
+  color: rgba(255,255,255,.78);
   font-size: 14px;
   line-height: 1.55;
 }
@@ -371,19 +375,23 @@
 .footer-card a {
   display: block;
   margin-top: 7px;
-  color: #334155;
+  color: rgba(255,255,255,.78);
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
 }
 
 .footer-card a:hover {
-  color: #1e3a8a;
+  color: #ffffff;
 }
 
 .footer-bottom {
-  margin-top: 18px;
-  color: #64748b;
+  width: min(100%, 1120px);
+  max-width: 1120px;
+  margin: 22px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  color: #ffffff;
   font-size: 13px;
   font-weight: 650;
   text-align: center;
@@ -522,7 +530,7 @@
   }
 
   .footer {
-    padding: 0 12px 28px;
+    padding: 34px 12px 28px;
     margin-top: 34px;
   }
 
